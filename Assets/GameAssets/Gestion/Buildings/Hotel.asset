@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildID: 3
   buildClass: 1
-  unlocked: 0
+  unlocked: 1
   price: 80
   mat_0: 158
   mat_1: 56
