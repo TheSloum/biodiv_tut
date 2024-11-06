@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BackgroundManager : MonoBehaviour
+public class E_BackgroundManager : MonoBehaviour
 {
     public GameObject bg1;
     public GameObject bg2;
