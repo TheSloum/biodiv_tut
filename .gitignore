@@ -1,0 +1,25 @@
+# Fichiers et dossiers Unity à ignorer
+
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Fichiers spécifiques de build
+*.apk
+*.aab
+*.xcodeproj
+
+# Fichiers spécifiques aux IDE
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.unityproj
+
+# Fichiers système
+.DS_Store
+Thumbs.db
