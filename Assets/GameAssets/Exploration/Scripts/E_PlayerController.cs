@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class E_PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     private Vector2 movement;
