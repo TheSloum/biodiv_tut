@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class CamMov : MonoBehaviour
 {
     private bool drag = false;
@@ -38,7 +37,7 @@ public class CamMov : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
     }
-
+    
     void LateUpdate()
     {
         HandleMovement();
@@ -69,6 +68,9 @@ public class CamMov : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            if (UIdetection.instance.mouseOverUi){
+            return;
+        }
             mousPosDif = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.transform.position);
 
             if (!drag)
@@ -91,8 +93,22 @@ public class CamMov : MonoBehaviour
     private void HandleZoom()
     {
         float scrollData = Input.GetAxis("Mouse ScrollWheel");
+        float originalSize = cam.orthographicSize;
         cam.orthographicSize -= scrollData * zoomSpeed;
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
+
+        
+
+        
+
+            float zoomFactor = cam.orthographicSize / originalSize;
+
+            Vector3 mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+            Vector3 direction = mouseWorldPos - cam.transform.position;
+
+            cam.transform.position += direction * (1 - zoomFactor);
+
 
         Vector3 cameraPos = Camera.main.transform.position;
         float clampedX = Mathf.Clamp(cameraPos.x, minBounds.x, maxBounds.x);

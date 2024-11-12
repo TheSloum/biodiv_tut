@@ -20,6 +20,7 @@ public class Builder : MonoBehaviour
     [SerializeField] private GameObject upgradeButton2;
     [SerializeField] private GameObject upgradeButton3;
     [SerializeField] private GameObject pauseButton;
+    [SerializeField] private Sprite baseSprite;
 
     private SpriteRenderer spriteRenderer; 
 
@@ -34,9 +35,6 @@ public class Builder : MonoBehaviour
     private Button upgrade3;
     private Button pause;
 
-    [SerializeField] private GameObject player; 
-
-    private Materials playerMat;
 
 
     private bool running = false;
@@ -85,7 +83,6 @@ public class Builder : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        playerMat = player.GetComponent<Materials>();
         
         cycleAnim.speed=0f;
 
@@ -94,6 +91,9 @@ public class Builder : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (UIdetection.instance.mouseOverUi){
+            return;
+        }
         if(buildState == 0){
         ShowBuildingMenu();
         } else {
@@ -109,7 +109,7 @@ public class Builder : MonoBehaviour
             level0 = 0;
             level1 = 1;
             level2 = 2;
-            spriteRenderer.color = Color.white;
+            spriteRenderer.sprite = baseSprite;
             running = false;
             progress=0f;
             float timePassed=0f;
@@ -123,7 +123,7 @@ public class Builder : MonoBehaviour
     public void LevelUp1(Building building){
         if(editing == true){
 
-                if (playerMat.mat_0 >= building.up_mat_0 * (1 + Mathf.RoundToInt(level0 * building.upgradeMult)) && playerMat.mat_1 >= building.up_mat_1 * (1 + Mathf.RoundToInt(level0 * building.upgradeMult)) && playerMat.mat_2 >= building.up_mat_2 * (1 + Mathf.RoundToInt(level0 * building.upgradeMult)) && playerMat.price >= building.up_price * (1 + Mathf.RoundToInt(level0 * building.upgradeMult))){
+                if (Materials.instance.mat_0 >= building.up_mat_0 * (1 + Mathf.RoundToInt(level0 * building.upgradeMult)) && Materials.instance.mat_1 >= building.up_mat_1 * (1 + Mathf.RoundToInt(level0 * building.upgradeMult)) && Materials.instance.mat_2 >= building.up_mat_2 * (1 + Mathf.RoundToInt(level0 * building.upgradeMult)) && Materials.instance.price >= building.up_price * (1 + Mathf.RoundToInt(level0 * building.upgradeMult))){
 
         if (level0 != 3)
 {
@@ -203,10 +203,10 @@ public class Builder : MonoBehaviour
         level0 = 1;
     }
     
-        playerMat.mat_0 -= building.up_mat_0 * (1 + Mathf.RoundToInt(level0 * building.upgradeMult));
-        playerMat.mat_1 -= building.up_mat_1 * (1 + Mathf.RoundToInt(level0 * building.upgradeMult));
-        playerMat.mat_2 -= building.up_mat_2 * (1 + Mathf.RoundToInt(level0 * building.upgradeMult));
-        playerMat.price -= building.up_price * (1 + Mathf.RoundToInt(level0 * building.upgradeMult));
+        Materials.instance.mat_0 -= building.up_mat_0 * (1 + Mathf.RoundToInt(level0 * building.upgradeMult));
+        Materials.instance.mat_1 -= building.up_mat_1 * (1 + Mathf.RoundToInt(level0 * building.upgradeMult));
+        Materials.instance.mat_2 -= building.up_mat_2 * (1 + Mathf.RoundToInt(level0 * building.upgradeMult));
+        Materials.instance.price -= building.up_price * (1 + Mathf.RoundToInt(level0 * building.upgradeMult));
 }
                 }
 }
@@ -216,7 +216,7 @@ public class Builder : MonoBehaviour
 
     public void LevelUp2(Building building){
         if(editing == true){
-                if (playerMat.mat_0 >= building.up_mat_0 * (1 + Mathf.RoundToInt(level1 * building.upgradeMult)) && playerMat.mat_1 >= building.up_mat_1 * (1 + Mathf.RoundToInt(level1 * building.upgradeMult)) && playerMat.mat_2 >= building.up_mat_2 * (1 + Mathf.RoundToInt(level1 * building.upgradeMult)) && playerMat.price >= building.up_price * (1 + Mathf.RoundToInt(level1 * building.upgradeMult))){
+                if (Materials.instance.mat_0 >= building.up_mat_0 * (1 + Mathf.RoundToInt(level1 * building.upgradeMult)) && Materials.instance.mat_1 >= building.up_mat_1 * (1 + Mathf.RoundToInt(level1 * building.upgradeMult)) && Materials.instance.mat_2 >= building.up_mat_2 * (1 + Mathf.RoundToInt(level1 * building.upgradeMult)) && Materials.instance.price >= building.up_price * (1 + Mathf.RoundToInt(level1 * building.upgradeMult))){
 
         if (level1 != 3)
 {
@@ -269,10 +269,10 @@ public class Builder : MonoBehaviour
         level1 = 1; 
     }
     
-        playerMat.mat_0 -= building.up_mat_0 * (1 + Mathf.RoundToInt(level1 * building.upgradeMult));
-        playerMat.mat_1 -= building.up_mat_1 * (1 + Mathf.RoundToInt(level1 * building.upgradeMult));
-        playerMat.mat_2 -= building.up_mat_2 * (1 + Mathf.RoundToInt(level1 * building.upgradeMult));
-        playerMat.price -= building.up_price * (1 + Mathf.RoundToInt(level1 * building.upgradeMult)); 
+        Materials.instance.mat_0 -= building.up_mat_0 * (1 + Mathf.RoundToInt(level1 * building.upgradeMult));
+        Materials.instance.mat_1 -= building.up_mat_1 * (1 + Mathf.RoundToInt(level1 * building.upgradeMult));
+        Materials.instance.mat_2 -= building.up_mat_2 * (1 + Mathf.RoundToInt(level1 * building.upgradeMult));
+        Materials.instance.price -= building.up_price * (1 + Mathf.RoundToInt(level1 * building.upgradeMult)); 
 }
                 }
 }
@@ -280,7 +280,7 @@ public class Builder : MonoBehaviour
 
     public void LevelUp3(Building building){
         if(editing == true){
-                if (playerMat.mat_0 >= building.up_mat_0 * (1 + Mathf.RoundToInt(level2 * building.upgradeMult)) && playerMat.mat_1 >= building.up_mat_1 * (1 + Mathf.RoundToInt(level2 * building.upgradeMult)) && playerMat.mat_2 >= building.up_mat_2 * (1 + Mathf.RoundToInt(level2 * building.upgradeMult)) && playerMat.price >= building.up_price * (1 + Mathf.RoundToInt(level2 * building.upgradeMult))){
+                if (Materials.instance.mat_0 >= building.up_mat_0 * (1 + Mathf.RoundToInt(level2 * building.upgradeMult)) && Materials.instance.mat_1 >= building.up_mat_1 * (1 + Mathf.RoundToInt(level2 * building.upgradeMult)) && Materials.instance.mat_2 >= building.up_mat_2 * (1 + Mathf.RoundToInt(level2 * building.upgradeMult)) && Materials.instance.price >= building.up_price * (1 + Mathf.RoundToInt(level2 * building.upgradeMult))){
 
         if (level2 != 3)
 {
@@ -301,10 +301,10 @@ public class Builder : MonoBehaviour
     }
 
     
-        playerMat.mat_0 -= building.up_mat_0 * (1 + Mathf.RoundToInt(level2 * building.upgradeMult));
-        playerMat.mat_1 -= building.up_mat_1 * (1 + Mathf.RoundToInt(level2 * building.upgradeMult));
-        playerMat.mat_2 -= building.up_mat_2 * (1 + Mathf.RoundToInt(level2 * building.upgradeMult));
-        playerMat.price -= building.up_price * (1 + Mathf.RoundToInt(level2 * building.upgradeMult));
+        Materials.instance.mat_0 -= building.up_mat_0 * (1 + Mathf.RoundToInt(level2 * building.upgradeMult));
+        Materials.instance.mat_1 -= building.up_mat_1 * (1 + Mathf.RoundToInt(level2 * building.upgradeMult));
+        Materials.instance.mat_2 -= building.up_mat_2 * (1 + Mathf.RoundToInt(level2 * building.upgradeMult));
+        Materials.instance.price -= building.up_price * (1 + Mathf.RoundToInt(level2 * building.upgradeMult));
 
 }
 }}
@@ -381,20 +381,20 @@ public class Builder : MonoBehaviour
 
     private void OnBuildingButtonClick(Building building)
     {
-        if(playerMat.mat_0 >= building.mat_0 && playerMat.mat_1 >= building.mat_1 && playerMat.mat_2 >= building.mat_2 && playerMat.price >= building.price){
+        if(Materials.instance.mat_0 >= building.mat_0 && Materials.instance.mat_1 >= building.mat_1 && Materials.instance.mat_2 >= building.mat_2 && Materials.instance.price >= building.price){
         buildState = building.buildID;
         Color newColor;
         if (ColorUtility.TryParseHtmlString(building.debug, out newColor))
         {
-            spriteRenderer.color = newColor;
+            spriteRenderer.sprite = building.buildSprite;
         }
-        playerMat.mat_0 += building.mat_0;
-        playerMat.mat_1 += building.mat_1;
-        playerMat.mat_2 += building.mat_2;
-        playerMat.bar_0 += building.bar_0;
-        playerMat.bar_1 += building.bar_1;
-        playerMat.bar_2 += building.bar_2;
-        playerMat.price -= building.price;
+        Materials.instance.mat_0 += building.mat_0;
+        Materials.instance.mat_1 += building.mat_1;
+        Materials.instance.mat_2 += building.mat_2;
+        Materials.instance.bar_0 += building.bar_0;
+        Materials.instance.bar_1 += building.bar_1;
+        Materials.instance.bar_2 += building.bar_2;
+        Materials.instance.price -= building.price;
 
         mat_0_cycle = building.cons_mat_0;
         mat_1_cycle = building.cons_mat_1;
@@ -466,19 +466,19 @@ public void StartCycle()
             
         cycleAnim.Play("CycleAnim",0,progress);
 
-            if(playerMat.mat_0 < mat_0_cycle){
+            if(Materials.instance.mat_0 < mat_0_cycle){
                 toFloat = true;
                 running = false;
             }
-            if(playerMat.mat_1 < mat_1_cycle){
+            if(Materials.instance.mat_1 < mat_1_cycle){
                 toFloat = true;
                 running = false;
             }
-            if(playerMat.mat_2 < mat_2_cycle){
+            if(Materials.instance.mat_2 < mat_2_cycle){
                 toFloat = true;
                 running = false;
             }
-            if(playerMat.price < price_cycle){
+            if(Materials.instance.price < (0-price_cycle)){
                 toFloat = true;
                 running = false;
             }
@@ -495,13 +495,13 @@ public void StartCycle()
 
     void DoCycleAction()
     {
-        playerMat.bar_0 += bar_0_cycle;
-        playerMat.bar_1 += bar_1_cycle;
-        playerMat.bar_2 += bar_2_cycle;
-        playerMat.mat_0 += mat_0_cycle;
-        playerMat.mat_1 += mat_1_cycle;
-        playerMat.mat_2 += mat_2_cycle;
-        playerMat.price += price_cycle;
+        Materials.instance.bar_0 += bar_0_cycle;
+        Materials.instance.bar_1 += bar_1_cycle;
+        Materials.instance.bar_2 += bar_2_cycle;
+        Materials.instance.mat_0 += mat_0_cycle;
+        Materials.instance.mat_1 += mat_1_cycle;
+        Materials.instance.mat_2 += mat_2_cycle;
+        Materials.instance.price += price_cycle;
 
     }
 

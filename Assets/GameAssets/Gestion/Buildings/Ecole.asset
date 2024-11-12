@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Ecole
   m_EditorClassIdentifier: 
   buildID: 1
+  buildClass: 1
+  unlocked: 1
+  buildSprite: {fileID: 21300000, guid: 7a6df2c1fff3ee24397550fe99c6da57, type: 3}
   price: 50
   mat_0: 980
   mat_1: 2
@@ -27,7 +30,7 @@ MonoBehaviour:
   bar_0_cycle: -0.1
   bar_1_cycle: -0.05
   bar_2_cycle: 0.08
-  price_cycle: -25
+  price_cycle: 25
   upgradeMult: 1
   up_mat_0: 800
   up_mat_1: 800

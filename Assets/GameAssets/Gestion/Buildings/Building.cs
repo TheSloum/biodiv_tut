@@ -22,6 +22,13 @@ public void Unlock()
         unlocked = true;
     }
 
+    
+[Header("Sprite")]
+
+public Sprite buildSprite;
+
+
+
 [Space]
 [Space]
 [Space]

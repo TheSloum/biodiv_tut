@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Hopital
   m_EditorClassIdentifier: 
   buildID: 2
+  buildClass: 1
+  unlocked: 1
+  buildSprite: {fileID: 21300000, guid: 9125c204f566db048a92ebcb64d9d14a, type: 3}
   price: 50
   mat_0: 25
   mat_1: 552
@@ -27,7 +30,7 @@ MonoBehaviour:
   bar_0_cycle: -0.05
   bar_1_cycle: 0.08
   bar_2_cycle: -0.1
-  price_cycle: 0
+  price_cycle: 55
   upgradeMult: 1
   up_mat_0: 800
   up_mat_1: 800

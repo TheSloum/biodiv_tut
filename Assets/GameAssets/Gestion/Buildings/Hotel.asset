@@ -15,6 +15,7 @@ MonoBehaviour:
   buildID: 3
   buildClass: 1
   unlocked: 1
+  buildSprite: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
   price: 80
   mat_0: 158
   mat_1: 56

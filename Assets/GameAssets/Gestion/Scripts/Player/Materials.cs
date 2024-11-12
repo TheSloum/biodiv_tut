@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Materials : MonoBehaviour
-{
-
-    public static Materials instance;
+{    public static Materials instance;
     public int mat_0 = 500;
     public int mat_1 = 500;
     public int mat_2 = 500;
@@ -44,5 +42,10 @@ if (bar_2 >= 1f){
     bar_2 = 0.99f;
 }
 
+
+
+
     }
+
+
 }
