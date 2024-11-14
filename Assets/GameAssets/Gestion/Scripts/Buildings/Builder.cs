@@ -68,6 +68,21 @@ public class Builder : MonoBehaviour
     public bool editing = false;
 
 
+
+
+public GameObject prefabToSpawn;           // The prefab to spawn
+    public Vector3 spawnPosition;              // The base position to spawn prefabs at
+    public float positionOffset = 1f;          // The offset position for each new spawn
+    public float timeOffset = 0.2f;            // Delay between each spawn
+    public float fadeDuration = 1f;            // Duration for fading out
+    public float moveSpeed = 1f;               // Speed at which the object moves upward
+
+    private float[] numbers = new float[4];    // Array to store numbers to display
+    public Sprite[] sprites = new Sprite[4];
+
+
+
+
     private void Start(){
         closeMenuButton = closeMenu.GetComponent<Button>();
         closeMenuButton2 = closeMenu2.GetComponent<Button>();
@@ -495,6 +510,10 @@ public void StartCycle()
 
     void DoCycleAction()
     {
+        numbers[0] = mat_0_cycle;
+        numbers[1] = mat_1_cycle;
+        numbers[2] = mat_2_cycle;
+        numbers[3] = price_cycle;
         Materials.instance.bar_0 += bar_0_cycle;
         Materials.instance.bar_1 += bar_1_cycle;
         Materials.instance.bar_2 += bar_2_cycle;
@@ -502,6 +521,10 @@ public void StartCycle()
         Materials.instance.mat_1 += mat_1_cycle;
         Materials.instance.mat_2 += mat_2_cycle;
         Materials.instance.price += price_cycle;
+
+
+        
+        StartCoroutine(SpawnPrefabs());
 
     }
 
@@ -516,4 +539,81 @@ public void StartCycle()
     }
 
 
+
+
+
+
+    private IEnumerator SpawnPrefabs()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            // Skip spawning if the number is 0
+            if (numbers[i] == 0)
+                continue;
+
+            // Instantiate the prefab
+            GameObject instance = Instantiate(prefabToSpawn, transform.position + spawnPosition + new Vector3(positionOffset, 0f, 0f) * i, Quaternion.identity);
+
+            // Set the text and sprite for the instance
+            TextMesh textMesh = instance.GetComponent<TextMesh>();
+            if (textMesh != null)
+            {
+                if (numbers[i] < 0){
+                textMesh.color = Color.red;
+                } else {
+                textMesh.color = Color.green;
+                }
+                textMesh.text = (numbers[i] >= 0 ? "+" : "") + numbers[i].ToString();
+
+            }
+
+            SpriteRenderer spriteRenderer = instance.transform.GetChild(0).GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.sprite = sprites[i];
+            }
+
+            // Start fading out and moving up
+            StartCoroutine(FadeOutAndMove(instance, numbers[i]));
+
+            // Wait for the time offset before spawning the next one
+            yield return new WaitForSeconds(timeOffset);
+        }
+    }
+
+    private IEnumerator FadeOutAndMove(GameObject instance,  float numberVal)
+    {
+        float elapsedTime = 0f;
+        TextMesh textMesh = instance.GetComponent<TextMesh>();
+        SpriteRenderer spriteRenderer = instance.transform.GetChild(0).GetComponent<SpriteRenderer>();
+
+        Color textColor = textMesh.color;
+        Color spriteColor = spriteRenderer.color;
+
+        Vector3 initialPosition = instance.transform.position;
+
+        while (elapsedTime < fadeDuration)
+        {
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            // Set the transparency
+            textMesh.color = new Color(textColor.r, textColor.g, textColor.b, alpha);
+            spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, alpha);
+
+            // Move the instance up
+            if (numberVal > 0){
+            instance.transform.position = initialPosition + Vector3.up * moveSpeed * (elapsedTime / fadeDuration);
+            } else {
+            instance.transform.position = initialPosition + Vector3.down * moveSpeed * (elapsedTime / fadeDuration);
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure it's completely invisible and destroy the instance
+        textMesh.color = new Color(textColor.r, textColor.g, textColor.b, 0f);
+        spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 0f);
+        Destroy(instance);
+    }
 }
