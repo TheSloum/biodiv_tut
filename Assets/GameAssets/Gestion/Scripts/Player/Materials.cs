@@ -12,6 +12,9 @@ public class Materials : MonoBehaviour
     public float bar_1 = 0.5f;
     public float bar_2 = 0.5f;
 
+
+    
+
 private void Awake()
     {
         if(instance == null)

@@ -24,7 +24,7 @@ public class Builder : MonoBehaviour
 
     private SpriteRenderer spriteRenderer; 
 
-    private int buildState = 0;
+    public int buildState = 0;
     private int buildID = 0;
 
     private Button closeMenuButton;
@@ -37,7 +37,7 @@ public class Builder : MonoBehaviour
 
 
 
-    private bool running = false;
+    public bool running = false;
     private float cycleDuration = 0f;
     private Coroutine cycleCoroutine;
     private int mat_0_cycle = 0;
@@ -47,9 +47,9 @@ public class Builder : MonoBehaviour
     private float bar_1_cycle = 0f;
     private float bar_2_cycle = 0f;
     private int price_cycle = 0;
-    private int level0 = 0;
-    private int level1 = 0;
-    private int level2 = 0;
+    public int level0 = 0;
+    public int level1 = 0;
+    public int level2 = 0;
 
     private float level1ScaleUp = 0.2f;
     private float level2ScaleUp = 0.4f;
