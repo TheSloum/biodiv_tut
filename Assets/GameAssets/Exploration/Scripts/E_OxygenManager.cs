@@ -10,10 +10,11 @@ public class E_OxygenManager : MonoBehaviour
     public float depletionRate = 5f; // oxygène par seconde
 
     // Variables pour le compteur de Trash
-    public TextMeshProUGUI trashCounterText;
-    private int trashCollected = 0;
+    public TextMeshProUGUI trashCounterText; // Assignez ce champ via l'inspecteur
+    [HideInInspector]
+    public int trashCollected = 0; // Doit être public pour être accessible
 
-    public GameObject gameOverCanvas;
+    public GameObject gameOverCanvas; // Assigné via l'inspecteur
 
     void Start()
     {
@@ -66,17 +67,16 @@ public class E_OxygenManager : MonoBehaviour
     // Méthode pour incrémenter le compteur de Trash
     public void IncrementTrashCollected()
     {
-        Debug.Log("Test");
         trashCollected++;
         UpdateTrashCounterUI();
     }
 
     // Mettre à jour le texte du compteur de Trash
-    private void UpdateTrashCounterUI()
+    public void UpdateTrashCounterUI()
     {
         if(trashCounterText != null)
         {
-            trashCounterText.text = "Trash : " + trashCollected.ToString();
+            trashCounterText.text = "Trash Collectés : " + trashCollected.ToString();
         }
     }
 
