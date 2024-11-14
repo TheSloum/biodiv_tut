@@ -11,7 +11,7 @@ public class FishUnlock : MonoBehaviour
 
 
 
-    public void unlockBuild(){
+    public void unlockFish(){
             foreach (Fishes fish in fishes)
         {
             if (fish.fishID == fishunlockID)
