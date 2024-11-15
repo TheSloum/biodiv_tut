@@ -51,7 +51,7 @@ public class GameDataSaver : MonoBehaviour
         }
 
         string json = JsonUtility.ToJson(gameData, true);
-        string path = Path.Combine(Application.persistentDataPath, "GameData.json");
+        string path = Path.Combine(Application.dataPath, "Sauvegardes/GameData.json");
         File.WriteAllText(path, json);
         Debug.Log("Game data saved to: " + path);
     }

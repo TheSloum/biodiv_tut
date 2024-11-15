@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c505cf12c64c04fbf956b540a788e6, type: 3}
+  m_Name: Jardin
+  m_EditorClassIdentifier: 
+  buildID: 7
+  buildClass: 4
+  unlocked: 1
+  buildSprite: {fileID: 0}
+  price: -100
+  mat_0: -5
+  mat_1: -10
+  mat_2: -50
+  bar_0: 0
+  bar_1: 0
+  bar_2: 0
+  time: 10
+  cons_mat_0: 0
+  cons_mat_1: 0
+  cons_mat_2: 0
+  bar_0_cycle: 0.0075
+  bar_1_cycle: 0.0025
+  bar_2_cycle: 0.04
+  price_cycle: -100
+  upgradeMult: 1
+  up_mat_0: 800
+  up_mat_1: 800
+  up_mat_2: 800
+  up_price: 800
+  debug: FF57733

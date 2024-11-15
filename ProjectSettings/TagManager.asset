@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ButtonPriority
   - Trash
+  - Building
   layers:
   - Default
   - TransparentFX

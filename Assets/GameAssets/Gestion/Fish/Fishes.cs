@@ -13,7 +13,7 @@ public class Fishes : ScriptableObject
 
     public void UnlockFish()
     {
-        unlocked = true;
+        is_unlocked = true;
     }
     public string fishDes = "Ce poisson a une grosse tête de con et il nage. \n En plus, il est pas bon.";
     public string fishOrigin = "Martinique du far-ouest";

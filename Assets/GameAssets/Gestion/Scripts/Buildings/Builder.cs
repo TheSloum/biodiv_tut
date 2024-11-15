@@ -396,7 +396,7 @@ public GameObject prefabToSpawn;           // The prefab to spawn
 
     private void OnBuildingButtonClick(Building building)
     {
-        if(Materials.instance.mat_0 >= building.mat_0 && Materials.instance.mat_1 >= building.mat_1 && Materials.instance.mat_2 >= building.mat_2 && Materials.instance.price >= building.price){
+        if(Materials.instance.mat_0 >= (-1*building.mat_0) && Materials.instance.mat_1 >= (-1*building.mat_1) && Materials.instance.mat_2 >= (-1*building.mat_2) && Materials.instance.price >= (-1*building.price)){
         buildState = building.buildID;
         Color newColor;
         if (ColorUtility.TryParseHtmlString(building.debug, out newColor))
@@ -409,7 +409,14 @@ public GameObject prefabToSpawn;           // The prefab to spawn
         Materials.instance.bar_0 += building.bar_0;
         Materials.instance.bar_1 += building.bar_1;
         Materials.instance.bar_2 += building.bar_2;
-        Materials.instance.price -= building.price;
+        Materials.instance.price += building.price;
+
+        
+        numbers[0] = building.mat_0;
+        numbers[1] = building.mat_1;
+        numbers[2] = building.mat_2;
+        numbers[3] = building.price;
+        StartCoroutine(SpawnPrefabs());
 
         mat_0_cycle = building.cons_mat_0;
         mat_1_cycle = building.cons_mat_1;
@@ -481,19 +488,19 @@ public void StartCycle()
             
         cycleAnim.Play("CycleAnim",0,progress);
 
-            if(Materials.instance.mat_0 < mat_0_cycle){
+            if(Materials.instance.mat_0 < (-1*mat_0_cycle)){
                 toFloat = true;
                 running = false;
             }
-            if(Materials.instance.mat_1 < mat_1_cycle){
+            if(Materials.instance.mat_1 < (-1*mat_1_cycle)){
                 toFloat = true;
                 running = false;
             }
-            if(Materials.instance.mat_2 < mat_2_cycle){
+            if(Materials.instance.mat_2 < (-1*mat_2_cycle)){
                 toFloat = true;
                 running = false;
             }
-            if(Materials.instance.price < (0-price_cycle)){
+            if(Materials.instance.price < (-1*price_cycle)){
                 toFloat = true;
                 running = false;
             }
