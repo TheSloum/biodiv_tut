@@ -15,14 +15,25 @@ public class E_FishController : MonoBehaviour
     public float rotationSpeed = 20f; // Vitesse de rotation (augmentée)
     public float rotationThreshold = 0.005f; // Seuil pour le mouvement vertical (réduit)
 
+    [Header("Fish Settings")]
+    public Fishes fishData; // Référence au ScriptableObject Fishes
+
     private float speed;
     private Vector3 startPosition;
     private float movementTimer;
     private bool movingLeft = true;
     private float previousY;
 
+    private bool hasInteracted = false; // Indicateur pour s'assurer que l'interaction se produit une seule fois
+
     void Start()
     {
+        if (fishData == null)
+        {
+            Debug.LogError("FishData n'est pas assigné à E_FishController !");
+            return;
+        }
+
         startPosition = transform.position;
         speed = baseSpeed + Random.Range(-speedVariance, speedVariance);
         movementTimer = Random.Range(0f, 2f * Mathf.PI);
@@ -31,6 +42,8 @@ public class E_FishController : MonoBehaviour
 
     void Update()
     {
+        if (fishData == null) return;
+
         // Déplacer le poisson
         Vector2 direction = movingLeft ? Vector2.left : Vector2.right;
         transform.Translate(direction * speed * Time.deltaTime);
@@ -88,5 +101,41 @@ public class E_FishController : MonoBehaviour
         Vector3 localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (hasInteracted || fishData == null) return;
+
+        if (collision.CompareTag("Player"))
+        {
+            // Tenter de déverrouiller le poisson
+            bool justUnlocked = false;
+            if (FishUnlock.Instance != null)
+            {
+                justUnlocked = FishUnlock.Instance.UnlockFish(fishData.fishID);
+            }
+            else
+            {
+                Debug.LogError("FishUnlock Instance n'est pas initialisée. Veuillez vous assurer que FishUnlock est correctement configuré.");
+            }
+
+            if (justUnlocked)
+            {
+                // Déclencher le flash seulement si le poisson vient d'être déverrouillé
+                E_FlashEffect.Instance.TriggerFlash();
+
+                // Marquer que cette interaction a eu lieu pour éviter des interactions futures
+                hasInteracted = true;
+
+                // Optionnel : Ajouter d'autres effets, par exemple, détruire le poisson ou appliquer des effets au joueur
+                // Destroy(gameObject);
+            }
+            else
+            {
+                // Le poisson est déjà déverrouillé, ne rien faire
+                Debug.Log($"Poisson avec ID {fishData.fishID} est déjà déverrouillé. Aucun flash déclenché.");
+            }
+        }
     }
 }

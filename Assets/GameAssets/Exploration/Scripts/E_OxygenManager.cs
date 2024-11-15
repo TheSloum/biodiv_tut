@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class E_OxygenManager : MonoBehaviour
 {
@@ -83,6 +85,7 @@ public class E_OxygenManager : MonoBehaviour
     // Méthode pour déclencher le Game Over
     void TriggerGameOver()
     {
+        SceneManager.LoadScene("SampleScene");
         Debug.Log("Oxygène épuisé !");
         if(gameOverCanvas != null)
         {
