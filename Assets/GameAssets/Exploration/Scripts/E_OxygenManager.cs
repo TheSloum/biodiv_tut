@@ -23,6 +23,11 @@ public class E_OxygenManager : MonoBehaviour
     public TextMeshProUGUI stoneText; // Assignez via l'inspecteur
     public TextMeshProUGUI ironText; // Assignez via l'inspecteur
 
+    // Référence au GameObject "Materials" à désactiver lors du Game Over
+    [Header("Références Supplémentaires")]
+    [Tooltip("Assignez le GameObject 'Materials' ici.")]
+    public GameObject materials; // Assignez ce champ via l'inspecteur
+
     // Variables pour le temps
     private float startTime;
     private bool isGameOver = false;
@@ -123,6 +128,17 @@ public class E_OxygenManager : MonoBehaviour
         // Calculer le temps total passé en mode exploration
         float totalTime = Time.time - startTime;
         string formattedTime = FormatTime(totalTime);
+
+        // Désactiver le GameObject "Materials" si assigné
+        if (materials != null)
+        {
+            materials.SetActive(false);
+            Debug.Log("GameObject 'Materials' désactivé.");
+        }
+        else
+        {
+            Debug.LogWarning("Le GameObject 'Materials' n'est pas assigné dans E_OxygenManager.TriggerGameOver().");
+        }
 
         // Activer le ResultScreen
         if (resultScreen != null)
