@@ -4,14 +4,37 @@ using UnityEngine;
 
 public class GameDataSaver : MonoBehaviour
 {
+    public static GameDataSaver instance { get; private set; }
+
     public List<Fishes> fishUnlockData;
     public List<Building> buildUnlockData;
     public List<GameObject> builderData;
 
+    // Matériaux
+    public int mat_0 = 500; // Bois
+    public int mat_1 = 500; // Pierre
+    public int mat_2 = 500; // Fer
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            Debug.Log("GameDataSaver.instance initialisé.");
+        }
+        else
+        {
+            Destroy(gameObject);
+            Debug.LogWarning("Multiple instances de GameDataSaver détectées et détruites.");
+        }
+    }
+
     private void Start()
     {
         builderData = new List<GameObject>(GameObject.FindGameObjectsWithTag("Building"));
-        SaveData();
+        LoadData(); // Charger les données au démarrage
+        // Optionnel : SaveData(); // Sauvegarder immédiatement après le chargement (à utiliser si nécessaire)
     }
 
     public void SaveData()
@@ -20,7 +43,10 @@ public class GameDataSaver : MonoBehaviour
         {
             fishDataList = new List<FishData>(),
             buildingDataList = new List<BuildingData>(),
-            builderDataList = new List<BuilderData>()
+            builderDataList = new List<BuilderData>(),
+            mat_0 = mat_0,
+            mat_1 = mat_1,
+            mat_2 = mat_2
         };
 
         foreach (var fish in fishUnlockData)
@@ -50,10 +76,62 @@ public class GameDataSaver : MonoBehaviour
             }
         }
 
+        // Sauvegarder les matériaux
+        gameData.mat_0 = mat_0;
+        gameData.mat_1 = mat_1;
+        gameData.mat_2 = mat_2;
+
         string json = JsonUtility.ToJson(gameData, true);
         string path = Path.Combine(Application.dataPath, "Sauvegardes/GameData.json");
         File.WriteAllText(path, json);
         Debug.Log("Game data saved to: " + path);
+    }
+
+    public void LoadData()
+    {
+        string path = Path.Combine(Application.dataPath, "Sauvegardes/GameData.json");
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            GameData gameData = JsonUtility.FromJson<GameData>(json);
+
+            // Charger les données des poissons
+            for (int i = 0; i < fishUnlockData.Count && i < gameData.fishDataList.Count; i++)
+            {
+                fishUnlockData[i].is_unlocked = gameData.fishDataList[i].is_unlocked;
+            }
+
+            // Charger les données des bâtiments
+            for (int i = 0; i < buildUnlockData.Count && i < gameData.buildingDataList.Count; i++)
+            {
+                buildUnlockData[i].unlocked = gameData.buildingDataList[i].unlocked;
+            }
+
+            // Charger les données des builders
+            for (int i = 0; i < builderData.Count && i < gameData.builderDataList.Count; i++)
+            {
+                Builder builderComponent = builderData[i].GetComponent<Builder>();
+                if (builderComponent != null)
+                {
+                    builderComponent.level0 = gameData.builderDataList[i].level0;
+                    builderComponent.level1 = gameData.builderDataList[i].level1;
+                    builderComponent.level2 = gameData.builderDataList[i].level2;
+                    builderComponent.running = gameData.builderDataList[i].running;
+                    builderComponent.buildState = gameData.builderDataList[i].buildState;
+                }
+            }
+
+            // Charger les matériaux
+            mat_0 = gameData.mat_0;
+            mat_1 = gameData.mat_1;
+            mat_2 = gameData.mat_2;
+
+            Debug.Log("Game data loaded from: " + path);
+        }
+        else
+        {
+            Debug.LogWarning("Aucune sauvegarde trouvée à: " + path);
+        }
     }
 }
 
@@ -85,4 +163,9 @@ public class GameData
     public List<FishData> fishDataList;
     public List<BuildingData> buildingDataList;
     public List<BuilderData> builderDataList;
+
+    // Matériaux
+    public int mat_0; // Bois
+    public int mat_1; // Pierre
+    public int mat_2; // Fer
 }
