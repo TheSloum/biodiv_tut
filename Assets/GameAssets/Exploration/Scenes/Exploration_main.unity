@@ -1441,7 +1441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "Trash Collect\xE9s : 0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1781,6 +1781,7 @@ MonoBehaviour:
   woodText: {fileID: 370316077}
   stoneText: {fileID: 690910426}
   ironText: {fileID: 180813187}
+  materials: {fileID: 948516100}
   gameOverCanvas: {fileID: 0}
 --- !u!4 &576584558
 Transform:
@@ -3060,7 +3061,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd6b69dc00a94ec49fcd55d7cdc69c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishPrefab: {fileID: 2388417884662715918, guid: 63f4b1ad0a92d46cb807e61f7623b58f, type: 3}
+  fishPrefabs:
+  - {fileID: 2388417884662715918, guid: 63f4b1ad0a92d46cb807e61f7623b58f, type: 3}
+  - {fileID: 2388417884662715918, guid: 1469929aab154441cab4fffe2ed27a3c, type: 3}
+  - {fileID: 2388417884662715918, guid: ad6b5f355232040549ff726b59248f7b, type: 3}
   spawnInterval: 14
   spawnRangeY: 3
   spawnXOffset: 10

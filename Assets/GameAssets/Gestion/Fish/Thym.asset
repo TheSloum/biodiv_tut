@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishID: 2
   fishName: Thym
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "Ce poisson a une grosse t\xEAte de con et il nage. \n En plus, il est
     pas bon."
   fishOrigin: "Am\xE9rique du nord m\xE9dit\xE9rann\xE9enne"
