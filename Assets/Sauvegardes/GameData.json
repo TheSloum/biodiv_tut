@@ -4,10 +4,10 @@
             "is_unlocked": true
         },
         {
-            "is_unlocked": true
+            "is_unlocked": false
         },
         {
-            "is_unlocked": false
+            "is_unlocked": true
         }
     ],
     "buildingDataList": [

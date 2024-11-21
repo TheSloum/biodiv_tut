@@ -14,6 +14,8 @@ public class E_Scroller : MonoBehaviour
     private int currentType = 1; // Tracks the current type (1, 2, or 3)
     private Vector3 screenBounds; // Screen size in world units
 
+    public int layer = 0;
+
     void Start()
     {
         // Get the screen bounds in world units
@@ -65,6 +67,7 @@ public class E_Scroller : MonoBehaviour
         SpriteRenderer renderer = imageObject.AddComponent<SpriteRenderer>();
         renderer.sprite = sprite;
         imageObject.transform.localScale = Vector3.one * 3.2f;
+        renderer.sortingOrder = layer;
         return imageObject;
     }
 
