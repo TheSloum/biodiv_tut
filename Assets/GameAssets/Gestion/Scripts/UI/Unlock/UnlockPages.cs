@@ -13,25 +13,25 @@ public class UnlockPages : MonoBehaviour
     
     
     public void PageChange(int page){
-        page1.active = false;
-        page2.active = false;
-        page3.active = false;
-        page4.active = false;
-        page5.active = false;
+        page1.SetActive(false);
+        page2.SetActive(false);
+        page3.SetActive(false);
+        page4.SetActive(false);
+        page5.SetActive(false);
 
         if (page == 1){
-        page1.active = true;
+        page1.SetActive(true);
         } else if (page== 2){
-        page2.active = true;
+        page2.SetActive(true);
         }else if (page== 3){
-        page3.active = true;            
+        page3.SetActive(true);           
         }else if (page== 4){
-        page4.active = true;            
+        page4.SetActive(true);           
         }else if (page== 5){
-        page5.active = true;            
+        page5.SetActive(true);           
         }
     }
     public void ClosePage(){
-        gameObject.active = false;
+        gameObject.SetActive(false);
     }
 }

@@ -41,8 +41,12 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": false,
-            "buildState": 0
+            "running": true,
+            "buildState": 1
         }
-    ]
+    ],
+    "mat_0": 450,
+    "mat_1": 490,
+    "mat_2": 495,
+    "price": 400
 }

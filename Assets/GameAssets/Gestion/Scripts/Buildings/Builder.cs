@@ -38,7 +38,7 @@ public class Builder : MonoBehaviour
 
 
     public bool running = false;
-    private float cycleDuration = 0f;
+    public float cycleDuration = 0f;
     private Coroutine cycleCoroutine;
     private int mat_0_cycle = 0;
     private int mat_1_cycle = 0;
@@ -463,7 +463,10 @@ public GameObject prefabToSpawn;           // The prefab to spawn
     }
 
 
-
+public void Testconn()
+{
+    StartCycle();
+}
 public void StartCycle()
     {
         running = true;

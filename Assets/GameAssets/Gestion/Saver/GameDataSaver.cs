@@ -14,6 +14,7 @@ public class GameDataSaver : MonoBehaviour
     public int mat_0 = 500; // Bois
     public int mat_1 = 500; // Pierre
     public int mat_2 = 500; // Fer
+    public int price = 500; // MONEYYYY
 
     private void Awake()
     {
@@ -33,8 +34,20 @@ public class GameDataSaver : MonoBehaviour
     private void Start()
     {
         builderData = new List<GameObject>(GameObject.FindGameObjectsWithTag("Building"));
-        LoadData(); // Charger les données au démarrage
         // Optionnel : SaveData(); // Sauvegarder immédiatement après le chargement (à utiliser si nécessaire)
+    }
+
+
+    private void Update(){
+
+        if (Input.GetKeyDown(KeyCode.B)){
+            SaveData();
+            
+        }
+        if (Input.GetKeyDown(KeyCode.V)){
+            LoadData();
+            
+        }
     }
 
     public void SaveData()
@@ -44,9 +57,10 @@ public class GameDataSaver : MonoBehaviour
             fishDataList = new List<FishData>(),
             buildingDataList = new List<BuildingData>(),
             builderDataList = new List<BuilderData>(),
-            mat_0 = mat_0,
-            mat_1 = mat_1,
-            mat_2 = mat_2
+            mat_0 = Materials.instance.mat_0,
+            mat_1 = Materials.instance.mat_1,
+            mat_2 = Materials.instance.mat_2,
+            price = Materials.instance.price
         };
 
         foreach (var fish in fishUnlockData)
@@ -77,9 +91,10 @@ public class GameDataSaver : MonoBehaviour
         }
 
         // Sauvegarder les matériaux
-        gameData.mat_0 = mat_0;
-        gameData.mat_1 = mat_1;
-        gameData.mat_2 = mat_2;
+        gameData.mat_0 = Materials.instance.mat_0;
+        gameData.mat_1 = Materials.instance.mat_1;
+        gameData.mat_2 = Materials.instance.mat_2;
+        gameData.price = Materials.instance.price;
 
         string json = JsonUtility.ToJson(gameData, true);
         string path = Path.Combine(Application.dataPath, "Sauvegardes/GameData.json");
@@ -111,6 +126,7 @@ public class GameDataSaver : MonoBehaviour
             for (int i = 0; i < builderData.Count && i < gameData.builderDataList.Count; i++)
             {
                 Builder builderComponent = builderData[i].GetComponent<Builder>();
+                SpriteRenderer spriterenderer = builderData[i].GetComponent<SpriteRenderer>();
                 if (builderComponent != null)
                 {
                     builderComponent.level0 = gameData.builderDataList[i].level0;
@@ -118,13 +134,20 @@ public class GameDataSaver : MonoBehaviour
                     builderComponent.level2 = gameData.builderDataList[i].level2;
                     builderComponent.running = gameData.builderDataList[i].running;
                     builderComponent.buildState = gameData.builderDataList[i].buildState;
+                    spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
+                    builderComponent.cycleDuration = buildUnlockData[gameData.builderDataList[i].buildState].time;
+                    if (builderComponent.buildState > 0 && builderComponent.running)
+{
+    builderComponent.StartCycle();
+}
                 }
             }
 
             // Charger les matériaux
-            mat_0 = gameData.mat_0;
-            mat_1 = gameData.mat_1;
-            mat_2 = gameData.mat_2;
+            Materials.instance.mat_0 = gameData.mat_0;
+            Materials.instance.mat_1 = gameData.mat_1;
+            Materials.instance.mat_2 = gameData.mat_2;
+            Materials.instance.price = gameData.price;
 
             Debug.Log("Game data loaded from: " + path);
         }
@@ -168,4 +191,5 @@ public class GameData
     public int mat_0; // Bois
     public int mat_1; // Pierre
     public int mat_2; // Fer
+    public int price; // Fer
 }
