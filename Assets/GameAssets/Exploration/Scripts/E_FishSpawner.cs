@@ -24,6 +24,26 @@ public class E_FishSpawner : MonoBehaviour
         // Calculer une position de spawn aléatoire sur l'axe Y
         float spawnY = Random.Range(-spawnRangeY, spawnRangeY);
         Vector3 spawnPosition = new Vector3(transform.position.x + spawnXOffset, spawnY, 0f);
-        Instantiate(fishPrefab, spawnPosition, Quaternion.identity);
+
+        // Instancier le poisson
+        GameObject fish = Instantiate(fishPrefab, spawnPosition, Quaternion.identity);
+
+        // Vérifier si le prefab possède un SpriteRenderer
+        SpriteRenderer sr = fish.GetComponent<SpriteRenderer>();
+        if(sr != null)
+        {
+            // Définir un Order in Layer aléatoire entre -6 et -2 (inclus)
+            int sortingOrder = Random.Range(-6, -1); // -6, -5, -4, -3, -2
+            sr.sortingOrder = sortingOrder;
+
+            // Calculer l'échelle en fonction de l'Order in Layer
+            // Plus l'ordre est bas, plus l'échelle est petite
+            float scale = 3f + ((sortingOrder + 6) * 0.5f); // -6 => 3, -5 => 3.5, ..., -2 => 5
+            fish.transform.localScale = Vector3.one * scale;
+        }
+        else
+        {
+            Debug.LogWarning("Le prefab de poisson n'a pas de SpriteRenderer attaché.");
+        }
     }
 }

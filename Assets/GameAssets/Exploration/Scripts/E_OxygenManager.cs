@@ -185,7 +185,7 @@ public class E_OxygenManager : MonoBehaviour
         }
 
         // Attendre 5 secondes avant de changer de scène
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(5f);
 
         // Réinitialiser le temps et la pause
         Time.timeScale = 1f;
@@ -207,7 +207,7 @@ public class E_OxygenManager : MonoBehaviour
 
         while (elapsed < duration)
         {
-            elapsed += Time.unscaledDeltaTime; // Utiliser undeltaTime non affecté par Time.timeScale
+            elapsed += Time.unscaledDeltaTime; // Utiliser unscaledDeltaTime non affecté par Time.timeScale
             float t = Mathf.Clamp01(elapsed / duration);
 
             // Interpoler les minutes et secondes séparément
@@ -237,7 +237,7 @@ public class E_OxygenManager : MonoBehaviour
 
         while (elapsed < duration)
         {
-            elapsed += Time.unscaledDeltaTime; // Utiliser undeltaTime non affecté par Time.timeScale
+            elapsed += Time.unscaledDeltaTime; // Utiliser unscaledDeltaTime non affecté par Time.timeScale
             float t = Mathf.Clamp01(elapsed / duration);
 
             // Interpoler le nombre
@@ -267,7 +267,7 @@ public class E_OxygenManager : MonoBehaviour
         Time.timeScale = 1f;
 
         // Charger la scène d'exploration ou la scène principale
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("SampleScene"); // Remplacez "SampleScene" par le nom de votre scène d'exploration
     }
 
     public void OnQuitButtonPressed()
