@@ -1300,7 +1300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &339676446
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2747,8 +2747,8 @@ MonoBehaviour:
   zoomSpeed: 150
   minZoom: 50
   maxZoom: 420
-  minBounds: {x: -750, y: -1325}
-  maxBounds: {x: 747, y: 1296}
+  minBounds: {x: -750, y: -1623.1}
+  maxBounds: {x: 747, y: 1865}
   moveSpeed: 150
   acceleration: 200
   deceleration: 300
@@ -5380,6 +5380,7 @@ MonoBehaviour:
   baseSprite: {fileID: 21300000, guid: a97938fc8172e8041ad617b777ebf442, type: 3}
   buildState: 0
   running: 0
+  cycleDuration: 0
   level0: 0
   level1: 0
   level2: 0
@@ -5457,7 +5458,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996934094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 135, y: -584, z: 0}
+  m_LocalPosition: {x: 184, y: -553, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6092,7 +6093,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -50
-  m_Sprite: {fileID: 21300000, guid: f68d53dd2354dfc4c9feb919a6aeec9e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba79a32d65b22ca45a3ee0584d53f68e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6111,7 +6112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041563229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 27, y: 197, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7505,6 +7506,9 @@ MonoBehaviour:
   bar_0: 0.5
   bar_1: 0.5
   bar_2: 0.5
+  woodText: {fileID: 0}
+  stoneText: {fileID: 0}
+  ironText: {fileID: 0}
 --- !u!4 &1383650386
 Transform:
   m_ObjectHideFlags: 0
@@ -7560,6 +7564,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   builderData: []
+  mat_0: 500
+  mat_1: 500
+  mat_2: 500
+  price: 500
 --- !u!1 &1398257726
 GameObject:
   m_ObjectHideFlags: 0
@@ -8755,7 +8763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1516612228
 RectTransform:
   m_ObjectHideFlags: 0

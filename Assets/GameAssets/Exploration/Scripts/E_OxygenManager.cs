@@ -49,7 +49,7 @@ public class E_OxygenManager : MonoBehaviour
         // Réinitialiser les compteurs de session
         if (Materials.instance != null)
         {
-            Materials.instance.ResetSessionCounts();
+            //Materials.instance.ResetSessionCounts();
         }
         else
         {
@@ -128,7 +128,7 @@ public class E_OxygenManager : MonoBehaviour
         if (resultScreen != null)
         {
             resultScreen.SetActive(true);
-            StartCoroutine(DisplayResults(formattedTime));
+            //StartCoroutine(DisplayResults(formattedTime));
         }
 
         // Activer le GameOverCanvas si nécessaire
@@ -142,6 +142,12 @@ public class E_OxygenManager : MonoBehaviour
     }
 
     // Coroutine pour afficher les résultats avec animation
+    /*
+    
+    
+    
+    
+    
     IEnumerator DisplayResults(string formattedTime)
     {
         // Afficher et animer le temps total
@@ -250,7 +256,16 @@ public class E_OxygenManager : MonoBehaviour
 
         // Assurer que le texte final est exact
         textComponent.text = prefix + targetNumber.ToString();
-    }
+    } 
+    
+    
+    
+    
+    
+    
+    
+    
+    */
 
     // Méthode pour formater le temps en minutes:secondes
     string FormatTime(float time)

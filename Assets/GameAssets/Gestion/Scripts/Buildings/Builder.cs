@@ -398,11 +398,9 @@ public GameObject prefabToSpawn;           // The prefab to spawn
     {
         if(Materials.instance.mat_0 >= (-1*building.mat_0) && Materials.instance.mat_1 >= (-1*building.mat_1) && Materials.instance.mat_2 >= (-1*building.mat_2) && Materials.instance.price >= (-1*building.price)){
         buildState = building.buildID;
-        Color newColor;
-        if (ColorUtility.TryParseHtmlString(building.debug, out newColor))
-        {
             spriteRenderer.sprite = building.buildSprite;
-        }
+        
+                Debug.Log(spriteRenderer.sprite);
         Materials.instance.mat_0 += building.mat_0;
         Materials.instance.mat_1 += building.mat_1;
         Materials.instance.mat_2 += building.mat_2;
@@ -434,6 +432,8 @@ public GameObject prefabToSpawn;           // The prefab to spawn
         StartCycle();
 
         HideBuildingMenu();
+
+        
         }
         
         
