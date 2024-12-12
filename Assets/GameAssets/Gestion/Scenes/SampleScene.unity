@@ -2754,11 +2754,6 @@ MonoBehaviour:
   deceleration: 300
   maxSpeed: 300
   stopDrag: 150
-  pauseKey: 32
-  speedUpKey: 112
-  resetSpeedKey: 109
-  minTimeScale: 1
-  maxTimeScale: 4
 --- !u!50 &519420034
 Rigidbody2D:
   serializedVersion: 4
@@ -5221,8 +5216,8 @@ RectTransform:
   m_GameObject: {fileID: 963703219}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -52.431046}
-  m_LocalScale: {x: 0.95812505, y: 0.95812505, z: 0.68452394}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 0.7144411}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1678534679}
   m_RootOrder: 5
@@ -7509,6 +7504,9 @@ MonoBehaviour:
   woodText: {fileID: 0}
   stoneText: {fileID: 0}
   ironText: {fileID: 0}
+  sessionWood: 0
+  sessionStone: 0
+  sessionIron: 0
 --- !u!4 &1383650386
 Transform:
   m_ObjectHideFlags: 0
@@ -9580,6 +9578,7 @@ RectTransform:
   - {fileID: 1158501979}
   - {fileID: 1454677914}
   - {fileID: 1516612228}
+  - {fileID: 1724922941}
   m_Father: {fileID: 519420032}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10549,6 +10548,98 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1692556725}
   m_CullTransparentMesh: 1
+--- !u!1 &1724922940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1724922941}
+  - component: {fileID: 1724922943}
+  - component: {fileID: 1724922942}
+  - component: {fileID: 1724922944}
+  m_Layer: 5
+  m_Name: LoadMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1724922941
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724922940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1613895400}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1724922942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724922940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1724922943
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724922940}
+  m_CullTransparentMesh: 1
+--- !u!114 &1724922944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724922940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d018ad96b37a5fe44821078bd6e6979d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveButtonPrefab: {fileID: 8979074330094549267, guid: 4adc335233250b640b16f657c5ff641a, type: 3}
+  saveListParent: {fileID: 1724922941}
+  gameDataSaver: {fileID: 1383650388}
 --- !u!1 &1725385672
 GameObject:
   m_ObjectHideFlags: 0

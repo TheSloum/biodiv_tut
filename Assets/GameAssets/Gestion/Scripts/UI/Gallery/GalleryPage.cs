@@ -51,9 +51,6 @@ public void GalleryClose(){
         gameObject.SetActive(false);
 }
 
-public void GalleryOpen(){
-        gameObject.SetActive(true);
-}
 public void ShowFish(){
 
 }

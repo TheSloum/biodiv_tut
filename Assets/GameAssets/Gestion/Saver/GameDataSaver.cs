@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using System;
 
 public class GameDataSaver : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GameDataSaver : MonoBehaviour
     public List<Building> buildUnlockData;
     public List<GameObject> builderData;
 
+
+    
     // Matériaux
     public int mat_0 = 500; // Bois
     public int mat_1 = 500; // Pierre
@@ -22,12 +25,10 @@ public class GameDataSaver : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            Debug.Log("GameDataSaver.instance initialisé.");
         }
         else
         {
             Destroy(gameObject);
-            Debug.LogWarning("Multiple instances de GameDataSaver détectées et détruites.");
         }
     }
 
@@ -37,16 +38,15 @@ public class GameDataSaver : MonoBehaviour
         // Optionnel : SaveData(); // Sauvegarder immédiatement après le chargement (à utiliser si nécessaire)
     }
 
+    
 
-    private void Update(){
+    private void Update()
+    {
 
-        if (Input.GetKeyDown(KeyCode.B)){
+        if (Input.GetKeyDown(KeyCode.B))
+        {
             SaveData();
-            
-        }
-        if (Input.GetKeyDown(KeyCode.V)){
-            LoadData();
-            
+
         }
     }
 
@@ -97,14 +97,15 @@ public class GameDataSaver : MonoBehaviour
         gameData.price = Materials.instance.price;
 
         string json = JsonUtility.ToJson(gameData, true);
-        string path = Path.Combine(Application.dataPath, "Sauvegardes/GameData.json");
+        string fileName = $"GameData_{DateTime.Now:yyyy-MM-dd_HH-mm}.json";
+        string path = Path.Combine(Application.dataPath, "Sauvegardes", fileName);
         File.WriteAllText(path, json);
         Debug.Log("Game data saved to: " + path);
     }
 
-    public void LoadData()
+    public void LoadData(string dataDate)
     {
-        string path = Path.Combine(Application.dataPath, "Sauvegardes/GameData.json");
+        string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
@@ -137,9 +138,9 @@ public class GameDataSaver : MonoBehaviour
                     spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
                     builderComponent.cycleDuration = buildUnlockData[gameData.builderDataList[i].buildState].time;
                     if (builderComponent.buildState > 0 && builderComponent.running)
-{
-    builderComponent.StartCycle();
-}
+                    {
+                        builderComponent.StartCycle();
+                    }
                 }
             }
 
@@ -154,6 +155,15 @@ public class GameDataSaver : MonoBehaviour
         else
         {
             Debug.LogWarning("Aucune sauvegarde trouvée à: " + path);
+        }
+    }
+
+    public void DelData(string dataDate)
+    {
+        string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
+        if (File.Exists(path))
+        {
+            File.Delete(path);
         }
     }
 }

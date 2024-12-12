@@ -8,28 +8,28 @@ public class CamMov : MonoBehaviour
     private Vector3 mousPosDif;
     private Vector3 origin;
 
-    public Camera cam;
-    public float zoomSpeed = 10f;
-    public float minZoom = 2f;
-    public float maxZoom = 30f;
+    [SerializeField] private Camera cam;
+    [SerializeField] private float zoomSpeed = 10f;
+    [SerializeField] private float minZoom = 2f;
+    [SerializeField] private float maxZoom = 30f;
 
-    public Vector2 minBounds = new Vector2(-10f, -10f);
-    public Vector2 maxBounds = new Vector2(10f, 10f);
+    [SerializeField] private Vector2 minBounds = new Vector2(-10f, -10f);
+    [SerializeField] private Vector2 maxBounds = new Vector2(10f, 10f);
 
-    public float moveSpeed = 5f;
-    public float acceleration = 10f;
-    public float deceleration = 15f;
-    public float maxSpeed = 10f;
-    public float stopDrag = 5f;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float acceleration = 10f;
+    [SerializeField] private float deceleration = 15f;
+    [SerializeField] private float maxSpeed = 10f;
+    [SerializeField] private float stopDrag = 5f;
 
     private Rigidbody2D rb;
 
-    public KeyCode pauseKey = KeyCode.Space;       // Touche pour mettre en pause
-    public KeyCode speedUpKey = KeyCode.P;         // Touche pour accélérer
-    public KeyCode resetSpeedKey = KeyCode.M;      // Touche pour réinitialiser
+    private KeyCode pauseKey = KeyCode.Space;       // Touche pour mettre en pause
+    private KeyCode speedUpKey = KeyCode.P;         // Touche pour accélérer
+    private KeyCode resetSpeedKey = KeyCode.M;      // Touche pour réinitialiser
 
-    public float minTimeScale = 1f;  // Vitesse minimale du jeu
-    public float maxTimeScale = 4f;  // Vitesse maximale du jeu
+    private float minTimeScale = 1f;  // Vitesse minimale du jeu
+    private float maxTimeScale = 4f;  // Vitesse maximale du jeu
     private float currentMultiplier = 1f; // Multiplicateur de vitesse actuel
 
     void Awake()
