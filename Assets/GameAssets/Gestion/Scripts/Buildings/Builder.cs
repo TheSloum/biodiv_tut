@@ -23,7 +23,7 @@ public class Builder : MonoBehaviour
     [SerializeField] private Sprite baseSprite;
 
     private SpriteRenderer spriteRenderer;
-
+    public AudioClip sfxClip;
     public int buildState = 0;
     private int buildID = 0;
 
@@ -145,7 +145,7 @@ public class Builder : MonoBehaviour
 
 
 
-    
+
     private bool resourceCheckUpgrade(int level, Building building)
     { // Check si le joueur a assez de matériaux pour améliorer son bâtiment
         int priceMult = (1 + Mathf.RoundToInt(level0 * building.upgradeMult));
@@ -157,29 +157,34 @@ public class Builder : MonoBehaviour
         return Mat0Up && Mat1Up && Mat2Up && PriceUp;
     }
 
-    private int UpMat(int mat, float levelScaleUp1, float levelScaleUp2){
-        if(mat < 0){
+    private int UpMat(int mat, float levelScaleUp1, float levelScaleUp2)
+    {
+        if (mat < 0)
+        {
             return mat + Mathf.RoundToInt(Mathf.Abs(mat / (1 + levelScaleUp1) * (levelScaleUp2 - levelScaleUp1)));
         }
         return mat;
     }
 
-    private float UpBar(float bar, float levelScaleUp1, float levelScaleUp2){
-        if(bar < 0){
+    private float UpBar(float bar, float levelScaleUp1, float levelScaleUp2)
+    {
+        if (bar < 0)
+        {
             return bar + Mathf.Abs(bar / (1 + levelScaleUp1) * (levelScaleUp2 - levelScaleUp1));
         }
         return bar;
     }
 
 
-    
-    private void ChargeUp(int level, Building building) {//enlève les matériaux
-    
-                    Materials.instance.mat_0 -= building.up_mat_0 * (1 + Mathf.RoundToInt(level * building.upgradeMult));
-                    Materials.instance.mat_1 -= building.up_mat_1 * (1 + Mathf.RoundToInt(level * building.upgradeMult));
-                    Materials.instance.mat_2 -= building.up_mat_2 * (1 + Mathf.RoundToInt(level * building.upgradeMult));
-                    Materials.instance.price -= building.up_price * (1 + Mathf.RoundToInt(level * building.upgradeMult));
-}
+
+    private void ChargeUp(int level, Building building)
+    {//enlève les matériaux
+
+        Materials.instance.mat_0 -= building.up_mat_0 * (1 + Mathf.RoundToInt(level * building.upgradeMult));
+        Materials.instance.mat_1 -= building.up_mat_1 * (1 + Mathf.RoundToInt(level * building.upgradeMult));
+        Materials.instance.mat_2 -= building.up_mat_2 * (1 + Mathf.RoundToInt(level * building.upgradeMult));
+        Materials.instance.price -= building.up_price * (1 + Mathf.RoundToInt(level * building.upgradeMult));
+    }
 
     public void LevelUp1(Building building)
     {
@@ -194,21 +199,24 @@ public class Builder : MonoBehaviour
                     float levelScaleUp1 = 0;
                     float levelScaleUp2 = level1ScaleUp;
 
-                    if(level0 == 1){
+                    if (level0 == 1)
+                    {
                         levelScaleUp1 = level1ScaleUp;
                         levelScaleUp2 = level2ScaleUp;
-                    } else if(level0 == 2) {
+                    }
+                    else if (level0 == 2)
+                    {
                         levelScaleUp1 = level2ScaleUp;
                         levelScaleUp2 = level3ScaleUp;
                     }
 
-                    mat_0_cycle = UpMat(mat_0_cycle , levelScaleUp1,  levelScaleUp2);
-                    mat_1_cycle = UpMat(mat_1_cycle , levelScaleUp1,  levelScaleUp2);
-                    mat_2_cycle = UpMat(mat_2_cycle , levelScaleUp1,  levelScaleUp2);
-                    bar_0_cycle = UpBar(bar_0_cycle, levelScaleUp1,  levelScaleUp2);
-                    bar_1_cycle = UpBar(bar_1_cycle, levelScaleUp1,  levelScaleUp2);
-                    bar_2_cycle = UpBar(bar_2_cycle, levelScaleUp1,  levelScaleUp2);
-                    price_cycle = UpMat(price_cycle , levelScaleUp1,  levelScaleUp2);
+                    mat_0_cycle = UpMat(mat_0_cycle, levelScaleUp1, levelScaleUp2);
+                    mat_1_cycle = UpMat(mat_1_cycle, levelScaleUp1, levelScaleUp2);
+                    mat_2_cycle = UpMat(mat_2_cycle, levelScaleUp1, levelScaleUp2);
+                    bar_0_cycle = UpBar(bar_0_cycle, levelScaleUp1, levelScaleUp2);
+                    bar_1_cycle = UpBar(bar_1_cycle, levelScaleUp1, levelScaleUp2);
+                    bar_2_cycle = UpBar(bar_2_cycle, levelScaleUp1, levelScaleUp2);
+                    price_cycle = UpMat(price_cycle, levelScaleUp1, levelScaleUp2);
 
                     level0++;
                     ChargeUp(level0, building);
@@ -223,7 +231,7 @@ public class Builder : MonoBehaviour
     {
         if (editing == true)
         {
-             if (resourceCheckUpgrade(level1, building))
+            if (resourceCheckUpgrade(level1, building))
             {
 
                 if (level1 != 3)
@@ -231,17 +239,20 @@ public class Builder : MonoBehaviour
                     float levelScaleUp1 = 0;
                     float levelScaleUp2 = level1ScaleUp;
 
-                    if(level1 == 1){
+                    if (level1 == 1)
+                    {
                         levelScaleUp1 = level1ScaleUp;
                         levelScaleUp2 = level2ScaleUp;
-                    } else if(level1 == 2) {
+                    }
+                    else if (level1 == 2)
+                    {
                         levelScaleUp1 = level2ScaleUp;
                         levelScaleUp2 = level3ScaleUp;
                     }
 
-                    bar_0_cycle = UpBar(bar_0_cycle, levelScaleUp1,  levelScaleUp2);
-                    bar_1_cycle = UpBar(bar_1_cycle, levelScaleUp1,  levelScaleUp2);
-                    bar_2_cycle = UpBar(bar_2_cycle, levelScaleUp1,  levelScaleUp2);
+                    bar_0_cycle = UpBar(bar_0_cycle, levelScaleUp1, levelScaleUp2);
+                    bar_1_cycle = UpBar(bar_1_cycle, levelScaleUp1, levelScaleUp2);
+                    bar_2_cycle = UpBar(bar_2_cycle, levelScaleUp1, levelScaleUp2);
 
                     level1++;
                     ChargeUp(level1, building);
@@ -250,37 +261,38 @@ public class Builder : MonoBehaviour
         }
     }
 
-private void UpTime(float timeScaleUp, Building building){
-    cycleDuration = building.time * (1 - timeScaleUp);
-    level2++;
-    ChargeUp(level2, building);
-}
+    private void UpTime(float timeScaleUp, Building building)
+    {
+        cycleDuration = building.time * (1 - timeScaleUp);
+        level2++;
+        ChargeUp(level2, building);
+    }
 
     public void LevelUp3(Building building)
     {
         if (editing == true)
         {
-            if (resourceCheckUpgrade(level2,building))
+            if (resourceCheckUpgrade(level2, building))
             {
 
                 if (level2 != 3)
                 {
                     if (level2 == 2)
                     {
-                        UpTime( level3ScaleUp, building);
+                        UpTime(level3ScaleUp, building);
                     }
                     if (level2 == 1)
                     {
-                        UpTime( level2ScaleUp, building);
+                        UpTime(level2ScaleUp, building);
                     }
                     if (level2 == 0)
                     {
-                        UpTime( level1ScaleUp, building);
+                        UpTime(level1ScaleUp, building);
                     }
 
 
-                    
-                    ChargeUp(level2,building);
+
+                    ChargeUp(level2, building);
 
                 }
             }
@@ -358,6 +370,9 @@ private void UpTime(float timeScaleUp, Building building){
         }
     }
 
+
+
+
     private void OnBuildingButtonClick(Building building)
     {
         if (Materials.instance.mat_0 >= (-1 * building.mat_0) && Materials.instance.mat_1 >= (-1 * building.mat_1) && Materials.instance.mat_2 >= (-1 * building.mat_2) && Materials.instance.price >= (-1 * building.price))
@@ -398,7 +413,7 @@ private void UpTime(float timeScaleUp, Building building){
 
             HideBuildingMenu();
 
-
+            SoundManager.instance.PlaySFX(sfxClip);
         }
 
 
