@@ -47,7 +47,10 @@ public class E_Trash : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Debug.Log("Trash collecté !");
-
+            if (E_AudioManager.instance != null)
+            {
+                E_AudioManager.instance.PlayPopSound();
+            }
             // Instancier les particules de collecte
             if (collectParticlesPrefab != null)
             {
