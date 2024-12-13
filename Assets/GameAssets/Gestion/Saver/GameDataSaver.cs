@@ -11,7 +11,7 @@ public class GameDataSaver : MonoBehaviour
     public List<Building> buildUnlockData;
     public List<GameObject> builderData;
 
-
+    public Sprite baseSprite;
     
     // Matériaux
     public int mat_0 = 500; // Bois
@@ -135,7 +135,11 @@ public class GameDataSaver : MonoBehaviour
                     builderComponent.level2 = gameData.builderDataList[i].level2;
                     builderComponent.running = gameData.builderDataList[i].running;
                     builderComponent.buildState = gameData.builderDataList[i].buildState;
+                    if(gameData.builderDataList[i].buildState == 0){
+                        spriterenderer.sprite = baseSprite;
+                    } else{
                     spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
+                    }
                     builderComponent.cycleDuration = buildUnlockData[gameData.builderDataList[i].buildState].time;
                     if (builderComponent.buildState > 0 && builderComponent.running)
                     {

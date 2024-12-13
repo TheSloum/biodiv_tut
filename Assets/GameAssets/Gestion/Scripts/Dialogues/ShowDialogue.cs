@@ -54,9 +54,6 @@ IEnumerator WaitForFrames(int frameCount, Speech dialogue) //attendre pour évit
 
             nextIco.anchoredPosition = new Vector2(nextIco.anchoredPosition.x, nextIco.anchoredPosition.y - 5);
 
-
-
-        gameObject.SetActive(true);
         StartCoroutine(WaitForFrames(5 , dialogue));
     }
 
@@ -108,7 +105,9 @@ IEnumerator WaitForFrames(int frameCount, Speech dialogue) //attendre pour évit
                     }
                     else
                     {
-                        gameObject.SetActive(false); // Close dialogue box
+        RectTransform currentrectTransform = GetComponent<RectTransform>();
+                        currentrectTransform.anchoredPosition = new Vector3(3585, -670, 0);
+        textMeshPro.text = "";
                         yield break;
                     }
                 }

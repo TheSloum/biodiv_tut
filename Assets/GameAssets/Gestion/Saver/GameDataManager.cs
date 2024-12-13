@@ -12,8 +12,14 @@ public class GameDataManager : MonoBehaviour
     public GameDataSaver gameDataSaver; 
 
 
-    private void Start()
+    private void Awake()
     {
+        LoadSaveFiles();
+    }
+
+void OnEnable()
+    {
+        
         LoadSaveFiles();
     }
 
