@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class E_PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    [Header("Configuration du Joueur")]
+    public float moveForce = 200f; // Force appliquée pour le mouvement
+    public float maxSpeed = 5f;    // Vitesse maximale du joueur
     public Rigidbody2D rb;
+
     private Vector2 movement;
 
     void Update()
@@ -15,8 +18,16 @@ public class E_PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Appliquer le mouvement
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        // Appliquer une force basée sur les entrées utilisateur
+        Vector2 force = movement.normalized * moveForce;
+        rb.AddForce(force);
+
+        // Limiter la vitesse maximale
+        Vector2 clampedVelocity = rb.velocity;
+        if (clampedVelocity.magnitude > maxSpeed)
+        {
+            rb.velocity = clampedVelocity.normalized * maxSpeed;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
