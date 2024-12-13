@@ -75,6 +75,16 @@ public class E_Material : MonoBehaviour
         {
             Debug.Log($"Matériau collecté : Type {materialType}");
 
+            // Jouer l'effet sonore 'pop'
+            if (E_AudioManager.instance != null)
+            {
+                E_AudioManager.instance.PlayPopSound();
+            }
+            else
+            {
+                Debug.LogWarning("E_AudioManager.instance est null dans E_Material.OnTriggerEnter2D");
+            }
+
             // Instancier les particules de collecte
             if (collectParticlesPrefab != null)
             {
