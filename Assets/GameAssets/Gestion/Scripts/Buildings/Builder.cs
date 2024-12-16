@@ -83,6 +83,10 @@ public class Builder : MonoBehaviour
 
 
 
+    [SerializeField] private GameObject cycleBar;
+
+
+
     private void Start()
     {
         closeMenuButton = closeMenu.GetComponent<Button>();
@@ -124,6 +128,7 @@ public class Builder : MonoBehaviour
 
     public void OnDestroyClicked()
     {
+        cycleBar.transform.localPosition = new Vector3(0,-46,0);
         if (editing == true)
         {
             buildState = 0;
@@ -375,6 +380,8 @@ public class Builder : MonoBehaviour
 
     private void OnBuildingButtonClick(Building building)
     {
+        cycleBar.transform.localPosition = new Vector3(0,83,0);
+
         if (Materials.instance.mat_0 >= (-1 * building.mat_0) && Materials.instance.mat_1 >= (-1 * building.mat_1) && Materials.instance.mat_2 >= (-1 * building.mat_2) && Materials.instance.price >= (-1 * building.price))
         {
             buildState = building.buildID;
@@ -466,6 +473,7 @@ public class Builder : MonoBehaviour
                     yield return null;
                     continue;
                 }
+                
                 timePassed += Time.deltaTime;
                 float progress = Mathf.Clamp01(timePassed / cycleDuration);
 
@@ -515,7 +523,14 @@ public class Builder : MonoBehaviour
 
     public void StopCycle()
     {
-        running = !running;
+        running = false;
+        pause.onClick.AddListener(() => ContinueCycle());
+
+    }
+    public void ContinueCycle()
+    {
+        running = true;
+        pause.onClick.AddListener(() => StopCycle());
     }
 
 
@@ -527,14 +542,11 @@ public class Builder : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            // Skip spawning if the number is 0
             if (numbers[i] == 0)
                 continue;
 
-            // Instantiate the prefab
             GameObject instance = Instantiate(prefabToSpawn, transform.position + spawnPosition + new Vector3(positionOffset, 0f, 0f) * i, Quaternion.identity);
 
-            // Set the text and sprite for the instance
             TextMesh textMesh = instance.GetComponent<TextMesh>();
             if (textMesh != null)
             {
@@ -556,10 +568,8 @@ public class Builder : MonoBehaviour
                 spriteRenderer.sprite = sprites[i];
             }
 
-            // Start fading out and moving up
             StartCoroutine(FadeOutAndMove(instance, numbers[i]));
 
-            // Wait for the time offset before spawning the next one
             yield return new WaitForSeconds(timeOffset);
         }
     }
@@ -597,7 +607,6 @@ public class Builder : MonoBehaviour
             yield return null;
         }
 
-        // Ensure it's completely invisible and destroy the instance
         textMesh.color = new Color(textColor.r, textColor.g, textColor.b, 0f);
         spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 0f);
         Destroy(instance);

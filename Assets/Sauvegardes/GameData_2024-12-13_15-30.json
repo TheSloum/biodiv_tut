@@ -49,109 +49,102 @@
             "level1": 0,
             "level2": 0,
             "running": false,
-            "buildState": 0
+            "buildState": 4
         },
         {
             "level0": 0,
             "level1": 0,
             "level2": 0,
             "running": false,
-            "buildState": 0
+            "buildState": 3
         },
         {
             "level0": 0,
             "level1": 0,
             "level2": 0,
             "running": false,
-            "buildState": 0
+            "buildState": 3
         },
         {
             "level0": 0,
             "level1": 0,
             "level2": 0,
             "running": false,
-            "buildState": 0
+            "buildState": 2
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": true,
+            "buildState": 8
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": true,
+            "buildState": 7
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": true,
+            "buildState": 7
         },
         {
             "level0": 0,
             "level1": 0,
             "level2": 0,
             "running": false,
-            "buildState": 0
+            "buildState": 2
         },
         {
             "level0": 0,
             "level1": 0,
             "level2": 0,
             "running": false,
-            "buildState": 0
+            "buildState": 4
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": true,
+            "buildState": 7
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": true,
+            "buildState": 6
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": true,
+            "buildState": 5
         },
         {
             "level0": 0,
             "level1": 0,
             "level2": 0,
             "running": false,
-            "buildState": 0
+            "buildState": 3
         },
         {
             "level0": 0,
             "level1": 0,
             "level2": 0,
             "running": false,
-            "buildState": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0
+            "buildState": 8
         }
     ],
-    "mat_0": 500,
-    "mat_1": 500,
-    "mat_2": 500,
-    "price": 500
+    "mat_0": 285,
+    "mat_1": 295,
+    "mat_2": 10,
+    "price": 800
 }

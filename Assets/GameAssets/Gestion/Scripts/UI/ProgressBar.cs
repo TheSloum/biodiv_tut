@@ -6,14 +6,12 @@ public class ProgressBar : MonoBehaviour
 {
     public float lerpSpeed = 5f;
     public float targetValue = 0f;
-    private float targetScale;
     private float currentScale = 0.5f;
 
     [SerializeField] private int bar_id = 0;
 
     public Animator barAnim;
 
-    [SerializeField] private GameObject player; 
 
 
 
@@ -34,8 +32,4 @@ public class ProgressBar : MonoBehaviour
         barAnim.Play("Bar",0,currentScale);
     }
 
-    public void SetTargetValue(float newValue)
-    {
-        targetValue = Mathf.Clamp01(newValue);
-    }
 }
