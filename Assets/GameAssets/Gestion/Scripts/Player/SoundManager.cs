@@ -9,9 +9,11 @@ public class SoundManager : MonoBehaviour
     public AudioSource musicSource;
     public AudioSource sfxSource;
 
-    private float globalVolume = 1f; // Par défaut à 100%
+    private float globalVolume = 1f;
     private float musicVolume = 1f;
     private float sfxVolume = 1f;
+
+    private Coroutine fadeCoroutine;
 
     private void Awake()
     {
@@ -28,17 +30,15 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        // Charger les volumes sauvegardés
         globalVolume = PlayerPrefs.GetFloat("GlobalVolume", 1f);
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
         sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
 
-        ApplyVolumes(); // Appliquer les volumes chargés
+        ApplyVolumes();
     }
 
     private void OnApplicationQuit()
     {
-        // Sauvegarder les volumes lors de la fermeture
         PlayerPrefs.SetFloat("GlobalVolume", globalVolume);
         PlayerPrefs.SetFloat("MusicVolume", musicVolume);
         PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
@@ -62,8 +62,12 @@ public class SoundManager : MonoBehaviour
         {
             if (musicSource.clip != clip)
             {
-                musicSource.clip = clip;
-                musicSource.Play();
+                if (fadeCoroutine != null)
+                {
+                    StopCoroutine(fadeCoroutine);
+                }
+
+                fadeCoroutine = StartCoroutine(FadeOutAndChangeMusic(clip));
             }
         }
         else
@@ -83,7 +87,7 @@ public class SoundManager : MonoBehaviour
     public void SetGlobalVolume(float volume)
     {
         globalVolume = Mathf.Clamp01(volume);
-        ApplyVolumes(); // Met à jour toutes les sources
+        ApplyVolumes();
     }
 
     public void SetMusicVolume(float volume)
@@ -100,7 +104,6 @@ public class SoundManager : MonoBehaviour
 
     private void ApplyVolumes()
     {
-        // Applique les volumes en tenant compte du volume global
         if (musicSource != null)
         {
             musicSource.volume = musicVolume * globalVolume;
@@ -110,5 +113,29 @@ public class SoundManager : MonoBehaviour
         {
             sfxSource.volume = sfxVolume * globalVolume;
         }
+    }
+
+    private IEnumerator FadeOutAndChangeMusic(AudioClip newClip)
+    {
+        // Fade out current music
+        float startVolume = musicSource.volume;
+        while (musicSource.volume > 0.01f)
+        {
+            musicSource.volume -= startVolume * Time.deltaTime / 0.5f; // 1f is the fade duration (adjustable)
+            yield return null;
+        }
+
+        musicSource.Stop();
+        musicSource.clip = newClip;
+        musicSource.Play();
+
+
+        while (musicSource.volume < musicVolume * globalVolume)
+        {
+            musicSource.volume += startVolume * Time.deltaTime / 1f; // 1f is the fade duration (adjustable)
+            yield return null;
+        }
+
+        musicSource.volume = musicVolume * globalVolume;
     }
 }

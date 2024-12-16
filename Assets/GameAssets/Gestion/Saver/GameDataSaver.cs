@@ -43,10 +43,10 @@ public class GameDataSaver : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S))
         {
             SaveData();
-
+//save
         }
     }
 
