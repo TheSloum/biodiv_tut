@@ -46,7 +46,7 @@ public class GameDataSaver : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S))
         {
             SaveData();
-
+//save
         }
     }
 
