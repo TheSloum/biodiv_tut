@@ -45,13 +45,13 @@ public class CamMov : MonoBehaviour
     public Sprite playSpriteInactive;
     public Sprite speedUpSpriteActive;
     public Sprite speedUpSpriteInactive;
+    public GameObject pauseUI;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
         UpdateButtonSprites();
-        //puch
     }
 
     void LateUpdate()
@@ -164,10 +164,13 @@ public class CamMov : MonoBehaviour
         if (Time.timeScale == 0)
         {
             pauseButton.image.sprite = pauseSpriteActive;
+            pauseUI.SetActive(true);
+            Debug.Log("fefe");
         }
         else
         {
             pauseButton.image.sprite = pauseSpriteInactive;
+            pauseUI.SetActive(false);
         }
 
         if (Time.timeScale == 1)
