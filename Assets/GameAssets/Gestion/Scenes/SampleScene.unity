@@ -3773,8 +3773,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
-  m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
+  m_sharedMaterial: {fileID: -6547908290085127355, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3798,8 +3798,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5792,8 +5792,8 @@ MonoBehaviour:
   MainMenu: {fileID: 0}
   Parametre: {fileID: 943796954}
   fontToggle: {fileID: 0}
-  oldFont: {fileID: 0}
-  newFont: {fileID: 0}
+  ClassicFont: {fileID: 0}
+  disFont: {fileID: 0}
   textsToChange: []
 --- !u!224 &662473927
 RectTransform:
@@ -6187,8 +6187,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
-  m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
+  m_sharedMaterial: {fileID: -6547908290085127355, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6212,8 +6212,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6754,8 +6754,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sauvegarder
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
-  m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
+  m_sharedMaterial: {fileID: -6547908290085127355, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6779,8 +6779,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9281,8 +9281,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Charger
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
-  m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
+  m_sharedMaterial: {fileID: -6547908290085127355, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14263,8 +14263,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
-  m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
+  m_sharedMaterial: {fileID: -6547908290085127355, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14288,8 +14288,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -17037,8 +17037,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
-  m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
+  m_sharedMaterial: {fileID: -6547908290085127355, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17062,8 +17062,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -19289,7 +19289,7 @@ GameObject:
   - component: {fileID: 2087675005}
   - component: {fileID: 2087675004}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: ToggleTypo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19762,8 +19762,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "D\xE9cembre"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
-  m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
+  m_sharedMaterial: {fileID: -6547908290085127355, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -19787,8 +19787,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -23589,7 +23589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8277458203642566686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23826,8 +23826,8 @@ MonoBehaviour:
   MainMenu: {fileID: 8131157602586135487}
   Parametre: {fileID: 8980128539097348635}
   fontToggle: {fileID: 2087675004}
-  oldFont: {fileID: 0}
-  newFont: {fileID: 0}
+  ClassicFont: {fileID: 11400000, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
+  disFont: {fileID: 11400000, guid: 709303012bac3734c8c9b836404cde07, type: 2}
   textsToChange:
   - {fileID: 2105831396}
   - {fileID: 468209686}
