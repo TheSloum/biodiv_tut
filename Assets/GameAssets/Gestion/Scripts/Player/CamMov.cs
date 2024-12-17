@@ -51,6 +51,7 @@ public class CamMov : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
         UpdateButtonSprites();
+        //puch
     }
 
     void LateUpdate()
