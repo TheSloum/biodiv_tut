@@ -29,7 +29,7 @@ public class E_AudioManager : MonoBehaviour
             musicSource.clip = backgroundMusic;
             musicSource.loop = true;
             musicSource.volume = backgroundMusicVolume;
-            musicSource.pitch = 1.15f; // Pitch demandé
+            musicSource.pitch = 1f; // Pitch demandé
 
             sfxSource = gameObject.AddComponent<AudioSource>();
             sfxSource.volume = popSoundVolume;
