@@ -63,7 +63,7 @@
             "level1": 0,
             "level2": 0,
             "running": true,
-            "buildState": 3
+            "buildState": 6
         },
         {
             "level0": 0,
@@ -76,50 +76,36 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": true,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 3
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
             "buildState": 8
         },
         {
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": true,
-            "buildState": 7
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
             "running": false,
             "buildState": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": true,
-            "buildState": 6
         },
         {
             "level0": 0,
@@ -133,18 +119,32 @@
             "level1": 0,
             "level2": 0,
             "running": false,
-            "buildState": 3
+            "buildState": 0
         },
         {
             "level0": 0,
             "level1": 0,
             "level2": 0,
             "running": false,
-            "buildState": 8
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
         }
     ],
-    "mat_0": 365,
-    "mat_1": 390,
-    "mat_2": 225,
-    "price": 350
+    "mat_0": 425,
+    "mat_1": 415,
+    "mat_2": 335,
+    "price": 650
 }

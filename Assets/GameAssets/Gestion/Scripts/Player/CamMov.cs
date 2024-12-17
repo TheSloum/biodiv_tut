@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class CamMov : MonoBehaviour
 {
     private bool drag = false;
@@ -24,20 +25,34 @@ public class CamMov : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private KeyCode pauseKey = KeyCode.Space;       // Touche pour mettre en pause
-    private KeyCode speedUpKey = KeyCode.P;         // Touche pour accélérer
-    private KeyCode resetSpeedKey = KeyCode.M;      // Touche pour réinitialiser
+    // Clés pour contrôle de vitesse
+    private KeyCode pauseKey = KeyCode.Space;
+    private KeyCode speedUpKey = KeyCode.P;
+    private KeyCode resetSpeedKey = KeyCode.M;
 
-    private float minTimeScale = 1f;  // Vitesse minimale du jeu
-    private float maxTimeScale = 4f;  // Vitesse maximale du jeu
-    private float currentMultiplier = 1f; // Multiplicateur de vitesse actuel
+    private float currentMultiplier = 1f;
+
+    // UI et Sprites
+    [Header("UI Buttons")]
+    public Button pauseButton;
+    public Button playButton;
+    public Button speedUpButton;
+
+    [Header("Sprites")]
+    public Sprite pauseSpriteActive;
+    public Sprite pauseSpriteInactive;
+    public Sprite playSpriteActive;
+    public Sprite playSpriteInactive;
+    public Sprite speedUpSpriteActive;
+    public Sprite speedUpSpriteInactive;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+        UpdateButtonSprites();
     }
-    
+
     void LateUpdate()
     {
         HandleMovement();
@@ -68,9 +83,6 @@ public class CamMov : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if (UIdetection.instance.mouseOverUi){
-            return;
-        }
             mousPosDif = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.transform.position);
 
             if (!drag)
@@ -93,22 +105,8 @@ public class CamMov : MonoBehaviour
     private void HandleZoom()
     {
         float scrollData = Input.GetAxis("Mouse ScrollWheel");
-        float originalSize = cam.orthographicSize;
         cam.orthographicSize -= scrollData * zoomSpeed;
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
-
-        
-
-        
-
-            float zoomFactor = cam.orthographicSize / originalSize;
-
-            Vector3 mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
-
-            Vector3 direction = mouseWorldPos - cam.transform.position;
-
-            cam.transform.position += direction * (1 - zoomFactor);
-
 
         Vector3 cameraPos = Camera.main.transform.position;
         float clampedX = Mathf.Clamp(cameraPos.x, minBounds.x, maxBounds.x);
@@ -138,22 +136,56 @@ public class CamMov : MonoBehaviour
     {
         if (Time.timeScale == 0)
         {
-            Time.timeScale = 1; // Reprendre le jeu
+            Time.timeScale = 1;
         }
         else
         {
-            Time.timeScale = 0; // Mettre en pause le jeu
+            Time.timeScale = 0;
         }
+        UpdateButtonSprites();
     }
 
     public void FastForward()
     {
-        Time.timeScale = 2; // Reprendre le jeu
+        Time.timeScale = 4;
+        UpdateButtonSprites();
     }
 
     public void ResetSpeed()
     {
-        currentMultiplier = 1f; // Réinitialiser
-        Time.timeScale = currentMultiplier;
+        Time.timeScale = 1;
+        UpdateButtonSprites();
+    }
+
+    private void UpdateButtonSprites()
+    {
+
+        if (Time.timeScale == 0)
+        {
+            pauseButton.image.sprite = pauseSpriteActive;
+        }
+        else
+        {
+            pauseButton.image.sprite = pauseSpriteInactive;
+        }
+
+        if (Time.timeScale == 1)
+        {
+            playButton.image.sprite = playSpriteActive;
+
+        }
+        else
+        {
+            playButton.image.sprite = playSpriteInactive;
+        }
+
+        if (Time.timeScale == 4)
+        {
+            speedUpButton.image.sprite = speedUpSpriteActive;
+        }
+        else
+        {
+            speedUpButton.image.sprite = speedUpSpriteInactive;
+        }
     }
 }
