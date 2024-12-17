@@ -4,18 +4,18 @@ using TMPro;
 
 public class Menu : MonoBehaviour
 {
-    public GameObject MainMenu; // Référence au menu principal
-    public GameObject Parametre; // Référence aux paramètres
+    public GameObject MainMenu;
+    public GameObject Parametre;
 
-    [Header("Font Changer Settings")]
-    public Toggle fontToggle; // La case à cocher (Toggle) pour changer de police
-    public TMP_FontAsset oldFont; // Police par défaut
-    public TMP_FontAsset newFont; // Nouvelle police
-    public TMP_Text[] textsToChange; // Liste des textes à changer
+    public Toggle fontToggle;
+    public TMP_FontAsset ClassicFont;
+    public TMP_FontAsset disFont;
+    public TMP_Text[] textsToChange;
+
+    private int fontSizeOffset = 2; // Décalage de la taille de police
 
     void Start()
     {
-        // Attache l'écouteur pour le Toggle
         if (fontToggle != null)
             fontToggle.onValueChanged.AddListener(OnFontToggleChanged);
     }
@@ -56,14 +56,25 @@ public class Menu : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    // Méthode appelée quand la case est cochée/décochée
+    // Texte dyslexie avec ajustement de taille
     void OnFontToggleChanged(bool isChecked)
     {
         foreach (TMP_Text txt in textsToChange)
         {
             if (txt != null)
             {
-                txt.font = isChecked ? newFont : oldFont;
+                if (isChecked)
+                {
+                    // Applique la deuxième police et réduit la taille
+                    txt.font = disFont;
+                    txt.fontSize -= fontSizeOffset;
+                }
+                else
+                {
+                    // Applique la police classique et rétablit la taille d'origine
+                    txt.font = ClassicFont;
+                    txt.fontSize += fontSizeOffset;
+                }
             }
         }
     }
