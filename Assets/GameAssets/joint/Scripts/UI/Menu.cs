@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour
     public TMP_FontAsset disFont;
     public TMP_Text[] textsToChange;
 
-    private int fontSizeOffset = 3; // Décalage de la taille de police
+    private int fontSizeOffset = 2; // Décalage de la taille de police
 
     void Start()
     {
