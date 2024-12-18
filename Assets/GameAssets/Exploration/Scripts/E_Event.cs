@@ -1,79 +1,39 @@
 using UnityEngine;
-using TMPro; // Import nécessaire pour TextMeshPro
+using TMPro;
 using System.Collections;
 
 public class E_Event : MonoBehaviour
 {
-    [Header("Overlay Noir")]
-    [Tooltip("SpriteRenderer du GameObject BlackOverlay couvrant l'écran.")]
     public SpriteRenderer blackOverlayRenderer;
+    public TextMeshProUGUI eventText;
 
-    [Header("UI Elements")]
-    [Tooltip("Texte affichant le nom de l'événement.")]
-    public TextMeshProUGUI eventText; // Changement de Text à TextMeshProUGUI
-
-    [Header("Phase Pétrole Configuration")]
-    [Tooltip("Durée de l'événement en secondes.")]
     public float eventDuration = 10f;
-
-    [Tooltip("Opacité minimale de l'overlay (entre 0 et 1).")]
-    [Range(0f, 1f)]
     public float minOpacity = 0.8f;
-
-    [Tooltip("Opacité maximale de l'overlay (entre 0 et 1).")]
-    [Range(0f, 1f)]
     public float maxOpacity = 1f;
-
-    [Tooltip("Facteur de ralentissement du joueur (1 = vitesse normale).")]
-    [Range(0f, 1f)]
     public float slowFactor = 0.8f;
 
-    [Header("Event Text Configuration")]
-    [Tooltip("Durée du fondu d'apparition du texte en secondes.")]
     public float textFadeInDuration = 1f;
-
-    [Tooltip("Durée pendant laquelle le texte reste visible en secondes.")]
     public float textVisibleDuration = 2f;
-
-    [Tooltip("Durée du fondu de disparition du texte en secondes.")]
     public float textFadeOutDuration = 1f;
 
-    [Header("Overlay Fade Configuration")]
-    [Tooltip("Durée du fondu d'apparition de l'overlay en secondes.")]
     public float overlayFadeInDuration = 3f;
 
     private bool isEventActive = false;
-    private E_PlayerController playerController; // Référence au script de contrôle du joueur
+    private E_PlayerController playerController;
 
     void Start()
     {
-        // Vérifier que les éléments sont assignés
-        if (blackOverlayRenderer == null)
-        {
-            Debug.LogError("Black Overlay Renderer n'est pas assigné dans le script E_Event.");
-        }
-
-        if (eventText == null)
-        {
-            Debug.LogError("Event Text n'est pas assigné dans le script E_Event.");
-        }
-
-        // Assumer que le joueur a le tag "Player" et récupérer son script de contrôle
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             playerController = player.GetComponent<E_PlayerController>();
-            if (playerController == null)
-            {
-                Debug.LogError("Le joueur n'a pas de script E_PlayerController attaché.");
-            }
         }
         else
         {
             Debug.LogError("Aucun GameObject avec le tag 'Player' trouvé dans la scène.");
         }
 
-        // Initialiser l'overlay à transparent
+        // CHANGEMENT : Réinitialiser l'état visuel de l'événement
         if (blackOverlayRenderer != null)
         {
             Color initialColor = blackOverlayRenderer.color;
@@ -82,7 +42,6 @@ public class E_Event : MonoBehaviour
             blackOverlayRenderer.gameObject.SetActive(false);
         }
 
-        // Initialiser le texte à transparent et inactif
         if (eventText != null)
         {
             Color initialTextColor = eventText.color;
@@ -90,11 +49,13 @@ public class E_Event : MonoBehaviour
             eventText.color = initialTextColor;
             eventText.gameObject.SetActive(false);
         }
+
+        isEventActive = false;
     }
 
     void Update()
     {
-        // Détecter l'appui sur la touche "E" pour déclencher ou arrêter l'événement
+        // Contrôle de l'événement (touche E), code existant...
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (!isEventActive)
@@ -112,32 +73,25 @@ public class E_Event : MonoBehaviour
     IEnumerator StartPhasePetrole()
     {
         isEventActive = true;
-
-        // Afficher le texte de l'événement avec fondu
         StartCoroutine(FadeInText());
         yield return new WaitForSeconds(textFadeInDuration + textVisibleDuration + textFadeOutDuration);
 
-        // Appliquer le ralentissement au joueur
         if (playerController != null)
         {
-            playerController.moveForce *= slowFactor; // Utilise moveForce au lieu de moveSpeed
+            playerController.moveForce *= slowFactor;
         }
 
-        // Afficher l'overlay noir avec fondu
         StartCoroutine(FadeInOverlay());
 
-        // Durée de l'événement
         float elapsedTime = 0f;
         while (elapsedTime < eventDuration)
         {
-            // Changer l'opacité de l'overlay de manière aléatoire
             float newOpacity = Random.Range(minOpacity, maxOpacity);
-            StartCoroutine(FadeOverlayTo(newOpacity, 1f)); // Changement de l'opacité sur 1 seconde
-            yield return new WaitForSeconds(1f); // Attendre avant de changer à nouveau
+            StartCoroutine(FadeOverlayTo(newOpacity, 1f));
+            yield return new WaitForSeconds(1f);
             elapsedTime += 1f;
         }
 
-        // Fin de l'événement
         EndPhasePetrole();
     }
 
@@ -145,13 +99,11 @@ public class E_Event : MonoBehaviour
     {
         isEventActive = false;
 
-        // Retirer le ralentissement du joueur
         if (playerController != null)
         {
-            playerController.moveForce /= slowFactor; // Utilise moveForce au lieu de moveSpeed
+            playerController.moveForce /= slowFactor;
         }
 
-        // Cacher l'overlay noir avec fondu
         StartCoroutine(FadeOutOverlay());
     }
 
@@ -172,10 +124,8 @@ public class E_Event : MonoBehaviour
         }
         eventText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1f);
 
-        // Attendre la durée de visibilité
         yield return new WaitForSeconds(textVisibleDuration);
 
-        // Fondu de disparition
         elapsedTime = 0f;
         while (elapsedTime < textFadeOutDuration)
         {
@@ -226,7 +176,7 @@ public class E_Event : MonoBehaviour
     {
         Color originalColor = blackOverlayRenderer.color;
         float startOpacity = originalColor.a;
-        float fadeOutDuration = 3f; // Durée du fondu de disparition
+        float fadeOutDuration = 3f; 
 
         float elapsedTime = 0f;
         while (elapsedTime < fadeOutDuration)
@@ -238,5 +188,28 @@ public class E_Event : MonoBehaviour
         }
         blackOverlayRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
         blackOverlayRenderer.gameObject.SetActive(false);
+    }
+
+    // CHANGEMENT : Méthode pour réinitialiser l'état de l'événement
+    public void ResetEvent()
+    {
+        StopAllCoroutines();
+        isEventActive = false;
+
+        if (blackOverlayRenderer != null)
+        {
+            Color c = blackOverlayRenderer.color;
+            c.a = 0f;
+            blackOverlayRenderer.color = c;
+            blackOverlayRenderer.gameObject.SetActive(false);
+        }
+
+        if (eventText != null)
+        {
+            Color tc = eventText.color;
+            tc.a = 0f;
+            eventText.color = tc;
+            eventText.gameObject.SetActive(false);
+        }
     }
 }

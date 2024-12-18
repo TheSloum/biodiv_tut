@@ -1,22 +1,39 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class J_DisplayDateTime : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI dateText;
+    private TextMeshProUGUI dateText;
+
+    void Awake()
+    {
+        FindDateText();
+    }
+
+    void OnEnable()
+    {
+        // S'abonner à l'événement de chargement de scène
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        // Se désabonner de l'événement pour éviter les erreurs
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     void Update()
     {
+        if (dateText == null) return;  // Si dateText n'est pas trouvé, on ne fait rien
+
         if (J_TimeManager.Instance != null)
         {
-            // Récupérer jour et mois
             int currentDay = J_TimeManager.Instance.currentDay;
             int currentMonth = J_TimeManager.Instance.currentMonth;
 
-            // Calculer l'heure factice
             float secondsPerDay = J_TimeManager.Instance.secondsPerDay;
             float dayTimer = GetPrivateDayTimer();
-            // dayTimer sera récupéré en utilisant une petite astuce (voir plus bas) ou on modifie le TimeManager pour l'exposer
 
             float currentDayProgress = dayTimer / secondsPerDay;
             float currentHour = currentDayProgress * 24f;
@@ -30,17 +47,31 @@ public class J_DisplayDateTime : MonoBehaviour
         }
     }
 
-    // Méthode pour récupérer dayTimer si on le rend public ou via une propriété
     float GetPrivateDayTimer()
     {
-        // Idéalement, on modifie J_TimeManager pour exposer dayTimer en readonly :
-        // public float CurrentDayTimer => dayTimer; 
-        // puis on l'appellerait ici :
-        // return J_TimeManager.Instance.CurrentDayTimer;
-
-        // Si on ne veut pas modifier J_TimeManager, on peut l'adapter :
-        // Pour l'instant, supposons qu'on a fait un petit changement dans J_TimeManager 
-        // pour exposer dayTimer comme une propriété publique en lecture seule.
         return J_TimeManager.Instance.GetCurrentDayTimer();
+    }
+
+    private void FindDateText()
+    {
+        GameObject dateTextObject = GameObject.FindGameObjectWithTag("DateText");
+        if (dateTextObject != null)
+        {
+            dateText = dateTextObject.GetComponent<TextMeshProUGUI>();
+            if (dateText == null)
+            {
+                Debug.LogWarning("Le GameObject avec le tag 'DateText' n'a pas de composant TextMeshProUGUI.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Aucun GameObject avec le tag 'DateText' trouvé dans la scène.");
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Quand une nouvelle scène est chargée, on recherche à nouveau le texte
+        FindDateText();
     }
 }

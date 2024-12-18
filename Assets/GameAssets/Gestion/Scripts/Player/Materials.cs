@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 
 public class Materials : MonoBehaviour
 {
@@ -13,10 +12,6 @@ public class Materials : MonoBehaviour
     public float bar_1 = 0.5f;
     public float bar_2 = 0.5f;
     public bool isLoad = false;
-
-    public TextMeshProUGUI woodText;
-    public TextMeshProUGUI stoneText;
-    public TextMeshProUGUI ironText;
 
     public int sessionWood = 0;
     public int sessionStone = 0;
@@ -49,7 +44,6 @@ public class Materials : MonoBehaviour
             mat_2 = GameDataSaver.instance.mat_2;
             price = GameDataSaver.instance.price;
             Debug.Log($"Materials chargés: Bois = {mat_0}, Pierre = {mat_1}, Fer = {mat_2}, Price = {price}");
-            UpdateUI();
             ResetSessionCounts();
         }
         else
@@ -68,14 +62,11 @@ public class Materials : MonoBehaviour
     public void AddWood(int amount)
     {
         mat_0 += amount;
-        sessionWood += amount; 
-        UpdateUI();
+        sessionWood += amount;
 
-        // Vérifier si GameDataSaver est dispo avant de save
         if (GameDataSaver.instance != null)
         {
             GameDataSaver.instance.mat_0 = mat_0;
-            // Vous pouvez commenter la ligne suivante si besoin pour tester :
             GameDataSaver.instance.SaveData();
         }
     }
@@ -84,12 +75,10 @@ public class Materials : MonoBehaviour
     {
         mat_1 += amount;
         sessionStone += amount;
-        UpdateUI();
 
         if (GameDataSaver.instance != null)
         {
             GameDataSaver.instance.mat_1 = mat_1;
-            // Idem, commenter si nécessaire:
             GameDataSaver.instance.SaveData();
         }
     }
@@ -98,7 +87,6 @@ public class Materials : MonoBehaviour
     {
         mat_2 += amount;
         sessionIron += amount;
-        UpdateUI();
 
         if (GameDataSaver.instance != null)
         {
@@ -113,15 +101,5 @@ public class Materials : MonoBehaviour
         sessionStone = 0;
         sessionIron = 0;
         Debug.Log("Compteurs session reset.");
-    }
-
-    void UpdateUI()
-    {
-        if (woodText != null)
-            woodText.text = $": {sessionWood}";
-        if (stoneText != null)
-            stoneText.text = $": {sessionStone}";
-        if (ironText != null)
-            ironText.text = $": {sessionIron}";
     }
 }

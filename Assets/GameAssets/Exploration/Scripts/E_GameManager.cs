@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class E_GameManager : MonoBehaviour
 {
@@ -11,12 +12,12 @@ public class E_GameManager : MonoBehaviour
 
     void Awake()
     {
-        if(E_GameManager.instance == null)
+        if (E_GameManager.instance == null)
         {
             E_GameManager.instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else if(E_GameManager.instance != this)
+        else if (E_GameManager.instance != this)
         {
             Destroy(gameObject);
         }
@@ -24,16 +25,16 @@ public class E_GameManager : MonoBehaviour
         oxygenManager = oxygenManagerObject.GetComponent<E_OxygenManager>();
     }
 
+
     public E_OxygenManager GetOxygenManager()
     {
         return oxygenManager;
     }
 
-    // Méthode pour sauvegarder le jeu
     public void SaveGame()
     {
         E_PlayerController player = FindObjectOfType<E_PlayerController>();
-        if(player == null)
+        if (player == null)
         {
             Debug.LogError("E_PlayerController non trouvé dans la scène !");
             return;
@@ -93,7 +94,6 @@ public class E_GameManager : MonoBehaviour
         }
     }
 
-
     void Start()
     {
         // Initialisation supplémentaire si nécessaire
@@ -101,13 +101,11 @@ public class E_GameManager : MonoBehaviour
 
     void Update()
     {
-        // Détecter l'appui sur "S" pour sauvegarder
         if (Input.GetKeyDown(KeyCode.S))
         {
             SaveGame();
         }
 
-        // Détecter l'appui sur "L" pour charger
         if (Input.GetKeyDown(KeyCode.L))
         {
             LoadGame();

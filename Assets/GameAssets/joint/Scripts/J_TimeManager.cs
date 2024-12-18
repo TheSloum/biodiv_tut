@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class J_TimeManager : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class J_TimeManager : MonoBehaviour
 
     [Header("Time Settings")]
     [Tooltip("Durée d'un jour en secondes réelles (sans accélération).")]
-    public float secondsPerDay = 120f; // 2 minutes par jour
+    public float secondsPerDay = 120f; // Par défaut
     [Tooltip("Nombre de jours par mois.")]
     public int daysPerMonth = 30;
 
@@ -17,20 +18,21 @@ public class J_TimeManager : MonoBehaviour
     [Tooltip("Mois actuel (commence à 1).")]
     public int currentMonth = 1;
 
-    private float dayTimer = 0f; // Compteur interne du jour en cours, en secondes
+    private float dayTimer = 0f; 
     private bool initialized = false;
 
-    // Événements déclenchés à chaque nouveau jour et nouveau mois
-    public event Action<int, int> OnDayChanged;   // Paramètres : (jour, mois)
-    public event Action<int> OnMonthChanged;      // Paramètre : (mois actuel)
+    // Événements
+    public event Action<int, int> OnDayChanged;   // (jour, mois)
+    public event Action<int> OnMonthChanged;      // (mois)
 
     private void Awake()
     {
-        // Petit Singleton des familles
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            // S'abonner à l'événement de chargement de scène
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -40,7 +42,6 @@ public class J_TimeManager : MonoBehaviour
 
     void Start()
     {
-        // Initialisation. Si on charge une partie, on appellera SetTime() depuis E_GameManager après le chargement.
         initialized = true;
     }
 
@@ -48,71 +49,53 @@ public class J_TimeManager : MonoBehaviour
     {
         if (!initialized) return;
 
-        // Avancement du temps du jour
         dayTimer += Time.deltaTime;
 
         if (dayTimer >= secondsPerDay)
         {
-            // On a dépassé la durée d'une journée
-            dayTimer -= secondsPerDay; // Conserver l'excédent, au cas où
+            dayTimer -= secondsPerDay;
             IncrementDay();
         }
     }
 
-
-
-    void IncrementDay()
+    private void IncrementDay()
     {
         currentDay++;
-
         if (currentDay > daysPerMonth)
         {
             currentDay = 1;
             currentMonth++;
             OnMonthChanged?.Invoke(currentMonth);
         }
-
         OnDayChanged?.Invoke(currentDay, currentMonth);
     }
 
     /// <summary>
-    /// Méthode appelée lors du chargement de partie pour définir l'état du temps.
+    /// Appelée lorsqu'on veut changer la date sans remettre le timer à zéro.
+    /// Passer resetTimer = false pour conserver le temps actuel de la journée.
     /// </summary>
-    public void SetTime(int day, int month)
+    public void SetTime(int day, int month, bool resetTimer = true)
     {
         currentDay = day;
         currentMonth = month;
-        dayTimer = 0f;
         initialized = true;
     }
 
-    /// <summary>
-    /// Obtenir une chaîne formatée de la date actuelle (jour, mois).
-    /// </summary>
     public string GetFormattedDate()
     {
         return $"Jour {currentDay}, Mois {currentMonth}";
     }
 
-    /// <summary>
-    /// Régler la vitesse du temps. Par ex. 1f = normal, 4f = accéléré.
-    /// </summary>
     public void SetTimeSpeed(float speed)
     {
         Time.timeScale = speed;
     }
 
-    /// <summary>
-    /// Mettre en pause le temps.
-    /// </summary>
     public void PauseTime()
     {
         Time.timeScale = 0f;
     }
 
-    /// <summary>
-    /// Reprendre le temps à vitesse normale.
-    /// </summary>
     public void ResumeTime()
     {
         Time.timeScale = 1f;
@@ -123,4 +106,29 @@ public class J_TimeManager : MonoBehaviour
         return dayTimer;
     }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // On ajuste seulement la vitesse du temps (secondsPerDay)
+        // Sans réinitialiser dayTimer ni appeler SetTime()
+        if(scene.name == "Exploration_main")
+        {
+            // Par exemple, la scène d'exploration a un jour plus long
+            secondsPerDay = 90f; 
+        }
+        else if(scene.name == "SampleScene")
+        {
+            // Dans une autre scène, le jour est plus court
+            secondsPerDay = 10f; 
+        }
+        // Ne pas toucher à dayTimer ici, ni à currentDay/currentMonth.
+        // Le temps continue de s'écouler sans être réinitialisé.
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
 }
