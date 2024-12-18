@@ -4,7 +4,6 @@ using TMPro;
 public class Materials : MonoBehaviour
 {
     public static Materials instance;
-
     public string townName;
     public int mat_0 = 500; 
     public int mat_1 = 500;

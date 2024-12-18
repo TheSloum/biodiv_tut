@@ -10,47 +10,50 @@ public class HideStart : MonoBehaviour
     [SerializeField] private GameObject cameraObject;
 
 
-    public TMP_InputField inputField; 
+    public TMP_InputField inputField;
     public Button submitButton;
 
 
     public Speech speech;
 
-    public List<Transform> target; 
-    public float moveSpeed = 5f;     
+    public List<Transform> target;
+    public float moveSpeed = 5f;
 
     private bool isMoving = false;
 
     [SerializeField] private GameObject hideInput;
-    
+
 
     void Start()
     {
-        if (!Materials.instance.isLoad){
-            
+        if (!Materials.instance.isLoad)
+        {
+
             gameObject.SetActive(true);
             HideGui.SetActive(false);
-        inputField.onValueChanged.AddListener(ValidateInput);
-        submitButton.onClick.AddListener(OnSubmit);
-        Materials.instance.canMove = false;
-
-        } else  {
+            inputField.onValueChanged.AddListener(ValidateInput);
+            submitButton.onClick.AddListener(OnSubmit);
+            Materials.instance.canMove = false;
             
-        Materials.instance.canMove = true;
+        }
+        else
+        {
+
+            Materials.instance.canMove = true;
             gameObject.SetActive(false);
         }
 
 
     }
-    
 
 
-private void ValidateInput(string input)
+
+    private void ValidateInput(string input)
     {
         string filteredInput = "";
         foreach (char c in input)
         {
-            if (char.IsLetter(c) || c == '-') 
+            if (char.IsLetter(c) || c == '-')
             {
                 filteredInput += c;
             }
@@ -72,11 +75,11 @@ private void ValidateInput(string input)
             Materials.instance.townName = userInput;
             hideInput.SetActive(false);
             HideGui.SetActive(true);
-        Materials.instance.canMove = true;
-        
-        ShowDialogue.Instance.DialogueBox(speech);
-        StartCoroutine(WaitForTextEnd());
-        
+            Materials.instance.canMove = true;
+
+            ShowDialogue.Instance.DialogueBox(speech);
+            StartCoroutine(WaitForTextEnd());
+
         }
     }
 
@@ -86,12 +89,12 @@ private void ValidateInput(string input)
         while (Vector3.Distance(cameraObject.transform.position, target.position) > 0.05f)
         {
             cameraObject.transform.position = Vector3.Lerp(cameraObject.transform.position, target.position, Time.deltaTime * moveSpeed);
-            yield return null; 
+            yield return null;
         }
 
         cameraObject.transform.position = target.position;
-        
-        
+
+
     }
 
 
