@@ -7521,9 +7521,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenu: {fileID: 0}
   Parametre: {fileID: 943796954}
-  fontToggle: {fileID: 0}
-  ClassicFont: {fileID: 0}
-  disFont: {fileID: 0}
+  fontToggle: {fileID: 2087675004}
+  ClassicFont: {fileID: 11400000, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
+  disFont: {fileID: 11400000, guid: 709303012bac3734c8c9b836404cde07, type: 2}
   textsToChange: []
 --- !u!224 &662473927
 RectTransform:
@@ -26407,7 +26407,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SampleScene
+          m_StringArgument: Menue
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &4521093296375315442
@@ -28134,7 +28134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &8277458203642566686
 MonoBehaviour:
   m_ObjectHideFlags: 0
