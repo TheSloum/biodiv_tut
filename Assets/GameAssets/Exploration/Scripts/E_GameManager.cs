@@ -46,34 +46,43 @@ public class E_GameManager : MonoBehaviour
             trashCollected = oxygenManager.trashCollected
         };
 
+        // Sauvegarder le temps actuel
+        if (J_TimeManager.Instance != null)
+        {
+            data.currentDay = J_TimeManager.Instance.currentDay;
+            data.currentMonth = J_TimeManager.Instance.currentMonth;
+        }
+
         E_SaveLoadManager.instance.SaveGame(data);
     }
 
-    // Méthode pour charger le jeu
     public void LoadGame()
     {
         E_SaveData data = E_SaveLoadManager.instance.LoadGame();
         if(data != null)
         {
-            // Restaurer la position du joueur
             E_PlayerController player = FindObjectOfType<E_PlayerController>();
             if(player != null)
             {
                 player.transform.position = data.playerPosition;
             }
 
-            // Restaurer l'oxygène
             if(oxygenManager != null)
             {
                 oxygenManager.currentOxygen = data.currentOxygen;
                 oxygenManager.oxygenSlider.value = data.currentOxygen;
             }
 
-            // Restaurer le compteur de Trash
             if(oxygenManager != null)
             {
                 oxygenManager.trashCollected = data.trashCollected;
                 oxygenManager.UpdateTrashCounterUI();
+            }
+
+            // Restaurer le temps
+            if (J_TimeManager.Instance != null)
+            {
+                J_TimeManager.Instance.SetTime(data.currentDay, data.currentMonth);
             }
 
             Debug.Log("Jeu chargé avec succès !");
@@ -83,6 +92,7 @@ public class E_GameManager : MonoBehaviour
             Debug.LogWarning("Aucune donnée de sauvegarde à charger.");
         }
     }
+
 
     void Start()
     {

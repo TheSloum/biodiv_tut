@@ -1,0 +1,150 @@
+{
+    "fishDataList": [
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        }
+    ],
+    "buildingDataList": [
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": true
+        }
+    ],
+    "builderDataList": [
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": true,
+            "buildState": 6
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 2
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 3
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 8
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": true,
+            "buildState": 5
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        }
+    ],
+    "mat_0": 425,
+    "mat_1": 415,
+    "mat_2": 335,
+    "price": 650
+}

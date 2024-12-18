@@ -1,10 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Menu : MonoBehaviour
 {
     public GameObject MainMenu;
     public GameObject Parametre;
+
+    public Toggle fontToggle;
+    public TMP_FontAsset ClassicFont;
+    public TMP_FontAsset disFont;
+    public TMP_Text[] textsToChange;
+
+    private int fontSizeOffset = 2; // Décalage de la taille de police
+
+    void Start()
+    {
+        if (fontToggle != null)
+            fontToggle.onValueChanged.AddListener(OnFontToggleChanged);
+    }
 
     void Update()
     {
@@ -21,6 +35,7 @@ public class Menu : MonoBehaviour
         }
     }
 
+    // Gestion des menus
     public void ShowOrHideElement()
     {
         MainMenu.SetActive(!MainMenu.activeSelf);
@@ -39,5 +54,28 @@ public class Menu : MonoBehaviour
         Parametre.SetActive(false);
         MainMenu.SetActive(true);
         Time.timeScale = 0;
+    }
+
+    // Texte dyslexie avec ajustement de taille
+    void OnFontToggleChanged(bool isChecked)
+    {
+        foreach (TMP_Text txt in textsToChange)
+        {
+            if (txt != null)
+            {
+                if (isChecked)
+                {
+                    // Applique la deuxième police et réduit la taille
+                    txt.font = disFont;
+                    txt.fontSize -= fontSizeOffset;
+                }
+                else
+                {
+                    // Applique la police classique et rétablit la taille d'origine
+                    txt.font = ClassicFont;
+                    txt.fontSize += fontSizeOffset;
+                }
+            }
+        }
     }
 }

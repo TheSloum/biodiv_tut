@@ -115,27 +115,42 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeOutAndChangeMusic(AudioClip newClip)
-    {
-        // Fade out current music
-        float startVolume = musicSource.volume;
-        while (musicSource.volume > 0.01f)
-        {
-            musicSource.volume -= startVolume * Time.deltaTime / 0.5f; // 1f is the fade duration (adjustable)
-            yield return null;
-        }
+    private int currentMusicToken = 0;
 
+private IEnumerator FadeOutAndChangeMusic(AudioClip newClip)
+{
+    int thisMusicToken = ++currentMusicToken;
+    float startVolume = musicSource.volume;
+    float fadeDuration = 0.5f;
+    float timer = 0f;
+
+    while (timer < fadeDuration)
+    {
+        if (thisMusicToken != currentMusicToken) yield break;
+
+        timer += Time.deltaTime;
+        musicSource.volume = Mathf.Lerp(startVolume, 0f, timer / fadeDuration);
+        yield return null;
+    }
+    if (thisMusicToken == currentMusicToken)
+    {
         musicSource.Stop();
         musicSource.clip = newClip;
         musicSource.Play();
+    }
+    timer = 0f;
+    while (timer < fadeDuration)
+    {
+        if (thisMusicToken != currentMusicToken) yield break;
 
-
-        while (musicSource.volume < musicVolume * globalVolume)
-        {
-            musicSource.volume += startVolume * Time.deltaTime / 1f; // 1f is the fade duration (adjustable)
-            yield return null;
-        }
-
+        timer += Time.deltaTime;
+        musicSource.volume = Mathf.Lerp(0f, musicVolume * globalVolume, timer / fadeDuration);
+        yield return null;
+    }
+    if (thisMusicToken == currentMusicToken)
+    {
         musicSource.volume = musicVolume * globalVolume;
     }
+}
+
 }
