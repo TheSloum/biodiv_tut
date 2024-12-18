@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour
     public TMP_FontAsset disFont;
     public TMP_Text[] textsToChange;
 
-    private int fontSizeOffset = 2; // Décalage de la taille de police
+    private int fontSizeOffset = 2;
 
     void Start()
     {
@@ -55,8 +55,6 @@ public class Menu : MonoBehaviour
         MainMenu.SetActive(true);
         Time.timeScale = 0;
     }
-
-    // Texte dyslexie avec ajustement de taille
     void OnFontToggleChanged(bool isChecked)
     {
         foreach (TMP_Text txt in textsToChange)
@@ -65,13 +63,13 @@ public class Menu : MonoBehaviour
             {
                 if (isChecked)
                 {
-                    // Applique la deuxième police et réduit la taille
+                
                     txt.font = disFont;
                     txt.fontSize -= fontSizeOffset;
                 }
                 else
                 {
-                    // Applique la police classique et rétablit la taille d'origine
+                    
                     txt.font = ClassicFont;
                     txt.fontSize += fontSizeOffset;
                 }

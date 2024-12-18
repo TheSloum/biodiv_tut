@@ -6,8 +6,6 @@ using TMPro; // Importer le namespace TextMeshPro
 public class Materials : MonoBehaviour
 {
     public static Materials instance;
-
-    [HideInInspector]
     public bool isLoad = false;
 
     public string townName;
