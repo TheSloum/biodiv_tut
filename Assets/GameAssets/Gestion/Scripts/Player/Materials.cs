@@ -7,6 +7,11 @@ public class Materials : MonoBehaviour
 {
     public static Materials instance;
 
+    [HideInInspector]
+    public bool isLoad = false;
+
+    public string townName;
+
     // mat_0: Bois, mat_1: Pierre, mat_2: Fer
     public int mat_0 = 500; // Bois (Total)
     public int mat_1 = 500; // Pierre (Total)
@@ -28,6 +33,13 @@ public class Materials : MonoBehaviour
     public int sessionStone = 0;
     [HideInInspector]
     public int sessionIron = 0;
+
+
+
+    [HideInInspector]
+    public bool canMove = true;
+
+    public bool textDone = false;
 
     private void Awake()
     {

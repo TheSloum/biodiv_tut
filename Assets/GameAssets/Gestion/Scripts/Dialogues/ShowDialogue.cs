@@ -2,9 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
 public class ShowDialogue : MonoBehaviour
 {
+
+
+    public static ShowDialogue Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); 
+            return;
+        }
+
+        Instance = this;
+    }
+
+
+
+    
+
     [SerializeField] TextMeshPro textMeshPro;
     [SerializeField] GameObject box;
     private int currentDialogueIndex = 0;
@@ -37,7 +58,8 @@ IEnumerator WaitForFrames(int frameCount, Speech dialogue) //attendre pour évit
 
 
     public void DialogueBox(Speech dialogue)
-    {
+    {        Materials.instance.canMove = false;
+
         RectTransform currentrectTransform = GetComponent<RectTransform>();
         currentrectTransform.anchoredPosition = dialogue.position;
           currentDialogueIndex = 0;
@@ -59,27 +81,47 @@ IEnumerator WaitForFrames(int frameCount, Speech dialogue) //attendre pour évit
 
     private void StartDialogue(Speech dialogue)
     {
-        // Start displaying the first dialogue
         currentDialogueIndex = 0;
         typingCoroutine = StartCoroutine(TypeText(dialogue.textList[currentDialogueIndex]));
         StartCoroutine(WaitForMouseClick(dialogue));
     }
 
     private IEnumerator TypeText(string text)
-    {
-        isTextAnimating = true;
-        textMeshPro.text = "";
-        nextIco.gameObject.SetActive(false);
+{
+    string textVar = ReplacePlaceholders(text);
+    isTextAnimating = true;
+    textMeshPro.text = "";
+    nextIco.gameObject.SetActive(false);
 
-        foreach (char letter in text)
+    string currentText = "";
+
+    int i = 0;
+    while (i < textVar.Length)
+    {
+        if (textVar[i] == '<')
         {
-            textMeshPro.text += letter;
-            yield return new WaitForSeconds(0.03f); 
+            int endTagIndex = textVar.IndexOf('>', i);
+            if (endTagIndex > i)
+            {
+                currentText += textVar.Substring(i, endTagIndex - i + 1);
+                i = endTagIndex + 1;
+                continue;
+            }
         }
 
-        isTextAnimating = false;
-        nextIco.gameObject.SetActive(true);
+        currentText += textVar[i];
+
+        textMeshPro.text = currentText;
+
+        yield return new WaitForSeconds(0.03f);
+
+        i++;
     }
+
+    isTextAnimating = false;
+    nextIco.gameObject.SetActive(true);
+}
+
 
     private IEnumerator WaitForMouseClick(Speech dialogue)
     {
@@ -89,15 +131,15 @@ IEnumerator WaitForFrames(int frameCount, Speech dialogue) //attendre pour évit
             {
                 if (isTextAnimating)
                 {
-                    // Finish typing instantly
+                    
+                    
                     StopCoroutine(typingCoroutine);
-                    textMeshPro.text = dialogue.textList[currentDialogueIndex];
+                    textMeshPro.text = ReplacePlaceholders(dialogue.textList[currentDialogueIndex]);
                     isTextAnimating = false;
         nextIco.gameObject.SetActive(true);
                 }
                 else
                 {
-                    // Go to the next dialogue if typing is done
                     currentDialogueIndex++;
                     if (currentDialogueIndex < dialogue.textList.Count)
                     {
@@ -108,6 +150,9 @@ IEnumerator WaitForFrames(int frameCount, Speech dialogue) //attendre pour évit
         RectTransform currentrectTransform = GetComponent<RectTransform>();
                         currentrectTransform.anchoredPosition = new Vector3(3585, -670, 0);
         textMeshPro.text = "";
+                Materials.instance.canMove = true;
+        Materials.instance.textDone  = true;
+
                         yield break;
                     }
                 }
@@ -118,4 +163,14 @@ IEnumerator WaitForFrames(int frameCount, Speech dialogue) //attendre pour évit
     }
 
 
+
+
+string ReplacePlaceholders(string text)
+    {
+        text = text.Replace("{Materials.instance.townName}", Materials.instance.townName);
+
+
+        return text;
+    }
 }
+

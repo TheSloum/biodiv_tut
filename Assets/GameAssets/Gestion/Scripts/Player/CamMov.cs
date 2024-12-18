@@ -40,10 +40,12 @@ public class CamMov : MonoBehaviour
     
     void LateUpdate()
     {
+        if (Materials.instance.canMove){
         HandleMovement();
         HandleCameraDrag();
         HandleZoom();
         HandleKeyboardInput();
+        }
     }
 
     private void HandleMovement()

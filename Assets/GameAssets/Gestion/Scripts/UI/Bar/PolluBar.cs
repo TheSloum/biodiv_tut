@@ -22,7 +22,7 @@ void Update()
 mat.SetFloat("_Bar2", Materials.instance.bar_2);
     float targetValue = Mathf.Clamp01(Materials.instance.bar_2);
 
-    float newX = Mathf.Lerp(-197f, 0f, targetValue);
+    float newX = Mathf.Lerp(-197f, 2f, targetValue);
 
     Vector3 currentPosition = targetTransform.localPosition;
     currentPosition.x = Mathf.Lerp(currentPosition.x, newX, Time.deltaTime * lerpSpeed);

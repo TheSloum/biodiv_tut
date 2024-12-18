@@ -95,6 +95,7 @@ public class GameDataSaver : MonoBehaviour
         gameData.mat_1 = Materials.instance.mat_1;
         gameData.mat_2 = Materials.instance.mat_2;
         gameData.price = Materials.instance.price;
+        gameData.townName = Materials.instance.townName;
 
         string json = JsonUtility.ToJson(gameData, true);
         string fileName = $"GameData_{DateTime.Now:yyyy-MM-dd_HH-mm}.json";
@@ -154,7 +155,9 @@ public class GameDataSaver : MonoBehaviour
             Materials.instance.mat_2 = gameData.mat_2;
             Materials.instance.price = gameData.price;
 
-            Debug.Log("Game data loaded from: " + path);
+            Materials.instance.townName = gameData.townName;
+
+            Materials.instance.isLoad = true;
         }
         else
         {
@@ -206,4 +209,6 @@ public class GameData
     public int mat_1; // Pierre
     public int mat_2; // Fer
     public int price; // Fer
+
+    public string townName;
 }
