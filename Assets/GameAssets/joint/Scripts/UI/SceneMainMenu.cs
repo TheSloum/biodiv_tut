@@ -6,10 +6,10 @@ public class SceneMainMenu : MonoBehaviour
 {
     public AudioClip sfxClip;
     public AudioClip musicClip;
-    public void LoadScene(string SampleScene)
+    public void LoadScene(string Exploration_main)
     {
         SoundManager.instance.PlayMusic(musicClip);
         SoundManager.instance.PlaySFX(sfxClip);
-        SceneManager.LoadScene(SampleScene);
+        SceneManager.LoadScene(Exploration_main);
     }
 }

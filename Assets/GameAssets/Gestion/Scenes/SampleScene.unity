@@ -7791,7 +7791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxClip: {fileID: 8300000, guid: cc790cd0f2784f0498e2d7ba8f5fdcd8, type: 3}
-  musicClip: {fileID: 8300000, guid: de8cf3f4fa230421fb5dea9e3a52840b, type: 3}
+  musicClip: {fileID: 8300000, guid: 56217f2fdea65644f919a5f23e63b47c, type: 3}
 --- !u!114 &920660841
 MonoBehaviour:
   m_ObjectHideFlags: 0

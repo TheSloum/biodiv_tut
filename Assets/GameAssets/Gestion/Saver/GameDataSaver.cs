@@ -12,12 +12,11 @@ public class GameDataSaver : MonoBehaviour
     public List<GameObject> builderData;
 
     public Sprite baseSprite;
-    
-    // Matériaux
-    public int mat_0 = 500; // Bois
-    public int mat_1 = 500; // Pierre
-    public int mat_2 = 500; // Fer
-    public int price = 500; // MONEYYYY
+
+    public int mat_0 = 500; 
+    public int mat_1 = 500; 
+    public int mat_2 = 500;
+    public int price = 500;
 
     private void Awake()
     {
@@ -32,26 +31,15 @@ public class GameDataSaver : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        builderData = new List<GameObject>(GameObject.FindGameObjectsWithTag("Building"));
-        // Optionnel : SaveData(); // Sauvegarder immédiatement après le chargement (à utiliser si nécessaire)
-    }
-
-    
-
-    private void Update()
-    {
-
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S))
-        {
-            SaveData();
-//save
-        }
-    }
-
     public void SaveData()
     {
+        // Vérifications avant de faire quoi que ce soit
+        if (Materials.instance == null)
+        {
+            Debug.LogWarning("Materials.instance est null, annulation de SaveData().");
+            return;
+        }
+
         GameData gameData = new GameData
         {
             fishDataList = new List<FishData>(),
@@ -60,25 +48,32 @@ public class GameDataSaver : MonoBehaviour
             mat_0 = Materials.instance.mat_0,
             mat_1 = Materials.instance.mat_1,
             mat_2 = Materials.instance.mat_2,
-            price = Materials.instance.price
+            price = Materials.instance.price,
+            townName = Materials.instance.townName
         };
 
+        // Fish data
         foreach (var fish in fishUnlockData)
         {
             gameData.fishDataList.Add(new FishData { is_unlocked = fish.is_unlocked });
         }
 
+        // Building data
         foreach (var building in buildUnlockData)
         {
             gameData.buildingDataList.Add(new BuildingData { unlocked = building.unlocked });
         }
 
-        foreach (var builder in builderData)
+        // Builder data
+        // Avant on faisait directement un GetComponent, maintenant on vérifie.
+        if (builderData != null)
         {
-            Builder builderComponent = builder.GetComponent<Builder>();
-
-            if (builderComponent != null)
+            foreach (var builderObject in builderData)
             {
+                if (builderObject == null) continue;
+                Builder builderComponent = builderObject.GetComponent<Builder>();
+                if (builderComponent == null) continue;
+
                 gameData.builderDataList.Add(new BuilderData
                 {
                     level0 = builderComponent.level0,
@@ -90,16 +85,10 @@ public class GameDataSaver : MonoBehaviour
             }
         }
 
-        // Sauvegarder les matériaux
-        gameData.mat_0 = Materials.instance.mat_0;
-        gameData.mat_1 = Materials.instance.mat_1;
-        gameData.mat_2 = Materials.instance.mat_2;
-        gameData.price = Materials.instance.price;
-        gameData.townName = Materials.instance.townName;
-
-        string json = JsonUtility.ToJson(gameData, true);
+        // Sauvegarde en fichier
         string fileName = $"GameData_{DateTime.Now:yyyy-MM-dd_HH-mm}.json";
         string path = Path.Combine(Application.dataPath, "Sauvegardes", fileName);
+        string json = JsonUtility.ToJson(gameData, true);
         File.WriteAllText(path, json);
         Debug.Log("Game data saved to: " + path);
     }
@@ -112,35 +101,42 @@ public class GameDataSaver : MonoBehaviour
             string json = File.ReadAllText(path);
             GameData gameData = JsonUtility.FromJson<GameData>(json);
 
-            // Charger les données des poissons
+            // Recharger fishes
             for (int i = 0; i < fishUnlockData.Count && i < gameData.fishDataList.Count; i++)
             {
                 fishUnlockData[i].is_unlocked = gameData.fishDataList[i].is_unlocked;
             }
 
-            // Charger les données des bâtiments
+            // Recharger buildings
             for (int i = 0; i < buildUnlockData.Count && i < gameData.buildingDataList.Count; i++)
             {
                 buildUnlockData[i].unlocked = gameData.buildingDataList[i].unlocked;
             }
 
-            // Charger les données des builders
+            // Recharger builder
             for (int i = 0; i < builderData.Count && i < gameData.builderDataList.Count; i++)
             {
-                Builder builderComponent = builderData[i].GetComponent<Builder>();
-                SpriteRenderer spriterenderer = builderData[i].GetComponent<SpriteRenderer>();
-                if (builderComponent != null)
+                GameObject bObj = builderData[i];
+                if (bObj == null) continue;
+                Builder builderComponent = bObj.GetComponent<Builder>();
+                SpriteRenderer spriterenderer = bObj.GetComponent<SpriteRenderer>();
+                if (builderComponent != null && spriterenderer != null && buildUnlockData.Count > gameData.builderDataList[i].buildState)
                 {
                     builderComponent.level0 = gameData.builderDataList[i].level0;
                     builderComponent.level1 = gameData.builderDataList[i].level1;
                     builderComponent.level2 = gameData.builderDataList[i].level2;
                     builderComponent.running = gameData.builderDataList[i].running;
                     builderComponent.buildState = gameData.builderDataList[i].buildState;
-                    if(gameData.builderDataList[i].buildState == 0){
+
+                    if (builderComponent.buildState == 0)
+                    {
                         spriterenderer.sprite = baseSprite;
-                    } else{
-                    spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
                     }
+                    else
+                    {
+                        spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
+                    }
+
                     builderComponent.cycleDuration = buildUnlockData[gameData.builderDataList[i].buildState].time;
                     if (builderComponent.buildState > 0 && builderComponent.running)
                     {
@@ -149,15 +145,14 @@ public class GameDataSaver : MonoBehaviour
                 }
             }
 
-            // Charger les matériaux
             Materials.instance.mat_0 = gameData.mat_0;
             Materials.instance.mat_1 = gameData.mat_1;
             Materials.instance.mat_2 = gameData.mat_2;
             Materials.instance.price = gameData.price;
-
             Materials.instance.townName = gameData.townName;
-
             Materials.instance.isLoad = true;
+
+            Debug.Log("Jeu chargé avec succès !");
         }
         else
         {
@@ -204,11 +199,10 @@ public class GameData
     public List<BuildingData> buildingDataList;
     public List<BuilderData> builderDataList;
 
-    // Matériaux
-    public int mat_0; // Bois
-    public int mat_1; // Pierre
-    public int mat_2; // Fer
-    public int price; // Fer
+    public int mat_0;
+    public int mat_1;
+    public int mat_2;
+    public int price;
 
     public string townName;
 }
