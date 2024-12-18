@@ -26819,6 +26819,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NameEnter
       objectReference: {fileID: 0}
+    - target: {fileID: 8513439737551492900, guid: 62d1cd6cf493b3748a57c67390192dbe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8513439737551492901, guid: 62d1cd6cf493b3748a57c67390192dbe, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -27395,7 +27399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8980128539097348636
 MonoBehaviour:
   m_ObjectHideFlags: 0
