@@ -1,13 +1,13 @@
 {
     "fishDataList": [
         {
-            "is_unlocked": true
+            "is_unlocked": false
         },
         {
-            "is_unlocked": true
+            "is_unlocked": false
         },
         {
-            "is_unlocked": true
+            "is_unlocked": false
         }
     ],
     "buildingDataList": [
@@ -37,9 +37,9 @@
         }
     ],
     "builderDataList": [],
-    "mat_0": 520,
-    "mat_1": 500,
-    "mat_2": 520,
+    "mat_0": 500,
+    "mat_1": 520,
+    "mat_2": 500,
     "price": 500,
     "townName": ""
 }
