@@ -10,6 +10,8 @@ TagManager:
   - Wall
   - SaveDate
   - ButtonTutorial
+  - OxygenSlider
+  - DateText
   layers:
   - Default
   - TransparentFX

@@ -44,6 +44,7 @@ public class E_FishSpawner : MonoBehaviour
 
         // Vérifier si le prefab possède un SpriteRenderer
         SpriteRenderer sr = fish.GetComponent<SpriteRenderer>();
+        /*
         if(sr != null)
         {
             // Définir un Order in Layer aléatoire entre -6 et -2 (inclus)
@@ -59,5 +60,6 @@ public class E_FishSpawner : MonoBehaviour
         {
             Debug.LogWarning("Le préfabriqué de poisson instancié n'a pas de SpriteRenderer attaché.");
         }
+    */
     }
 }

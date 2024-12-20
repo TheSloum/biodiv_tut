@@ -6,7 +6,6 @@ using System.Collections;
 
 public class E_OxygenManager : MonoBehaviour
 {
-    // Variables auxquelles E_GameManager a besoin d'accéder
     public Slider oxygenSlider;
     public float currentOxygen;
 
@@ -27,12 +26,13 @@ public class E_OxygenManager : MonoBehaviour
 
     void Start()
     {
+        // CHANGEMENT : Réinitialisation des valeurs au start
         currentOxygen = maxOxygen;
         oxygenSlider.maxValue = maxOxygen;
         oxygenSlider.value = currentOxygen;
 
+        trashCollected = 0;
         UpdateTrashCounterUI();
-        startTime = Time.time;
 
         if (resultScreen != null)
         {
@@ -43,10 +43,9 @@ public class E_OxygenManager : MonoBehaviour
         {
             Materials.instance.ResetSessionCounts();
         }
-        else
-        {
-            Debug.LogWarning("Materials.instance est null dans E_OxygenManager.Start()");
-        }
+
+        isGameOver = false;
+        startTime = Time.time;
     }
 
     void Update()
@@ -229,5 +228,17 @@ public class E_OxygenManager : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Quitter le jeu.");
+    }
+
+    // CHANGEMENT : Méthode pour réinitialiser l'oxygène, appelée après chargement de scène
+    public void ResetOxygen()
+    {
+        currentOxygen = maxOxygen;
+        oxygenSlider.value = currentOxygen;
+        trashCollected = 0;
+        UpdateTrashCounterUI();
+        isGameOver = false;
+        if (resultScreen != null) resultScreen.SetActive(false);
+        if (Materials.instance != null) Materials.instance.ResetSessionCounts();
     }
 }

@@ -14,14 +14,14 @@ public class HideStart : MonoBehaviour
     public GameObject pauser;
 
 
-    public TMP_InputField inputField; 
+    public TMP_InputField inputField;
     public Button submitButton;
 
 
     public List<Speech> speech;
 
-    public List<Transform> target; 
-    public float moveSpeed = 5f;     
+    public List<Transform> target;
+    public float moveSpeed = 5f;
 
     private bool isMoving = false;
 
@@ -53,6 +53,11 @@ public float disableDuration = 2f;
     public Button exploration;
     public GameObject manageMenu;
 
+
+
+    public GameObject tutoChoosePage;
+    public GameObject inputBack;
+
     
     void Start()
     {
@@ -72,6 +77,24 @@ public float disableDuration = 2f;
             gameObject.SetActive(false);
         }
 
+    }
+
+    public void tutoChoose(bool tuto){
+        
+            hideInput.SetActive(false);
+            HideGui.SetActive(true);
+        if(tuto){
+            
+        ShowDialogue.Instance.DialogueBox(speech[0]);
+        StartCoroutine(WaitForTextEnd(0));
+        } else {
+            Materials.instance.canMove = true;
+            Materials.instance.tutorial = false;
+        }
+        tutoChoosePage.SetActive(false);
+        inputBack.SetActive(false);
+        
+        
     }
     
 public IEnumerator DisableAllButtons()
@@ -117,12 +140,12 @@ foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
 }
 
 
-private void ValidateInput(string input)
+    private void ValidateInput(string input)
     {
         string filteredInput = "";
         foreach (char c in input)
         {
-            if (char.IsLetter(c) || c == '-') 
+            if (char.IsLetter(c) || c == '-')
             {
                 filteredInput += c;
             }
@@ -142,14 +165,11 @@ private void ValidateInput(string input)
         if (!string.IsNullOrEmpty(userInput))
         {
             Materials.instance.townName = userInput;
-            hideInput.SetActive(false);
-            HideGui.SetActive(true);
         Materials.instance.canMove = true;
         
-        ShowDialogue.Instance.DialogueBox(speech[0]);
-        StartCoroutine(WaitForTextEnd(0));
-        
         }
+        tutoChoosePage.SetActive(true);
+            hideInput.SetActive(false);
     }
 
     private IEnumerator MoveToTarget(Transform target, float moveSpeed)
