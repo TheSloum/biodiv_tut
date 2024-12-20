@@ -81,9 +81,10 @@ public class Builder : MonoBehaviour
     public Sprite[] sprites = new Sprite[4];
 
 
-
+    public int Prebuild = 0;
 
     [SerializeField] private GameObject cycleBar;
+    [SerializeField] private bool tutorialBuild;
 
 
 
@@ -106,11 +107,29 @@ public class Builder : MonoBehaviour
 
         cycleAnim.speed = 0f;
 
+        if(Materials.instance.isLoad){
+            Prebuild = 0;
+        }
+        if(Prebuild != 0){
+            Building matchingBuilding = null;
+
+foreach (Building building in buildings)
+{
+    if (building.buildID == Prebuild)
+    {
+        matchingBuilding = building;
+        break;
+    }
+}
+            OnBuildingButtonClick(matchingBuilding);
+        }
+
 
     }
 
     void OnMouseDown()
     {
+        if((!Materials.instance.tutorial && Materials.instance.textDone) ||  (tutorialBuild && Materials.instance.tutoToggle) ){
         if (UIdetection.instance.mouseOverUi)
         {
             return;
@@ -125,12 +144,13 @@ public class Builder : MonoBehaviour
             ShowManageMenu();
         }
     }
+    }
 
     public void OnDestroyClicked()
     {
-        cycleBar.transform.localPosition = new Vector3(0,-46,0);
         if (editing == true)
         {
+        cycleBar.transform.localPosition = new Vector3(0,-46,0);
             buildState = 0;
             buildID = 0;
             level0 = 0;
@@ -310,6 +330,8 @@ public class Builder : MonoBehaviour
     {
         if (editing == true)
         {
+            
+        Materials.instance.canMove = false;
             manageMenu.SetActive(true);
             foreach (Building building in buildings)
             {
@@ -351,6 +373,8 @@ public class Builder : MonoBehaviour
     {
         buildingMenu.SetActive(true);
         closeMenu.SetActive(true);
+        
+        Materials.instance.canMove = false;
 
         foreach (Transform child in buttonPanel)
         {
@@ -369,6 +393,9 @@ public class Builder : MonoBehaviour
                 Button button = newButton.GetComponent<Button>();
                 TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
                 buttonText.text = $"{building.name}: Wood {building.mat_0}, Stone {building.mat_1}, Iron {building.mat_2}, Price{building.price}";
+                if(Materials.instance.tutorial){
+                    button.interactable = false;
+                }
 
                 button.onClick.AddListener(() => OnBuildingButtonClick(building));
             }
@@ -382,12 +409,12 @@ public class Builder : MonoBehaviour
     {
         cycleBar.transform.localPosition = new Vector3(0,83,0);
 
-        if (Materials.instance.mat_0 >= (-1 * building.mat_0) && Materials.instance.mat_1 >= (-1 * building.mat_1) && Materials.instance.mat_2 >= (-1 * building.mat_2) && Materials.instance.price >= (-1 * building.price))
+        if ((Materials.instance.mat_0 >= (-1 * building.mat_0) && Materials.instance.mat_1 >= (-1 * building.mat_1) && Materials.instance.mat_2 >= (-1 * building.mat_2) && Materials.instance.price >= (-1 * building.price)) || Prebuild != 0)
         {
             buildState = building.buildID;
             spriteRenderer.sprite = building.buildSprite;
 
-            Debug.Log(spriteRenderer.sprite);
+            if(Prebuild == 0) {
             Materials.instance.mat_0 += building.mat_0;
             Materials.instance.mat_1 += building.mat_1;
             Materials.instance.mat_2 += building.mat_2;
@@ -395,6 +422,7 @@ public class Builder : MonoBehaviour
             Materials.instance.bar_1 += building.bar_1;
             Materials.instance.bar_2 += building.bar_2;
             Materials.instance.price += building.price;
+            
 
 
             numbers[0] = building.mat_0;
@@ -402,6 +430,12 @@ public class Builder : MonoBehaviour
             numbers[2] = building.mat_2;
             numbers[3] = building.price;
             StartCoroutine(SpawnPrefabs());
+
+            SoundManager.instance.PlaySFX(sfxClip);
+            } else {
+                Prebuild = 0;
+            }
+
 
             mat_0_cycle = building.cons_mat_0;
             mat_1_cycle = building.cons_mat_1;
@@ -420,7 +454,6 @@ public class Builder : MonoBehaviour
 
             HideBuildingMenu();
 
-            SoundManager.instance.PlaySFX(sfxClip);
         }
 
 
@@ -432,6 +465,8 @@ public class Builder : MonoBehaviour
         HideBuildingMenu();
         HideManageMenu();
         editing = false;
+        
+        Materials.instance.canMove = true;
 
     }
 
@@ -570,7 +605,7 @@ public class Builder : MonoBehaviour
 
             StartCoroutine(FadeOutAndMove(instance, numbers[i]));
 
-            yield return new WaitForSeconds(timeOffset);
+            yield return new WaitForSecondsRealtime(timeOffset);
         }
     }
 

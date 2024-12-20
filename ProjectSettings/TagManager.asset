@@ -9,6 +9,7 @@ TagManager:
   - Building
   - Wall
   - SaveDate
+  - ButtonTutorial
   layers:
   - Default
   - TransparentFX
@@ -51,4 +52,10 @@ TagManager:
     locked: 0
   - name: Text
     uniqueID: 614347701
+    locked: 0
+  - name: POI
+    uniqueID: 3679107619
+    locked: 0
+  - name: Dialogue
+    uniqueID: 208921287
     locked: 0

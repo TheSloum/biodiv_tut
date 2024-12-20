@@ -25,7 +25,7 @@ mat.SetFloat("_Bar2", Materials.instance.bar_2);
     float newX = Mathf.Lerp(-197f, 2f, targetValue);
 
     Vector3 currentPosition = targetTransform.localPosition;
-    currentPosition.x = Mathf.Lerp(currentPosition.x, newX, Time.deltaTime * lerpSpeed);
+    currentPosition.x = Mathf.Lerp(currentPosition.x, newX, Time.unscaledDeltaTime * lerpSpeed);
     targetTransform.localPosition = currentPosition;
 
     if(Materials.instance.bar_2 <= 0.25){

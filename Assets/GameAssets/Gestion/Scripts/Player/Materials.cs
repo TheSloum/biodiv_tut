@@ -7,8 +7,9 @@ public class Materials : MonoBehaviour
 {
     public static Materials instance;
 
-    [HideInInspector]
     public bool isLoad = false;
+
+    public bool tutorial = true;
 
     public string townName;
 
@@ -40,6 +41,7 @@ public class Materials : MonoBehaviour
     public bool canMove = true;
 
     public bool textDone = false;
+    public bool tutoToggle = false;
 
     private void Awake()
     {
@@ -77,6 +79,9 @@ public class Materials : MonoBehaviour
         else
         {
             Debug.LogWarning("GameDataSaver.instance est null dans Materials.Start()");
+        }
+        if(isLoad){
+            tutorial = false;
         }
     }
 

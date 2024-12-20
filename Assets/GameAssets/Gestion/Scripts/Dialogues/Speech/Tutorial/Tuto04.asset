@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937f810c5dbd19e4eb2dafdaa88f35fa, type: 3}
+  m_Name: Tuto04
+  m_EditorClassIdentifier: 
+  textList:
+  - "Voici les <b>indicateurs</b> de l\u2019\xE9tat de <u>{Materials.instance.townName}</u>.
+    Ils sont ESSENTIELS pour g\xE9rer la ville."
+  - "Cette premi\xE8re jauge montre le niveau de <b>qualit\xE9 de vie</b> et la satisfaction
+    des habitants.\r"
+  - "La seconde indique <b>l\u2019\xE9nergie</b> disponible.\r"
+  - "Enfin, la derni\xE8re repr\xE9sente le niveau de pollution actuel."
+  - "Gardez-les TOUJOURS \xE0 l'\u0153il pour comprendre la situation en ville !\r\n"
+  - "Dans cet espace, vous pouvez consulter votre <b>r\xE9serve</b> et v\xE9rifier
+    les ressources disponibles.\r"
+  - "Enfin, ici se trouvent les outils pour aider <u>{Materials.instance.townName}</u>
+    \xE0 se renouveler. Ces outils vous permettent de prendre des d\xE9cisions sur
+    les <b>constructions</b> \xE0 venir.\r\n"
+  - "Commen\xE7ons tout de suite ! Il est temps de construire notre centre de recherche."
+  position: {x: -335.4, y: 43.02, z: 0}
+  size: {x: 125, y: 0, z: 0}
+  character: {fileID: 0}

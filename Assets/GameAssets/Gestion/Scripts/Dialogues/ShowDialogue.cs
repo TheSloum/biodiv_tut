@@ -74,7 +74,7 @@ IEnumerator WaitForFrames(int frameCount, Speech dialogue) //attendre pour évit
 
             box.transform.localScale = currentScale + dialogue.size;
 
-            nextIco.anchoredPosition = new Vector2(nextIco.anchoredPosition.x, nextIco.anchoredPosition.y - 5);
+            nextIco.anchoredPosition = new Vector2(nextIco.anchoredPosition.x, nextIco.anchoredPosition.y);
 
         StartCoroutine(WaitForFrames(5 , dialogue));
     }
@@ -113,7 +113,7 @@ IEnumerator WaitForFrames(int frameCount, Speech dialogue) //attendre pour évit
 
         textMeshPro.text = currentText;
 
-        yield return new WaitForSeconds(0.03f);
+        yield return new WaitForSecondsRealtime(0.03f);
 
         i++;
     }
