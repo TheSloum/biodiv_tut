@@ -23,14 +23,14 @@ MonoBehaviour:
   bar_0: 0
   bar_1: 0
   bar_2: 0
-  time: 10
+  time: 15
   cons_mat_0: 0
   cons_mat_1: 0
   cons_mat_2: 0
   bar_0_cycle: 0.005
-  bar_1_cycle: 0.0075
+  bar_1_cycle: -0.0075
   bar_2_cycle: 0.0025
-  price_cycle: 275
+  price_cycle: 300
   upgradeMult: 1
   up_mat_0: 800
   up_mat_1: 800

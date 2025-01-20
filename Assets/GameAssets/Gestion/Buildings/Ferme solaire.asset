@@ -27,10 +27,10 @@ MonoBehaviour:
   cons_mat_0: 0
   cons_mat_1: 0
   cons_mat_2: 0
-  bar_0_cycle: -0.0175
-  bar_1_cycle: 0.02
-  bar_2_cycle: 0.01
-  price_cycle: -125
+  bar_0_cycle: -0.02
+  bar_1_cycle: 0.0175
+  bar_2_cycle: 0.015
+  price_cycle: -75
   upgradeMult: 1
   up_mat_0: 800
   up_mat_1: 800
