@@ -60,7 +60,7 @@ public class Builder : MonoBehaviour
 
     public Animator cycleAnim;
 
-    private float progress;
+    public float progress;
 
 
     public float outsideTime = 0;
@@ -83,7 +83,7 @@ public class Builder : MonoBehaviour
 
     public int Prebuild = 0;
 
-    [SerializeField] private GameObject cycleBar;
+    public GameObject cycleBar;
     [SerializeField] private bool tutorialBuild;
 
 
@@ -156,7 +156,9 @@ foreach (Building building in buildings)
             level0 = 0;
             level1 = 1;
             level2 = 2;
+            if (Materials.instance.explored == false ){
             spriteRenderer.sprite = baseSprite;
+            }
             running = false;
             progress = 0f;
             float timePassed = 0f;
@@ -387,8 +389,12 @@ foreach (Building building in buildings)
         foreach (Building building in buildings)
         {
 
+            
             if (building.unlocked)
             {
+                if(Materials.instance.researchCentr && building.buildClass != 0){
+
+                } else if(!Materials.instance.researchCentr && building.buildClass == 0){} else{
                 GameObject newButton = Instantiate(buttonPrefab, buttonPanel);
                 Button button = newButton.GetComponent<Button>();
                 TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
@@ -398,6 +404,7 @@ foreach (Building building in buildings)
                 }
 
                 button.onClick.AddListener(() => OnBuildingButtonClick(building));
+                }
             }
         }
     }
@@ -407,6 +414,10 @@ foreach (Building building in buildings)
 
     private void OnBuildingButtonClick(Building building)
     {
+        
+                    if(building.buildClass ==0){
+                        Materials.instance.researchCentr = false;
+                    }
         cycleBar.transform.localPosition = new Vector3(0,83,0);
 
         if ((Materials.instance.mat_0 >= (-1 * building.mat_0) && Materials.instance.mat_1 >= (-1 * building.mat_1) && Materials.instance.mat_2 >= (-1 * building.mat_2) && Materials.instance.price >= (-1 * building.price)) || Prebuild != 0)
@@ -449,8 +460,9 @@ foreach (Building building in buildings)
 
 
             running = true;
-
+            if (building.time > 0){
             StartCycle();
+            }
 
             HideBuildingMenu();
 

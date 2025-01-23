@@ -62,7 +62,7 @@ public float disableDuration = 2f;
     void Start()
     {
         if (!Materials.instance.isLoad){
-    StartCoroutine(DisableAllButtons());
+        StartCoroutine(DisableAllButtons());
             
             gameObject.SetActive(true);
             HideGui.SetActive(false);
@@ -85,6 +85,7 @@ public float disableDuration = 2f;
             HideGui.SetActive(true);
         if(tuto){
             
+        Materials.instance.textDone = false;
         ShowDialogue.Instance.DialogueBox(speech[0]);
         StartCoroutine(WaitForTextEnd(0));
         } else {
@@ -131,10 +132,6 @@ foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
         cammov.TogglePause();
     foreach (Button button in allButtons)
     {
-        if (button.CompareTag("ButtonPriority"))
-        {
-            continue; 
-        }
         button.interactable = true;  
     }
 }
@@ -360,9 +357,13 @@ private IEnumerator CheckForClicks()
     {
         if(step == 3){
             exploration.interactable = true;
+            
+        Materials.instance.textDone = false;
         ShowDialogue.Instance.DialogueBox(speech[5]);
         exploration.onClick.AddListener(TutoPart1End);
+            Materials.instance.canMove = false;
             
+        StartCoroutine(WaitForTextEnd(5));
         } else {
         StartCoroutine(FadeInSprites(fadeObject2, fadeDuration));
             Materials.instance.canMove = false;
@@ -374,14 +375,13 @@ private IEnumerator CheckForClicks()
     }
 
     private void TutoPart1End(){
-            Materials.instance.canMove = true;
-            Materials.instance.tutorial = false;
         
     }
 
     private IEnumerator WaitForTextEnd(int index)
     {
         yield return new WaitUntil(() => Materials.instance.textDone == true);
+            Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(0.2f);
         if(index==0){
         StartCoroutine(MoveToTarget(target[0], moveSpeed));

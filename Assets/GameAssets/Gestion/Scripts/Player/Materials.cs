@@ -6,6 +6,10 @@ public class Materials : MonoBehaviour
 
 
     public bool tutorial = true;
+    public bool tutorialStep = false;
+    public bool researchCentr = false;
+
+    public bool explored = false;
 
     public string townName;
     public int mat_0 = 500; 
@@ -39,6 +43,8 @@ public class Materials : MonoBehaviour
             Debug.LogWarning("Multiple instances de Materials détectées.");
         }
     }
+
+    
 
     void Start()
     {
@@ -75,8 +81,8 @@ public class Materials : MonoBehaviour
         if (GameDataSaver.instance != null)
         {
             GameDataSaver.instance.mat_0 = mat_0;
-            GameDataSaver.instance.SaveData();
         }
+        Debug.Log(mat_0);
     }
 
     public void AddStone(int amount)
@@ -87,7 +93,6 @@ public class Materials : MonoBehaviour
         if (GameDataSaver.instance != null)
         {
             GameDataSaver.instance.mat_1 = mat_1;
-            GameDataSaver.instance.SaveData();
         }
     }
 
@@ -99,7 +104,6 @@ public class Materials : MonoBehaviour
         if (GameDataSaver.instance != null)
         {
             GameDataSaver.instance.mat_2 = mat_2;
-            GameDataSaver.instance.SaveData();
         }
     }
 

@@ -2,9 +2,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using System;
-
+using UnityEngine.SceneManagement;
+using System.Linq;
 public class GameDataSaver : MonoBehaviour
 {
+public bool isSavingCompleted = false; 
+
     public static GameDataSaver instance { get; private set; }
 
     public List<Fishes> fishUnlockData;
@@ -31,8 +34,58 @@ public class GameDataSaver : MonoBehaviour
         }
     }
 
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+
+     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        
+        if (scene.name == "SampleScene") 
+        {
+            builderData.Clear();
+        Builder[] builders = FindObjectsOfType<Builder>();
+    foreach (Builder builder in builders)
+    {
+        builderData.Add(builder.gameObject);
+    }
+    if(Materials.instance.isLoad && Materials.instance.explored){
+            LoadLatestSaveData();
+            Materials.instance.explored = false;
+    }
+        }
+    }
+
+
+     
+     public void LoadLatestSaveData()
+{
+    string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+    
+    if (!Directory.Exists(saveFolderPath))
+    {
+        return;
+    }
+
+    var saveFiles = Directory.GetFiles(saveFolderPath, "GameData_*.json");
+    if (saveFiles.Length == 0)
+    {
+        return;
+    }
+
+    string latestFile = saveFiles.OrderByDescending(File.GetLastWriteTime).First();
+    string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(latestFile);
+    string datePart = fileNameWithoutExtension.Replace("GameData_", "");
+
+    LoadData(datePart);
+}
+
     public void SaveData()
     {
+        isSavingCompleted = false;
         // Vérifications avant de faire quoi que ce soit
         if (Materials.instance == null)
         {
@@ -63,7 +116,8 @@ public class GameDataSaver : MonoBehaviour
         {
             gameData.buildingDataList.Add(new BuildingData { unlocked = building.unlocked });
         }
-
+        
+        Debug.Log(builderData);
         // Builder data
         // Avant on faisait directement un GetComponent, maintenant on vérifie.
         if (builderData != null)
@@ -90,11 +144,11 @@ public class GameDataSaver : MonoBehaviour
         string path = Path.Combine(Application.dataPath, "Sauvegardes", fileName);
         string json = JsonUtility.ToJson(gameData, true);
         File.WriteAllText(path, json);
-        Debug.Log("Game data saved to: " + path);
     }
 
     public void LoadData(string dataDate)
     {
+        Materials.instance.isLoad = true;
         string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
         if (File.Exists(path))
         {
@@ -117,16 +171,22 @@ public class GameDataSaver : MonoBehaviour
             for (int i = 0; i < builderData.Count && i < gameData.builderDataList.Count; i++)
             {
                 GameObject bObj = builderData[i];
+                Debug.Log(bObj);
                 if (bObj == null) continue;
                 Builder builderComponent = bObj.GetComponent<Builder>();
                 SpriteRenderer spriterenderer = bObj.GetComponent<SpriteRenderer>();
                 if (builderComponent != null && spriterenderer != null && buildUnlockData.Count > gameData.builderDataList[i].buildState)
                 {
+                    builderComponent.editing = true;
+                    builderComponent.OnDestroyClicked();
+                    builderComponent.editing = false;
+                    builderComponent.progress = 0f;
                     builderComponent.level0 = gameData.builderDataList[i].level0;
                     builderComponent.level1 = gameData.builderDataList[i].level1;
                     builderComponent.level2 = gameData.builderDataList[i].level2;
                     builderComponent.running = gameData.builderDataList[i].running;
                     builderComponent.buildState = gameData.builderDataList[i].buildState;
+                Debug.Log(builderComponent.buildState);
 
                     if (builderComponent.buildState == 0)
                     {
@@ -134,6 +194,7 @@ public class GameDataSaver : MonoBehaviour
                     }
                     else
                     {
+                    builderComponent.cycleBar.transform.localPosition = new Vector3(0,83,0);
                         spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
                     }
 
@@ -141,6 +202,7 @@ public class GameDataSaver : MonoBehaviour
                     if (builderComponent.buildState > 0 && builderComponent.running)
                     {
                         builderComponent.StartCycle();
+                        builderComponent.running = gameData.builderDataList[i].running;
                     }
                 }
             }
@@ -158,6 +220,7 @@ public class GameDataSaver : MonoBehaviour
         {
             Debug.LogWarning("Aucune sauvegarde trouvée à: " + path);
         }
+        isSavingCompleted = true;
     }
 
     public void DelData(string dataDate)

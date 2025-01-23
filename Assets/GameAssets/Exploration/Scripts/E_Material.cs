@@ -60,17 +60,19 @@ public class E_Material : MonoBehaviour
             if (Materials.instance != null)
             {
                 Debug.Log($"Avant collecte: mat_0 = {Materials.instance.mat_0}, mat_1 = {Materials.instance.mat_1}, mat_2 = {Materials.instance.mat_2}");
-
                 switch (materialType)
                 {
                     case 0: // Bois
                         Materials.instance.AddWood(20);
+                        Materials.instance.mat_0 += 20;
                         break;
                     case 1: // Pierre
                         Materials.instance.AddStone(20);
+                        Materials.instance.mat_0 += 20;
                         break;
                     case 2: // Fer
                         Materials.instance.AddIron(20);
+                        Materials.instance.mat_0 += 20;
                         break;
                     default:
                         Debug.LogWarning("Type de matériau invalide !");

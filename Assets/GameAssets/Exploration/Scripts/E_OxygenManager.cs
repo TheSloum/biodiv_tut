@@ -8,8 +8,8 @@ public class E_OxygenManager : MonoBehaviour
 {
     public Slider oxygenSlider;
     public float currentOxygen;
+    public float maxOxygen = 100f;
 
-    [SerializeField] private float maxOxygen = 100f;
     [SerializeField] private float depletionRate = 5f; 
     [SerializeField] private TextMeshProUGUI trashCounterText; 
     [SerializeField] private GameObject resultScreen;
@@ -133,6 +133,8 @@ public class E_OxygenManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(2f);
         Time.timeScale = 1f;
+        Materials.instance.explored = true;
+        Materials.instance.isLoad = true;
         SceneManager.LoadScene("SampleScene");
     }
 
@@ -221,6 +223,8 @@ public class E_OxygenManager : MonoBehaviour
     public void OnRestartButtonPressed()
     {
         Time.timeScale = 1f;
+        Materials.instance.explored = true;
+        Materials.instance.isLoad = true;
         SceneManager.LoadScene("SampleScene");
     }
 

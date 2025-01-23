@@ -13,12 +13,7 @@ public class ShowDialogue : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject); 
-            return;
-        }
-
+        DontDestroyOnLoad(gameObject);
         Instance = this;
     }
 
@@ -40,9 +35,11 @@ public class ShowDialogue : MonoBehaviour
 
     void Start()
     {
+        Materials.instance.textDone = true;
         RectTransform rectTransform = textMeshPro.GetComponent<RectTransform>();
         startSize =  rectTransform.sizeDelta;
         startScale =  box.transform.localScale;
+        DontDestroyOnLoad(gameObject);
 
     }
 
@@ -59,6 +56,8 @@ IEnumerator WaitForFrames(int frameCount, Speech dialogue) //attendre pour évit
 
     public void DialogueBox(Speech dialogue)
     {        Materials.instance.canMove = false;
+            Debug.Log("test");
+        Time.timeScale = 0f;
 
         RectTransform currentrectTransform = GetComponent<RectTransform>();
         currentrectTransform.anchoredPosition = dialogue.position;
@@ -150,8 +149,11 @@ IEnumerator WaitForFrames(int frameCount, Speech dialogue) //attendre pour évit
         RectTransform currentrectTransform = GetComponent<RectTransform>();
                         currentrectTransform.anchoredPosition = new Vector3(3585, -670, 0);
         textMeshPro.text = "";
+        
+        Time.timeScale = 1f;
                 Materials.instance.canMove = true;
         Materials.instance.textDone  = true;
+
 
                         yield break;
                     }

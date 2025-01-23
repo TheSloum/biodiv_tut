@@ -1088,7 +1088,7 @@ GameObject:
   - component: {fileID: 97515120}
   - component: {fileID: 97515119}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building10
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1141,6 +1141,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -1161,6 +1162,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 914822319}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -2311,7 +2313,7 @@ GameObject:
   - component: {fileID: 210153200}
   - component: {fileID: 210153199}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building3
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2364,6 +2366,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -2384,6 +2387,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 1912054787}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -2808,7 +2812,7 @@ GameObject:
   - component: {fileID: 260498141}
   - component: {fileID: 260498140}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building13
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2861,6 +2865,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -2881,6 +2886,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 651151100}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -5398,7 +5404,7 @@ GameObject:
   - component: {fileID: 506363327}
   - component: {fileID: 506363326}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building4
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5451,6 +5457,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -5471,6 +5478,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 1784632879}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -6498,7 +6506,7 @@ GameObject:
   - component: {fileID: 596686803}
   - component: {fileID: 596686802}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building5
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6551,6 +6559,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -6571,6 +6580,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 1880559911}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -8274,7 +8284,7 @@ GameObject:
   - component: {fileID: 802061255}
   - component: {fileID: 802061254}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building12
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8327,6 +8337,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -8347,6 +8358,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 419772598}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -9523,6 +9535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxClip: {fileID: 8300000, guid: cc790cd0f2784f0498e2d7ba8f5fdcd8, type: 3}
   musicClip: {fileID: 8300000, guid: 56217f2fdea65644f919a5f23e63b47c, type: 3}
+  savescript: {fileID: 0}
 --- !u!114 &920660841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9567,6 +9580,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1383650388}
+        m_TargetAssemblyTypeName: GameDataSaver, Assembly-CSharp
+        m_MethodName: SaveData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 920660840}
         m_TargetAssemblyTypeName: SceneMainMenu, Assembly-CSharp
         m_MethodName: LoadScene
@@ -10934,7 +10959,7 @@ GameObject:
   - component: {fileID: 996934095}
   - component: {fileID: 996934098}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building0
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10961,6 +10986,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -10981,6 +11007,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 1622040004}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -11600,7 +11627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1018987127
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11619,8 +11646,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 668.4286, y: -428.4286}
-  m_SizeDelta: {x: 32, y: 32}
+  m_AnchoredPosition: {x: 150, y: -50}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1018987128
 MonoBehaviour:
@@ -14066,7 +14093,7 @@ GameObject:
   - component: {fileID: 1200688189}
   - component: {fileID: 1200688188}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building7
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14119,6 +14146,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -14139,6 +14167,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 321518239}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -15346,6 +15375,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorial: 1
+  tutorialStep: 0
+  researchCentr: 0
+  explored: 0
   townName: 
   mat_0: 5000
   mat_1: 5000
@@ -15402,6 +15434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf39b3c568ec6b9489967eae62c7171c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSavingCompleted: 0
   fishUnlockData:
   - {fileID: 11400000, guid: 9dbbdba85ca3c0e47b49c6d866a4050d, type: 2}
   - {fileID: 11400000, guid: a1c025660e4410042a24dc9a5757f9ea, type: 2}
@@ -18774,7 +18807,7 @@ GameObject:
   - component: {fileID: 1654101880}
   - component: {fileID: 1654101879}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building9
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18827,6 +18860,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -18847,6 +18881,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 672663287}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -19141,7 +19176,7 @@ GameObject:
   - component: {fileID: 1687163975}
   - component: {fileID: 1687163974}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building11
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19194,6 +19229,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -19214,6 +19250,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 991504786}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -19568,7 +19605,7 @@ GameObject:
   - component: {fileID: 1696363739}
   - component: {fileID: 1696363738}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building8
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19621,6 +19658,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -19641,6 +19679,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 156039802}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -20697,6 +20736,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1802284180}
+  - component: {fileID: 1802284181}
   m_Layer: 0
   m_Name: TutorialPositions
   m_TagString: Untagged
@@ -20722,6 +20762,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1802284181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802284179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d1d0072650e154c9fb965f61db9167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speech:
+  - {fileID: 11400000, guid: 9d1786c34b54bb34299d4a3d6d7df3e7, type: 2}
+  - {fileID: 11400000, guid: 3cbe79de7fa8e2a4393312d0cfc41273, type: 2}
+  buildMenu: {fileID: 126513415}
 --- !u!1 &1804381858
 GameObject:
   m_ObjectHideFlags: 0
@@ -21453,7 +21509,7 @@ GameObject:
   - component: {fileID: 1846963452}
   - component: {fileID: 1846963451}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building2
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21506,6 +21562,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -21526,6 +21583,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 137345676}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -21955,7 +22013,7 @@ GameObject:
   - component: {fileID: 1861847499}
   - component: {fileID: 1861847498}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building14
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22008,6 +22066,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -22028,6 +22087,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 1775894600}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -22441,7 +22501,7 @@ GameObject:
   - component: {fileID: 1890661659}
   - component: {fileID: 1890661658}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building1
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22494,6 +22554,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -22514,6 +22575,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 1734639758}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -22880,7 +22942,7 @@ GameObject:
   - component: {fileID: 1963016178}
   - component: {fileID: 1963016177}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building6
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22933,6 +22995,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 126513416}
   buildingMenu: {fileID: 126513415}
@@ -22953,6 +23016,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   cycleAnim: {fileID: 352612171}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -28695,6 +28759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxClip: {fileID: 0}
   musicClip: {fileID: 0}
+  savescript: {fileID: 0}
 --- !u!1 &6591406779756605734
 GameObject:
   m_ObjectHideFlags: 0

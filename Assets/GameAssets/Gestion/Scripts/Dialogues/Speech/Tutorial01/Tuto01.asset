@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textList:
   - "Bonjour, bienvenue \xE0 <u>{Materials.instance.townName}</u>!"
-  - "Je suis <b><color=blue>Julien Merci De</color></b>, votre <b><color=blue>conseiller</color></b>.
+  - "Je suis <b><color=blue>Julien</color></b>, votre <b><color=blue>conseiller</color></b>.
     Je serai l\xE0 pour vous guider tout au long de votre s\xE9jour ici."
   - 'La ville a besoin de vous plus que jamais. La <b>pollution</b> a atteint un
     niveau CRITIQUE et menace toute forme de vie.
