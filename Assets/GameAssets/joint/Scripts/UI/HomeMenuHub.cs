@@ -44,11 +44,6 @@ public class HomeMenuHub : MonoBehaviour
     void AddHoverEffects(Button button)
     {
         TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
-        if (buttonText == null)
-        {
-            Debug.LogWarning($"Le bouton {button.name} n'a pas de composant TextMeshProUGUI comme enfant !");
-            return;
-        }
 
         EventTrigger trigger = button.gameObject.AddComponent<EventTrigger>();
 
