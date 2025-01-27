@@ -35,7 +35,6 @@ public class FishSpawner : MonoBehaviour
 
         if (fishPrefabs.Length == 0)
         {
-            Debug.LogWarning("Aucun prefab de poisson assigné dans FishSpawner.");
             return;
         }
 
@@ -46,7 +45,6 @@ public class FishSpawner : MonoBehaviour
 
         currentFish.SetActive(true);
 
-        Debug.Log($"Fish instantiated at position: {currentFish.transform.position}");
     }
 
     bool IsFishOffScreen()
