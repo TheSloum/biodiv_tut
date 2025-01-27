@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFishSpawnRate: 3
   eventTransitionDuration: 1
-  jellyfishPrefabs: []
-  lionfishPrefabs: []
-  barracudaPrefabs: []
+  jellyfishPrefabs:
+  - {fileID: 2388417884662715918, guid: 8c34d253c3364de4088a202e030f5202, type: 3}
+  lionfishPrefabs:
+  - {fileID: 2388417884662715918, guid: ff1d287c1d8952f429d34ed57db793e4, type: 3}
+  barracudaPrefabs:
+  - {fileID: 2388417884662715918, guid: f263fa0efdad2a248a57f931afe469e8, type: 3}
   festivalSpawnMultiplier: 1.5
   festivalTextColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   trashWaveFishReduction: 0.5
   trashWaveSpawnIncrease: 2
   trashTextColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  overlayMaxOpacity: 0.7
+  overlayFadeOutDuration: 2
+  defaultFishPrefabs: []
