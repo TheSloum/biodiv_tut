@@ -202,7 +202,7 @@ public class E_Event : MonoBehaviour
     }
     #endregion
 
-    #region Reset
+    #region Reset System
     void ResetToDefault()
     {
         // Réinitialisation des spawners
