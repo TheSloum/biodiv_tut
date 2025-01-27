@@ -8,7 +8,7 @@ public class E_SaveData
     public float currentOxygen;
     public int trashCollected;
 
-    // Ajout pour le temps
     public int currentDay;
     public int currentMonth;
+    public int currentYear; 
 }

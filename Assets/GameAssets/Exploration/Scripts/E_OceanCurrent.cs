@@ -18,7 +18,6 @@ public class E_OceanCurrent : MonoBehaviour
     void Start()
     {
         InitializeCurrent();
-        Debug.Log($"[E_Current] Courant initialisé avec direction {directionDegrees}°, force {pushForce}, et vitesse de défilement {scrollSpeed}.");
     }
 
     public void InitializeCurrent()
@@ -39,14 +38,7 @@ public class E_OceanCurrent : MonoBehaviour
         transform.Translate(Vector2.left * scrollSpeed * Time.deltaTime, Space.World);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Vérifier si l'objet entrant est le joueur
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log($"[E_Current] Joueur entré dans le courant à {directionDegrees}°.");
-        }
-    }
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -57,28 +49,14 @@ public class E_OceanCurrent : MonoBehaviour
             if (playerRb != null)
             {
                 playerRb.AddForce(pushDirection * pushForce * Time.deltaTime, ForceMode2D.Force);
-                Debug.Log($"[E_Current] Poussée appliquée au joueur dans la direction {directionDegrees}° avec une force de {pushForce}.");
-            }
-            else
-            {
-                Debug.LogError("[E_Current] Rigidbody2D du joueur non trouvé !");
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        // Log lorsque le joueur quitte le courant
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log($"[E_Current] Joueur quitté le courant à {directionDegrees}°.");
-        }
-    }
 
     void OnBecameInvisible()
     {
         // Détruire le courant lorsqu'il sort de l'écran pour optimiser les performances
         Destroy(gameObject);
-        Debug.Log($"[E_Current] Courant détruit après avoir quitté l'écran.");
     }
 }

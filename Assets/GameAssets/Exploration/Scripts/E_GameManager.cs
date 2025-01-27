@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,19 +10,18 @@ public class E_GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (E_GameManager.instance == null)
+        if (instance == null)
         {
-            E_GameManager.instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else if (E_GameManager.instance != this)
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
 
         oxygenManager = oxygenManagerObject.GetComponent<E_OxygenManager>();
     }
-
 
     public E_OxygenManager GetOxygenManager()
     {
@@ -47,14 +44,16 @@ public class E_GameManager : MonoBehaviour
             trashCollected = oxygenManager.trashCollected
         };
 
-        // Sauvegarder le temps actuel
+        // Sauvegarde du temps
         if (J_TimeManager.Instance != null)
         {
             data.currentDay = J_TimeManager.Instance.currentDay;
-            data.currentMonth = J_TimeManager.Instance.currentMonth;
+            data.currentMonth = J_TimeManager.Instance.GetCurrentMonth();
+            data.currentYear = J_TimeManager.Instance.GetCurrentYear();
         }
 
         E_SaveLoadManager.instance.SaveGame(data);
+        Debug.Log("Jeu sauvegardé !");
     }
 
     public void LoadGame()
@@ -72,35 +71,31 @@ public class E_GameManager : MonoBehaviour
             {
                 oxygenManager.currentOxygen = data.currentOxygen;
                 oxygenManager.oxygenSlider.value = data.currentOxygen;
-            }
-
-            if(oxygenManager != null)
-            {
                 oxygenManager.trashCollected = data.trashCollected;
                 oxygenManager.UpdateTrashCounterUI();
             }
 
-            // Restaurer le temps
+            // Restauration du temps
             if (J_TimeManager.Instance != null)
             {
-                J_TimeManager.Instance.SetTime(data.currentDay, data.currentMonth);
+                J_TimeManager.Instance.SetTime(
+                    data.currentDay, 
+                    data.currentMonth,
+                    data.currentYear
+                );
             }
 
             Debug.Log("Jeu chargé avec succès !");
         }
         else
         {
-            Debug.LogWarning("Aucune donnée de sauvegarde à charger.");
+            Debug.LogWarning("Aucune sauvegarde trouvée.");
         }
-    }
-
-    void Start()
-    {
-        // Initialisation supplémentaire si nécessaire
     }
 
     void Update()
     {
+        // Touches de debug
         if (Input.GetKeyDown(KeyCode.S))
         {
             SaveGame();

@@ -1,215 +1,247 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 
 public class E_Event : MonoBehaviour
 {
+    // Références externes
     public SpriteRenderer blackOverlayRenderer;
     public TextMeshProUGUI eventText;
+    public E_EventSettings settings;
 
-    public float eventDuration = 10f;
-    public float minOpacity = 0.8f;
-    public float maxOpacity = 1f;
-    public float slowFactor = 0.8f;
-
+    [Header("Timing")]
+    public float eventDuration = 60f;
     public float textFadeInDuration = 1f;
     public float textVisibleDuration = 2f;
     public float textFadeOutDuration = 1f;
-
     public float overlayFadeInDuration = 3f;
 
+    [Header("Debug")]
+    public int debugEventNumber = -1;
+
+    // Références internes
+    private Dictionary<int, System.Action> eventDictionary;
+    private E_FishSpawner fishSpawner;
+    private E_TrashSpawner trashSpawner;
+    private GameObject[] originalFishPrefabs;
+    private float originalFishSpawnRate;
+    private float originalTrashSpawnRate;
     private bool isEventActive = false;
-    private E_PlayerController playerController;
 
     void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            playerController = player.GetComponent<E_PlayerController>();
-        }
-        else
-        {
-            Debug.LogError("Aucun GameObject avec le tag 'Player' trouvé dans la scène.");
-        }
-
-        // CHANGEMENT : Réinitialiser l'état visuel de l'événement
-        if (blackOverlayRenderer != null)
-        {
-            Color initialColor = blackOverlayRenderer.color;
-            initialColor.a = 0f;
-            blackOverlayRenderer.color = initialColor;
-            blackOverlayRenderer.gameObject.SetActive(false);
-        }
-
-        if (eventText != null)
-        {
-            Color initialTextColor = eventText.color;
-            initialTextColor.a = 0f;
-            eventText.color = initialTextColor;
-            eventText.gameObject.SetActive(false);
-        }
-
-        isEventActive = false;
+        InitializeReferences();
+        SetupEventDictionary();
+        StoreOriginalValues();
     }
 
     void Update()
     {
-        // Contrôle de l'événement (touche E), code existant...
-        if (Input.GetKeyDown(KeyCode.E))
+        // Déclenchement manuel avec la touche E
+        if(Input.GetKeyDown(KeyCode.E) && debugEventNumber >= 0 && !isEventActive)
         {
-            if (!isEventActive)
-            {
-                StartCoroutine(StartPhasePetrole());
-            }
-            else
-            {
-                StopAllCoroutines();
-                EndPhasePetrole();
-            }
+            TriggerEvent(debugEventNumber);
         }
     }
 
-    IEnumerator StartPhasePetrole()
+    void InitializeReferences()
+    {
+        fishSpawner = FindObjectOfType<E_FishSpawner>();
+        trashSpawner = FindObjectOfType<E_TrashSpawner>();
+        
+        // Cache le texte au départ
+        if(eventText != null)
+        {
+            eventText.color = new Color(eventText.color.r, eventText.color.g, eventText.color.b, 0f);
+            eventText.gameObject.SetActive(false);
+        }
+    }
+
+    void SetupEventDictionary()
+    {
+        // Mappage ID -> Événement
+        eventDictionary = new Dictionary<int, System.Action>
+        {
+            {0, () => StartCoroutine(TriggerJellyfishInvasion())},
+            {1, () => StartCoroutine(TriggerLionfishInvasion())},
+            {2, () => StartCoroutine(TriggerBarracudaInvasion())},
+            {3, () => StartCoroutine(TriggerCoralFestival())},
+            {4, () => StartCoroutine(TriggerTrashWave())}
+        };
+    }
+
+    void StoreOriginalValues()
+    {
+        // Sauvegarde des valeurs initiales
+        if(fishSpawner != null)
+        {
+            originalFishPrefabs = fishSpawner.fishPrefabs;
+            originalFishSpawnRate = fishSpawner.spawnInterval;
+        }
+
+        if(trashSpawner != null)
+        {
+            originalTrashSpawnRate = trashSpawner.spawnInterval;
+        }
+    }
+
+    public void TriggerEvent(int eventID)
+    {
+        if(!isEventActive && eventDictionary.ContainsKey(eventID))
+        {
+            eventDictionary[eventID]();
+        }
+    }
+
+    #region Événements
+    IEnumerator TriggerJellyfishInvasion()
     {
         isEventActive = true;
-        StartCoroutine(FadeInText());
+        yield return StartCoroutine(StartEventTransition("Invasion de Méduses !", Color.red));
+        
+        fishSpawner.fishPrefabs = settings.jellyfishPrefabs;
+        yield return new WaitForSeconds(eventDuration);
+        ResetToDefault();
+    }
+
+    IEnumerator TriggerLionfishInvasion()
+    {
+        isEventActive = true;
+        yield return StartCoroutine(StartEventTransition("Invasion de Poisson-Lions !", new Color(1, 0.5f, 0)));
+        
+        fishSpawner.fishPrefabs = settings.lionfishPrefabs;
+        yield return new WaitForSeconds(eventDuration);
+        ResetToDefault();
+    }
+
+    IEnumerator TriggerBarracudaInvasion()
+    {
+        isEventActive = true;
+        yield return StartCoroutine(StartEventTransition("Invasion de Barracudas !", Color.blue));
+        
+        fishSpawner.fishPrefabs = settings.barracudaPrefabs;
+        yield return new WaitForSeconds(eventDuration);
+        ResetToDefault();
+    }
+
+    IEnumerator TriggerCoralFestival()
+    {
+        isEventActive = true;
+        yield return StartCoroutine(StartEventTransition("Fête du Corail !", settings.festivalTextColor));
+        
+        fishSpawner.spawnInterval = originalFishSpawnRate / settings.festivalSpawnMultiplier;
+        yield return new WaitForSeconds(eventDuration);
+        ResetToDefault();
+    }
+
+    IEnumerator TriggerTrashWave()
+    {
+        isEventActive = true;
+        yield return StartCoroutine(StartEventTransition("Vague de Déchets !", settings.trashTextColor));
+        
+        // Modifie les deux spawners
+        fishSpawner.spawnInterval = originalFishSpawnRate * settings.trashWaveFishReduction;
+        trashSpawner.spawnInterval = originalTrashSpawnRate / settings.trashWaveSpawnIncrease;
+        yield return new WaitForSeconds(eventDuration);
+        ResetToDefault();
+    }
+    #endregion
+
+    #region Transitions
+    IEnumerator StartEventTransition(string message, Color color)
+    {
+        eventText.color = color;
+        StartCoroutine(FadeInText(message));
         yield return new WaitForSeconds(textFadeInDuration + textVisibleDuration + textFadeOutDuration);
-
-        if (playerController != null)
-        {
-            playerController.moveForce *= slowFactor;
-        }
-
-        StartCoroutine(FadeInOverlay());
-
-        float elapsedTime = 0f;
-        while (elapsedTime < eventDuration)
-        {
-            float newOpacity = Random.Range(minOpacity, maxOpacity);
-            StartCoroutine(FadeOverlayTo(newOpacity, 1f));
-            yield return new WaitForSeconds(1f);
-            elapsedTime += 1f;
-        }
-
-        EndPhasePetrole();
     }
 
-    void EndPhasePetrole()
+    IEnumerator FadeInText(string message)
     {
-        isEventActive = false;
-
-        if (playerController != null)
-        {
-            playerController.moveForce /= slowFactor;
-        }
-
-        StartCoroutine(FadeOutOverlay());
-    }
-
-    IEnumerator FadeInText()
-    {
+        eventText.text = message;
         eventText.gameObject.SetActive(true);
-        Color originalColor = eventText.color;
-        originalColor.a = 0f;
-        eventText.color = originalColor;
-
-        float elapsedTime = 0f;
-        while (elapsedTime < textFadeInDuration)
+        
+        // Fade in
+        float timer = 0f;
+        while(timer < textFadeInDuration)
         {
-            float alpha = Mathf.Lerp(0f, 1f, elapsedTime / textFadeInDuration);
-            eventText.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
-            elapsedTime += Time.deltaTime;
+            eventText.color = new Color(eventText.color.r, eventText.color.g, eventText.color.b, 
+                                      Mathf.Lerp(0f, 1f, timer/textFadeInDuration));
+            timer += Time.deltaTime;
             yield return null;
         }
-        eventText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1f);
-
+        
         yield return new WaitForSeconds(textVisibleDuration);
-
-        elapsedTime = 0f;
-        while (elapsedTime < textFadeOutDuration)
+        
+        // Fade out
+        timer = 0f;
+        while(timer < textFadeOutDuration)
         {
-            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / textFadeOutDuration);
-            eventText.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
-            elapsedTime += Time.deltaTime;
+            eventText.color = new Color(eventText.color.r, eventText.color.g, eventText.color.b, 
+                                      Mathf.Lerp(1f, 0f, timer/textFadeOutDuration));
+            timer += Time.deltaTime;
             yield return null;
         }
-        eventText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
+        
         eventText.gameObject.SetActive(false);
     }
 
     IEnumerator FadeInOverlay()
     {
         blackOverlayRenderer.gameObject.SetActive(true);
-        Color originalColor = blackOverlayRenderer.color;
-        originalColor.a = 0f;
-        blackOverlayRenderer.color = originalColor;
-
-        float elapsedTime = 0f;
-        while (elapsedTime < overlayFadeInDuration)
+        Color c = blackOverlayRenderer.color;
+        
+        float timer = 0f;
+        while(timer < overlayFadeInDuration)
         {
-            float alpha = Mathf.Lerp(0f, minOpacity, elapsedTime / overlayFadeInDuration);
-            blackOverlayRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
-            elapsedTime += Time.deltaTime;
+            c.a = Mathf.Lerp(0f, settings.overlayMaxOpacity, timer/overlayFadeInDuration);
+            blackOverlayRenderer.color = c;
+            timer += Time.deltaTime;
             yield return null;
         }
-        blackOverlayRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, minOpacity);
     }
+    #endregion
 
-    IEnumerator FadeOverlayTo(float targetOpacity, float duration)
+    #region Reset
+    void ResetToDefault()
     {
-        Color originalColor = blackOverlayRenderer.color;
-        float startOpacity = originalColor.a;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < duration)
+        // Réinitialisation des spawners
+        if(fishSpawner != null)
         {
-            float alpha = Mathf.Lerp(startOpacity, targetOpacity, elapsedTime / duration);
-            blackOverlayRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            fishSpawner.fishPrefabs = originalFishPrefabs;
+            fishSpawner.spawnInterval = originalFishSpawnRate;
         }
-        blackOverlayRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, targetOpacity);
+        
+        if(trashSpawner != null)
+        {
+            trashSpawner.spawnInterval = originalTrashSpawnRate;
+        }
+        
+        StartCoroutine(FadeOutOverlay());
+        isEventActive = false;
     }
 
     IEnumerator FadeOutOverlay()
     {
-        Color originalColor = blackOverlayRenderer.color;
-        float startOpacity = originalColor.a;
-        float fadeOutDuration = 3f; 
-
-        float elapsedTime = 0f;
-        while (elapsedTime < fadeOutDuration)
+        Color c = blackOverlayRenderer.color;
+        float startAlpha = c.a;
+        
+        float timer = 0f;
+        while(timer < settings.overlayFadeOutDuration)
         {
-            float alpha = Mathf.Lerp(startOpacity, 0f, elapsedTime / fadeOutDuration);
-            blackOverlayRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
-            elapsedTime += Time.deltaTime;
+            c.a = Mathf.Lerp(startAlpha, 0f, timer/settings.overlayFadeOutDuration);
+            blackOverlayRenderer.color = c;
+            timer += Time.deltaTime;
             yield return null;
         }
-        blackOverlayRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
+        
         blackOverlayRenderer.gameObject.SetActive(false);
     }
+    #endregion
 
-    // CHANGEMENT : Méthode pour réinitialiser l'état de l'événement
-    public void ResetEvent()
+    public void ForceStopEvent()
     {
         StopAllCoroutines();
-        isEventActive = false;
-
-        if (blackOverlayRenderer != null)
-        {
-            Color c = blackOverlayRenderer.color;
-            c.a = 0f;
-            blackOverlayRenderer.color = c;
-            blackOverlayRenderer.gameObject.SetActive(false);
-        }
-
-        if (eventText != null)
-        {
-            Color tc = eventText.color;
-            tc.a = 0f;
-            eventText.color = tc;
-            eventText.gameObject.SetActive(false);
-        }
+        ResetToDefault();
     }
 }

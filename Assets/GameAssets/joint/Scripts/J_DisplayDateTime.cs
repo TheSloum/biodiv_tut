@@ -6,40 +6,23 @@ public class J_DisplayDateTime : MonoBehaviour
 {
     private TextMeshProUGUI dateText;
 
-    void Awake()
-    {
-        FindDateText();
-    }
+    void Awake() => FindDateText();
 
-    void OnEnable()
-    {
-        // S'abonner à l'événement de chargement de scène
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnDisable()
-    {
-        // Se désabonner de l'événement pour éviter les erreurs
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+    void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
     void Update()
     {
-        if (dateText == null) return;  // Si dateText n'est pas trouvé, on ne fait rien
+        if (dateText == null) return;
 
         if (J_TimeManager.Instance != null)
         {
-            int currentDay = J_TimeManager.Instance.currentDay;
-            int currentMonth = J_TimeManager.Instance.currentMonth;
-
-            float secondsPerDay = J_TimeManager.Instance.secondsPerDay;
-            float dayTimer = GetPrivateDayTimer();
-
-            float currentDayProgress = dayTimer / secondsPerDay;
-            float currentHour = currentDayProgress * 24f;
-            int hourInt = Mathf.FloorToInt(currentHour);
-
-            dateText.text = $"Jour {currentDay}, Mois {currentMonth} - {hourInt}h";
+            int day = J_TimeManager.Instance.currentDay;
+            int month = J_TimeManager.Instance.GetCurrentMonth();
+            int year = J_TimeManager.Instance.GetCurrentYear();
+            
+            // Formatage "Jour 15, Mois 3, Année 2"
+            dateText.text = $"Jour {day}, Mois {month}, Année {year}";
         }
         else
         {
@@ -47,14 +30,10 @@ public class J_DisplayDateTime : MonoBehaviour
         }
     }
 
-    float GetPrivateDayTimer()
-    {
-        return J_TimeManager.Instance.GetCurrentDayTimer();
-    }
-
     private void FindDateText()
     {
         GameObject dateTextObject = GameObject.FindGameObjectWithTag("DateText");
+        
         if (dateTextObject != null)
         {
             dateText = dateTextObject.GetComponent<TextMeshProUGUI>();
@@ -71,7 +50,6 @@ public class J_DisplayDateTime : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Quand une nouvelle scène est chargée, on recherche à nouveau le texte
         FindDateText();
     }
 }
