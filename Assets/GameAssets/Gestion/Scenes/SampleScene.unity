@@ -6934,10 +6934,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e1b9c85cee26446aa6a3711ac1596f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableTimeAcceleration: 1
+  debugTimeMultiplier: 1
+  debugTimeAcceleration: 2
+  maxTimeMultiplier: 10
   secondsPerDay: 10
   daysPerMonth: 30
   currentDay: 1
   currentMonth: 1
+  currentYear: 1
 --- !u!114 &646706328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30794,7 +30799,7 @@ MonoBehaviour:
   MainMenu: {fileID: 8131157602586135487}
   Parametre: {fileID: 8980128539097348635}
   fontToggle: {fileID: 2087675004}
-  ClassicFont: {fileID: 11400000, guid: fc4d00adb08ae1546bf46484cc076645, type: 2}
+  ClassicFont: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
   disFont: {fileID: 11400000, guid: 709303012bac3734c8c9b836404cde07, type: 2}
   textsToChange:
   - {fileID: 2105831396}
