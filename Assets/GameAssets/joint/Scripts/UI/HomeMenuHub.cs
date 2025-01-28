@@ -25,8 +25,15 @@ public class HomeMenuHub : MonoBehaviour
 
     public float scrollDuration = 2f; // Durée du défilement en secondes
 
+    private Vector3 initialCameraPosition; // Position initiale de la caméra
+    private Coroutine scrollCoroutine; // Référence à la coroutine de scrolling
+    private bool isScrolling = false; // Indique si l'animation est en cours
+
     void Start()
     {
+        // Stocker la position initiale de la caméra
+        initialCameraPosition = mainCamera.transform.position;
+
         button1.onClick.AddListener(Button1Clicked);
         button2.onClick.AddListener(Button2Clicked);
         button3.onClick.AddListener(Button3Clicked);
@@ -42,6 +49,26 @@ public class HomeMenuHub : MonoBehaviour
         AddHoverEffects(button6, specialHoverTextColor); // Utilisation de la couleur rouge pour le bouton 6
     }
 
+    void Update()
+    {
+        // Vérifier si la touche Échap est pressée
+        if (Input.GetKeyDown(KeyCode.Escape) && canvasCredit.activeSelf)
+        {
+            // Arrêter l'animation de scrolling si elle est en cours
+            if (isScrolling && scrollCoroutine != null)
+            {
+                StopCoroutine(scrollCoroutine);
+                isScrolling = false;
+            }
+
+            // Revenir instantanément au Canvas principal et repositionner la caméra
+            mainCamera.transform.position = initialCameraPosition;
+            canvasCredit.SetActive(false);
+            canvas.SetActive(true);
+            Debug.Log("Returned to main canvas via Escape key.");
+        }
+    }
+
     void Button1Clicked() { Debug.Log("Button 1 clicked!"); }
     void Button2Clicked() { Debug.Log("Button 2 clicked!"); }
     void Button3Clicked() { Debug.Log("Button 3 clicked!"); }
@@ -53,44 +80,49 @@ public class HomeMenuHub : MonoBehaviour
         {
             canvas.SetActive(false);
             canvasCredit.SetActive(true);
-            StartCoroutine(HandleCreditSequence());
+            scrollCoroutine = StartCoroutine(HandleCreditSequence());
         }
     }
 
     void Button6Clicked() { Application.Quit(); }
 
-IEnumerator HandleCreditSequence()
-{
-    // Attendre 2 secondes avant de commencer l'animation
-    yield return new WaitForSeconds(2f);
-
-    // Faire défiler la caméra jusqu'au point cible
-    Vector3 initialPosition = mainCamera.transform.position; // Position initiale de la caméra
-    Vector3 targetPosition = new Vector3(targetPoint.position.x, targetPoint.position.y, mainCamera.transform.position.z);
-
-    float elapsedTime = 0f;
-
-    while (elapsedTime < scrollDuration)
+    IEnumerator HandleCreditSequence()
     {
-        mainCamera.transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / scrollDuration);
-        elapsedTime += Time.deltaTime;
-        yield return null;
+        isScrolling = true; // Indiquer que l'animation commence
+
+        // Attendre 2 secondes avant de commencer l'animation
+        yield return new WaitForSeconds(2f);
+
+        // Faire défiler la caméra jusqu'au point cible
+        Vector3 targetPosition = new Vector3(targetPoint.position.x, targetPoint.position.y, mainCamera.transform.position.z);
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < scrollDuration)
+        {
+            mainCamera.transform.position = Vector3.Lerp(initialCameraPosition, targetPosition, elapsedTime / scrollDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+
+            // Si Échap est pressée pendant l'animation, sortir immédiatement
+            if (!isScrolling) yield break;
+        }
+
+        // Assurer que la caméra atteint la position finale
+        mainCamera.transform.position = targetPosition;
+
+        // Attendre 2 secondes à la position cible
+        yield return new WaitForSeconds(2f);
+
+        // Revenir instantanément à la position initiale
+        mainCamera.transform.position = initialCameraPosition;
+
+        // Masquer le Canvas de crédit et afficher le Canvas principal
+        canvasCredit.SetActive(false);
+        canvas.SetActive(true);
+
+        isScrolling = false; // Animation terminée
     }
-
-    // Assurer que la caméra atteint la position finale
-    mainCamera.transform.position = targetPosition;
-
-    // Attendre 2 secondes à la position cible
-    yield return new WaitForSeconds(2f);
-
-    // Revenir instantanément à la position initiale
-    mainCamera.transform.position = initialPosition;
-
-    // Masquer le Canvas de crédit et afficher le Canvas principal
-    canvasCredit.SetActive(false);
-    canvas.SetActive(true);
-}
-
 
     void AddHoverEffects(Button button, Color hoverColor)
     {
