@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -16,7 +15,15 @@ public class HomeMenuHub : MonoBehaviour
 
     public Color normalTextColor = Color.black;
     public Color hoverTextColor = Color.blue;
-    public Color outlineColor = Color.white; 
+    public Color specialHoverTextColor = Color.red; // Couleur spéciale pour le bouton 6
+    public Color outlineColor = Color.white;
+
+    public GameObject canvas; // Référence au Canvas principal
+    public GameObject canvasCredit; // Référence au Canvas de crédit
+    public Camera mainCamera; // Référence à la caméra principale
+    public Transform targetPoint; // Point cible pour la caméra
+
+    public float scrollDuration = 2f; // Durée du défilement en secondes
 
     void Start()
     {
@@ -27,21 +34,65 @@ public class HomeMenuHub : MonoBehaviour
         button5.onClick.AddListener(Button5Clicked);
         button6.onClick.AddListener(Button6Clicked);
 
-        AddHoverEffects(button1);
-        AddHoverEffects(button2);
-        AddHoverEffects(button3);
-        AddHoverEffects(button4);
-        AddHoverEffects(button5);
-        AddHoverEffects(button6);
+        AddHoverEffects(button1, hoverTextColor);
+        AddHoverEffects(button2, hoverTextColor);
+        AddHoverEffects(button3, hoverTextColor);
+        AddHoverEffects(button4, hoverTextColor);
+        AddHoverEffects(button5, hoverTextColor);
+        AddHoverEffects(button6, specialHoverTextColor); // Utilisation de la couleur rouge pour le bouton 6
     }
 
     void Button1Clicked() { Debug.Log("Button 1 clicked!"); }
     void Button2Clicked() { Debug.Log("Button 2 clicked!"); }
     void Button3Clicked() { Debug.Log("Button 3 clicked!"); }
     void Button4Clicked() { Debug.Log("Button 4 clicked!"); }
-    void Button5Clicked() { Debug.Log("Button 5 clicked!"); }
+
+    void Button5Clicked()
+    {
+        if (canvas != null && canvasCredit != null)
+        {
+            canvas.SetActive(false);
+            canvasCredit.SetActive(true);
+            StartCoroutine(HandleCreditSequence());
+        }
+    }
+
     void Button6Clicked() { Application.Quit(); }
-    void AddHoverEffects(Button button)
+
+IEnumerator HandleCreditSequence()
+{
+    // Attendre 2 secondes avant de commencer l'animation
+    yield return new WaitForSeconds(2f);
+
+    // Faire défiler la caméra jusqu'au point cible
+    Vector3 initialPosition = mainCamera.transform.position; // Position initiale de la caméra
+    Vector3 targetPosition = new Vector3(targetPoint.position.x, targetPoint.position.y, mainCamera.transform.position.z);
+
+    float elapsedTime = 0f;
+
+    while (elapsedTime < scrollDuration)
+    {
+        mainCamera.transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / scrollDuration);
+        elapsedTime += Time.deltaTime;
+        yield return null;
+    }
+
+    // Assurer que la caméra atteint la position finale
+    mainCamera.transform.position = targetPosition;
+
+    // Attendre 2 secondes à la position cible
+    yield return new WaitForSeconds(2f);
+
+    // Revenir instantanément à la position initiale
+    mainCamera.transform.position = initialPosition;
+
+    // Masquer le Canvas de crédit et afficher le Canvas principal
+    canvasCredit.SetActive(false);
+    canvas.SetActive(true);
+}
+
+
+    void AddHoverEffects(Button button, Color hoverColor)
     {
         TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
 
@@ -53,7 +104,7 @@ public class HomeMenuHub : MonoBehaviour
         };
         pointerEnter.callback.AddListener((eventData) =>
         {
-            buttonText.color = hoverTextColor;
+            buttonText.color = hoverColor;
 
             buttonText.fontMaterial.SetFloat("_OutlineWidth", 0.2f);
             buttonText.fontMaterial.SetColor("_OutlineColor", outlineColor);
@@ -66,7 +117,6 @@ public class HomeMenuHub : MonoBehaviour
         };
         pointerExit.callback.AddListener((eventData) =>
         {
-
             buttonText.color = normalTextColor;
 
             buttonText.fontMaterial.SetFloat("_OutlineWidth", 0f);
