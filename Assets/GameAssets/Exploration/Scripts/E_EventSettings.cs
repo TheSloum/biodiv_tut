@@ -1,4 +1,3 @@
-// E_EventSettings.cs
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EventSettings", menuName = "Events/New Event Settings")]
