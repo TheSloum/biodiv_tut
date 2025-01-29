@@ -552,7 +552,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1613895404}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PageManagement, Assembly-CSharp
         m_MethodName: OpenPage
         m_Mode: 2
@@ -17781,7 +17781,6 @@ GameObject:
   - component: {fileID: 1613895403}
   - component: {fileID: 1613895402}
   - component: {fileID: 1613895401}
-  - component: {fileID: 1613895404}
   m_Layer: 5
   m_Name: BuildingCreatorCanvas
   m_TagString: Untagged
@@ -17880,18 +17879,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 2
   m_TargetDisplay: 0
---- !u!114 &1613895404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613895399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ebcd9c86f108ba49957fcd746e80c4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1615011936
 GameObject:
   m_ObjectHideFlags: 0
@@ -22261,13 +22248,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1613895404}
-        m_TargetAssemblyTypeName: PageManagement, Assembly-CSharp
-        m_MethodName: OpenPage
-        m_Mode: 2
+      - m_Target: {fileID: 8889344673845562893}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: OpenLoadeur
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 4108190918823630695}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -26614,7 +26601,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8889344673845562893}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: ShowOrHideElement
+        m_MethodName: ShowOrHideMainMenue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27405,7 +27392,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8889344673845562893}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: ShowOrHideElement
+        m_MethodName: CloseParametreAndOpenMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27702,13 +27689,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1613895404}
-        m_TargetAssemblyTypeName: PageManagement, Assembly-CSharp
-        m_MethodName: ClosePage
-        m_Mode: 2
+      - m_Target: {fileID: 8889344673845562893}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: CloseLoadeur
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 4108190918823630695}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -30798,6 +30785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenu: {fileID: 8131157602586135487}
   Parametre: {fileID: 8980128539097348635}
+  Loadeur: {fileID: 4108190918823630695}
   fontToggle: {fileID: 2087675004}
   ClassicFont: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
   disFont: {fileID: 11400000, guid: 709303012bac3734c8c9b836404cde07, type: 2}

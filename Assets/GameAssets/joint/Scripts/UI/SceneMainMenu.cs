@@ -18,7 +18,7 @@ public class SceneMainMenu : MonoBehaviour
         
     }
 
-     private IEnumerator SaveAndLoadScene(string sceneName)
+     private IEnumerator SaveAndLoadScene(string Menue)
     {
         if (savescript != null){
             savescript.SaveData();
@@ -30,6 +30,6 @@ public class SceneMainMenu : MonoBehaviour
             }
         SoundManager.instance.PlayMusic(musicClip);
         SoundManager.instance.PlaySFX(sfxClip);
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(Menue);
     }
 }
