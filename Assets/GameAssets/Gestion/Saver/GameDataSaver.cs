@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 public class GameDataSaver : MonoBehaviour
 {
-public bool isSavingCompleted = false; 
-
+    public bool isSavingCompleted = false;
+    public bool SaveAndLoadScene = false;
     public static GameDataSaver instance { get; private set; }
 
     public List<Fishes> fishUnlockData;
@@ -16,8 +16,8 @@ public bool isSavingCompleted = false;
 
     public Sprite baseSprite;
 
-    public int mat_0 = 500; 
-    public int mat_1 = 500; 
+    public int mat_0 = 500;
+    public int mat_1 = 500;
     public int mat_2 = 500;
     public int price = 500;
 
@@ -41,52 +41,53 @@ public bool isSavingCompleted = false;
     }
 
 
-     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
-        if (scene.name == "SampleScene") 
+
+        if (scene.name == "SampleScene")
         {
             builderData.Clear();
-        Builder[] builders = FindObjectsOfType<Builder>();
-    foreach (Builder builder in builders)
-    {
-        builderData.Add(builder.gameObject);
-    }
-    if(Materials.instance.isLoad && Materials.instance.explored){
-            LoadLatestSaveData();
-            Materials.instance.explored = false;
-    }
+            Builder[] builders = FindObjectsOfType<Builder>();
+            foreach (Builder builder in builders)
+            {
+                builderData.Add(builder.gameObject);
+            }
+            if (Materials.instance.isLoad && Materials.instance.explored)
+            {
+                LoadLatestSaveData();
+                Materials.instance.explored = false;
+            }
         }
     }
 
 
-     
-     public void LoadLatestSaveData()
-{
-    string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
-    
-    if (!Directory.Exists(saveFolderPath))
+
+    public void LoadLatestSaveData()
     {
-        return;
+        string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+
+        if (!Directory.Exists(saveFolderPath))
+        {
+            return;
+        }
+
+        var saveFiles = Directory.GetFiles(saveFolderPath, "GameData_*.json");
+        if (saveFiles.Length == 0)
+        {
+            return;
+        }
+
+        string latestFile = saveFiles.OrderByDescending(File.GetLastWriteTime).First();
+        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(latestFile);
+        string datePart = fileNameWithoutExtension.Replace("GameData_", "");
+
+        LoadData(datePart);
     }
-
-    var saveFiles = Directory.GetFiles(saveFolderPath, "GameData_*.json");
-    if (saveFiles.Length == 0)
-    {
-        return;
-    }
-
-    string latestFile = saveFiles.OrderByDescending(File.GetLastWriteTime).First();
-    string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(latestFile);
-    string datePart = fileNameWithoutExtension.Replace("GameData_", "");
-
-    LoadData(datePart);
-}
 
     public void SaveData()
     {
         isSavingCompleted = false;
-        // Vérifications avant de faire quoi que ce soit
+        SaveAndLoadScene = false;
         if (Materials.instance == null)
         {
             Debug.LogWarning("Materials.instance est null, annulation de SaveData().");
@@ -116,7 +117,7 @@ public bool isSavingCompleted = false;
         {
             gameData.buildingDataList.Add(new BuildingData { unlocked = building.unlocked });
         }
-        
+
         Debug.Log(builderData);
         // Builder data
         // Avant on faisait directement un GetComponent, maintenant on vérifie.
@@ -144,6 +145,7 @@ public bool isSavingCompleted = false;
         string path = Path.Combine(Application.dataPath, "Sauvegardes", fileName);
         string json = JsonUtility.ToJson(gameData, true);
         File.WriteAllText(path, json);
+        SaveAndLoadScene = true;
     }
 
     public void LoadData(string dataDate)
@@ -186,7 +188,7 @@ public bool isSavingCompleted = false;
                     builderComponent.level2 = gameData.builderDataList[i].level2;
                     builderComponent.running = gameData.builderDataList[i].running;
                     builderComponent.buildState = gameData.builderDataList[i].buildState;
-                Debug.Log(builderComponent.buildState);
+                    Debug.Log(builderComponent.buildState);
 
                     if (builderComponent.buildState == 0)
                     {
@@ -194,7 +196,7 @@ public bool isSavingCompleted = false;
                     }
                     else
                     {
-                    builderComponent.cycleBar.transform.localPosition = new Vector3(0,83,0);
+                        builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
                         spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
                     }
 
@@ -221,7 +223,10 @@ public bool isSavingCompleted = false;
             Debug.LogWarning("Aucune sauvegarde trouvée à: " + path);
         }
         isSavingCompleted = true;
+        
     }
+
+
 
     public void DelData(string dataDate)
     {

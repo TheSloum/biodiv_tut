@@ -11,25 +11,24 @@ public class SceneMainMenu : MonoBehaviour
     public GameDataSaver savescript;
 
 
-    
+
     public void LoadScene(string Exploration_main)
     {
-         StartCoroutine(SaveAndLoadScene(Exploration_main));
-        
+        StartCoroutine(SaveAndLoadScene(Exploration_main));
     }
 
-     private IEnumerator SaveAndLoadScene(string Menue)
+    private IEnumerator SaveAndLoadScene(string sceneName)
     {
-        if (savescript != null){
+
             savescript.SaveData();
-            
-        while (!savescript.isSavingCompleted) 
+
+
+        while (!savescript.SaveAndLoadScene)
         {
-            yield return null; 
+            yield return null;
         }
-            }
         SoundManager.instance.PlayMusic(musicClip);
         SoundManager.instance.PlaySFX(sfxClip);
-        SceneManager.LoadScene(Menue);
+        SceneManager.LoadScene(sceneName);
     }
 }

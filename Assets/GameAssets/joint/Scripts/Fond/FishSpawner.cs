@@ -3,16 +3,18 @@ using UnityEngine;
 public class FishSpawner : MonoBehaviour
 {
     public GameObject[] fishPrefabs;
-    public Transform fishContainer; 
+    public Transform fishContainer;
     public float spawnHeight = -1f;
     public Vector2 spawnRangeX = new Vector2(-50f, 50f);
 
-    private GameObject currentFish; 
-    private float timeToSpawn = 3f; 
-    private float spawnTimer = 0f; 
+    private GameObject currentFish;
+    private float timeToSpawn = 3f;
+    private float spawnTimer = 0f;
 
-    void Start()
+
+    void Awake()
     {
+        Debug.Log("FishSpawner Start() appelé !");
         SpawnNewFish();
     }
 

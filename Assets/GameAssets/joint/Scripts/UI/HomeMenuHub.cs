@@ -95,6 +95,7 @@ public class HomeMenuHub : MonoBehaviour
 
     IEnumerator HandleCreditSequence()
     {
+        Debug.Log("dd");
         isScrolling = true;
 
         yield return new WaitForSeconds(2f);
@@ -104,7 +105,7 @@ public class HomeMenuHub : MonoBehaviour
         float elapsedTime = 0f;
 
         while (elapsedTime < scrollDuration)
-        {
+        { Debug.Log("dsd");
             mainCamera.transform.position = Vector3.Lerp(initialCameraPosition, targetPosition, elapsedTime / scrollDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
