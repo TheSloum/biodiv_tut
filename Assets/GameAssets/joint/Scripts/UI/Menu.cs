@@ -7,6 +7,8 @@ public class Menu : MonoBehaviour
     public GameObject MainMenu;
     public GameObject Parametre;
 
+    public GameObject Loadeur;
+
     public Toggle fontToggle;
     public TMP_FontAsset ClassicFont;
     public TMP_FontAsset disFont;
@@ -28,15 +30,20 @@ public class Menu : MonoBehaviour
             {
                 CloseParametreAndOpenMainMenu();
             }
+            else if (Loadeur.activeSelf)
+            {
+                CloseLoadeur();
+            }
+
             else
             {
-                ShowOrHideElement();
+                ShowOrHideMainMenue();
             }
         }
     }
 
     // Gestion des menus
-    public void ShowOrHideElement()
+    public void ShowOrHideMainMenue()
     {
         MainMenu.SetActive(!MainMenu.activeSelf);
         Time.timeScale = MainMenu.activeSelf ? 0 : 1;
@@ -47,6 +54,16 @@ public class Menu : MonoBehaviour
         MainMenu.SetActive(false);
         Parametre.SetActive(true);
         Time.timeScale = 0;
+    }
+    public void CloseLoadeur()
+    {
+        ShowOrHideMainMenue();
+        Loadeur.SetActive(false);
+    }
+    public void OpenLoadeur()
+    {
+        ShowOrHideMainMenue();
+        Loadeur.SetActive(true);
     }
 
     public void CloseParametreAndOpenMainMenu()
@@ -63,13 +80,13 @@ public class Menu : MonoBehaviour
             {
                 if (isChecked)
                 {
-                
+
                     txt.font = disFont;
                     txt.fontSize -= fontSizeOffset;
                 }
                 else
                 {
-                    
+
                     txt.font = ClassicFont;
                     txt.fontSize += fontSizeOffset;
                 }
