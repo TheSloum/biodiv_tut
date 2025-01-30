@@ -37,8 +37,9 @@ public class ShowDialogue : MonoBehaviour
     {
         Materials.instance.textDone = true;
         RectTransform rectTransform = textMeshPro.GetComponent<RectTransform>();
+        RectTransform boxRT = box.GetComponent<RectTransform>();
         startSize =  rectTransform.sizeDelta;
-        startScale =  box.transform.localScale;
+        startScale =  boxRT.sizeDelta;
         DontDestroyOnLoad(gameObject);
 
     }
@@ -56,22 +57,24 @@ IEnumerator WaitForFrames(int frameCount, Speech dialogue) //attendre pour évit
 
     public void DialogueBox(Speech dialogue)
     {        Materials.instance.canMove = false;
+        RectTransform boxRT = box.GetComponent<RectTransform>();
             Debug.Log("test");
         Time.timeScale = 0f;
 
         RectTransform currentrectTransform = GetComponent<RectTransform>();
         currentrectTransform.anchoredPosition = dialogue.position;
+        boxRT.anchoredPosition = new Vector2(boxRT.anchoredPosition.x / 3f, boxRT.anchoredPosition.y);
           currentDialogueIndex = 0;
         RectTransform rectTransform = textMeshPro.GetComponent<RectTransform>();
         Vector2 vector2Size = new Vector2(dialogue.size.x * 0.3f, dialogue.size.y * 0.3f);
         
-        box.transform.localScale = startScale;
+        boxRT.sizeDelta = startScale;
         rectTransform.sizeDelta =  startSize;
 
         rectTransform.sizeDelta += vector2Size;
-         Vector3 currentScale = box.transform.localScale;
+         Vector3 currentScale = boxRT.sizeDelta;
 
-            box.transform.localScale = currentScale + dialogue.size;
+            boxRT.sizeDelta = currentScale + dialogue.size;
 
             nextIco.anchoredPosition = new Vector2(nextIco.anchoredPosition.x, nextIco.anchoredPosition.y);
 

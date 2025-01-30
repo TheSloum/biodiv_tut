@@ -3,9 +3,22 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Builder : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI price0;
+    [SerializeField] private TextMeshProUGUI price1;
+    [SerializeField] private TextMeshProUGUI price2;
+    [SerializeField] private TextMeshProUGUI price3;
+    [SerializeField] private GameObject validation;
+    [SerializeField] private Button validationButton;
+    [SerializeField] private GameObject validationButtonObject;
+    [SerializeField] private GameObject validationPriceNo;
+    [SerializeField] private GameObject unvalidText
+    ;
+    
+    [SerializeField] private Transform buttonCont;
 
     [SerializeField] private List<Building> buildings = new List<Building>();
     [SerializeField] private GameObject buttonPrefab;
@@ -373,6 +386,7 @@ foreach (Building building in buildings)
 
     private void ShowBuildingMenu()
     {
+        validation.SetActive(false);
         buildingMenu.SetActive(true);
         closeMenu.SetActive(true);
         
@@ -385,6 +399,7 @@ foreach (Building building in buildings)
                 Destroy(child.gameObject);
             }
         }
+        int counter = 0;
 
         foreach (Building building in buildings)
         {
@@ -395,21 +410,98 @@ foreach (Building building in buildings)
                 if(Materials.instance.researchCentr && building.buildClass != 0){
 
                 } else if(!Materials.instance.researchCentr && building.buildClass == 0){} else{
-                GameObject newButton = Instantiate(buttonPrefab, buttonPanel);
+                    GameObject newButton = Instantiate(buttonPrefab, buttonCont);
+newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 0f);
                 Button button = newButton.GetComponent<Button>();
                 TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
-                buttonText.text = $"{building.name}: Wood {building.mat_0}, Stone {building.mat_1}, Iron {building.mat_2}, Price{building.price}";
+                Transform buttonSprite = newButton.transform.Find("BuildIMG");
+            Image buttonImage = buttonSprite.GetComponent<Image>();
+                buttonImage.sprite = building.buildSprite;
+                buttonText.text = $"{building.name}";
+
+        foreach (Transform child in newButton.transform)
+        {
+            if (child.CompareTag("ImpactDisplay") && child.name == "airImpact") 
+            {
+                TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
+
+                if (building.bar_2_cycle < 0)
+                {
+                    tmp.text = "-";
+                    tmp.color = Color.blue;
+                }
+            }
+            if (child.CompareTag("ImpactDisplay") && child.name == "energyImpact") 
+            {
+                TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
+
+                if (building.bar_1_cycle < 0)
+                {
+                    tmp.text = "-";
+                    tmp.color = Color.red;
+                }
+            }
+            if (child.CompareTag("ImpactDisplay") && child.name == "qolImpact") 
+            {
+                TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
+
+                if (building.bar_0_cycle < 0)
+                {
+                    tmp.text = "-";
+                    tmp.color = Color.red;
+                }
+            }
+            if (child.CompareTag("ImpactDisplay") && child.name == "moneyImpact") 
+            {
+                TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
+
+                if (building.price_cycle < 0)
+                {
+                    tmp.text = "-";
+                    tmp.color = Color.red;
+                }
+            }
+        }
+
+
                 if(Materials.instance.tutorial){
                     button.interactable = false;
                 }
 
-                button.onClick.AddListener(() => OnBuildingButtonClick(building));
+                button.onClick.AddListener(() => SelectBuild(building, button.gameObject));
                 }
             }
+
+            counter++;
         }
     }
 
+    public void SelectBuild(Building building, GameObject buttonObject)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        validation.SetActive(true);
+        validationPriceNo.SetActive(false);
+        if ((Materials.instance.mat_0 >= (-1 * building.mat_0) && Materials.instance.mat_1 >= (-1 * building.mat_1) && Materials.instance.mat_2 >= (-1 * building.mat_2) && Materials.instance.price >= (-1 * building.price))){
+            validationButtonObject.SetActive(true);
+            unvalidText.SetActive(false);
 
+        } else {
+            
+            validationButtonObject.SetActive(false);
+            unvalidText.SetActive(true);
+        }
+        price0.text = string.Empty;
+        price1.text = string.Empty;
+        price2.text = string.Empty;
+        price3.text = string.Empty;
+        price0.text = building.mat_0.ToString();
+        price1.text = building.mat_1.ToString();
+        price2.text = building.mat_2.ToString();
+        price3.text = building.price.ToString();
+        EventSystem.current.SetSelectedGameObject(buttonObject);
+        validationButton.onClick.AddListener(() => OnBuildingButtonClick(building));
+        
+    }
 
 
     private void OnBuildingButtonClick(Building building)
@@ -636,11 +728,9 @@ foreach (Building building in buildings)
         {
             float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
 
-            // Set the transparency
             textMesh.color = new Color(textColor.r, textColor.g, textColor.b, alpha);
             spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, alpha);
 
-            // Move the instance up
             if (numberVal > 0)
             {
                 instance.transform.position = initialPosition + Vector3.up * moveSpeed * (elapsedTime / fadeDuration);

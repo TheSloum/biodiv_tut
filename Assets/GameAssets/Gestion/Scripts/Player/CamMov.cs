@@ -47,6 +47,10 @@ public class CamMov : MonoBehaviour
     public Sprite speedUpSpriteInactive;
     public GameObject pauseUI;
 
+    [Header("GUI control")]
+    public GameObject[] menus; 
+    public GameObject gui;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -193,5 +197,29 @@ public class CamMov : MonoBehaviour
         {
             speedUpButton.image.sprite = speedUpSpriteInactive;
         }
+    }
+
+    void Update()
+    {
+        if (IsAnyGameObjectActive(menus))
+        {
+            gui.SetActive(false);
+        }
+        else
+        {
+            gui.SetActive(true); 
+        }
+    }
+
+    private bool IsAnyGameObjectActive(GameObject[] gameObjects)
+    {
+        foreach (var obj in gameObjects)
+        {
+            if (obj != null && obj.activeInHierarchy)
+            {
+                return true; 
+            }
+        }
+        return false;
     }
 }

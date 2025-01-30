@@ -12,6 +12,7 @@ TagManager:
   - ButtonTutorial
   - OxygenSlider
   - DateText
+  - ImpactDisplay
   layers:
   - Default
   - TransparentFX
