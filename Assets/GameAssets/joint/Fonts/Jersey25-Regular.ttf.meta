@@ -10,7 +10,8 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Jersey 25
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a2e275365bf673b4e8e257435d5ff215, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

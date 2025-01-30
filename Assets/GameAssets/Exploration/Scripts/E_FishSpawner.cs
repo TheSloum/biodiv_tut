@@ -23,6 +23,12 @@ public class E_FishSpawner : MonoBehaviour
         }
     }
 
+    public void ResetToDefault(E_EventSettings settings)
+    {
+        fishPrefabs = settings.defaultFishPrefabs;
+        spawnInterval = settings.defaultFishSpawnRate;
+    }
+
     void SpawnFish()
     {
         if (fishPrefabs == null || fishPrefabs.Length == 0)

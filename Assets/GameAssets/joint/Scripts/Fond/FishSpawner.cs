@@ -3,12 +3,18 @@ using UnityEngine;
 public class FishSpawner : MonoBehaviour
 {
     public GameObject[] fishPrefabs;
+    public Transform fishContainer;
+    public float spawnHeight = -1f;
+    public Vector2 spawnRangeX = new Vector2(-50f, 50f);
+
     private GameObject currentFish;
     private float timeToSpawn = 3f;
     private float spawnTimer = 0f;
 
-    void Start()
+
+    void Awake()
     {
+        Debug.Log("FishSpawner Start() appelé !");
         SpawnNewFish();
     }
 
@@ -35,22 +41,21 @@ public class FishSpawner : MonoBehaviour
 
         if (fishPrefabs.Length == 0)
         {
-            Debug.LogWarning("Aucun prefab de poisson assigné dans FishSpawner.");
             return;
         }
-
         int randomIndex = Random.Range(0, fishPrefabs.Length);
         GameObject selectedFish = fishPrefabs[randomIndex];
-
-        currentFish = Instantiate(selectedFish, Vector3.zero, Quaternion.identity);
-
+        float randomX = Random.Range(spawnRangeX.x, spawnRangeX.y);
+        Vector3 spawnPosition = new Vector3(randomX, spawnHeight, -1f);
+        currentFish = Instantiate(selectedFish, spawnPosition, Quaternion.identity);
+        currentFish.transform.SetParent(fishContainer, false);
         currentFish.SetActive(true);
-
-        Debug.Log($"Fish instantiated at position: {currentFish.transform.position}");
     }
 
     bool IsFishOffScreen()
     {
+        if (currentFish == null)
+            return true;
         Vector3 fishPos = Camera.main.WorldToViewportPoint(currentFish.transform.position);
         return fishPos.x < 0 || fishPos.x > 1 || fishPos.y < 0 || fishPos.y > 1;
     }
