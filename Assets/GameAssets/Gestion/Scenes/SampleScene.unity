@@ -1619,7 +1619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &126513416
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11269,7 +11269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxClip: {fileID: 8300000, guid: cc790cd0f2784f0498e2d7ba8f5fdcd8, type: 3}
   musicClip: {fileID: 8300000, guid: 56217f2fdea65644f919a5f23e63b47c, type: 3}
-  savescript: {fileID: 0}
+  savescript: {fileID: 1383650388}
 --- !u!114 &920660841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17942,6 +17942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSavingCompleted: 0
+  SaveAndLoadScene: 0
   fishUnlockData:
   - {fileID: 11400000, guid: 9dbbdba85ca3c0e47b49c6d866a4050d, type: 2}
   - {fileID: 11400000, guid: a1c025660e4410042a24dc9a5757f9ea, type: 2}
@@ -19871,7 +19872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1516612228
 RectTransform:
   m_ObjectHideFlags: 0
