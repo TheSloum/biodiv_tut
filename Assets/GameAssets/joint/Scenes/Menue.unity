@@ -2544,7 +2544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 1.27
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -3598,7 +3598,7 @@ MonoBehaviour:
   - {fileID: 846162213}
   fishContainer: {fileID: 492173643}
   spawnHeight: -1
-  spawnRangeX: {x: -50, y: 50}
+  spawnRangeX: {x: -100.59, y: 50}
 --- !u!1001 &624761769640049137
 PrefabInstance:
   m_ObjectHideFlags: 0

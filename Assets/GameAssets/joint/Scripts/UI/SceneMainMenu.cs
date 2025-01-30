@@ -30,5 +30,6 @@ public class SceneMainMenu : MonoBehaviour
         SoundManager.instance.PlayMusic(musicClip);
         SoundManager.instance.PlaySFX(sfxClip);
         SceneManager.LoadScene(sceneName);
+        Time.timeScale = 1f;
     }
 }

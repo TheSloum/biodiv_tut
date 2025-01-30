@@ -171,7 +171,6 @@ public class CamMov : MonoBehaviour
         {
             pauseButton.image.sprite = pauseSpriteActive;
             pauseUI.SetActive(true);
-            Debug.Log("fefe");
         }
         else
         {
