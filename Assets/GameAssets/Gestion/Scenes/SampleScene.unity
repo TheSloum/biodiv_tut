@@ -19872,7 +19872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1516612228
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32588,6 +32588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8889344673845562892}
   - component: {fileID: 8889344673845562893}
+  - component: {fileID: 8889344673845562894}
   m_Layer: 5
   m_Name: ManageurMenu
   m_TagString: Untagged
@@ -33118,7 +33119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7633687358449335659
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34325,6 +34326,29 @@ MonoBehaviour:
   - {fileID: 741473358}
   - {fileID: 1028883048}
   - {fileID: 841861978}
+--- !u!114 &8889344673845562894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7174098697654392081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 472f2e7f85420b74d897b5308f2d18d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dyslexiaToggle: {fileID: 2087675004}
+  normalFont: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
+  dyslexiaFont: {fileID: 11400000, guid: 709303012bac3734c8c9b836404cde07, type: 2}
+  textsToChange:
+  - {fileID: 2105831396}
+  - {fileID: 468209686}
+  - {fileID: 439097124}
+  - {fileID: 164288165}
+  - {fileID: 741473358}
+  - {fileID: 1028883048}
+  - {fileID: 841861978}
 --- !u!114 &8918534235878251241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34412,7 +34436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &8980128539097348636
 MonoBehaviour:
   m_ObjectHideFlags: 0

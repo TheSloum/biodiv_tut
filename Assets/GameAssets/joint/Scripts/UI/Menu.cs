@@ -6,7 +6,6 @@ public class Menu : MonoBehaviour
 {
     public GameObject MainMenu;
     public GameObject Parametre;
-
     public GameObject Loadeur;
 
     public Toggle fontToggle;
@@ -18,8 +17,18 @@ public class Menu : MonoBehaviour
 
     void Start()
     {
+        // Charger l'état du Toggle depuis PlayerPrefs
+        if (PlayerPrefs.HasKey("FontToggleState"))
+        {
+            bool isChecked = PlayerPrefs.GetInt("FontToggleState") == 1;
+            fontToggle.isOn = isChecked; // Appliquer l'état au Toggle
+            ApplyFontChange(isChecked); // Appliquer immédiatement la police
+        }
+
         if (fontToggle != null)
+        {
             fontToggle.onValueChanged.AddListener(OnFontToggleChanged);
+        }
     }
 
     void Update()
@@ -27,9 +36,12 @@ public class Menu : MonoBehaviour
         if (Parametre.activeSelf || Loadeur.activeSelf || MainMenu.activeSelf)
         {
             Materials.instance.canMove = false;
-        }else{
+        }
+        else
+        {
             Materials.instance.canMove = true;
         }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Parametre.activeSelf)
@@ -40,16 +52,15 @@ public class Menu : MonoBehaviour
             {
                 CloseLoadeur();
             }
-
             else
             {
-                ShowOrHideMainMenue();
+                ShowOrHideMainMenu();
             }
         }
     }
 
     // Gestion des menus
-    public void ShowOrHideMainMenue()
+    public void ShowOrHideMainMenu()
     {
         MainMenu.SetActive(!MainMenu.activeSelf);
         Time.timeScale = MainMenu.activeSelf ? 0 : 1;
@@ -61,14 +72,16 @@ public class Menu : MonoBehaviour
         Parametre.SetActive(true);
         Time.timeScale = 0;
     }
+
     public void CloseLoadeur()
     {
-        ShowOrHideMainMenue();
+        ShowOrHideMainMenu();
         Loadeur.SetActive(false);
     }
+
     public void OpenLoadeur()
     {
-        ShowOrHideMainMenue();
+        ShowOrHideMainMenu();
         Loadeur.SetActive(true);
     }
 
@@ -78,7 +91,18 @@ public class Menu : MonoBehaviour
         MainMenu.SetActive(true);
         Time.timeScale = 0;
     }
+
     void OnFontToggleChanged(bool isChecked)
+    {
+        // Sauvegarder l'état du Toggle
+        PlayerPrefs.SetInt("FontToggleState", isChecked ? 1 : 0);
+        PlayerPrefs.Save(); // S'assurer que les données sont bien enregistrées
+
+        // Appliquer les changements de police
+        ApplyFontChange(isChecked);
+    }
+
+    void ApplyFontChange(bool isChecked)
     {
         foreach (TMP_Text txt in textsToChange)
         {
@@ -86,13 +110,11 @@ public class Menu : MonoBehaviour
             {
                 if (isChecked)
                 {
-
                     txt.font = disFont;
                     txt.fontSize -= fontSizeOffset;
                 }
                 else
                 {
-
                     txt.font = ClassicFont;
                     txt.fontSize += fontSizeOffset;
                 }
