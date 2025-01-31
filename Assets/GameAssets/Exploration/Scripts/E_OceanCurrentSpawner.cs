@@ -67,8 +67,6 @@ public class E_OceanCurrentSpawner : MonoBehaviour
 
             // Définir une pushForce aléatoire entre minPushForce et maxPushForce
             currentScript.pushForce = Random.Range(minPushForce, maxPushForce);
-
-            Debug.Log($"[E_OceanCurrentSpawner] Courant marin spawn à {spawnPosition} avec direction {randomDirection}°, pushForce {currentScript.pushForce}, et vitesse {scrollSpeed}.");
         }
         else
         {

@@ -92,7 +92,7 @@ public class E_OxygenManager : MonoBehaviour
     {
         if (trashCounterText != null)
         {
-            trashCounterText.text = "Trash Collectés : " + trashCollected.ToString();
+            trashCounterText.text = ": " + trashCollected.ToString();
         }
     }
 
@@ -100,8 +100,6 @@ public class E_OxygenManager : MonoBehaviour
     {
         if (isGameOver) return;
         isGameOver = true;
-
-        Debug.Log("Oxygène épuisé !");
         float totalTime = Time.time - startTime;
         string formattedTime = FormatTime(totalTime);
 
@@ -231,7 +229,6 @@ public class E_OxygenManager : MonoBehaviour
     public void OnQuitButtonPressed()
     {
         Application.Quit();
-        Debug.Log("Quitter le jeu.");
     }
 
     // CHANGEMENT : Méthode pour réinitialiser l'oxygène, appelée après chargement de scène

@@ -43,7 +43,6 @@ public class E_PlayerController : MonoBehaviour
             // Appliquer la force de poussée au joueur
             rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
 
-            Debug.Log("Joueur poussé par le mur !");
         }
     }
 }

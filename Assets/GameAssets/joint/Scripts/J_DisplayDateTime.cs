@@ -22,7 +22,7 @@ public class J_DisplayDateTime : MonoBehaviour
             int year = J_TimeManager.Instance.GetCurrentYear();
             
             // Formatage "Jour 15, Mois 3, Année 2"
-            dateText.text = $"Jour {day}, Mois {month}, Année {year}";
+            dateText.text = $"J {day}, M {month}, A {year}";
         }
         else
         {

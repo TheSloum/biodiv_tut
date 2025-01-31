@@ -65,7 +65,6 @@ public class E_AudioManager : MonoBehaviour
         if (backgroundMusic != null)
         {
             musicSource.Play();
-            Debug.Log("Musique de fond jouée.");
         }
         else
         {
@@ -78,7 +77,6 @@ public class E_AudioManager : MonoBehaviour
         if (musicSource.isPlaying)
         {
             musicSource.Stop();
-            Debug.Log("Musique de fond arrêtée.");
         }
     }
 
@@ -87,7 +85,6 @@ public class E_AudioManager : MonoBehaviour
         if (popSound != null)
         {
             sfxSource.PlayOneShot(popSound);
-            Debug.Log("Effet sonore 'pop' joué.");
         }
         else
         {

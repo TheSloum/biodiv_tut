@@ -52,7 +52,6 @@ public class ShowDialogue : MonoBehaviour
     public void DialogueBox(Speech dialogue)
     {        Materials.instance.canMove = false;
         RectTransform boxRT = box.GetComponent<RectTransform>();
-            Debug.Log("test");
         Time.timeScale = 0f;
 
         RectTransform currentrectTransform = GetComponent<RectTransform>();
