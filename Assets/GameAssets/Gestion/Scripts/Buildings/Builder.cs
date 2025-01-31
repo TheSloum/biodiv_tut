@@ -101,7 +101,7 @@ public class Builder : MonoBehaviour
 
 
 
-    private void Start()
+    private void Awake()
     {
         closeMenuButton = closeMenu.GetComponent<Button>();
         closeMenuButton2 = closeMenu2.GetComponent<Button>();

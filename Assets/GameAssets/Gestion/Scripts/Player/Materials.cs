@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using UnityEngine.UI;
 public class Materials : MonoBehaviour
 {
     public static Materials instance;
@@ -29,6 +30,33 @@ public class Materials : MonoBehaviour
     public bool textDone = false;
     public bool tutoToggle = false;
 
+public GameObject errorIndicator;
+public Text errorText; // Assign a UI Text element in the Inspector
+    void OnEnable()
+    {
+        Application.logMessageReceived += HandleLog;
+    }
+
+    void OnDisable()
+    {
+        Application.logMessageReceived -= HandleLog;
+    }
+
+    void HandleLog(string logString, string stackTrace, LogType type)
+    {
+        if (type == LogType.Error || type == LogType.Exception)
+        {
+            Debug.Log("Error Detected: " + logString);
+            if (errorIndicator != null)
+            {
+                errorIndicator.SetActive(true);
+            }
+            if (errorText != null)
+            {
+                errorText.text = "Error: " + logString;
+            }
+        }
+    }
     private void Awake()
     {
         if (instance == null)

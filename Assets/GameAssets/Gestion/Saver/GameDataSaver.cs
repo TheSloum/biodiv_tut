@@ -23,6 +23,7 @@ public class GameDataSaver : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("DataSaver");
         if (instance == null)
         {
             instance = this;

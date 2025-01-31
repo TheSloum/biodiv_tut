@@ -14,6 +14,7 @@ public class SceneMainMenu : MonoBehaviour
 
     public void LoadScene(string Exploration_main)
     {
+        Debug.Log("testeridos");
         StartCoroutine(SaveAndLoadScene(Exploration_main));
     }
 
