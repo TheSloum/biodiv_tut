@@ -14,12 +14,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFishSpawnRate: 3
   eventTransitionDuration: 1
+  monthsPerCycle: 4
+  noEventStartDays: 5
+  noEventEndDays: 5
+  eventDurationRange: {x: 1, y: 3}
+  invasionsPerYear: 1
+  normalEventsPerYear: 2
+  coralFestivalMonth: 6
+  coralFestivalDuration: 1
+  waitForExplorationIfCoralFestival: 1
+  invasionTypes:
+  - name: Jellyfish
+    eventID: 0
+    prefabs:
+    - {fileID: 2388417884662715918, guid: 4ccbce4a3b515774e84564a86111583d, type: 3}
+  - name: LionFish
+    eventID: 1
+    prefabs:
+    - {fileID: 2388417884662715918, guid: ff1d287c1d8952f429d34ed57db793e4, type: 3}
+  - name: Barracuda
+    eventID: 2
+    prefabs:
+    - {fileID: 2388417884662715918, guid: f263fa0efdad2a248a57f931afe469e8, type: 3}
+  - name: Barracuda
+    eventID: 2
+    prefabs:
+    - {fileID: 2388417884662715918, guid: f263fa0efdad2a248a57f931afe469e8, type: 3}
   jellyfishPrefabs:
-  - {fileID: 2388417884662715918, guid: 8c34d253c3364de4088a202e030f5202, type: 3}
+  - {fileID: 2388417884662715918, guid: 4ccbce4a3b515774e84564a86111583d, type: 3}
   lionfishPrefabs:
   - {fileID: 2388417884662715918, guid: ff1d287c1d8952f429d34ed57db793e4, type: 3}
   barracudaPrefabs:
   - {fileID: 2388417884662715918, guid: f263fa0efdad2a248a57f931afe469e8, type: 3}
+  normalEvents:
+  - name: VagueDechets
+    eventID: 0
+  - name: MareeNoire
+    eventID: 1
+  invasionCooldownYears: 1
+  normalEventCooldownYears: 3
   festivalSpawnMultiplier: 1.5
   festivalTextColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   trashWaveFishReduction: 0.5
