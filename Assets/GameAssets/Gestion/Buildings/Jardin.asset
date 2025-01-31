@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildID: 7
   buildClass: 4
-  unlocked: 1
+  unlocked: 0
   buildSprite: {fileID: 21300000, guid: 018793af2cf996048b933d687b28a88f, type: 3}
   price: -100
   mat_0: -5
@@ -29,8 +29,8 @@ MonoBehaviour:
   cons_mat_2: 0
   bar_0_cycle: 0.0075
   bar_1_cycle: -0.0025
-  bar_2_cycle: -0.04
-  price_cycle: -100
+  bar_2_cycle: -0.02
+  price_cycle: -25
   upgradeMult: 1
   up_mat_0: 800
   up_mat_1: 800

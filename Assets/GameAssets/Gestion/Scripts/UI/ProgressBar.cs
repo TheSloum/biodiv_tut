@@ -22,6 +22,7 @@ public class ProgressBar : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(Materials.instance.canMove);
         if(bar_id == 0){
         currentScale = Mathf.Lerp(currentScale, Materials.instance.bar_0, Time.deltaTime * lerpSpeed);
         } else if(bar_id == 1){

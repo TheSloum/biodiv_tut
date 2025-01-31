@@ -48,5 +48,6 @@ public class UnlockPages : MonoBehaviour
         SoundManager.instance.PlayMusic(musicClip);
         SoundManager.instance.PlaySFX(sfxClip);
         gameObject.SetActive(false);
+    Materials.instance.canMove = true;
     }
 }

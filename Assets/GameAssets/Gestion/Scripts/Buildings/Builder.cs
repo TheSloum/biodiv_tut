@@ -407,11 +407,10 @@ foreach (Building building in buildings)
             
             if (building.unlocked)
             {
-                if(Materials.instance.researchCentr && building.buildClass != 0){
-
-                } else if(!Materials.instance.researchCentr && building.buildClass == 0){} else{
+                if((!Materials.instance.researchCentr && building.buildClass == 0) || Materials.instance.researchCentr && building.buildClass != 0){
                     GameObject newButton = Instantiate(buttonPrefab, buttonCont);
 newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 0f);
+            counter++;
                 Button button = newButton.GetComponent<Button>();
                 TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
                 Transform buttonSprite = newButton.transform.Find("BuildIMG");
@@ -472,7 +471,6 @@ newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 
                 }
             }
 
-            counter++;
         }
     }
 
@@ -508,7 +506,8 @@ newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 
     {
         
                     if(building.buildClass ==0){
-                        Materials.instance.researchCentr = false;
+
+                        Materials.instance.researchCentr = true;
                     }
         cycleBar.transform.localPosition = new Vector3(0,83,0);
 

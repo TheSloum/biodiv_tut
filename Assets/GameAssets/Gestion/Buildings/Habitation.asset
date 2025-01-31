@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96c505cf12c64c04fbf956b540a788e6, type: 3}
-  m_Name: Verger
+  m_Name: Habitation
   m_EditorClassIdentifier: 
-  buildID: 4
-  buildClass: 2
+  buildID: 101
+  buildClass: 900
   unlocked: 1
-  buildSprite: {fileID: 21300000, guid: b4ef986580a010c42961d49f13f2e4b7, type: 3}
-  price: -100
-  mat_0: -5
-  mat_1: -10
-  mat_2: -50
-  bar_0: 0
-  bar_1: 0
-  bar_2: 0
-  time: 10
-  cons_mat_0: 0
-  cons_mat_1: 0
-  cons_mat_2: 0
-  bar_0_cycle: 0.015
-  bar_1_cycle: -0.01
-  bar_2_cycle: 0.005
+  buildSprite: {fileID: 0}
+  price: 50
+  mat_0: 50
+  mat_1: 50
+  mat_2: 50
+  bar_0: -0.2
+  bar_1: 0.6
+  bar_2: 0.6
+  time: 15
+  cons_mat_0: 50
+  cons_mat_1: 50
+  cons_mat_2: 50
+  bar_0_cycle: 0
+  bar_1_cycle: -0.0005
+  bar_2_cycle: 0.001
   price_cycle: -100
   upgradeMult: 1
   up_mat_0: 800

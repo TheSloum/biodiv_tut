@@ -5,8 +5,6 @@ using UnityEngine;
 public class Unlock : MonoBehaviour
 {
 
-    public int unlockID = 0;
-    public int price = 0;
 
         public List<Building> buildings;
 
@@ -14,14 +12,20 @@ public class Unlock : MonoBehaviour
     void Start(){
         
     }
-    public void unlockBuild(){
-        if(Materials.instance.price > price){
+    public void unlockBuild(string priceAndID){
+        string[] parts = priceAndID.Split(',');
+        int price = int.Parse(parts[0]);
+        int unlockID = int.Parse(parts[1]);
+
+
+        if(Materials.instance.price >= price){
             foreach (Building building in buildings)
         {
-            if (building.buildID == unlockID)
+            if (building.buildID == unlockID && !building.unlocked)
             {
 
                 building.Unlock();
+                Materials.instance.price -= price;
                 return;
             }
         }

@@ -34,30 +34,9 @@ public class ShowDialogue : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         startSize = rectTransform.sizeDelta;
-        startScale = box.transform.localScale;
     }
 
-    public void DialogueBox(Speech dialogue)
-    {
-        Materials.instance.canMove = false;
-        Time.timeScale = 0f;
-
-        RectTransform currentrectTransform = GetComponent<RectTransform>();
-        currentrectTransform.anchoredPosition = dialogue.position;
-        currentDialogueIndex = 0;
-        
-        RectTransform rectTransform = textMeshPro.GetComponent<RectTransform>();
-        Vector2 vector2Size = new Vector2(dialogue.size.x * 0.3f, dialogue.size.y * 0.3f);
-        
-        box.transform.localScale = startScale;
-        rectTransform.sizeDelta = startSize;
-        rectTransform.sizeDelta += vector2Size;
-        
-        Vector3 currentScale = box.transform.localScale;
-        box.transform.localScale = currentScale + dialogue.size;
-
-        StartCoroutine(WaitForFrames(5, dialogue));
-    }
+    
 
     private IEnumerator WaitForFrames(int frameCount, Speech dialogue)
     {
@@ -72,15 +51,16 @@ public class ShowDialogue : MonoBehaviour
     public void DialogueBox(Speech dialogue)
     {        Materials.instance.canMove = false;
         RectTransform boxRT = box.GetComponent<RectTransform>();
-            Debug.Log("test");
         Time.timeScale = 0f;
+        
 
         RectTransform currentrectTransform = GetComponent<RectTransform>();
         currentrectTransform.anchoredPosition = dialogue.position;
-        boxRT.anchoredPosition = new Vector2(boxRT.anchoredPosition.x / 3f, boxRT.anchoredPosition.y);
           currentDialogueIndex = 0;
         RectTransform rectTransform = textMeshPro.GetComponent<RectTransform>();
         Vector2 vector2Size = new Vector2(dialogue.size.x * 0.3f, dialogue.size.y * 0.3f);
+        rectTransform.pivot = new Vector2(0, 1);
+        boxRT.pivot = new Vector2(0, 1);
         
         boxRT.sizeDelta = startScale;
         rectTransform.sizeDelta =  startSize;

@@ -321,6 +321,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a157e43a863ebcb43b5903239f1adcf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price0: {fileID: 0}
+  price1: {fileID: 0}
+  price2: {fileID: 0}
+  price3: {fileID: 0}
+  validation: {fileID: 0}
+  validationButton: {fileID: 0}
+  validationButtonObject: {fileID: 0}
+  validationPriceNo: {fileID: 0}
+  unvalidText: {fileID: 0}
+  buttonCont: {fileID: 0}
   buildings:
   - {fileID: 11400000, guid: 144347227ff809b4cbc18f23825a695a, type: 2}
   - {fileID: 11400000, guid: 2fb56aabfd5a74a4bb6d720016524535, type: 2}
@@ -344,12 +354,13 @@ MonoBehaviour:
   baseSprite: {fileID: 21300000, guid: a97938fc8172e8041ad617b777ebf442, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
-  running: 0
+  running: 1
   cycleDuration: 0
   level0: 0
   level1: 0
   level2: 0
   cycleAnim: {fileID: 6904607809944535273}
+  progress: 0
   outsideTime: 0
   editing: 0
   prefabToSpawn: {fileID: 6205133733861110286, guid: c6c8609c3598e564eab2412996710723, type: 3}
@@ -363,7 +374,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 36fb795fbafe0b042a2dc4720264c444, type: 3}
   - {fileID: 21300000, guid: 5e18ca21624b57543bd6660234791404, type: 3}
   - {fileID: 21300000, guid: 2ccfdcb39ee6cf143bc678495b83b265, type: 3}
+  Prebuild: 100
   cycleBar: {fileID: 6904607810470881719}
+  tutorialBuild: 0
 --- !u!61 &6904607810913541375
 BoxCollider2D:
   m_ObjectHideFlags: 0

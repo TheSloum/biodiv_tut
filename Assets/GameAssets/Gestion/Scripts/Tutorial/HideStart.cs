@@ -48,7 +48,7 @@ public float disableDuration = 2f;
     public Button unlock2;
     public Button unlock3;
 
-    private int step = 0;
+    public int step = 0;
     
     public Button exploration;
     public GameObject manageMenu;
@@ -57,6 +57,7 @@ public float disableDuration = 2f;
 
     public GameObject tutoChoosePage;
     public GameObject inputBack;
+    [SerializeField] private GameObject dialogueMasking;
 
     
     void Start()
@@ -127,7 +128,6 @@ foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
     {
         yield return null;
     }
-
 
         cammov.TogglePause();
     foreach (Button button in allButtons)
@@ -233,10 +233,10 @@ foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
         if(step==0){
         Materials.instance.textDone = false;
         ShowDialogue.Instance.DialogueBox(speech[1]);
+            dialogueMasking.SetActive(true);
         StartCoroutine(WaitForTextEnd(1));
         step = 1;
         } else if(step == 1){
-            
         StartCoroutine(CheckForClicks());
         }
     }
@@ -381,6 +381,10 @@ private IEnumerator CheckForClicks()
     private IEnumerator WaitForTextEnd(int index)
     {
         yield return new WaitUntil(() => Materials.instance.textDone == true);
+        if(index==1){
+            
+            dialogueMasking.SetActive(false);
+        }
             Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(0.2f);
         if(index==0){

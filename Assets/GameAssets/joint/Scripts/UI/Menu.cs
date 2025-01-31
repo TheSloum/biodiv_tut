@@ -24,10 +24,10 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-        if (Parametre.activeSelf || Loadeur.activeSelf || MainMenu.activeSelf)
+        if (Parametre.activeSelf || MainMenu.activeSelf )
         {
             Materials.instance.canMove = false;
-        }else{
+        }else if(!Materials.instance.tutorial){
             Materials.instance.canMove = true;
         }
         if (Input.GetKeyDown(KeyCode.Escape))

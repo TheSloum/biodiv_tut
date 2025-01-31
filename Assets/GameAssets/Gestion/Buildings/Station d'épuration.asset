@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96c505cf12c64c04fbf956b540a788e6, type: 3}
-  m_Name: Jardin2
+  m_Name: "Station d'\xE9puration"
   m_EditorClassIdentifier: 
   buildID: 8
   buildClass: 4
-  unlocked: 1
+  unlocked: 0
   buildSprite: {fileID: 21300000, guid: 018793af2cf996048b933d687b28a88f, type: 3}
   price: -100
   mat_0: -5
-  mat_1: -10
+  mat_1: -50
   mat_2: -50
   bar_0: 0
   bar_1: 0
@@ -27,10 +27,10 @@ MonoBehaviour:
   cons_mat_0: 0
   cons_mat_1: 0
   cons_mat_2: 0
-  bar_0_cycle: 0.0075
+  bar_0_cycle: 0.001
   bar_1_cycle: -0.0025
-  bar_2_cycle: -0.04
-  price_cycle: -100
+  bar_2_cycle: -0.015
+  price_cycle: -25
   upgradeMult: 1
   up_mat_0: 800
   up_mat_1: 800

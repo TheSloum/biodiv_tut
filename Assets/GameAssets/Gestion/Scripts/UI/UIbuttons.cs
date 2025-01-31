@@ -16,5 +16,7 @@ public void UnlockMenuOpen()
     SoundManager.instance.PlayMusic(musicClip);
     SoundManager.instance.PlaySFX(sfxClip);
     unlockMenu.SetActive(true);
+    Materials.instance.canMove = false;
+
 }
 }
