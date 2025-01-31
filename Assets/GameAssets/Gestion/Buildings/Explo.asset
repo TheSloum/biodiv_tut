@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c505cf12c64c04fbf956b540a788e6, type: 3}
   m_Name: Explo
   m_EditorClassIdentifier: 
-  buildID: 100
-  buildClass: 900
+  buildID: 8
+  buildDesc: "Les stations de traitement d\u2019eaux us\xE9es nettoient l\u2019eau
+    utilis\xE9e avant qu\u2019elle ne retourne dans la mer ou les rivi\xE8res. Elles
+    \xE9liminent les polluants pour prot\xE9ger les \xE9cosyst\xE8mes marins et fournir
+    de l\u2019eau r\xE9utilisable. Ces infrastructures sont essentielles pour \xE9viter
+    que des substances toxiques n\u2019atteignent la faune marine."
+  PolutionEtat: ---
+  PopulationEtat: +
+  ElecEtat: ---
+  buildClass: 4
   unlocked: 1
   buildSprite: {fileID: 0}
   price: 50
