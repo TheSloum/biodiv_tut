@@ -2,8 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 /// <summary>
+/// Gère la logique des cycles et des events en suivant les règles données.
 /// À brancher avec J_TimeManager et E_Event.
 /// </summary>
 public class E_CycleEventManager : MonoBehaviour
@@ -15,40 +17,39 @@ public class E_CycleEventManager : MonoBehaviour
     [Tooltip("Référence au TimeManager pour suivre mois/années")]
     public J_TimeManager timeManager;
 
-    [Header("Paramètres de cycle")]
-    [Tooltip("Durée d'un cycle en mois (4 par défaut => 12 mois = 3 cycles)")]
-    public int monthsPerCycle = 4;
-    
-    [Tooltip("Début de la plage 'no-event' en jours (18j = 3mn, si 1 jour = 10s)")]
-    public int noEventStartDays = 18; 
-    
-    [Tooltip("Fin de la plage 'no-event' sur les derniers jours du cycle (idem 18j)")]
-    public int noEventEndDays = 18;
+    [Header("Settings")]
+    [Tooltip("Référence au ScriptableObject contenant les paramètres des events")]
+    public E_EventSettings eventSettings;
 
-    [Tooltip("Délai (en mois) minimum/maximum qu'un event peut durer (sauf Corail)")]
-    public Vector2 eventDurationRange = new Vector2(2, 4);
+    // Gestion des cooldowns
+    private Dictionary<int, int> eventCooldowns = new Dictionary<int, int>(); // eventID -> (année min)
+    private int lastInvasionYear = -1;
+    private bool coralFestivalPending;
 
-    [Header("Fête du Corail")]
-    [Tooltip("Le mois de déclenchement de la fête du corail (6 par défaut)")]
-    public int coralFestivalMonth = 6;
-    [Tooltip("Durée en mois de la fête du corail (1 mois par défaut)")]
-    public int coralFestivalDuration = 1;
-    [Tooltip("Si la fête tombe en plein exploration, on la décale à la fin de l'explo")]
-    public bool waitForExplorationIfCoralFestival = true;
+    // Gestion des événements
+    private Queue<int> invasionQueue = new Queue<int>();
+    private List<int> availableNormalEventIDs = new List<int>();
 
-    [Header("Règles Annuelles")]
-    [Tooltip("Nombre minimum d'invasions par an (1 par défaut)")]
-    public int invasionsPerYear = 1;
-    [Tooltip("Nombre minimum d'events normaux par an (2 par défaut)")]
-    public int normalEventsPerYear = 2;
-    [Tooltip("Les invasions doivent être uniques dans les 3 ans, etc.")]
-    // ... paramétrage supplémentaire
+    // Pour traquer la "période sans event" suite à un event (12 jours) => 2 minutes
+    private bool waitingNoEventCooldown = false;
 
-    // ===================================================================================================
-    // INTERNES
-    // ===================================================================================================
-    
-    // Représente nos types d’event
+    // Indique si un event est en cours
+    private bool isEventActive = false;
+    private EventType currentEventType = EventType.Normal;
+
+    // Stocke quand l'event actuel se termine (en mois + année)
+    private (int year, int month) eventEndDate;
+
+    // Indique si la fête du corail a déjà été déclenchée cette année
+    private bool coralFestivalDoneThisYear = false;
+
+    // Pour éviter de remplir la queue plus d'une fois par an
+    private int lastFilledQueueYear = -1;
+
+    // Ajout d'une variable pour stocker l'événement en cours
+    private ScheduledEvent currentEvent;
+
+    // Représente nos types d'event
     private enum EventType
     {
         Normal,
@@ -64,51 +65,38 @@ public class E_CycleEventManager : MonoBehaviour
         public string name;     // juste pour debug
     }
 
-    // Queue globale d’événements annuels => par ex. [Normal, Normal, Invasion], [Normal, Invasion, Normal], ...
-    private Queue<ScheduledEvent> yearlyEventQueue = new Queue<ScheduledEvent>();
+    private static E_CycleEventManager _instance;
+    public static E_CycleEventManager Instance => _instance;
 
-    // Gère la liste d’events normaux (avec cooldown 5 ans)
-    // Tu peux y mettre tous tes ID (genre 4 = trash wave, 5= algues toxiques, etc.)
-    private List<int> allNormalEventIDs = new List<int> { 4 /* VagueDechets */, /*6 = Tempête? 7=AlguesToxiques?*/ };
-    private Dictionary<int, int> normalEventNextAvailableYear = new Dictionary<int, int>(); // eventID -> (année min)
-    
-    // Gère les invasions (3 types : 0=Méduses, 1=PoissonLion, 2=Barracuda)
-    // Sur 3 ans, on doit toutes les faire au moins une fois
-    private List<int> allInvasionIDs = new List<int> { 0, 1, 2 };
-    private Dictionary<int, int> invasionLastYearUsed = new Dictionary<int, int>(); // pour savoir quand on les a utilisées
-    
-    // Pour ne pas répéter la même invasion deux fois de suite
-    private int lastInvasionID = -1;
+    void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject); // Rend ce GameObject immortel
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-    // Suivi du cycle actuel
-    private int currentCycleIndex = 0;  // ex: 0 => mois 1-4, 1 => mois 5-8, 2 => mois 9-12, etc.
-
-    // Surveiller si un event est en cours
-    private bool isEventActive = false;
-    // Mémoriser le type de l’event en cours (pour "if (currentEvent == 'INVASION')" etc.)
-    private EventType currentEventType = EventType.Normal;
-
-    // Stocke quand l'event actuel se termine (en mois + année)
-    private (int year, int month) eventEndDate;
-
-    // Indique si la fête du corail a déjà été déclenchée cette année
-    private bool coralFestivalDoneThisYear = false;
-
-    // Pour traquer la "période sans event" suite à un event (12 jours) => 2 minutes
-    private bool waitingNoEventCooldown = false;
-
-    // Pour éviter de remplir la queue plus d'une fois par an
-    private int lastFilledQueueYear = -1;
-
-    // ===================================================================================================
-    // UNITY
-    // ===================================================================================================
-    private void Start()
+    void Start()
     {
         if (!timeManager) timeManager = FindObjectOfType<J_TimeManager>();
         if (!eventSystem) eventSystem = FindObjectOfType<E_Event>();
 
-        // On s’abonne aux events du timeManager
+        if (!eventSettings)
+        {
+            Debug.LogError("E_EventSettings n'est pas assigné dans E_CycleEventManager.");
+            return;
+        }
+
+        // Initialisation des queues d'invasion et des événements normaux
+        InitializeEventSystem();
+
+        // On s'abonne aux events du timeManager
+        timeManager.OnDayChanged += OnDayChanged; // Ajouté selon les suggestions précédentes
         timeManager.OnMonthChanged += OnMonthChanged;
         timeManager.OnYearChanged  += OnYearChanged;
 
@@ -116,10 +104,30 @@ public class E_CycleEventManager : MonoBehaviour
         FillYearlyEventQueue(timeManager.GetCurrentYear());
     }
 
-    private void OnDestroy()
+    void InitializeEventSystem()
+    {
+        // Enqueue toutes les invasions disponibles
+        foreach (var invasion in eventSettings.invasionTypes)
+        {
+            invasionQueue.Enqueue(invasion.eventID);
+        }
+
+        // Enqueue toutes les événements normaux disponibles
+        foreach (var normalEvent in eventSettings.normalEvents)
+        {
+            availableNormalEventIDs.Add(normalEvent.eventID);
+        }
+
+        // Log initial queues
+        Debug.Log("Initialisation du système d'événements terminée.");
+        LogEventQueue();
+    }
+
+    void OnDestroy()
     {
         if (timeManager)
         {
+            timeManager.OnDayChanged -= OnDayChanged;
             timeManager.OnMonthChanged -= OnMonthChanged;
             timeManager.OnYearChanged  -= OnYearChanged;
         }
@@ -130,28 +138,47 @@ public class E_CycleEventManager : MonoBehaviour
     // ===================================================================================================
     private void OnMonthChanged(int newMonth)
     {
-        // Calcul de l'index du cycle actuel (ex : mois 1-4 = cycle 0, mois 5-8 = cycle 1, ...)
+        // Calcul de l'index du cycle actuel (ex : mois 1-4 = cycle 0, moisPerCycle=4, etc.)
         int currentYear = timeManager.GetCurrentYear();
-        currentCycleIndex = (newMonth - 1) / monthsPerCycle;  
+        int currentCycleIndex = (newMonth - 1) / eventSettings.monthsPerCycle;  
         
         // Check Fête du Corail
-        if (newMonth == coralFestivalMonth && !coralFestivalDoneThisYear)
+        if (newMonth == eventSettings.coralFestivalMonth && !coralFestivalDoneThisYear)
         {
             TriggerCoralFestivalIfNeeded(currentYear);
         }
 
-        // Si un event est planifié pour ce cycle et on est dans la « fenêtre »  
-        // (pas dans les 18 premiers jours, pas dans les 18 derniers jours, pas d’autre event en cours),
-        // alors on déclenche le début de cycle d’event.
-        // => Convertis le jour actuel en un "jour du mois"
+        // Convertir le jour actuel en "jour du mois"
         int currentDay = timeManager.currentDay;
 
         if (!isEventActive && !waitingNoEventCooldown)
         {
             // Vérif si on est hors noEventStartDays ET hors noEventEndDays
-            if (currentDay > noEventStartDays && currentDay < (timeManager.daysPerMonth - noEventEndDays))
+            if (currentDay > eventSettings.noEventStartDays && currentDay < (timeManager.daysPerMonth - eventSettings.noEventEndDays))
             {
                 // On tente de déclencher un event si un cycle "doit" en avoir un
+                TryStartCycleEvent();
+            }
+        }
+    }
+
+    private void OnDayChanged(int newDay, int newMonth)
+    {
+        int currentYear = timeManager.GetCurrentYear();
+        int currentCycleIndex = (newMonth - 1) / eventSettings.monthsPerCycle;  
+        
+        // Check Fête du Corail
+        if (newMonth == eventSettings.coralFestivalMonth && !coralFestivalDoneThisYear)
+        {
+            TriggerCoralFestivalIfNeeded(currentYear);
+        }
+
+        // Conditions pour déclencher un événement
+        if (!isEventActive && !waitingNoEventCooldown)
+        {
+            // Vérif si on est hors noEventStartDays ET hors noEventEndDays
+            if (newDay > eventSettings.noEventStartDays && newDay < (timeManager.daysPerMonth - eventSettings.noEventEndDays))
+            {
                 TryStartCycleEvent();
             }
         }
@@ -166,11 +193,7 @@ public class E_CycleEventManager : MonoBehaviour
         FillYearlyEventQueue(newYear);
 
         // Met à jour les cooldowns
-        UpdateNormalEventCooldowns(newYear);
-        
-        // Vérifier la contrainte "dans 3 ans, tous les invasions doivent passer"
-        // (Tu peux coder la validation ici. Par exemple, si on voit qu’une invasion n’a pas eu lieu
-        // dans un intervalle de 3 ans, on la force dans la queue à la place d’une autre.)
+        UpdateEventCooldowns(newYear);
     }
 
     // ===================================================================================================
@@ -178,101 +201,117 @@ public class E_CycleEventManager : MonoBehaviour
     // ===================================================================================================
 
     /// <summary>
-    /// Remplit la queue d’events annuels (1 an = 3 cycles).
+    /// Remplit la queue d'events annuels (1 an = 3 cycles).
     /// On doit avoir 1 invasion, 2 normal, etc.  
-    /// On évite 2 invasions d’affilée d’une année sur l’autre.
+    /// On évite 2 invasions d'affilée d'une année sur l'autre.
     /// Basé sur ton pseudo-code.
     /// </summary>
     private void FillYearlyEventQueue(int year)
     {
-        if (lastFilledQueueYear == year) return; // évite de remplir deux fois la même année
+        if (lastFilledQueueYear == year)
+        {
+            Debug.Log($"FillYearlyEventQueue: La queue a déjà été remplie pour l'année {year}.");
+            return; // Évite de remplir deux fois la même année
+        }
 
         lastFilledQueueYear = year;
-        
-        // Regarde si le dernier event (ou currentEvent) était une invasion ?
-        // Dans ce script on gère l'info `currentEventType`.
-        bool lastWasInvasion = (currentEventType == EventType.Invasion);
+        Debug.Log($"FillYearlyEventQueue: Remplissage de la queue d'événements pour l'année {year}.");
 
-        int rng;
-        if (lastWasInvasion)
-            rng = Random.Range(1, 3); // 1..2
-        else
-            rng = Random.Range(1, 4); // 1..3 (en C# le max est exclusif, donc Range(1,4) = 1,2,3)
+        // On s'assure d'avoir les bons nombres d'événements par an
+        int invasionsThisYear = eventSettings.invasionsPerYear;
+        int normalEventsThisYear = eventSettings.normalEventsPerYear;
 
-        // Comme dans le pseudo-code
-        // if rng=1 => [NORMAL, NORMAL, INVASION]
-        // if rng=2 => [NORMAL, INVASION, NORMAL]
-        // else      => [INVASION, NORMAL, NORMAL]
-        
-        // On crée ces 3 events programmés pour l’année en cours
-        List<EventType> pattern = new List<EventType>();
-        if (rng == 1) {
-            pattern.Add(EventType.Normal);
-            pattern.Add(EventType.Normal);
-            pattern.Add(EventType.Invasion);
-        }
-        else if (rng == 2) {
-            pattern.Add(EventType.Normal);
-            pattern.Add(EventType.Invasion);
-            pattern.Add(EventType.Normal);
-        }
-        else {
-            pattern.Add(EventType.Invasion);
-            pattern.Add(EventType.Normal);
-            pattern.Add(EventType.Normal);
-        }
+        Debug.Log($"FillYearlyEventQueue: {invasionsThisYear} invasions et {normalEventsThisYear} événements normaux seront ajoutés.");
 
-        // On convertit en ScheduledEvent (en choisissant un ID concret pour l’invasion ou le normal)
-        foreach (EventType t in pattern)
+        // Enqueue les invasions
+        for (int i = 0; i < invasionsThisYear; i++)
         {
-            var sched = new ScheduledEvent { type = t };
-            switch (t)
+            int invasionID = GetNextInvasionID(year);
+            if (invasionID != -1)
             {
-                case EventType.Normal:
-                    sched.eventID = PickNormalEventID(year);
-                    sched.name = "Normal#" + sched.eventID;
-                    break;
-                case EventType.Invasion:
-                    sched.eventID = PickInvasionID(year);
-                    sched.name = "Invasion#" + sched.eventID;
-                    break;
-                case EventType.CoralFestival:
-                    sched.eventID = 3; // dans ton E_Event, 3 = Fête du Corail
-                    sched.name = "Fête du Corail";
-                    break;
+                var sched = new ScheduledEvent { type = EventType.Invasion, eventID = invasionID, name = GetEventNameByID(invasionID) };
+                yearlyEventQueue.Enqueue(sched);
+                Debug.Log($"FillYearlyEventQueue: Enfilage d'une invasion - ID: {invasionID}, Nom: {sched.name}");
             }
-            yearlyEventQueue.Enqueue(sched);
+            else
+            {
+                Debug.LogWarning($"FillYearlyEventQueue: Aucun ID d'invasion disponible pour l'année {year}.");
+            }
         }
+
+        // Enqueue les événements normaux
+        for (int i = 0; i < normalEventsThisYear; i++)
+        {
+            int normalEventID = GetNextNormalEventID(year);
+            if (normalEventID != -1)
+            {
+                var sched = new ScheduledEvent { type = EventType.Normal, eventID = normalEventID, name = GetEventNameByID(normalEventID) };
+                yearlyEventQueue.Enqueue(sched);
+                Debug.Log($"FillYearlyEventQueue: Enfilage d'un événement normal - ID: {normalEventID}, Nom: {sched.name}");
+            }
+            else
+            {
+                Debug.LogWarning($"FillYearlyEventQueue: Aucun ID d'événement normal disponible pour l'année {year}.");
+            }
+        }
+
+        // Ajouter la fête du corail si applicable
+        if (year % 2 == 0)
+        {
+            var sched = new ScheduledEvent { type = EventType.CoralFestival, eventID = 3, name = "Fête du Corail" };
+            yearlyEventQueue.Enqueue(sched);
+            Debug.Log($"FillYearlyEventQueue: Enfilage de la Fête du Corail pour l'année {year}.");
+        }
+
+        Debug.Log($"FillYearlyEventQueue: Total d'événements enfilés pour l'année {year}: {yearlyEventQueue.Count}");
+        LogEventQueue();
     }
 
+
     /// <summary>
-    /// Lorsqu’un nouveau cycle commence, on pioche dans la queue d’events annuels.
-    /// Puis on détermine la durée de l’event.
+    /// Lorsqu'un nouveau cycle commence, on pioche dans la queue d'events annuels.
+    /// Puis on détermine la durée de l'event.
     /// Puis on planifie le déclenchement effectif (si on est hors zone "no-event", etc.).
     /// </summary>
     private void TryStartCycleEvent()
     {
-        // On vérifie d’abord si la queue n’est pas vide
-        if (yearlyEventQueue.Count == 0) return;
+        Debug.Log("TryStartCycleEvent called");
+        
+        if (yearlyEventQueue.Count == 0)
+        {
+            Debug.Log("Event queue is empty, returning");
+            return;
+        }
 
         // On pop un event
         ScheduledEvent next = yearlyEventQueue.Dequeue();
+        currentEvent = next; // Stockage de l'événement en cours
         currentEventType = next.type;
+        Debug.Log($"Dequeued event: Type={next.type}, ID={next.eventID}, Nom={next.name}");
+        LogEventQueue(); // Afficher la queue après défilement
 
-        // Calcul d’une durée (en mois) si ce n’est pas la fête du corail
+        // Calcul d'une durée (en mois) si ce n'est pas la fête du corail
         int eventDurationMonths = 0;
         if (next.type == EventType.CoralFestival)
         {
-            eventDurationMonths = coralFestivalDuration;
+            eventDurationMonths = eventSettings.coralFestivalDuration;
+            Debug.Log($"Coral Festival duration set to {eventDurationMonths} months");
+        }
+        else if (next.type == EventType.Invasion)
+        {
+            eventDurationMonths = Random.Range((int)eventSettings.eventDurationRange.x, (int)eventSettings.eventDurationRange.y + 1);
+            Debug.Log($"Invasion duration set to {eventDurationMonths} months");
         }
         else
         {
-            eventDurationMonths = Random.Range((int)eventDurationRange.x, (int)eventDurationRange.y + 1);
+            eventDurationMonths = Random.Range((int)eventSettings.eventDurationRange.x, (int)eventSettings.eventDurationRange.y + 1);
+            Debug.Log($"Normal event duration set to {eventDurationMonths} months");
         }
 
         // On calcule la date de fin (mois + année)
         int startMonth = timeManager.GetCurrentMonth();
         int startYear = timeManager.GetCurrentYear();
+        Debug.Log($"Event start date: Month {startMonth}, Year {startYear}");
 
         int endMonth = startMonth + eventDurationMonths;
         int endYear = startYear;
@@ -283,69 +322,78 @@ public class E_CycleEventManager : MonoBehaviour
         }
 
         eventEndDate = (endYear, endMonth);
+        Debug.Log($"Event end date calculated: Month {endMonth}, Year {endYear}");
 
-        // On déclenche l’event
-        StartCoroutine(StartEvent(next.eventID, eventDurationMonths));
+        // On déclenche l'event
+        Debug.Log($"Starting event coroutine with ID={next.eventID}, Duration={eventDurationMonths}, Type={next.type}");
+        StartCoroutine(StartEvent(next.eventID, eventDurationMonths, next.type));
     }
 
     /// <summary>
-    /// Coroutine qui gère l’event en cours : déclenche, attend la fin, applique la règle
+    /// Coroutine qui gère l'event en cours : déclenche, attend la fin, applique la règle
     /// "2 minutes/12 jours de temps ou il ne peut pas avoir d'event" après la fin, etc.
     /// </summary>
-    private IEnumerator StartEvent(int eventID, int eventDurationMonths)
+    private IEnumerator StartEvent(int eventID, int eventDurationMonths, EventType eventType)
     {
         isEventActive = true;
-        // On déclenche "réellement" via E_Event
-        eventSystem.TriggerEvent(eventID);
-
-        // On attend en temps "réel" l’équivalent de la durée en mois => 
-        // Dans ton jeu : 1 mois = 5 minutes => 1 mois = 300 secondes
-        // eventDurationMonths * 300 => sauf pour la Fête du Corail, c’est plus "symbolique"
         
-        // Pour être cohérent : 2..4 mois => 2..4 * 300s => 600..1200s
-        // Mais comme ton TimeManager simule le temps, tu peux soit faire un WaitUntil condition 
-        // sur la date in-game, soit faire un WaitForSeconds. À toi de choisir.
-        float realDuration = eventDurationMonths * 300f;
-        if (currentEventType == EventType.CoralFestival)
+        // Déclenche "réellement" via E_Event
+        eventSystem.TriggerEvent(eventID);
+        Debug.Log($"Event started: ID={eventID}, Type={eventType}, Name={GetEventNameByID(eventID)}");
+
+        // Gestion spécifique selon le type d'événement
+        switch (eventType)
         {
-            // Parfois on veut la faire durer un "mois" complet => 300s
-            realDuration = coralFestivalDuration * 300f;
+            case EventType.Invasion:
+                TriggerInvasion(eventID);
+                break;
+            case EventType.Normal:
+                // Vous pouvez ajouter des comportements spécifiques pour les événements normaux si nécessaire
+                break;
+            case EventType.CoralFestival:
+                // Comportement spécifique pour la fête du corail
+                break;
+        }
+
+        // Calculer la durée réelle en fonction du temps simulé
+        float realDuration = eventDurationMonths * 300f;
+
+        if (eventType == EventType.CoralFestival)
+        {
+            realDuration = eventSettings.coralFestivalDuration * 300f;
         }
 
         yield return new WaitForSeconds(realDuration);
 
-        // L’event est terminé
+        // L'event est terminé
         isEventActive = false;
+        currentEvent = null; // Réinitialisation de l'événement en cours
+        Debug.Log($"Event ended: ID={eventID}, Type={eventType}, Name={GetEventNameByID(eventID)}");
 
-        // On applique le cooldown global : 2 minutes / 12 jours => 120s
-        // => plus aucune event possible pendant ce laps.
+        // Appliquer le cooldown global
         waitingNoEventCooldown = true;
         yield return new WaitForSeconds(120f);
         waitingNoEventCooldown = false;
     }
 
     /// <summary>
-    /// Déclenche la fête du corail si on est au mois = coralFestivalMonth et si c’est tous les 2 ans
-    /// (d’après tes règles, "au milieu du 2e cycle tous les 2 ans"). 
+    /// Déclenche la fête du corail si on est au mois = coralFestivalMonth et si c'est tous les 2 ans
+    /// (d'après tes règles, "au milieu du 2e cycle tous les 2 ans"). 
     /// Ici on simplifie un peu la condition de la "2e année" => year%2==0
     /// </summary>
     private void TriggerCoralFestivalIfNeeded(int currentYear)
     {
-        // Règle "au milieu du 2e cycle tous les 2 ans" => on suppose year%2==0
-        if (currentYear % 2 == 0)
+        if (eventSettings.waitForExplorationIfCoralFestival && IsPlayerExploring())
         {
-            if (waitForExplorationIfCoralFestival && IsPlayerExploring())
-            {
-                // On attend la fin de l'exploration, puis on déclenche
-                StartCoroutine(WaitEndExplorationAndTriggerCoral());
-            }
-            else
-            {
-                // On force directement l’event "3" = Fête du corail
-                eventSystem.TriggerEvent(3);
-            }
-
+            coralFestivalPending = true;
+            StartCoroutine(WaitEndExplorationAndTriggerCoral());
+        }
+        else
+        {
+            // On force directement l'event "3" = Fête du Corail
+            eventSystem.TriggerEvent(3);
             coralFestivalDoneThisYear = true;
+            Debug.Log("Fête du Corail déclenchée directement.");
         }
     }
 
@@ -356,16 +404,16 @@ public class E_CycleEventManager : MonoBehaviour
         // On déclenche la fête
         eventSystem.TriggerEvent(3);
         coralFestivalDoneThisYear = true;
+        Debug.Log("Fête du Corail déclenchée après exploration.");
     }
 
     /// <summary>
-    /// Vérifie si le joueur est en exploration. Dans ton code final, 
-    /// remplace par la bonne logique (manager d’explo, etc.)
+    /// Vérifie si le joueur est en exploration en vérifiant si la scène active est "Exploration_main".
     /// </summary>
     private bool IsPlayerExploring()
     {
-        // TODO: coder la vraie condition
-        return false;
+        // Vérifie si la scène active est "Exploration_main"
+        return SceneManager.GetActiveScene().name == "Exploration_main";
     }
 
     // ===================================================================================================
@@ -373,60 +421,79 @@ public class E_CycleEventManager : MonoBehaviour
     // ===================================================================================================
 
     /// <summary>
-    /// Choisit un ID d'invasion (0=Méduses, 1=PoissonLion, 2=Barracuda),  
-    /// évite de prendre deux fois d’affilée la même,  
-    /// et assure que sur 3 ans, on aura toutes les invasions au moins une fois (à toi de coder la logique).
+    /// Choisit un ID d'invasion (évite de prendre deux fois d'affilée la même, 
+    /// et assure que sur 3 ans, on aura toutes les invasions au moins une fois).
     /// </summary>
-    private int PickInvasionID(int currentYear)
+    private int GetNextInvasionID(int currentYear)
     {
-        // Filtre la liste d’invasions possible
-        var possible = allInvasionIDs.Where(id => id != lastInvasionID).ToList();
+        // Filtre la liste d'invasions possible
+        var possible = eventSettings.invasionTypes
+            .Where(inv => inv.eventID != lastInvasionYear) // Assure que ce n'est pas la même invasion que la précédente
+            .Select(inv => inv.eventID)
+            .ToList();
+
+        if (possible.Count == 0)
+            return -1;
 
         // On prend aléatoirement
         int chosen = possible[Random.Range(0, possible.Count)];
         
         // Stock
-        lastInvasionID = chosen;
-        invasionLastYearUsed[chosen] = currentYear;
+        lastInvasionYear = chosen;
+        AddEventCooldown(chosen, currentYear + eventSettings.invasionCooldownYears);
         
         return chosen;
     }
 
     /// <summary>
-    /// Choisit un ID d’event normal parmi ceux disponibles,
+    /// Choisit un ID d'event normal parmi ceux disponibles,
     /// en respectant la règle : "Une fois qu'un event normal est arrivé, 
-    /// il doit attendre min 5 ans avant de pouvoir revenir".
+    /// il doit attendre min X ans avant de pouvoir revenir".
     /// </summary>
-    private int PickNormalEventID(int currentYear)
+    private int GetNextNormalEventID(int currentYear)
     {
         // Filtre ceux dont la "nextAvailableYear" est <= currentYear
-        var freeEvents = allNormalEventIDs
-            .Where(id => !normalEventNextAvailableYear.ContainsKey(id) || normalEventNextAvailableYear[id] <= currentYear)
+        var freeEvents = eventSettings.normalEvents
+            .Where(e => !eventCooldowns.ContainsKey(e.eventID) || eventCooldowns[e.eventID] <= currentYear)
+            .Select(e => e.eventID)
             .ToList();
 
         if (freeEvents.Count == 0)
         {
-            // Si on n’en a pas, on force un par défaut (ou on ignore, à toi de voir)
-            return 4; // ex. "VagueDechets"
+            // Si on n'en a pas, on force un par défaut (ou on ignore, à toi de voir)
+            return -1;
         }
 
         int chosen = freeEvents[Random.Range(0, freeEvents.Count)];
 
         // On set le prochain retour possible
-        normalEventNextAvailableYear[chosen] = currentYear + 5;
+        AddEventCooldown(chosen, currentYear + eventSettings.normalEventCooldownYears);
 
         return chosen;
     }
 
     /// <summary>
-    /// Chaque début d’année, on peut « libérer » certains events dont le cooldown arrive à échéance.
+    /// Ajoute un cooldown pour un événement.
     /// </summary>
-    private void UpdateNormalEventCooldowns(int newYear)
+    private void AddEventCooldown(int eventID, int expiryYear)
     {
-        // Parcours des events, si la nextAvailableYear <= newYear, c’est “revenu”.
-        // Mais comme on a déjà géré la condition dans le pick, on peut simplement nettoyer le dico :
+        if (!eventCooldowns.ContainsKey(eventID))
+        {
+            eventCooldowns.Add(eventID, expiryYear);
+        }
+        else
+        {
+            eventCooldowns[eventID] = expiryYear;
+        }
+    }
+
+    /// <summary>
+    /// Met à jour les cooldowns en retirant ceux qui sont expirés.
+    /// </summary>
+    private void UpdateEventCooldowns(int newYear)
+    {
         List<int> toRemove = new List<int>();
-        foreach (var kvp in normalEventNextAvailableYear)
+        foreach (var kvp in eventCooldowns)
         {
             if (kvp.Value <= newYear)
                 toRemove.Add(kvp.Key);
@@ -434,7 +501,107 @@ public class E_CycleEventManager : MonoBehaviour
 
         foreach (var id in toRemove)
         {
-            normalEventNextAvailableYear.Remove(id);
+            eventCooldowns.Remove(id);
+            Debug.Log($"UpdateEventCooldowns: Cooldown terminé pour l'événement ID={id}.");
+        }
+    }
+
+    /// <summary>
+    /// Récupère le nom de l'événement en fonction de l'ID.
+    /// </summary>
+    private string GetEventNameByID(int eventID)
+    {
+        if (eventID == 3)
+            return "Fête du Corail";
+
+        var invasion = eventSettings.invasionTypes.FirstOrDefault(inv => inv.eventID == eventID);
+        if (invasion != null)
+            return invasion.name;
+
+        var normalEvent = eventSettings.normalEvents.FirstOrDefault(e => e.eventID == eventID);
+        if (normalEvent != null)
+            return normalEvent.name;
+
+        return "Unknown Event";
+    }
+
+    // ===================================================================================================
+    // UTILITAIRES
+    // ===================================================================================================
+
+    /// <summary>
+    /// Remplissage de la queue annuelle
+    /// </summary>
+    private Queue<ScheduledEvent> yearlyEventQueue = new Queue<ScheduledEvent>();
+
+    /// <summary>
+    /// Méthode pour afficher le contenu actuel de la queue d'événements.
+    /// </summary>
+    private void LogEventQueue()
+    {
+        if (yearlyEventQueue.Count == 0)
+        {
+            Debug.Log("Current Event Queue: (Vide)");
+            return;
+        }
+
+        var queueList = yearlyEventQueue.Select(e => $"{e.name} (ID: {e.eventID})").ToList();
+        Debug.Log("Current Event Queue: " + string.Join(", ", queueList));
+    }
+
+    // ===================================================================================================
+    // EVENT TRIGGERING UTILITIES
+    // ===================================================================================================
+
+    /// <summary>
+    /// Déclenche une invasion en instanciant les préfabriqués appropriés.
+    /// </summary>
+    private void TriggerInvasion(int invasionID)
+    {
+        var invasion = eventSettings.invasionTypes.FirstOrDefault(inv => inv.eventID == invasionID);
+        if (invasion != null && invasion.prefabs.Length > 0)
+        {
+            // Instancier les préfabriqués d'invasion
+            foreach (var prefab in invasion.prefabs)
+            {
+                Instantiate(prefab, Vector3.zero, Quaternion.identity);
+                // Ajustez la position et la rotation selon vos besoins
+            }
+            Debug.Log($"Invasion déclenchée: {invasion.name} (ID: {invasionID})");
+        }
+        else
+        {
+            Debug.LogWarning($"TriggerInvasion: Aucune prefab trouvée pour l'invasion ID={invasionID}.");
+        }
+    }
+
+    /// <summary>
+    /// Récupère le nom de l'événement en fonction de l'ID.
+    /// </summary>
+    private string GetEventName(int eventID)
+    {
+        return GetEventNameByID(eventID);
+    }
+
+    void Update()
+    {
+        // Vérifier si la touche Y est pressée
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            LogCurrentEvent();
+        }
+    }
+
+    private void LogCurrentEvent()
+    {
+        if (isEventActive && currentEvent != null)
+        {
+            Debug.Log($"Événement en cours : {currentEvent.name} (ID: {currentEvent.eventID}, Type: {currentEvent.type})");
+            Debug.Log($"Se termine en : Année {eventEndDate.year}, Mois {eventEndDate.month}");
+        }
+        else
+        {
+            Debug.Log("Aucun événement en cours actuellement.");
         }
     }
 }

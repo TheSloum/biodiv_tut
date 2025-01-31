@@ -13,11 +13,11 @@ public class E_MaterialsUI : MonoBehaviour
         if (Materials.instance != null)
         {
             if (woodText != null)
-                woodText.text = $": {Materials.instance.sessionWood}";
+                woodText.text = $"{Materials.instance.sessionWood}";
             if (stoneText != null)
-                stoneText.text = $": {Materials.instance.sessionStone}";
+                stoneText.text = $"{Materials.instance.sessionStone}";
             if (ironText != null)
-                ironText.text = $": {Materials.instance.sessionIron}";
+                ironText.text = $"{Materials.instance.sessionIron}";
         }
     }
 }

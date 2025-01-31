@@ -14,9 +14,9 @@ public class J_TimeManager : MonoBehaviour
 
     [Header("Time Settings")]
     [Tooltip("Durée d'un jour en secondes réelles.")]
-    public float secondsPerDay = 10f; // 1 jour = 10s (pour 30 jours/mois = 5 minutes)
+    public float secondsPerDay = 10f;
     [Tooltip("Nombre de jours par mois.")]
-    public int daysPerMonth = 30; // Rétabli pour afficher les jours
+    public int daysPerMonth = 30;
 
     [Header("Current Time")]
     [Tooltip("Jour actuel (commence à 1).")]
@@ -24,26 +24,29 @@ public class J_TimeManager : MonoBehaviour
     [Tooltip("Mois actuel (commence à 1).")]
     public int currentMonth = 1;
     [Tooltip("Année actuelle (commence à 1).")]
-    public int currentYear = 1; // Nouveau
+    public int currentYear = 1;
 
     private float dayTimer = 0f;
     private bool initialized = false;
 
-    // Événements
-    public event Action<int, int> OnDayChanged;   // (jour, mois)
-    public event Action<int> OnMonthChanged;      // (mois)
-    public event Action<int> OnYearChanged;       // Nouveau (année)
+    public event Action<int, int> OnDayChanged;
+    public event Action<int> OnMonthChanged;
+    public event Action<int> OnYearChanged;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            // Détache l'objet de tout parent pour éviter la destruction avec un parent
+            transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
+            Debug.Log("J_TimeManager initialized and set to DontDestroyOnLoad.");
         }
         else
         {
+            Debug.LogWarning("Duplicate J_TimeManager destroyed: " + gameObject.name);
             Destroy(gameObject);
         }
     }
@@ -51,6 +54,7 @@ public class J_TimeManager : MonoBehaviour
     void Start()
     {
         initialized = true;
+        Debug.Log("J_TimeManager started.");
     }
 
     void Update()
@@ -73,7 +77,6 @@ public class J_TimeManager : MonoBehaviour
 
         if(Input.GetKey(KeyCode.T))
         {
-            // Augmente progressivement le multiplicateur
             debugTimeMultiplier = Mathf.Clamp(
                 debugTimeMultiplier + debugTimeAcceleration * Time.unscaledDeltaTime,
                 1f, 
@@ -84,7 +87,6 @@ public class J_TimeManager : MonoBehaviour
         }
         else if(Input.GetKeyUp(KeyCode.T))
         {
-            // Réinitialise le temps quand on relâche la touche
             debugTimeMultiplier = 1f;
             Time.timeScale = 1f;
         }
@@ -99,7 +101,6 @@ public class J_TimeManager : MonoBehaviour
             currentDay = 1;
             currentMonth++;
             
-            // Gestion des années
             if (currentMonth > 12)
             {
                 currentMonth = 1;
@@ -125,15 +126,13 @@ public class J_TimeManager : MonoBehaviour
         return $"Mois {currentMonth}, Année {currentYear}";
     }
 
-    // Reste inchangé (SetTimeSpeed/PauseTime/ResumeTime)
     public void SetTimeSpeed(float speed) => Time.timeScale = speed;
     public void PauseTime() => Time.timeScale = 0f;
     public void ResumeTime() => Time.timeScale = 1f;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Désactivé pour garder le même temps partout
-        // secondsPerDay = 300f; // Forcer la valeur standard
+        Debug.Log($"Scene loaded: {scene.name}");
     }
 
     private void OnDestroy()
@@ -141,10 +140,10 @@ public class J_TimeManager : MonoBehaviour
         if (Instance == this)
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            Debug.Log("J_TimeManager destroyed.");
         }
     }
 
-    // Nouveaux getters pour l'accès externe
     public int GetCurrentYear() => currentYear;
     public int GetCurrentMonth() => currentMonth;
     public float GetCurrentTimer() => dayTimer;

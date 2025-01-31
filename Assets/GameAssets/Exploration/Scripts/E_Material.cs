@@ -35,7 +35,6 @@ public class E_Material : MonoBehaviour
             if (oxygenManager != null)
             {
                 oxygenManager.DecreaseOxygen(oxygenPenalty);
-                Debug.Log("Oxygène perdu ! Matériau manqué.");
             }
         }
     }
@@ -44,7 +43,6 @@ public class E_Material : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log($"Matériau collecté : Type {materialType}");
 
             if (E_AudioManager.instance != null)
             {
@@ -54,12 +52,10 @@ public class E_Material : MonoBehaviour
             if (collectParticlesPrefab != null)
             {
                 Instantiate(collectParticlesPrefab, transform.position, Quaternion.identity);
-                Debug.Log("Particules de collecte instanciées.");
             }
 
             if (Materials.instance != null)
             {
-                Debug.Log($"Avant collecte: mat_0 = {Materials.instance.mat_0}, mat_1 = {Materials.instance.mat_1}, mat_2 = {Materials.instance.mat_2}");
                 switch (materialType)
                 {
                     case 0: // Bois
@@ -79,7 +75,6 @@ public class E_Material : MonoBehaviour
                         break;
                 }
 
-                Debug.Log($"Après collecte: mat_0 = {Materials.instance.mat_0}, mat_1 = {Materials.instance.mat_1}, mat_2 = {Materials.instance.mat_2}");
             }
             else
             {
@@ -87,7 +82,6 @@ public class E_Material : MonoBehaviour
             }
 
             Destroy(gameObject);
-            Debug.Log("GameObject de matériau détruit après collecte.");
         }
     }
 }

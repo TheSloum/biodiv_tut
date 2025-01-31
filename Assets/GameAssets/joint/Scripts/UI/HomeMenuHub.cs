@@ -10,9 +10,10 @@ public class HomeMenuHub : MonoBehaviour
     public Button button1;
     public Button button2;
     public Button button3;
-    public Button button4;
+    public Button button4; // Option
     public Button button5;
     public Button button6;
+    public Button returnToMenuButton; // 📌 Bouton pour fermer ParametreMenu
 
     public Color normalTextColor = Color.black;
     public Color hoverTextColor = Color.blue;
@@ -23,6 +24,8 @@ public class HomeMenuHub : MonoBehaviour
     public GameObject canvasCredit;
     public Camera mainCamera;
     public Transform targetPoint;
+
+    public GameObject parametreMenu; // 📌 GameObject du menu des paramètres
 
     public float scrollDuration = 2f;
 
@@ -41,12 +44,32 @@ public class HomeMenuHub : MonoBehaviour
         button5.onClick.AddListener(Button5Clicked);
         button6.onClick.AddListener(Button6Clicked);
 
+        if (returnToMenuButton != null)
+        {
+            returnToMenuButton.onClick.AddListener(ReturnToMenuClicked);
+        }
+        else
+        {
+            Debug.LogWarning("[HomeMenuHub] ⚠ Bouton ReturnToMenu non assigné !");
+        }
+
         AddHoverEffects(button1, hoverTextColor);
         AddHoverEffects(button2, hoverTextColor);
         AddHoverEffects(button3, hoverTextColor);
         AddHoverEffects(button4, hoverTextColor);
         AddHoverEffects(button5, hoverTextColor);
         AddHoverEffects(button6, specialHoverTextColor);
+
+        // 📌 S'assurer que `parametreMenu` est désactivé au début
+        if (parametreMenu != null)
+        {
+            parametreMenu.SetActive(false);
+            Debug.Log("[HomeMenuHub] ParametreMenu désactivé au démarrage.");
+        }
+        else
+        {
+            Debug.LogError("[HomeMenuHub] ⚠ ERREUR: ParametreMenu n'est pas assigné dans l'Inspector !");
+        }
     }
 
     void Update()
@@ -67,19 +90,48 @@ public class HomeMenuHub : MonoBehaviour
 
     void Button1Clicked()
     {
-        Debug.Log("Button 3 clicked!");
+        Debug.Log("Button 1 clicked!");
     }
 
     void Button2Clicked()
     {
         SceneManager.LoadScene("SampleScene");
     }
-    void Button3Clicked() { 
-        Debug.Log("Button 3 clicked!"); 
+
+    void Button3Clicked()
+    {
+        Debug.Log("Button 3 clicked!");
+    }
+
+    void Button4Clicked()
+    {
+        Debug.Log("[HomeMenuHub] Bouton 4 (Option) cliqué.");
+
+        if (parametreMenu != null)
+        {
+            parametreMenu.SetActive(true);
+            Debug.Log("[HomeMenuHub] ParametreMenu est maintenant visible !");
         }
-    void Button4Clicked() { 
-        Debug.Log("Button 4 clicked!"); 
+        else
+        {
+            Debug.LogError("[HomeMenuHub] ⚠ ERREUR: ParametreMenu n'est pas assigné !");
         }
+    }
+
+    void ReturnToMenuClicked()
+    {
+        Debug.Log("[HomeMenuHub] Bouton ReturnToMenu cliqué, fermeture de ParametreMenu.");
+
+        if (parametreMenu != null)
+        {
+            parametreMenu.SetActive(false);
+            Debug.Log("[HomeMenuHub] ParametreMenu est maintenant invisible !");
+        }
+        else
+        {
+            Debug.LogError("[HomeMenuHub] ⚠ ERREUR: ParametreMenu n'est pas assigné !");
+        }
+    }
 
     void Button5Clicked()
     {
@@ -91,11 +143,13 @@ public class HomeMenuHub : MonoBehaviour
         }
     }
 
-    void Button6Clicked() { Application.Quit(); }
+    void Button6Clicked()
+    {
+        Application.Quit();
+    }
 
     IEnumerator HandleCreditSequence()
     {
-        Debug.Log("dd");
         isScrolling = true;
 
         yield return new WaitForSeconds(2f);
@@ -105,7 +159,7 @@ public class HomeMenuHub : MonoBehaviour
         float elapsedTime = 0f;
 
         while (elapsedTime < scrollDuration)
-        { Debug.Log("dsd");
+        {
             mainCamera.transform.position = Vector3.Lerp(initialCameraPosition, targetPosition, elapsedTime / scrollDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
