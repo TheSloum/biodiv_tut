@@ -7,6 +7,9 @@ using UnityEngine.EventSystems;
 
 public class Builder : MonoBehaviour
 {
+    public Camera mainCamera;
+    public float cameraMoveSpeed = 2.0f;
+    public GameObject moreInfoPanel;
     [SerializeField] private TextMeshProUGUI price0;
     [SerializeField] private TextMeshProUGUI price1;
     [SerializeField] private TextMeshProUGUI price2;
@@ -15,9 +18,10 @@ public class Builder : MonoBehaviour
     [SerializeField] private Button validationButton;
     [SerializeField] private GameObject validationButtonObject;
     [SerializeField] private GameObject validationPriceNo;
-    [SerializeField] private GameObject unvalidText
+    [SerializeField]
+    private GameObject unvalidText
     ;
-    
+
     [SerializeField] private Transform buttonCont;
 
     [SerializeField] private List<Building> buildings = new List<Building>();
@@ -43,6 +47,8 @@ public class Builder : MonoBehaviour
     private Button closeMenuButton;
     private Button closeMenuButton2;
     private Button destroyB;
+    public Button MoreInfo;
+    public Button MoreInfoClose;
     private Button upgrade1;
     private Button upgrade2;
     private Button upgrade3;
@@ -93,7 +99,11 @@ public class Builder : MonoBehaviour
     private float[] numbers = new float[4];    // Array to store numbers to display
     public Sprite[] sprites = new Sprite[4];
 
-
+    public TMP_Text buildingNameText;
+    public TMP_Text buildingDescriptionText;
+    public TMP_Text buildingEtatPolution;
+    public TMP_Text buildingEtatPopulation;
+    public TMP_Text buildingEtatElec;
     public int Prebuild = 0;
 
     public GameObject cycleBar;
@@ -120,20 +130,22 @@ public class Builder : MonoBehaviour
 
         cycleAnim.speed = 0f;
 
-        if(Materials.instance.isLoad){
+        if (Materials.instance.isLoad)
+        {
             Prebuild = 0;
         }
-        if(Prebuild != 0){
+        if (Prebuild != 0)
+        {
             Building matchingBuilding = null;
 
-foreach (Building building in buildings)
-{
-    if (building.buildID == Prebuild)
-    {
-        matchingBuilding = building;
-        break;
-    }
-}
+            foreach (Building building in buildings)
+            {
+                if (building.buildID == Prebuild)
+                {
+                    matchingBuilding = building;
+                    break;
+                }
+            }
             OnBuildingButtonClick(matchingBuilding);
         }
 
@@ -142,35 +154,48 @@ foreach (Building building in buildings)
 
     void OnMouseDown()
     {
-        if((!Materials.instance.tutorial && Materials.instance.textDone) ||  (tutorialBuild && Materials.instance.tutoToggle) ){
-        if (UIdetection.instance.mouseOverUi)
+        if ((!Materials.instance.tutorial && Materials.instance.textDone) || (tutorialBuild && Materials.instance.tutoToggle))
         {
-            return;
-        }
-        if (buildState == 0)
-        {
-            ShowBuildingMenu();
-        }
-        else
-        {
-            editing = true;
-            ShowManageMenu();
+            if (UIdetection.instance.mouseOverUi)
+            {
+                return;
+            }
+            if (buildState == 0)
+            {
+                ShowBuildingMenu();
+            }
+            else
+            {
+                editing = true;
+                ShowManageMenu();
+            }
         }
     }
+
+    public void OnMoreInfoClicked()
+    {
+        MoreInfoClose.onClick.AddListener(() => OnMoreInfoCloseClicked());
+        moreInfoPanel.SetActive(true);
     }
+    public void OnMoreInfoCloseClicked()
+    {
+        moreInfoPanel.SetActive(false);
+    }
+
 
     public void OnDestroyClicked()
     {
         if (editing == true)
         {
-        cycleBar.transform.localPosition = new Vector3(0,-46,0);
+            cycleBar.transform.localPosition = new Vector3(0, -46, 0);
             buildState = 0;
             buildID = 0;
             level0 = 0;
             level1 = 1;
             level2 = 2;
-            if (Materials.instance.explored == false ){
-            spriteRenderer.sprite = baseSprite;
+            if (Materials.instance.explored == false)
+            {
+                spriteRenderer.sprite = baseSprite;
             }
             running = false;
             progress = 0f;
@@ -343,37 +368,116 @@ foreach (Building building in buildings)
 
     private void ShowManageMenu()
     {
-        if (editing == true)
+        if (editing)
         {
-            
-        Materials.instance.canMove = false;
+            Materials.instance.canMove = false;
             manageMenu.SetActive(true);
+
             foreach (Building building in buildings)
             {
-                if (building.unlocked)
+                if (building.unlocked && building.buildID == buildState)
                 {
-                    destroyB.onClick.AddListener(() => OnDestroyClicked());
+                    // Supprimer d'abord tous les anciens listeners pour éviter les doublons
+                    destroyB.onClick.RemoveAllListeners();
+                    MoreInfo.onClick.RemoveAllListeners();
+                    upgrade1.onClick.RemoveAllListeners();
+                    upgrade2.onClick.RemoveAllListeners();
+                    upgrade3.onClick.RemoveAllListeners();
+                    pause.onClick.RemoveAllListeners();
 
-                    int multiplier0 = Mathf.RoundToInt(level0 * building.upgradeMult);
-                    int multiplier1 = Mathf.RoundToInt(level1 * building.upgradeMult);
-                    int multiplier2 = Mathf.RoundToInt(level2 * building.upgradeMult);
+                    // Ajouter les nouveaux listeners
+                    destroyB.onClick.AddListener(() => OnDestroyClicked());
+                    MoreInfo.onClick.AddListener(() => OnMoreInfoClicked());
 
                     upgrade1.onClick.AddListener(() => LevelUp1(building));
-
-
                     upgrade2.onClick.AddListener(() => LevelUp2(building));
-
-
                     upgrade3.onClick.AddListener(() => LevelUp3(building));
 
                     pause.onClick.AddListener(() => StopCycle());
 
-                }
+                    // Mettre à jour le texte
+                    buildingNameText.text = building.name;
+                    buildingDescriptionText.text = building.buildDesc;
 
+                    UpdateTextColor(buildingEtatPolution, building.PolutionEtat, true);
+                    UpdateTextColor(buildingEtatPopulation, building.PopulationEtat, false);
+                    UpdateTextColor(buildingEtatElec, building.ElecEtat, false);
+
+                    Debug.Log("Affichage du bâtiment : " + building.name);
+
+                    // Déplacer la caméra vers le bâtiment
+                    StartCoroutine(MoveCameraToBuilding(gameObject.transform.position));
+                }
             }
         }
-
     }
+
+    private IEnumerator MoveCameraToBuilding(Vector3 targetPosition)
+    {
+        Vector3 startPosition = mainCamera.transform.position;
+        Vector3 targetPos = new Vector3(targetPosition.x, targetPosition.y + 10f, mainCamera.transform.position.z); // Ajuste la hauteur si nécessaire
+
+        float elapsedTime = 0;
+        float duration = 1.5f; // Durée du mouvement
+
+        while (elapsedTime < duration)
+        {
+            mainCamera.transform.position = Vector3.Lerp(startPosition, targetPos, elapsedTime / duration);
+            elapsedTime += Time.deltaTime * cameraMoveSpeed;
+            yield return null;
+        }
+
+        mainCamera.transform.position = targetPos; // S'assurer que la caméra atteint bien la position finale
+    }
+
+    private void UpdateTextColor(TMP_Text textElement, string value, bool invertColors)
+    {
+        textElement.text = value;
+
+        if (invertColors)
+        {
+            if (value.Contains("-"))
+            {
+                textElement.outlineWidth = 0.3f;
+                textElement.outlineColor = Color.white;
+                textElement.color = Color.blue;
+            }
+            else if (value.Contains("+"))
+            {
+                textElement.outlineWidth = 0.3f;
+                textElement.outlineColor = Color.white;
+                textElement.color = Color.red;
+            }
+            else
+            {
+                textElement.outlineWidth = 0.3f;
+                textElement.outlineColor = Color.white;
+                textElement.color = Color.black;
+            }
+        }
+        else
+        {
+            if (value.Contains("-"))
+            {
+                textElement.outlineWidth = 0.3f;
+                textElement.outlineColor = Color.white;
+                textElement.color = Color.red;
+            }
+            else if (value.Contains("+"))
+            {
+                textElement.outlineWidth = 0.3f;
+                textElement.outlineColor = Color.white;
+                textElement.color = Color.blue;
+            }
+            else
+            {
+                textElement.outlineWidth = 0.3f;
+                textElement.outlineColor = Color.white;
+                textElement.color = Color.black;
+            }
+        }
+    }
+
 
     public void HideManageMenu()
     {
@@ -389,7 +493,7 @@ foreach (Building building in buildings)
         validation.SetActive(false);
         buildingMenu.SetActive(true);
         closeMenu.SetActive(true);
-        
+
         Materials.instance.canMove = false;
 
         foreach (Transform child in buttonPanel)
@@ -404,70 +508,76 @@ foreach (Building building in buildings)
         foreach (Building building in buildings)
         {
 
-            
+
             if (building.unlocked)
             {
-                if((!Materials.instance.researchCentr && building.buildClass == 0) || Materials.instance.researchCentr && building.buildClass != 0){
+                if (Materials.instance.researchCentr && building.buildClass != 0)
+                {
+
+                }
+                else if (!Materials.instance.researchCentr && building.buildClass == 0) { }
+                else
+                {
                     GameObject newButton = Instantiate(buttonPrefab, buttonCont);
-newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 0f);
-            counter++;
-                Button button = newButton.GetComponent<Button>();
-                TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
-                Transform buttonSprite = newButton.transform.Find("BuildIMG");
-            Image buttonImage = buttonSprite.GetComponent<Image>();
-                buttonImage.sprite = building.buildSprite;
-                buttonText.text = $"{building.name}";
+                    newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 0f);
+                    Button button = newButton.GetComponent<Button>();
+                    TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
+                    Transform buttonSprite = newButton.transform.Find("BuildIMG");
+                    Image buttonImage = buttonSprite.GetComponent<Image>();
+                    buttonImage.sprite = building.buildSprite;
+                    buttonText.text = $"{building.name}";
 
-        foreach (Transform child in newButton.transform)
-        {
-            if (child.CompareTag("ImpactDisplay") && child.name == "airImpact") 
-            {
-                TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
+                    foreach (Transform child in newButton.transform)
+                    {
+                        if (child.CompareTag("ImpactDisplay") && child.name == "airImpact")
+                        {
+                            TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
 
-                if (building.bar_2_cycle < 0)
-                {
-                    tmp.text = "-";
-                    tmp.color = Color.blue;
-                }
-            }
-            if (child.CompareTag("ImpactDisplay") && child.name == "energyImpact") 
-            {
-                TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
+                            if (building.bar_2_cycle < 0)
+                            {
+                                tmp.text = "-";
+                                tmp.color = Color.blue;
+                            }
+                        }
+                        if (child.CompareTag("ImpactDisplay") && child.name == "energyImpact")
+                        {
+                            TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
 
-                if (building.bar_1_cycle < 0)
-                {
-                    tmp.text = "-";
-                    tmp.color = Color.red;
-                }
-            }
-            if (child.CompareTag("ImpactDisplay") && child.name == "qolImpact") 
-            {
-                TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
+                            if (building.bar_1_cycle < 0)
+                            {
+                                tmp.text = "-";
+                                tmp.color = Color.red;
+                            }
+                        }
+                        if (child.CompareTag("ImpactDisplay") && child.name == "qolImpact")
+                        {
+                            TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
 
-                if (building.bar_0_cycle < 0)
-                {
-                    tmp.text = "-";
-                    tmp.color = Color.red;
-                }
-            }
-            if (child.CompareTag("ImpactDisplay") && child.name == "moneyImpact") 
-            {
-                TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
+                            if (building.bar_0_cycle < 0)
+                            {
+                                tmp.text = "-";
+                                tmp.color = Color.red;
+                            }
+                        }
+                        if (child.CompareTag("ImpactDisplay") && child.name == "moneyImpact")
+                        {
+                            TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
 
-                if (building.price_cycle < 0)
-                {
-                    tmp.text = "-";
-                    tmp.color = Color.red;
-                }
-            }
-        }
+                            if (building.price_cycle < 0)
+                            {
+                                tmp.text = "-";
+                                tmp.color = Color.red;
+                            }
+                        }
+                    }
 
 
-                if(Materials.instance.tutorial){
-                    button.interactable = false;
-                }
+                    if (Materials.instance.tutorial)
+                    {
+                        button.interactable = false;
+                    }
 
-                button.onClick.AddListener(() => SelectBuild(building, button.gameObject));
+                    button.onClick.AddListener(() => SelectBuild(building, button.gameObject));
                 }
             }
 
@@ -479,12 +589,15 @@ newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 
         EventSystem.current.SetSelectedGameObject(null);
         validation.SetActive(true);
         validationPriceNo.SetActive(false);
-        if ((Materials.instance.mat_0 >= (-1 * building.mat_0) && Materials.instance.mat_1 >= (-1 * building.mat_1) && Materials.instance.mat_2 >= (-1 * building.mat_2) && Materials.instance.price >= (-1 * building.price))){
+        if ((Materials.instance.mat_0 >= (-1 * building.mat_0) && Materials.instance.mat_1 >= (-1 * building.mat_1) && Materials.instance.mat_2 >= (-1 * building.mat_2) && Materials.instance.price >= (-1 * building.price)))
+        {
             validationButtonObject.SetActive(true);
             unvalidText.SetActive(false);
 
-        } else {
-            
+        }
+        else
+        {
+
             validationButtonObject.SetActive(false);
             unvalidText.SetActive(true);
         }
@@ -498,43 +611,46 @@ newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 
         price3.text = building.price.ToString();
         EventSystem.current.SetSelectedGameObject(buttonObject);
         validationButton.onClick.AddListener(() => OnBuildingButtonClick(building));
-        
+
     }
 
 
     private void OnBuildingButtonClick(Building building)
     {
-        
-                    if(building.buildClass ==0){
 
-                        Materials.instance.researchCentr = true;
-                    }
-        cycleBar.transform.localPosition = new Vector3(0,83,0);
+        if (building.buildClass == 0)
+        {
+            Materials.instance.researchCentr = false;
+        }
+        cycleBar.transform.localPosition = new Vector3(0, 83, 0);
 
         if ((Materials.instance.mat_0 >= (-1 * building.mat_0) && Materials.instance.mat_1 >= (-1 * building.mat_1) && Materials.instance.mat_2 >= (-1 * building.mat_2) && Materials.instance.price >= (-1 * building.price)) || Prebuild != 0)
         {
             buildState = building.buildID;
             spriteRenderer.sprite = building.buildSprite;
 
-            if(Prebuild == 0) {
-            Materials.instance.mat_0 += building.mat_0;
-            Materials.instance.mat_1 += building.mat_1;
-            Materials.instance.mat_2 += building.mat_2;
-            Materials.instance.bar_0 += building.bar_0;
-            Materials.instance.bar_1 += building.bar_1;
-            Materials.instance.bar_2 += building.bar_2;
-            Materials.instance.price += building.price;
-            
+            if (Prebuild == 0)
+            {
+                Materials.instance.mat_0 += building.mat_0;
+                Materials.instance.mat_1 += building.mat_1;
+                Materials.instance.mat_2 += building.mat_2;
+                Materials.instance.bar_0 += building.bar_0;
+                Materials.instance.bar_1 += building.bar_1;
+                Materials.instance.bar_2 += building.bar_2;
+                Materials.instance.price += building.price;
 
 
-            numbers[0] = building.mat_0;
-            numbers[1] = building.mat_1;
-            numbers[2] = building.mat_2;
-            numbers[3] = building.price;
-            StartCoroutine(SpawnPrefabs());
 
-            SoundManager.instance.PlaySFX(sfxClip);
-            } else {
+                numbers[0] = building.mat_0;
+                numbers[1] = building.mat_1;
+                numbers[2] = building.mat_2;
+                numbers[3] = building.price;
+                StartCoroutine(SpawnPrefabs());
+
+                SoundManager.instance.PlaySFX(sfxClip);
+            }
+            else
+            {
                 Prebuild = 0;
             }
 
@@ -551,8 +667,9 @@ newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 
 
 
             running = true;
-            if (building.time > 0){
-            StartCycle();
+            if (building.time > 0)
+            {
+                StartCycle();
             }
 
             HideBuildingMenu();
@@ -568,7 +685,7 @@ newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 
         HideBuildingMenu();
         HideManageMenu();
         editing = false;
-        
+
         Materials.instance.canMove = true;
 
     }
@@ -611,7 +728,7 @@ newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 
                     yield return null;
                     continue;
                 }
-                
+
                 timePassed += Time.deltaTime;
                 float progress = Mathf.Clamp01(timePassed / cycleDuration);
 

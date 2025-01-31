@@ -13,6 +13,14 @@ MonoBehaviour:
   m_Name: Verger
   m_EditorClassIdentifier: 
   buildID: 4
+  buildDesc: "Un verger est un lieu o\xF9 des arbres fruitiers sont cultiv\xE9s.
+    Dans un verger \xE0 cueillette libre, les arbres fruitiers poussent en pleine
+    nature et les visiteurs peuvent r\xE9colter eux-m\xEAmes les fruits frais. Les
+    vergers favorisent aussi la biodiversit\xE9 en attirant des abeilles et d\u2019autres
+    pollinisateurs."
+  PolutionEtat: +
+  PopulationEtat: ++
+  ElecEtat: '-'
   buildClass: 2
   unlocked: 1
   buildSprite: {fileID: 21300000, guid: b4ef986580a010c42961d49f13f2e4b7, type: 3}
