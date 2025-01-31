@@ -46,7 +46,10 @@ public class E_CycleEventManager : MonoBehaviour
     // Pour éviter de remplir la queue plus d'une fois par an
     private int lastFilledQueueYear = -1;
 
-    // Représente nos types d’event
+    // Ajout d'une variable pour stocker l'événement en cours
+    private ScheduledEvent currentEvent;
+
+    // Représente nos types d'event
     private enum EventType
     {
         Normal,
@@ -60,6 +63,22 @@ public class E_CycleEventManager : MonoBehaviour
         public EventType type;
         public int eventID;     // ID utilisé par E_Event pour .TriggerEvent()
         public string name;     // juste pour debug
+    }
+
+    private static E_CycleEventManager _instance;
+    public static E_CycleEventManager Instance => _instance;
+
+    void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject); // Rend ce GameObject immortel
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Start()
@@ -76,7 +95,7 @@ public class E_CycleEventManager : MonoBehaviour
         // Initialisation des queues d'invasion et des événements normaux
         InitializeEventSystem();
 
-        // On s’abonne aux events du timeManager
+        // On s'abonne aux events du timeManager
         timeManager.OnDayChanged += OnDayChanged; // Ajouté selon les suggestions précédentes
         timeManager.OnMonthChanged += OnMonthChanged;
         timeManager.OnYearChanged  += OnYearChanged;
@@ -182,9 +201,9 @@ public class E_CycleEventManager : MonoBehaviour
     // ===================================================================================================
 
     /// <summary>
-    /// Remplit la queue d’events annuels (1 an = 3 cycles).
+    /// Remplit la queue d'events annuels (1 an = 3 cycles).
     /// On doit avoir 1 invasion, 2 normal, etc.  
-    /// On évite 2 invasions d’affilée d’une année sur l’autre.
+    /// On évite 2 invasions d'affilée d'une année sur l'autre.
     /// Basé sur ton pseudo-code.
     /// </summary>
     private void FillYearlyEventQueue(int year)
@@ -250,15 +269,14 @@ public class E_CycleEventManager : MonoBehaviour
 
 
     /// <summary>
-    /// Lorsqu’un nouveau cycle commence, on pioche dans la queue d’events annuels.
-    /// Puis on détermine la durée de l’event.
+    /// Lorsqu'un nouveau cycle commence, on pioche dans la queue d'events annuels.
+    /// Puis on détermine la durée de l'event.
     /// Puis on planifie le déclenchement effectif (si on est hors zone "no-event", etc.).
     /// </summary>
     private void TryStartCycleEvent()
     {
         Debug.Log("TryStartCycleEvent called");
         
-        // On vérifie d'abord si la queue n'est pas vide
         if (yearlyEventQueue.Count == 0)
         {
             Debug.Log("Event queue is empty, returning");
@@ -267,6 +285,7 @@ public class E_CycleEventManager : MonoBehaviour
 
         // On pop un event
         ScheduledEvent next = yearlyEventQueue.Dequeue();
+        currentEvent = next; // Stockage de l'événement en cours
         currentEventType = next.type;
         Debug.Log($"Dequeued event: Type={next.type}, ID={next.eventID}, Nom={next.name}");
         LogEventQueue(); // Afficher la queue après défilement
@@ -311,7 +330,7 @@ public class E_CycleEventManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Coroutine qui gère l’event en cours : déclenche, attend la fin, applique la règle
+    /// Coroutine qui gère l'event en cours : déclenche, attend la fin, applique la règle
     /// "2 minutes/12 jours de temps ou il ne peut pas avoir d'event" après la fin, etc.
     /// </summary>
     private IEnumerator StartEvent(int eventID, int eventDurationMonths, EventType eventType)
@@ -346,8 +365,9 @@ public class E_CycleEventManager : MonoBehaviour
 
         yield return new WaitForSeconds(realDuration);
 
-        // L’event est terminé
+        // L'event est terminé
         isEventActive = false;
+        currentEvent = null; // Réinitialisation de l'événement en cours
         Debug.Log($"Event ended: ID={eventID}, Type={eventType}, Name={GetEventNameByID(eventID)}");
 
         // Appliquer le cooldown global
@@ -357,8 +377,8 @@ public class E_CycleEventManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Déclenche la fête du corail si on est au mois = coralFestivalMonth et si c’est tous les 2 ans
-    /// (d’après tes règles, "au milieu du 2e cycle tous les 2 ans"). 
+    /// Déclenche la fête du corail si on est au mois = coralFestivalMonth et si c'est tous les 2 ans
+    /// (d'après tes règles, "au milieu du 2e cycle tous les 2 ans"). 
     /// Ici on simplifie un peu la condition de la "2e année" => year%2==0
     /// </summary>
     private void TriggerCoralFestivalIfNeeded(int currentYear)
@@ -370,7 +390,7 @@ public class E_CycleEventManager : MonoBehaviour
         }
         else
         {
-            // On force directement l’event "3" = Fête du Corail
+            // On force directement l'event "3" = Fête du Corail
             eventSystem.TriggerEvent(3);
             coralFestivalDoneThisYear = true;
             Debug.Log("Fête du Corail déclenchée directement.");
@@ -401,12 +421,12 @@ public class E_CycleEventManager : MonoBehaviour
     // ===================================================================================================
 
     /// <summary>
-    /// Choisit un ID d'invasion (évite de prendre deux fois d’affilée la même, 
+    /// Choisit un ID d'invasion (évite de prendre deux fois d'affilée la même, 
     /// et assure que sur 3 ans, on aura toutes les invasions au moins une fois).
     /// </summary>
     private int GetNextInvasionID(int currentYear)
     {
-        // Filtre la liste d’invasions possible
+        // Filtre la liste d'invasions possible
         var possible = eventSettings.invasionTypes
             .Where(inv => inv.eventID != lastInvasionYear) // Assure que ce n'est pas la même invasion que la précédente
             .Select(inv => inv.eventID)
@@ -426,7 +446,7 @@ public class E_CycleEventManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Choisit un ID d’event normal parmi ceux disponibles,
+    /// Choisit un ID d'event normal parmi ceux disponibles,
     /// en respectant la règle : "Une fois qu'un event normal est arrivé, 
     /// il doit attendre min X ans avant de pouvoir revenir".
     /// </summary>
@@ -440,7 +460,7 @@ public class E_CycleEventManager : MonoBehaviour
 
         if (freeEvents.Count == 0)
         {
-            // Si on n’en a pas, on force un par défaut (ou on ignore, à toi de voir)
+            // Si on n'en a pas, on force un par défaut (ou on ignore, à toi de voir)
             return -1;
         }
 
@@ -561,5 +581,27 @@ public class E_CycleEventManager : MonoBehaviour
     private string GetEventName(int eventID)
     {
         return GetEventNameByID(eventID);
+    }
+
+    void Update()
+    {
+        // Vérifier si la touche Y est pressée
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            LogCurrentEvent();
+        }
+    }
+
+    private void LogCurrentEvent()
+    {
+        if (isEventActive && currentEvent != null)
+        {
+            Debug.Log($"Événement en cours : {currentEvent.name} (ID: {currentEvent.eventID}, Type: {currentEvent.type})");
+            Debug.Log($"Se termine en : Année {eventEndDate.year}, Mois {eventEndDate.month}");
+        }
+        else
+        {
+            Debug.Log("Aucun événement en cours actuellement.");
+        }
     }
 }
