@@ -29,6 +29,8 @@ public class Materials : MonoBehaviour
     public bool canMove = true;
     public bool textDone = false;
     public bool tutoToggle = false;
+    public GameObject victoryScreen;
+    private bool victory = false;
 
 public GameObject errorIndicator;
 public Text errorText; // Assign a UI Text element in the Inspector
@@ -99,6 +101,11 @@ public Text errorText; // Assign a UI Text element in the Inspector
         bar_0 = Mathf.Clamp(bar_0, 0f, 0.99f);
         bar_1 = Mathf.Clamp(bar_1, 0f, 0.99f);
         bar_2 = Mathf.Clamp(bar_2, 0f, 0.99f);
+
+        if(bar_2 == 0.0f && victory == false){
+            victoryScreen.SetActive(true);
+            victory = true;
+        }
     }
 
     public void AddWood(int amount)
