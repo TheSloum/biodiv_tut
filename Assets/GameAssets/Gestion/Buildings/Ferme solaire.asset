@@ -13,6 +13,14 @@ MonoBehaviour:
   m_Name: Ferme solaire
   m_EditorClassIdentifier: 
   buildID: 2
+  buildDesc: "Une ferme solaire capte la lumi\xE8re du soleil avec des panneaux photovolta\xEFques
+    pour produire de l\u2019\xE9lectricit\xE9. Cette technologie demande beaucoup
+    de terrain, souvent dans des zones tr\xE8s ensoleill\xE9es comme autour de la
+    M\xE9diterran\xE9e. Les fermes solaires s\u2019int\xE8grent parfois dans des
+    espaces d\xE9sertiques inutilis\xE9s, optimisant ainsi leur impact."
+  PolutionEtat: ++
+  PopulationEtat: '-'
+  ElecEtat: +
   buildClass: 1
   unlocked: 0
   buildSprite: {fileID: 21300000, guid: 41d57bcc32eeed24cb2ea2edf14cedbb, type: 3}

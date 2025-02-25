@@ -13,6 +13,14 @@ MonoBehaviour:
   m_Name: "Station d'\xE9puration"
   m_EditorClassIdentifier: 
   buildID: 8
+  buildDesc: "Les stations de traitement d\u2019eaux us\xE9es nettoient l\u2019eau
+    utilis\xE9e avant qu\u2019elle ne retourne dans la mer ou les rivi\xE8res. Elles
+    \xE9liminent les polluants pour prot\xE9ger les \xE9cosyst\xE8mes marins et fournir
+    de l\u2019eau r\xE9utilisable. Ces infrastructures sont essentielles pour \xE9viter
+    que des substances toxiques n\u2019atteignent la faune marine."
+  PolutionEtat: ---
+  PopulationEtat: +
+  ElecEtat: ---
   buildClass: 4
   unlocked: 0
   buildSprite: {fileID: 21300000, guid: 018793af2cf996048b933d687b28a88f, type: 3}

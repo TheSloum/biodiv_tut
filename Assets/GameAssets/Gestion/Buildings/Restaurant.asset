@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Restaurant
   m_EditorClassIdentifier: 
   buildID: 5
+  buildDesc: "Un restaurant est un lieu o\xF9 les habitants et les touristes peuvent
+    venir manger. Cela peut attirer des visiteurs mais aussi avoir un impact sur
+    la qualit\xE9 de vie des habitants."
+  PolutionEtat: +
+  PopulationEtat: ++
+  ElecEtat: --
   buildClass: 3
   unlocked: 1
   buildSprite: {fileID: 21300000, guid: 9725d100e4ef4884f9f20b8aa7b57048, type: 3}

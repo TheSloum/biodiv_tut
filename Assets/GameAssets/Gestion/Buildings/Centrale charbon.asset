@@ -13,6 +13,15 @@ MonoBehaviour:
   m_Name: Centrale charbon
   m_EditorClassIdentifier: 
   buildID: 1
+  buildDesc: "Les centrales thermiques au charbon fonctionnent en br\xFBlant du charbon,
+    une roche noire pleine d\u2019\xE9nergie, pour chauffer de l\u2019eau. La vapeur
+    cr\xE9\xE9e fait tourner des turbines pour produire de l\u2019\xE9lectricit\xE9.
+    Le charbon est une \xE9nergie non renouvelable et une des sources d\u2019\xE9nergie
+    les plus polluantes en termes d\u2019\xE9missions de CO\u2082, mais il reste
+    tr\xE8s utilis\xE9 dans le monde."
+  PolutionEtat: +++
+  PopulationEtat: ---
+  ElecEtat: +++
   buildClass: 1
   unlocked: 1
   buildSprite: {fileID: 21300000, guid: 7a101e52de13831499cec536292c2c65, type: 3}
