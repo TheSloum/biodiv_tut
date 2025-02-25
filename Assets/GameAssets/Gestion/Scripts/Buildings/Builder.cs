@@ -54,7 +54,9 @@ public class Builder : MonoBehaviour
     private Button upgrade3;
     private Button pause;
 
-
+    public Image pauseImage;
+    public Sprite playSprite;
+    public Sprite pauseSprite;
 
     public bool running = false;
     public float cycleDuration = 0f;
@@ -96,6 +98,7 @@ public class Builder : MonoBehaviour
     public float fadeDuration = 1f;            // Duration for fading out
     public float moveSpeed = 1f;               // Speed at which the object moves upward
 
+
     private float[] numbers = new float[4];    // Array to store numbers to display
     public Sprite[] sprites = new Sprite[4];
 
@@ -105,6 +108,7 @@ public class Builder : MonoBehaviour
     public TMP_Text buildingEtatPopulation;
     public TMP_Text buildingEtatElec;
     public int Prebuild = 0;
+
 
     public GameObject cycleBar;
     [SerializeField] private bool tutorialBuild;
@@ -377,7 +381,6 @@ public class Builder : MonoBehaviour
             {
                 if (building.unlocked && building.buildID == buildState)
                 {
-                    // Supprimer d'abord tous les anciens listeners pour éviter les doublons
                     destroyB.onClick.RemoveAllListeners();
                     MoreInfo.onClick.RemoveAllListeners();
                     upgrade1.onClick.RemoveAllListeners();
@@ -385,7 +388,6 @@ public class Builder : MonoBehaviour
                     upgrade3.onClick.RemoveAllListeners();
                     pause.onClick.RemoveAllListeners();
 
-                    // Ajouter les nouveaux listeners
                     destroyB.onClick.AddListener(() => OnDestroyClicked());
                     MoreInfo.onClick.AddListener(() => OnMoreInfoClicked());
 
@@ -393,7 +395,17 @@ public class Builder : MonoBehaviour
                     upgrade2.onClick.AddListener(() => LevelUp2(building));
                     upgrade3.onClick.AddListener(() => LevelUp3(building));
 
-                    pause.onClick.AddListener(() => StopCycle());
+                    // Gestion de l'état du bouton pause
+                    if (building.isPaused)
+                    {
+                        pauseImage.sprite = playSprite;
+                        pause.onClick.AddListener(() => ContinueCycle());
+                    }
+                    else
+                    {
+                        pauseImage.sprite = pauseSprite;
+                        pause.onClick.AddListener(() => StopCycle());
+                    }
 
                     // Mettre à jour le texte
                     buildingNameText.text = building.name;
@@ -412,13 +424,14 @@ public class Builder : MonoBehaviour
         }
     }
 
+
     private IEnumerator MoveCameraToBuilding(Vector3 targetPosition)
     {
         Vector3 startPosition = mainCamera.transform.position;
-        Vector3 targetPos = new Vector3(targetPosition.x, targetPosition.y + 10f, mainCamera.transform.position.z); // Ajuste la hauteur si nécessaire
+        Vector3 targetPos = new Vector3(targetPosition.x, targetPosition.y + 400f, mainCamera.transform.position.z);
 
         float elapsedTime = 0;
-        float duration = 1.5f; // Durée du mouvement
+        float duration = 1.5f;
 
         while (elapsedTime < duration)
         {
@@ -427,7 +440,7 @@ public class Builder : MonoBehaviour
             yield return null;
         }
 
-        mainCamera.transform.position = targetPos; // S'assurer que la caméra atteint bien la position finale
+        mainCamera.transform.position = targetPos;
     }
 
     private void UpdateTextColor(TMP_Text textElement, string value, bool invertColors)
@@ -617,14 +630,17 @@ public class Builder : MonoBehaviour
 
     private void OnBuildingButtonClick(Building building)
     {
-
         if (building.buildClass == 0)
         {
             Materials.instance.researchCentr = false;
         }
+
         cycleBar.transform.localPosition = new Vector3(0, 83, 0);
 
-        if ((Materials.instance.mat_0 >= (-1 * building.mat_0) && Materials.instance.mat_1 >= (-1 * building.mat_1) && Materials.instance.mat_2 >= (-1 * building.mat_2) && Materials.instance.price >= (-1 * building.price)) || Prebuild != 0)
+        if ((Materials.instance.mat_0 >= (-1 * building.mat_0) &&
+             Materials.instance.mat_1 >= (-1 * building.mat_1) &&
+             Materials.instance.mat_2 >= (-1 * building.mat_2) &&
+             Materials.instance.price >= (-1 * building.price)) || Prebuild != 0)
         {
             buildState = building.buildID;
             spriteRenderer.sprite = building.buildSprite;
@@ -639,12 +655,11 @@ public class Builder : MonoBehaviour
                 Materials.instance.bar_2 += building.bar_2;
                 Materials.instance.price += building.price;
 
-
-
                 numbers[0] = building.mat_0;
                 numbers[1] = building.mat_1;
                 numbers[2] = building.mat_2;
                 numbers[3] = building.price;
+
                 StartCoroutine(SpawnPrefabs());
 
                 SoundManager.instance.PlaySFX(sfxClip);
@@ -654,7 +669,6 @@ public class Builder : MonoBehaviour
                 Prebuild = 0;
             }
 
-
             mat_0_cycle = building.cons_mat_0;
             mat_1_cycle = building.cons_mat_1;
             mat_2_cycle = building.cons_mat_2;
@@ -662,22 +676,18 @@ public class Builder : MonoBehaviour
             bar_1_cycle = building.bar_1_cycle;
             bar_2_cycle = building.bar_2_cycle;
             price_cycle = building.price_cycle;
-
             cycleDuration = building.time;
 
-
-            running = true;
-            if (building.time > 0)
+            running = !building.isPaused;
+            if (running)
             {
                 StartCycle();
             }
 
             HideBuildingMenu();
-
         }
-
-
     }
+
 
 
     private void OnCloseMenuClicked()
@@ -771,24 +781,39 @@ public class Builder : MonoBehaviour
 
     }
 
-    public void SetCycleDuration(float newDuration)
-    {
-        cycleDuration = newDuration;
-    }
-
     public void StopCycle()
     {
         running = false;
-        pause.onClick.AddListener(() => ContinueCycle());
+        if (buildState != 0)
+        {
+            Building currentBuilding = buildings.Find(b => b.buildID == buildState);
+            if (currentBuilding != null)
+            {
+                currentBuilding.isPaused = true;
+                pauseImage.sprite = playSprite;
+            }
+        }
 
+        pause.onClick.RemoveAllListeners();
+        pause.onClick.AddListener(() => ContinueCycle());
     }
+
     public void ContinueCycle()
     {
         running = true;
+        if (buildState != 0)
+        {
+            Building currentBuilding = buildings.Find(b => b.buildID == buildState);
+            if (currentBuilding != null)
+            {
+                currentBuilding.isPaused = false;
+                pauseImage.sprite = pauseSprite;
+            }
+        }
+
+        pause.onClick.RemoveAllListeners();
         pause.onClick.AddListener(() => StopCycle());
     }
-
-
 
 
 

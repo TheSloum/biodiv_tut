@@ -12,6 +12,7 @@ public class Building : ScriptableObject
 
     [Tooltip("ID du batiment")]
     public int buildID = 50;
+    public bool isPaused = false;
     public string buildDesc;
     public string PolutionEtat;
     public string PopulationEtat;

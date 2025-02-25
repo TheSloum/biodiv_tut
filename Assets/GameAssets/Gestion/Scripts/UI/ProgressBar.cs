@@ -17,20 +17,24 @@ public class ProgressBar : MonoBehaviour
 
     void Awake()
     {
-        barAnim.speed=0f;
+        barAnim.speed = 0f;
     }
 
     void Update()
     {
-        Debug.Log(Materials.instance.canMove);
-        if(bar_id == 0){
-        currentScale = Mathf.Lerp(currentScale, Materials.instance.bar_0, Time.deltaTime * lerpSpeed);
-        } else if(bar_id == 1){
-        currentScale = Mathf.Lerp(currentScale, Materials.instance.bar_1, Time.deltaTime * lerpSpeed);
-        } else{
-        currentScale = Mathf.Lerp(currentScale, Materials.instance.bar_2, Time.deltaTime * lerpSpeed);
+        if (bar_id == 0)
+        {
+            currentScale = Mathf.Lerp(currentScale, Materials.instance.bar_0, Time.deltaTime * lerpSpeed);
         }
-        barAnim.Play("Bar",0,currentScale);
+        else if (bar_id == 1)
+        {
+            currentScale = Mathf.Lerp(currentScale, Materials.instance.bar_1, Time.deltaTime * lerpSpeed);
+        }
+        else
+        {
+            currentScale = Mathf.Lerp(currentScale, Materials.instance.bar_2, Time.deltaTime * lerpSpeed);
+        }
+        barAnim.Play("Bar", 0, currentScale);
     }
 
 }
