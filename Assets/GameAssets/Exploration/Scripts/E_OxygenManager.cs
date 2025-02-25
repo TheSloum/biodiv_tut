@@ -10,13 +10,13 @@ public class E_OxygenManager : MonoBehaviour
     public float currentOxygen;
     public float maxOxygen = 100f;
 
-    [SerializeField] private float depletionRate = 5f; 
-    [SerializeField] private TextMeshProUGUI trashCounterText; 
+    [SerializeField] private float depletionRate = 5f;
+    [SerializeField] private TextMeshProUGUI trashCounterText;
     [SerializeField] private GameObject resultScreen;
-    [SerializeField] private TextMeshProUGUI timeText; 
-    [SerializeField] private TextMeshProUGUI woodText; 
-    [SerializeField] private TextMeshProUGUI stoneText; 
-    [SerializeField] private TextMeshProUGUI ironText; 
+    [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private TextMeshProUGUI woodText;
+    [SerializeField] private TextMeshProUGUI stoneText;
+    [SerializeField] private TextMeshProUGUI ironText;
     [SerializeField] private GameObject gameOverCanvas;
 
     [HideInInspector] public int trashCollected = 0;
@@ -109,7 +109,7 @@ public class E_OxygenManager : MonoBehaviour
             StartCoroutine(DisplayResults(formattedTime));
         }
 
-        if(gameOverCanvas != null)
+        if (gameOverCanvas != null)
         {
             gameOverCanvas.SetActive(true);
         }
@@ -200,7 +200,7 @@ public class E_OxygenManager : MonoBehaviour
                 yield break;
             }
 
-            elapsed += Time.unscaledDeltaTime; 
+            elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
 
             currentNumber = Mathf.FloorToInt(Mathf.Lerp(0, targetNumber, t));
