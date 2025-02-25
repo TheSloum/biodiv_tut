@@ -13,10 +13,10 @@ public class Materials : MonoBehaviour
     public bool explored = false;
 
     public string townName;
-    public int mat_0 = 500; 
-    public int mat_1 = 500;
-    public int mat_2 = 500; 
-    public int price = 500; 
+    public int mat_0 = 0;
+    public int mat_1 = 0;
+    public int mat_2 = 0;
+    public int price = 0;
     public float bar_0 = 0.5f;
     public float bar_1 = 0.5f;
     public float bar_2 = 0.5f;
@@ -32,8 +32,8 @@ public class Materials : MonoBehaviour
     public GameObject victoryScreen;
     private bool victory = false;
 
-public GameObject errorIndicator;
-public Text errorText; // Assign a UI Text element in the Inspector
+    public GameObject errorIndicator;
+    public Text errorText;
     void OnEnable()
     {
         Application.logMessageReceived += HandleLog;
@@ -74,7 +74,7 @@ public Text errorText; // Assign a UI Text element in the Inspector
         }
     }
 
-    
+
 
     void Start()
     {
@@ -91,7 +91,8 @@ public Text errorText; // Assign a UI Text element in the Inspector
         {
             Debug.LogWarning("GameDataSaver.instance est null dans Materials.Start()");
         }
-        if(isLoad){
+        if (isLoad)
+        {
             tutorial = false;
         }
     }
@@ -102,7 +103,8 @@ public Text errorText; // Assign a UI Text element in the Inspector
         bar_1 = Mathf.Clamp(bar_1, 0f, 0.99f);
         bar_2 = Mathf.Clamp(bar_2, 0f, 0.99f);
 
-        if(bar_2 == 0.0f && victory == false){
+        if (bar_2 == 0.0f && victory == false)
+        {
             victoryScreen.SetActive(true);
             victory = true;
         }

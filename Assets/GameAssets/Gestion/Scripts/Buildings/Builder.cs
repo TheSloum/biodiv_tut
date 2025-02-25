@@ -428,7 +428,7 @@ public class Builder : MonoBehaviour
     private IEnumerator MoveCameraToBuilding(Vector3 targetPosition)
     {
         Vector3 startPosition = mainCamera.transform.position;
-        Vector3 targetPos = new Vector3(targetPosition.x, targetPosition.y + 400f, mainCamera.transform.position.z);
+        Vector3 targetPos = new Vector3(targetPosition.x + 200f, targetPosition.y + 0f, mainCamera.transform.position.z);
 
         float elapsedTime = 0;
         float duration = 1.5f;

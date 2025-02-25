@@ -16,14 +16,13 @@ public class GameDataSaver : MonoBehaviour
 
     public Sprite baseSprite;
 
-    public int mat_0 = 500;
-    public int mat_1 = 500;
-    public int mat_2 = 500;
-    public int price = 500;
+    public int mat_0 = 0;
+    public int mat_1 = 0;
+    public int mat_2 = 0;
+    public int price = 0;
 
     private void Awake()
     {
-        Debug.Log("DataSaver");
         if (instance == null)
         {
             instance = this;
@@ -44,7 +43,6 @@ public class GameDataSaver : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-
         if (scene.name == "SampleScene")
         {
             builderData.Clear();
@@ -53,13 +51,18 @@ public class GameDataSaver : MonoBehaviour
             {
                 builderData.Add(builder.gameObject);
             }
+
             if (Materials.instance.isLoad && Materials.instance.explored)
             {
                 LoadLatestSaveData();
                 Materials.instance.explored = false;
             }
+
+            // 📌 Ajout : Sauvegarde automatique dès le chargement de la partie
+            SaveData();
         }
     }
+
 
 
 
@@ -119,7 +122,6 @@ public class GameDataSaver : MonoBehaviour
             gameData.buildingDataList.Add(new BuildingData { unlocked = building.unlocked });
         }
 
-        Debug.Log(builderData);
         // Builder data
         // Avant on faisait directement un GetComponent, maintenant on vérifie.
         if (builderData != null)
@@ -174,7 +176,6 @@ public class GameDataSaver : MonoBehaviour
             for (int i = 0; i < builderData.Count && i < gameData.builderDataList.Count; i++)
             {
                 GameObject bObj = builderData[i];
-                Debug.Log(bObj);
                 if (bObj == null) continue;
                 Builder builderComponent = bObj.GetComponent<Builder>();
                 SpriteRenderer spriterenderer = bObj.GetComponent<SpriteRenderer>();
@@ -189,7 +190,6 @@ public class GameDataSaver : MonoBehaviour
                     builderComponent.level2 = gameData.builderDataList[i].level2;
                     builderComponent.running = gameData.builderDataList[i].running;
                     builderComponent.buildState = gameData.builderDataList[i].buildState;
-                    Debug.Log(builderComponent.buildState);
 
                     if (builderComponent.buildState == 0)
                     {
@@ -224,7 +224,7 @@ public class GameDataSaver : MonoBehaviour
             Debug.LogWarning("Aucune sauvegarde trouvée à: " + path);
         }
         isSavingCompleted = true;
-        
+
     }
 
 

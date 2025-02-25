@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Jardin
   m_EditorClassIdentifier: 
   buildID: 7
+  isPaused: 0
   buildDesc: "Un jardin urbain est un espace vert o\xF9 les habitants peuvent se
     d\xE9tendre, jardiner ou simplement profiter de la nature en pleine ville. Ces
     espaces aident \xE0 am\xE9liorer la qualit\xE9 de l\u2019air en capturant du
@@ -22,6 +23,7 @@ MonoBehaviour:
   PolutionEtat: --
   PopulationEtat: ++
   ElecEtat: =
+  buildingObject: {fileID: 0}
   buildClass: 4
   unlocked: 0
   buildSprite: {fileID: 21300000, guid: 018793af2cf996048b933d687b28a88f, type: 3}
