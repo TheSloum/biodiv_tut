@@ -286,7 +286,6 @@ public class Builder : MonoBehaviour
                     bar_1_cycle = UpBar(bar_1_cycle, levelScaleUp1, levelScaleUp2);
                     bar_2_cycle = UpBar(bar_2_cycle, levelScaleUp1, levelScaleUp2);
                     price_cycle = UpMat(price_cycle, levelScaleUp1, levelScaleUp2);
-
                     level0++;
                     ChargeUp(level0, building);
                 }
@@ -677,7 +676,7 @@ public class Builder : MonoBehaviour
             bar_2_cycle = building.bar_2_cycle;
             price_cycle = building.price_cycle;
             cycleDuration = building.time;
-
+            Debug.Log("cycleDuration" + building.buildID);
             running = !building.isPaused;
             if (running)
             {
@@ -766,7 +765,7 @@ public class Builder : MonoBehaviour
         numbers[0] = mat_0_cycle;
         numbers[1] = mat_1_cycle;
         numbers[2] = mat_2_cycle;
-        numbers[3] = price_cycle;
+        numbers[2] = price_cycle;
         Materials.instance.bar_0 += bar_0_cycle;
         Materials.instance.bar_1 += bar_1_cycle;
         Materials.instance.bar_2 += bar_2_cycle;
@@ -775,7 +774,7 @@ public class Builder : MonoBehaviour
         Materials.instance.mat_2 += mat_2_cycle;
         Materials.instance.price += price_cycle;
 
-
+        Debug.Log("Cycle terminé" + price_cycle + " " + Materials.instance.price + " " + numbers[3]);
 
         StartCoroutine(SpawnPrefabs());
 
