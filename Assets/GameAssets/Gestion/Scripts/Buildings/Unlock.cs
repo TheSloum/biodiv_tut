@@ -14,6 +14,7 @@ public class Unlock : MonoBehaviour
         
     }
     public void unlockBuild(string priceAndID){
+        Debug.Log(priceAndID);
         string[] parts = priceAndID.Split(',');
         int price = int.Parse(parts[0]);
         int unlockID = int.Parse(parts[1]);
@@ -38,6 +39,8 @@ public class Unlock : MonoBehaviour
         button.spriteState = spriteState;
 
                 building.Unlock();
+                
+        Debug.Log(building.unlocked);
                 Materials.instance.price -= price;
                 return;
             }

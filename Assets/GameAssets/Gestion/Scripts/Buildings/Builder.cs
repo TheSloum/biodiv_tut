@@ -93,7 +93,7 @@ public class Builder : MonoBehaviour
 
     public GameObject prefabToSpawn;           // The prefab to spawn
     public Vector3 spawnPosition;              // The base position to spawn prefabs at
-    public float positionOffset = 1f;          // The offset position for each new spawn
+    public float positionOffset = 40f;          // The offset position for each new spawn
     public float timeOffset = 0.2f;            // Delay between each spawn
     public float fadeDuration = 1f;            // Duration for fading out
     public float moveSpeed = 1f;               // Speed at which the object moves upward
@@ -531,6 +531,8 @@ public class Builder : MonoBehaviour
                 else
                 {
                     GameObject newButton = Instantiate(buttonPrefab, buttonCont);
+                    
+            Debug.Log(counter);
                     newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 0f);
                     Button button = newButton.GetComponent<Button>();
                     TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
@@ -538,6 +540,7 @@ public class Builder : MonoBehaviour
                     Image buttonImage = buttonSprite.GetComponent<Image>();
                     buttonImage.sprite = building.buildSprite;
                     buttonText.text = $"{building.name}";
+                    counter += 1;
 
                     foreach (Transform child in newButton.transform)
                     {
@@ -823,7 +826,6 @@ public class Builder : MonoBehaviour
         {
             if (numbers[i] == 0)
                 continue;
-
             GameObject instance = Instantiate(prefabToSpawn, transform.position + spawnPosition + new Vector3(positionOffset, 0f, 0f) * i, Quaternion.identity);
 
             TextMesh textMesh = instance.GetComponent<TextMesh>();
