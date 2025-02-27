@@ -16,14 +16,13 @@ public class GameDataSaver : MonoBehaviour
 
     public Sprite baseSprite;
 
-    public int mat_0 = 500;
-    public int mat_1 = 500;
-    public int mat_2 = 500;
-    public int price = 500;
+    public int mat_0 = 0;
+    public int mat_1 = 0;
+    public int mat_2 = 0;
+    public int price = 0;
 
     private void Awake()
     {
-        Debug.Log("DataSaver");
         if (instance == null)
         {
             instance = this;
@@ -44,7 +43,6 @@ public class GameDataSaver : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-
         if (scene.name == "SampleScene")
         {
             builderData.Clear();
@@ -53,13 +51,18 @@ public class GameDataSaver : MonoBehaviour
             {
                 builderData.Add(builder.gameObject);
             }
+
             if (Materials.instance.isLoad && Materials.instance.explored)
             {
                 LoadLatestSaveData();
                 Materials.instance.explored = false;
             }
+
+            // 📌 Ajout : Sauvegarde automatique dès le chargement de la partie
+            SaveData();
         }
     }
+
 
 
 
@@ -82,7 +85,7 @@ public class GameDataSaver : MonoBehaviour
         string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(latestFile);
         string datePart = fileNameWithoutExtension.Replace("GameData_", "");
 
-        LoadData(datePart);
+        LoadDataAfterExplore(datePart);
     }
 
     public void SaveData()
@@ -119,7 +122,6 @@ public class GameDataSaver : MonoBehaviour
             gameData.buildingDataList.Add(new BuildingData { unlocked = building.unlocked });
         }
 
-        Debug.Log(builderData);
         // Builder data
         // Avant on faisait directement un GetComponent, maintenant on vérifie.
         if (builderData != null)
@@ -174,7 +176,6 @@ public class GameDataSaver : MonoBehaviour
             for (int i = 0; i < builderData.Count && i < gameData.builderDataList.Count; i++)
             {
                 GameObject bObj = builderData[i];
-                Debug.Log(bObj);
                 if (bObj == null) continue;
                 Builder builderComponent = bObj.GetComponent<Builder>();
                 SpriteRenderer spriterenderer = bObj.GetComponent<SpriteRenderer>();
@@ -189,7 +190,6 @@ public class GameDataSaver : MonoBehaviour
                     builderComponent.level2 = gameData.builderDataList[i].level2;
                     builderComponent.running = gameData.builderDataList[i].running;
                     builderComponent.buildState = gameData.builderDataList[i].buildState;
-                    Debug.Log(builderComponent.buildState);
 
                     if (builderComponent.buildState == 0)
                     {
@@ -216,6 +216,81 @@ public class GameDataSaver : MonoBehaviour
             Materials.instance.price = gameData.price;
             Materials.instance.townName = gameData.townName;
             Materials.instance.isLoad = true;
+            Debug.Log("Jeu chargé avec succès !");
+        }
+        else
+        {
+            Debug.LogWarning("Aucune sauvegarde trouvée à: " + path);
+        }
+        isSavingCompleted = true;
+
+    }
+
+
+    public void LoadDataAfterExplore(string dataDate)
+    {
+        Materials.instance.isLoad = true;
+        string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            GameData gameData = JsonUtility.FromJson<GameData>(json);
+
+            // Recharger fishes
+            for (int i = 0; i < fishUnlockData.Count && i < gameData.fishDataList.Count; i++)
+            {
+                fishUnlockData[i].is_unlocked = gameData.fishDataList[i].is_unlocked;
+            }
+
+            // Recharger buildings
+            for (int i = 0; i < buildUnlockData.Count && i < gameData.buildingDataList.Count; i++)
+            {
+                buildUnlockData[i].unlocked = gameData.buildingDataList[i].unlocked;
+            }
+
+            // Recharger builder
+            for (int i = 0; i < builderData.Count && i < gameData.builderDataList.Count; i++)
+            {
+                GameObject bObj = builderData[i];
+                if (bObj == null) continue;
+                Builder builderComponent = bObj.GetComponent<Builder>();
+                SpriteRenderer spriterenderer = bObj.GetComponent<SpriteRenderer>();
+                if (builderComponent != null && spriterenderer != null && buildUnlockData.Count > gameData.builderDataList[i].buildState)
+                {
+                    builderComponent.editing = true;
+                    builderComponent.OnDestroyClicked();
+                    builderComponent.editing = false;
+                    builderComponent.progress = 0f;
+                    builderComponent.level0 = gameData.builderDataList[i].level0;
+                    builderComponent.level1 = gameData.builderDataList[i].level1;
+                    builderComponent.level2 = gameData.builderDataList[i].level2;
+                    builderComponent.running = gameData.builderDataList[i].running;
+                    builderComponent.buildState = gameData.builderDataList[i].buildState;
+
+                    if (builderComponent.buildState == 0)
+                    {
+                        spriterenderer.sprite = baseSprite;
+                    }
+                    else
+                    {
+                        builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
+                        spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
+                    }
+
+                    builderComponent.cycleDuration = buildUnlockData[gameData.builderDataList[i].buildState].time;
+                    if (builderComponent.buildState > 0 && builderComponent.running)
+                    {
+                        builderComponent.StartCycle();
+                        builderComponent.running = gameData.builderDataList[i].running;
+                    }
+                }
+            }
+            gameData.mat_0 = Materials.instance.mat_0;
+            gameData.mat_1 = Materials.instance.mat_1;
+            gameData.mat_2 = Materials.instance.mat_2;
+            gameData.price = Materials.instance.price;
+            Materials.instance.townName = gameData.townName;
+            Materials.instance.isLoad = true;
 
             Debug.Log("Jeu chargé avec succès !");
         }
@@ -224,9 +299,8 @@ public class GameDataSaver : MonoBehaviour
             Debug.LogWarning("Aucune sauvegarde trouvée à: " + path);
         }
         isSavingCompleted = true;
-        
-    }
 
+    }
 
 
     public void DelData(string dataDate)

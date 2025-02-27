@@ -1,0 +1,157 @@
+{
+    "fishDataList": [
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        }
+    ],
+    "buildingDataList": [
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": true
+        }
+    ],
+    "builderDataList": [
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0
+        }
+    ],
+    "mat_0": 0,
+    "mat_1": 0,
+    "mat_2": 0,
+    "price": 0,
+    "townName": ""
+}

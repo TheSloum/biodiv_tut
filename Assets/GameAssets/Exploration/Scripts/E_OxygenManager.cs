@@ -133,6 +133,7 @@ public class E_OxygenManager : MonoBehaviour
         Time.timeScale = 1f;
         Materials.instance.explored = true;
         Materials.instance.isLoad = true;
+
         SceneManager.LoadScene("SampleScene");
     }
 

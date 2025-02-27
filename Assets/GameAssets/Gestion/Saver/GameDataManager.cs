@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class GameDataManager : MonoBehaviour
 {
-   [Header("References")]
+    [Header("References")]
     public GameObject saveButtonPrefab;
-    public Transform saveListParent; 
-    public GameDataSaver gameDataSaver; 
+    public Transform saveListParent;
+    public GameDataSaver gameDataSaver;
 
 
     private void Awake()
@@ -17,9 +17,9 @@ public class GameDataManager : MonoBehaviour
         LoadSaveFiles();
     }
 
-void OnEnable()
+    void OnEnable()
     {
-        
+
         LoadSaveFiles();
     }
 
@@ -28,8 +28,9 @@ void OnEnable()
         // Clear existing save buttons
         foreach (Transform child in saveListParent)
         {
-            if(!child.gameObject.CompareTag("ButtonPriority")){
-            Destroy(child.gameObject);
+            if (!child.gameObject.CompareTag("ButtonPriority"))
+            {
+                Destroy(child.gameObject);
             }
         }
 
@@ -51,15 +52,16 @@ void OnEnable()
 
             // Instantiate a new button
             GameObject saveButton = Instantiate(saveButtonPrefab, saveListParent);
-            saveButton.transform.localPosition -= new Vector3(0, index * 50, 0); // Offset each button vertically
+            saveButton.transform.localPosition -= new Vector3(0, index * 100, 0); // Offset each button vertically
             index++;
 
-            
+
             TMP_Text textComponent = saveButton.transform.Find("Text (TMP)")?.GetComponent<TMP_Text>();
-        if (textComponent != null)
-        {
-            textComponent.text = $"Sauvegarde du {saveDate}";
-        } else {Debug.Log("pq");}
+            if (textComponent != null)
+            {
+                textComponent.text = $"Sauvegarde du {saveDate}";
+            }
+            else { Debug.Log("pq"); }
 
             // Configure the buttons
             var buttons = saveButton.GetComponentsInChildren<UnityEngine.UI.Button>();
@@ -77,12 +79,11 @@ void OnEnable()
         {
             File.Delete(filePath);
         }
-        else
-        {
-        }
 
-        // Remove the button from the list
         Destroy(saveButton);
+        Invoke(nameof(LoadSaveFiles), 0.1f);
+
     }
-    }
+
+}
 
