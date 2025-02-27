@@ -190,6 +190,13 @@ public class GameDataSaver : MonoBehaviour
                     builderComponent.level2 = gameData.builderDataList[i].level2;
                     builderComponent.running = gameData.builderDataList[i].running;
                     builderComponent.buildState = gameData.builderDataList[i].buildState;
+                    builderComponent.price_cycle = buildUnlockData[gameData.builderDataList[i].buildState].price_cycle;
+                    builderComponent.mat_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_0;
+                    builderComponent.mat_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_1;
+                    builderComponent.mat_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_2;
+                    builderComponent.bar_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_2_cycle;
+                    builderComponent.bar_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_1_cycle;
+                    builderComponent.bar_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_0_cycle;
 
                     if (builderComponent.buildState == 0)
                     {
@@ -266,6 +273,14 @@ public class GameDataSaver : MonoBehaviour
                     builderComponent.level2 = gameData.builderDataList[i].level2;
                     builderComponent.running = gameData.builderDataList[i].running;
                     builderComponent.buildState = gameData.builderDataList[i].buildState;
+                    builderComponent.price_cycle = buildUnlockData[gameData.builderDataList[i].buildState].price_cycle;
+                    builderComponent.mat_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_0;
+                    builderComponent.mat_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_1;
+                    builderComponent.mat_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_2;
+                    builderComponent.bar_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_2_cycle;
+                    builderComponent.bar_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_1_cycle;
+                    builderComponent.bar_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_0_cycle;
+
 
                     if (builderComponent.buildState == 0)
                     {
@@ -333,6 +348,18 @@ public class BuilderData
     public int level2;
     public bool running;
     public int buildState;
+
+    public int cons_mat_0 ;
+
+    public int cons_mat_1;
+
+    public int cons_mat_2 ;
+
+    public float bar_0_cycle;
+
+    public float bar_1_cycle;
+    public float bar_2_cycle ;
+    public int price_cycle = 0;
 }
 
 [System.Serializable]
