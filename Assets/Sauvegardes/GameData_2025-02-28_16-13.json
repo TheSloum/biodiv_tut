@@ -18,10 +18,10 @@
             "unlocked": true
         },
         {
-            "unlocked": false
+            "unlocked": true
         },
         {
-            "unlocked": false
+            "unlocked": true
         },
         {
             "unlocked": true
@@ -33,7 +33,7 @@
             "unlocked": false
         },
         {
-            "unlocked": false
+            "unlocked": true
         },
         {
             "unlocked": true
@@ -254,9 +254,9 @@
             "price_cycle": 0
         }
     ],
-    "mat_0": 40,
-    "mat_1": 40,
+    "mat_0": 0,
+    "mat_1": 0,
     "mat_2": 0,
-    "price": 150,
-    "townName": "kkk"
+    "price": 0,
+    "townName": "çuàçu"
 }

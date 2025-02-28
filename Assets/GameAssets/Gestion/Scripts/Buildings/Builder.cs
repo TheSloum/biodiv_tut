@@ -59,7 +59,7 @@ public class Builder : MonoBehaviour
     public Sprite pauseSprite;
 
     public bool running = false;
-    public float cycleDuration = 0f;
+    public float cycleDuration = 1f;
     private Coroutine cycleCoroutine;
     public int mat_0_cycle = 0;
     public int mat_1_cycle = 0;
