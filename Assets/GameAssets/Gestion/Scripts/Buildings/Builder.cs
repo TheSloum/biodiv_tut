@@ -531,8 +531,8 @@ public class Builder : MonoBehaviour
                 else
                 {
                     GameObject newButton = Instantiate(buttonPrefab, buttonCont);
-                    
-            Debug.Log(counter);
+
+                    Debug.Log(counter);
                     newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 0f);
                     Button button = newButton.GetComponent<Button>();
                     TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
@@ -777,7 +777,6 @@ public class Builder : MonoBehaviour
         Materials.instance.mat_2 += mat_2_cycle;
         Materials.instance.price += price_cycle;
 
-        Debug.Log("Cycle terminé" + price_cycle + " " + Materials.instance.price + " " + numbers[3]);
 
         StartCoroutine(SpawnPrefabs());
 

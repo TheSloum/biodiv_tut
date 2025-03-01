@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class E_GameManager : MonoBehaviour
 {
     public static E_GameManager instance = null;
@@ -14,19 +17,29 @@ public class E_GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded; // Ajout du listener
         }
         else if (instance != this)
         {
             Destroy(gameObject);
         }
+    }
 
-        oxygenManager = oxygenManagerObject.GetComponent<E_OxygenManager>();
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Rechercher l'object OxygenManager dans la nouvelle scène
+        oxygenManagerObject = GameObject.FindWithTag("OxygenManager"); // Assurez-vous que votre OxygenManager a un tag
+        if (oxygenManagerObject != null)
+        {
+            oxygenManager = oxygenManagerObject.GetComponent<E_OxygenManager>();
+        }
     }
 
     public E_OxygenManager GetOxygenManager()
     {
         return oxygenManager;
     }
+
 
     public void SaveGame()
     {
@@ -59,15 +72,15 @@ public class E_GameManager : MonoBehaviour
     public void LoadGame()
     {
         E_SaveData data = E_SaveLoadManager.instance.LoadGame();
-        if(data != null)
+        if (data != null)
         {
             E_PlayerController player = FindObjectOfType<E_PlayerController>();
-            if(player != null)
+            if (player != null)
             {
                 player.transform.position = data.playerPosition;
             }
 
-            if(oxygenManager != null)
+            if (oxygenManager != null)
             {
                 oxygenManager.currentOxygen = data.currentOxygen;
                 oxygenManager.oxygenSlider.value = data.currentOxygen;
@@ -79,7 +92,7 @@ public class E_GameManager : MonoBehaviour
             if (J_TimeManager.Instance != null)
             {
                 J_TimeManager.Instance.SetTime(
-                    data.currentDay, 
+                    data.currentDay,
                     data.currentMonth,
                     data.currentYear
                 );
