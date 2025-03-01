@@ -4,12 +4,16 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using UnityEngine.UI; // Ajoute ceci en haut
+
+
+
 public class GameDataSaver : MonoBehaviour
 {
     public bool isSavingCompleted = false;
     public bool SaveAndLoadScene = false;
     public static GameDataSaver instance { get; private set; }
-
+    public Button trasiButton;
     public List<Fishes> fishUnlockData;
     public List<Building> buildUnlockData;
     public List<GameObject> builderData;
@@ -45,6 +49,17 @@ public class GameDataSaver : MonoBehaviour
     {
         if (scene.name == "SampleScene")
         {
+            trasiButton = GameObject.Find("Trasi")?.GetComponent<Button>();
+
+            if (trasiButton != null)
+            {
+                trasiButton.onClick.AddListener(SaveData);
+            }
+            else
+            {
+                Debug.LogWarning("⚠️ Bouton Trasi introuvable !");
+            }
+
             builderData.Clear();
             Builder[] builders = FindObjectsOfType<Builder>();
             foreach (Builder builder in builders)
@@ -58,10 +73,10 @@ public class GameDataSaver : MonoBehaviour
                 Materials.instance.explored = false;
             }
 
-            // 📌 Ajout : Sauvegarde automatique dès le chargement de la partie
             SaveData();
         }
     }
+
 
 
 
@@ -124,24 +139,40 @@ public class GameDataSaver : MonoBehaviour
 
         // Builder data
         // Avant on faisait directement un GetComponent, maintenant on vérifie.
+        // Builder data
+
+
         if (builderData != null)
         {
             foreach (var builderObject in builderData)
             {
-                if (builderObject == null) continue;
-                Builder builderComponent = builderObject.GetComponent<Builder>();
-                if (builderComponent == null) continue;
+                if (builderObject == null)
+                {
+                    Debug.LogWarning("Un builder est null dans builderData !");
+                    continue;
+                }
 
-                gameData.builderDataList.Add(new BuilderData
+                Builder builderComponent = builderObject.GetComponent<Builder>();
+                if (builderComponent == null)
+                {
+                    Debug.LogWarning($"L'objet {builderObject.name} n'a pas de composant Builder !");
+                    continue;
+                }
+
+                BuilderData newBuilderData = new BuilderData
                 {
                     level0 = builderComponent.level0,
                     level1 = builderComponent.level1,
                     level2 = builderComponent.level2,
                     running = builderComponent.running,
                     buildState = builderComponent.buildState
-                });
+                };
+
+                gameData.builderDataList.Add(newBuilderData);
             }
+
         }
+
 
         // Sauvegarde en fichier
         string fileName = $"GameData_{DateTime.Now:yyyy-MM-dd_HH-mm}.json";
@@ -160,13 +191,11 @@ public class GameDataSaver : MonoBehaviour
             string json = File.ReadAllText(path);
             GameData gameData = JsonUtility.FromJson<GameData>(json);
 
-            // Recharger fishes
             for (int i = 0; i < fishUnlockData.Count && i < gameData.fishDataList.Count; i++)
             {
                 fishUnlockData[i].is_unlocked = gameData.fishDataList[i].is_unlocked;
             }
 
-            // Recharger buildings
             for (int i = 0; i < buildUnlockData.Count && i < gameData.buildingDataList.Count; i++)
             {
                 buildUnlockData[i].unlocked = gameData.buildingDataList[i].unlocked;
@@ -223,7 +252,6 @@ public class GameDataSaver : MonoBehaviour
             Materials.instance.price = gameData.price;
             Materials.instance.townName = gameData.townName;
             Materials.instance.isLoad = true;
-            Debug.Log("Jeu chargé avec succès !");
         }
         else
         {
@@ -242,28 +270,27 @@ public class GameDataSaver : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             GameData gameData = JsonUtility.FromJson<GameData>(json);
-
-            // Recharger fishes
             for (int i = 0; i < fishUnlockData.Count && i < gameData.fishDataList.Count; i++)
             {
                 fishUnlockData[i].is_unlocked = gameData.fishDataList[i].is_unlocked;
             }
 
-            // Recharger buildings
             for (int i = 0; i < buildUnlockData.Count && i < gameData.buildingDataList.Count; i++)
             {
                 buildUnlockData[i].unlocked = gameData.buildingDataList[i].unlocked;
             }
 
-            // Recharger builder
+
             for (int i = 0; i < builderData.Count && i < gameData.builderDataList.Count; i++)
             {
                 GameObject bObj = builderData[i];
                 if (bObj == null) continue;
                 Builder builderComponent = bObj.GetComponent<Builder>();
                 SpriteRenderer spriterenderer = bObj.GetComponent<SpriteRenderer>();
+
                 if (builderComponent != null && spriterenderer != null && buildUnlockData.Count > gameData.builderDataList[i].buildState)
                 {
+
                     builderComponent.editing = true;
                     builderComponent.OnDestroyClicked();
                     builderComponent.editing = false;
@@ -307,7 +334,6 @@ public class GameDataSaver : MonoBehaviour
             Materials.instance.townName = gameData.townName;
             Materials.instance.isLoad = true;
 
-            Debug.Log("Jeu chargé avec succès !");
         }
         else
         {
@@ -349,16 +375,16 @@ public class BuilderData
     public bool running;
     public int buildState;
 
-    public int cons_mat_0 ;
+    public int cons_mat_0;
 
     public int cons_mat_1;
 
-    public int cons_mat_2 ;
+    public int cons_mat_2;
 
     public float bar_0_cycle;
 
     public float bar_1_cycle;
-    public float bar_2_cycle ;
+    public float bar_2_cycle;
     public int price_cycle = 0;
 }
 

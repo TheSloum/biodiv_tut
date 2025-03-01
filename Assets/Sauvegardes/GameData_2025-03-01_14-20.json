@@ -1,7 +1,7 @@
 {
     "fishDataList": [
         {
-            "is_unlocked": false
+            "is_unlocked": true
         },
         {
             "is_unlocked": false
@@ -18,10 +18,10 @@
             "unlocked": true
         },
         {
-            "unlocked": true
+            "unlocked": false
         },
         {
-            "unlocked": true
+            "unlocked": false
         },
         {
             "unlocked": true
@@ -33,7 +33,7 @@
             "unlocked": false
         },
         {
-            "unlocked": true
+            "unlocked": false
         },
         {
             "unlocked": true
@@ -254,9 +254,9 @@
             "price_cycle": 0
         }
     ],
-    "mat_0": 0,
-    "mat_1": 0,
+    "mat_0": 20,
+    "mat_1": 20,
     "mat_2": 0,
     "price": 0,
-    "townName": "çuàçu"
+    "townName": "j"
 }

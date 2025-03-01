@@ -14,6 +14,7 @@ TagManager:
   - DateText
   - ImpactDisplay
   - OxygenManager
+  - Victory
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HideStart : MonoBehaviour
 {
 
-//code le plus brut et sale que j'ai fjamais fait mais j'en branle
+    //code le plus brut et sale que j'ai fjamais fait mais j'en branle
     [SerializeField] private GameObject HideGui;
     [SerializeField] private GameObject cameraObject;
 
@@ -29,17 +29,17 @@ public class HideStart : MonoBehaviour
 
 
 
-    public GameObject fadeObject; 
-    public GameObject fadeObject2; 
-    public GameObject fadeObject3; 
+    public GameObject fadeObject;
+    public GameObject fadeObject2;
+    public GameObject fadeObject3;
 
 
     public float fadeDuration = 2.0f;
-    
-public float disableDuration = 2f;
+
+    public float disableDuration = 2f;
 
 
-    public GameObject prebuild1; 
+    public GameObject prebuild1;
     public GameObject prebuild2;
     public GameObject prebuild3;
 
@@ -49,7 +49,7 @@ public float disableDuration = 2f;
     public Button unlock3;
 
     public int step = 0;
-    
+
     public Button exploration;
     public GameObject manageMenu;
 
@@ -59,55 +59,62 @@ public float disableDuration = 2f;
     public GameObject inputBack;
     [SerializeField] private GameObject dialogueMasking;
 
-    
+
     void Start()
     {
-        if (!Materials.instance.isLoad){
-        StartCoroutine(DisableAllButtons());
-            
+        if (!Materials.instance.isLoad)
+        {
+            StartCoroutine(DisableAllButtons());
+
             gameObject.SetActive(true);
             HideGui.SetActive(false);
-        inputField.onValueChanged.AddListener(ValidateInput);
-        submitButton.onClick.AddListener(OnSubmit);
-        Materials.instance.canMove = false;
+            inputField.onValueChanged.AddListener(ValidateInput);
+            submitButton.onClick.AddListener(OnSubmit);
+            Materials.instance.canMove = false;
 
 
-        } else  {
-            
-        Materials.instance.canMove = true;
+        }
+        else
+        {
+
+            Materials.instance.canMove = true;
             gameObject.SetActive(false);
         }
 
     }
 
-    public void tutoChoose(bool tuto){
-        
-            hideInput.SetActive(false);
-            HideGui.SetActive(true);
-        if(tuto){
-            
-        Materials.instance.textDone = false;
-        ShowDialogue.Instance.DialogueBox(speech[0]);
-        StartCoroutine(WaitForTextEnd(0));
-        } else {
+    public void tutoChoose(bool tuto)
+    {
+
+        hideInput.SetActive(false);
+        HideGui.SetActive(true);
+        if (tuto)
+        {
+
+            Materials.instance.textDone = false;
+            ShowDialogue.Instance.DialogueBox(speech[0]);
+            StartCoroutine(WaitForTextEnd(0));
+        }
+        else
+        {
             Materials.instance.canMove = true;
             Materials.instance.tutorial = false;
         }
         tutoChoosePage.SetActive(false);
         inputBack.SetActive(false);
-        
-        
+
+
     }
-    
-public IEnumerator DisableAllButtons()
-{
-    
+
+    public IEnumerator DisableAllButtons()
+    {
+
         CamMov cammov = pauser.GetComponent<CamMov>();
         cammov.TogglePause();
         List<Button> allButtons = new List<Button>();
 
 
-foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
+        foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
         {
             if (button.gameObject.scene.isLoaded)
             {
@@ -115,26 +122,26 @@ foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
             }
         }
 
-    foreach (Button button in allButtons)
-    {
-        if (button.CompareTag("ButtonTutorial"))
+        foreach (Button button in allButtons)
         {
-            continue;
+            if (button.CompareTag("ButtonTutorial"))
+            {
+                continue;
+            }
+            button.interactable = false;
         }
-        button.interactable = false; 
-    }
 
-    while (Materials.instance.tutorial)
-    {
-        yield return null;
-    }
+        while (Materials.instance.tutorial)
+        {
+            yield return null;
+        }
 
         cammov.TogglePause();
-    foreach (Button button in allButtons)
-    {
-        button.interactable = true;  
+        foreach (Button button in allButtons)
+        {
+            button.interactable = true;
+        }
     }
-}
 
 
     private void ValidateInput(string input)
@@ -162,11 +169,11 @@ foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
         if (!string.IsNullOrEmpty(userInput))
         {
             Materials.instance.townName = userInput;
-        Materials.instance.canMove = true;
-        
+            Materials.instance.canMove = true;
+
         }
         tutoChoosePage.SetActive(true);
-            hideInput.SetActive(false);
+        hideInput.SetActive(false);
     }
 
     private IEnumerator MoveToTarget(Transform target, float moveSpeed)
@@ -175,15 +182,18 @@ foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
         while (Vector3.Distance(cameraObject.transform.position, target.position) > 0.05f)
         {
             cameraObject.transform.position = Vector3.Lerp(cameraObject.transform.position, target.position, Time.unscaledDeltaTime * moveSpeed);
-            yield return null; 
+            yield return null;
         }
 
         cameraObject.transform.position = target.position;
-        
-        if(step==0){
-        StartCoroutine(FadeInSprites(fadeObject, fadeDuration));
-        } else if(step==1){
-        StartCoroutine(FadeInSprites(fadeObject3, fadeDuration));
+
+        if (step == 0)
+        {
+            StartCoroutine(FadeInSprites(fadeObject, fadeDuration));
+        }
+        else if (step == 1)
+        {
+            StartCoroutine(FadeInSprites(fadeObject3, fadeDuration));
         }
     }
     private IEnumerator FadeInSprites(GameObject target, float duration)
@@ -191,7 +201,7 @@ foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
         if (target == null) yield break;
 
         SpriteRenderer[] spriteRenderers = target.GetComponentsInChildren<SpriteRenderer>();
-        
+
         foreach (var sr in spriteRenderers)
         {
             if (sr != null)
@@ -205,7 +215,7 @@ foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            float alpha = Mathf.Lerp(0.0f, 0.6f, elapsedTime / duration); 
+            float alpha = Mathf.Lerp(0.0f, 0.6f, elapsedTime / duration);
             foreach (var sr in spriteRenderers)
             {
                 if (sr != null)
@@ -229,15 +239,18 @@ foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
                 sr.color = color;
             }
         }
-        
-        if(step==0){
-        Materials.instance.textDone = false;
-        ShowDialogue.Instance.DialogueBox(speech[1]);
+
+        if (step == 0)
+        {
+            Materials.instance.textDone = false;
+            ShowDialogue.Instance.DialogueBox(speech[1]);
             dialogueMasking.SetActive(true);
-        StartCoroutine(WaitForTextEnd(1));
-        step = 1;
-        } else if(step == 1){
-        StartCoroutine(CheckForClicks());
+            StartCoroutine(WaitForTextEnd(1));
+            step = 1;
+        }
+        else if (step == 1)
+        {
+            StartCoroutine(CheckForClicks());
         }
     }
 
@@ -251,7 +264,7 @@ foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            float alpha = Mathf.Lerp(0.6f, 0.0f, elapsedTime / duration); 
+            float alpha = Mathf.Lerp(0.6f, 0.0f, elapsedTime / duration);
 
             foreach (var sr in spriteRenderers)
             {
@@ -280,9 +293,9 @@ foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
 
 
 
-private IEnumerator CheckForClicks()
+    private IEnumerator CheckForClicks()
     {
-        
+
         while (true)
         {
             yield return null;
@@ -293,21 +306,21 @@ private IEnumerator CheckForClicks()
 
                 if (prebuild1.GetComponent<Collider2D>() == Physics2D.OverlapPoint(mousePos))
                 {
-        yield return new WaitForSecondsRealtime(0.2f);
+                    yield return new WaitForSecondsRealtime(0.2f);
                     OnObjectClick();
                     yield break;
                 }
 
                 if (prebuild2.GetComponent<Collider2D>() == Physics2D.OverlapPoint(mousePos))
                 {
-        yield return new WaitForSecondsRealtime(0.2f);
+                    yield return new WaitForSecondsRealtime(0.2f);
                     OnObjectClick();
                     yield break;
                 }
 
                 if (prebuild3.GetComponent<Collider2D>() == Physics2D.OverlapPoint(mousePos))
                 {
-        yield return new WaitForSecondsRealtime(0.2f);
+                    yield return new WaitForSecondsRealtime(0.2f);
                     OnObjectClick2();
                     yield break;
                 }
@@ -322,7 +335,7 @@ private IEnumerator CheckForClicks()
             if (sr != null)
             {
                 Color color = sr.color;
-                color.a = 0f; 
+                color.a = 0f;
                 sr.color = color;
             }
         }
@@ -331,7 +344,7 @@ private IEnumerator CheckForClicks()
         StartCoroutine(WaitForTextEnd(2));
     }
 
-    
+
     void OnObjectClick2()
     {
         SpriteRenderer[] spriteRenderers = fadeObject3.GetComponentsInChildren<SpriteRenderer>();
@@ -340,7 +353,7 @@ private IEnumerator CheckForClicks()
             if (sr != null)
             {
                 Color color = sr.color;
-                color.a = 0f; 
+                color.a = 0f;
                 sr.color = color;
             }
         }
@@ -355,72 +368,86 @@ private IEnumerator CheckForClicks()
 
     private void OnButtonCloseClicked()
     {
-        if(step == 3){
+        if (step == 3)
+        {
             exploration.interactable = true;
-            
-        Materials.instance.textDone = false;
-        ShowDialogue.Instance.DialogueBox(speech[5]);
-        exploration.onClick.AddListener(TutoPart1End);
+
+            Materials.instance.textDone = false;
+            ShowDialogue.Instance.DialogueBox(speech[5]);
+            exploration.onClick.AddListener(TutoPart1End);
             Materials.instance.canMove = false;
-            
-        StartCoroutine(WaitForTextEnd(5));
-        } else {
-        StartCoroutine(FadeInSprites(fadeObject2, fadeDuration));
+
+            StartCoroutine(WaitForTextEnd(5));
+        }
+        else
+        {
+            StartCoroutine(FadeInSprites(fadeObject2, fadeDuration));
             Materials.instance.canMove = false;
-        Materials.instance.textDone = false;            
-        ShowDialogue.Instance.DialogueBox(speech[3]);
-        StartCoroutine(WaitForTextEnd(3));
+            Materials.instance.textDone = false;
+            ShowDialogue.Instance.DialogueBox(speech[3]);
+            StartCoroutine(WaitForTextEnd(3));
         }
 
     }
 
-    private void TutoPart1End(){
-        
+    private void TutoPart1End()
+    {
+
     }
 
     private IEnumerator WaitForTextEnd(int index)
     {
         yield return new WaitUntil(() => Materials.instance.textDone == true);
-        if(index==1){
-            
+        if (index == 1)
+        {
+
             dialogueMasking.SetActive(false);
         }
-            Time.timeScale = 0f;
+        Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(0.2f);
-        if(index==0){
-        StartCoroutine(MoveToTarget(target[0], moveSpeed));
-        } else if(index==1){
+        if (index == 0)
+        {
+            StartCoroutine(MoveToTarget(target[0], moveSpeed));
+        }
+        else if (index == 1)
+        {
             Materials.instance.tutoToggle = true;
-            
+
             Materials.instance.canMove = false;
 
 
-            
-        StartCoroutine(CheckForClicks());
-        } else if(index==2){
+
+            StartCoroutine(CheckForClicks());
+        }
+        else if (index == 2)
+        {
             Materials.instance.canMove = false;
-            
+
             Materials.instance.tutoToggle = false;
             unlock2.interactable = true;
-        unlock2.onClick.AddListener(OnButtonCloseClicked);
-            
-        } else if(index==3){
-        StartCoroutine(FadeOutSprites(fadeObject2, fadeDuration));
+            unlock2.onClick.AddListener(OnButtonCloseClicked);
+
+        }
+        else if (index == 3)
+        {
+            StartCoroutine(FadeOutSprites(fadeObject2, fadeDuration));
             fadeObject.SetActive(false);
             fadeObject3.SetActive(true);
-        StartCoroutine(MoveToTarget(target[1],moveSpeed));
+            StartCoroutine(MoveToTarget(target[1], moveSpeed));
             Materials.instance.tutoToggle = true;
             Materials.instance.canMove = false;
-        }else if(index==4){
+        }
+        else if (index == 4)
+        {
             Materials.instance.tutoToggle = false;
             Materials.instance.canMove = false;
             unlock3.interactable = true;
             step = 3;
-        unlock3.onClick.AddListener(OnButtonCloseClicked);
+            unlock3.onClick.AddListener(OnButtonCloseClicked);
         }
     }
 
 
 
-    
+
 }

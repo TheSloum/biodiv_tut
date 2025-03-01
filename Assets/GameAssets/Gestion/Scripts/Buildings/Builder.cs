@@ -414,7 +414,6 @@ public class Builder : MonoBehaviour
                     UpdateTextColor(buildingEtatPopulation, building.PopulationEtat, false);
                     UpdateTextColor(buildingEtatElec, building.ElecEtat, false);
 
-                    Debug.Log("Affichage du bâtiment : " + building.name);
 
                     // Déplacer la caméra vers le bâtiment
                     StartCoroutine(MoveCameraToBuilding(gameObject.transform.position));
@@ -531,8 +530,6 @@ public class Builder : MonoBehaviour
                 else
                 {
                     GameObject newButton = Instantiate(buttonPrefab, buttonCont);
-
-                    Debug.Log(counter);
                     newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 0f);
                     Button button = newButton.GetComponent<Button>();
                     TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
@@ -679,7 +676,6 @@ public class Builder : MonoBehaviour
             bar_2_cycle = building.bar_2_cycle;
             price_cycle = building.price_cycle;
             cycleDuration = building.time;
-            Debug.Log("cycleDuration" + building.buildID);
             running = !building.isPaused;
             if (running)
             {
@@ -801,9 +797,11 @@ public class Builder : MonoBehaviour
 
     public void ContinueCycle()
     {
+
         running = true;
         if (buildState != 0)
         {
+
             Building currentBuilding = buildings.Find(b => b.buildID == buildState);
             if (currentBuilding != null)
             {
