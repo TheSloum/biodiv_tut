@@ -208,6 +208,7 @@ public class Builder : MonoBehaviour
             HideManageMenu();
 
             editing = false;
+            Materials.instance.canMove = true;
         }
     }
 

@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1510,6 +1511,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -3435,6 +3443,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -4523,6 +4538,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -8389,6 +8411,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -9490,6 +9519,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -12626,6 +12662,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -16767,6 +16810,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -21482,6 +21532,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -28786,6 +28843,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -29329,6 +29393,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -29747,6 +29818,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -31187,12 +31265,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 0.97048855, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.01, y: 0.01}
+  m_Size: {x: 7.46, y: 7.47}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -32722,6 +32800,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -33114,6 +33199,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -34032,6 +34124,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0
@@ -35124,6 +35223,13 @@ MonoBehaviour:
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
   running: 0
   cycleDuration: 0
+  mat_0_cycle: 0
+  mat_1_cycle: 0
+  mat_2_cycle: 0
+  bar_0_cycle: 0
+  bar_1_cycle: 0
+  bar_2_cycle: 0
+  price_cycle: 0
   level0: 0
   level1: 0
   level2: 0

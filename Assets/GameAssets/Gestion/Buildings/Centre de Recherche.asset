@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Centre de recherche
   m_EditorClassIdentifier: 
   buildID: 50
+  isPaused: 0
   buildDesc: 
   PolutionEtat: +
   PopulationEtat: '-'
@@ -28,7 +29,7 @@ MonoBehaviour:
   bar_0: 0
   bar_1: 0
   bar_2: 0
-  time: 0
+  time: 5e+11
   cons_mat_0: 0
   cons_mat_1: 0
   cons_mat_2: 0
