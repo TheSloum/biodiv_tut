@@ -101,7 +101,7 @@ public class Builder : MonoBehaviour
 
     private float[] numbers = new float[4];    // Array to store numbers to display
     public Sprite[] sprites = new Sprite[4];
-
+    public TMP_Text buildingEtatMoney;
     public TMP_Text buildingNameText;
     public TMP_Text buildingDescriptionText;
     public TMP_Text buildingEtatPolution;
@@ -394,7 +394,6 @@ public class Builder : MonoBehaviour
                     upgrade2.onClick.AddListener(() => LevelUp2(building));
                     upgrade3.onClick.AddListener(() => LevelUp3(building));
 
-                    // Gestion de l'état du bouton pause
                     if (building.isPaused)
                     {
                         pauseImage.sprite = playSprite;
@@ -406,22 +405,19 @@ public class Builder : MonoBehaviour
                         pause.onClick.AddListener(() => StopCycle());
                     }
 
-                    // Mettre à jour le texte
                     buildingNameText.text = building.name;
                     buildingDescriptionText.text = building.buildDesc;
 
                     UpdateTextColor(buildingEtatPolution, building.PolutionEtat, true);
                     UpdateTextColor(buildingEtatPopulation, building.PopulationEtat, false);
                     UpdateTextColor(buildingEtatElec, building.ElecEtat, false);
+                    UpdateTextColor(buildingEtatMoney, building.MoneyMake, false);
 
-
-                    // Déplacer la caméra vers le bâtiment
                     StartCoroutine(MoveCameraToBuilding(gameObject.transform.position));
                 }
             }
         }
     }
-
 
     private IEnumerator MoveCameraToBuilding(Vector3 targetPosition)
     {

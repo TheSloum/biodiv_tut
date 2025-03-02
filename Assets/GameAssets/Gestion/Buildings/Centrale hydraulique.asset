@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Centrale hydraulique
   m_EditorClassIdentifier: 
   buildID: 3
+  isPaused: 0
   buildDesc: "Une centrale hydraulique utilise la force de l\u2019eau pour produire
     de l\u2019\xE9lectricit\xE9. Par exemple, un barrage retient l\u2019eau d\u2019une
     rivi\xE8re et lorsqu\u2019on lib\xE8re cette eau, elle fait tourner des turbines.
@@ -23,6 +24,8 @@ MonoBehaviour:
   PolutionEtat: '-'
   PopulationEtat: '-'
   ElecEtat: ++
+  MoneyMake: '-'
+  buildingObject: {fileID: 0}
   buildClass: 1
   unlocked: 0
   buildSprite: {fileID: 21300000, guid: 7a6df2c1fff3ee24397550fe99c6da57, type: 3}
