@@ -7,22 +7,21 @@ public class Menu : MonoBehaviour
     public GameObject MainMenu;
     public GameObject Parametre;
     public GameObject Loadeur;
-
     public Toggle fontToggle;
     public TMP_FontAsset ClassicFont;
     public TMP_FontAsset disFont;
     public TMP_Text[] textsToChange;
-
+    private float IsInMenue = 0;
     private int fontSizeOffset = 2;
 
     void Start()
     {
-        // Charger l'état du Toggle depuis PlayerPrefs
+        IsInMenue = 0;
         if (PlayerPrefs.HasKey("FontToggleState"))
         {
             bool isChecked = PlayerPrefs.GetInt("FontToggleState") == 1;
-            fontToggle.isOn = isChecked; // Appliquer l'état au Toggle
-            ApplyFontChange(isChecked); // Appliquer immédiatement la police
+            fontToggle.isOn = isChecked;
+            ApplyFontChange(isChecked);
         }
 
         if (fontToggle != null)
@@ -33,11 +32,19 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-        if (Parametre.activeSelf || MainMenu.activeSelf )
+        Debug.Log(IsInMenue);
+        if (Parametre.activeSelf || MainMenu.activeSelf || Loadeur.activeSelf && IsInMenue == 0)
         {
             Materials.instance.canMove = false;
-        }else if(!Materials.instance.tutorial){
+            IsInMenue = 1;
+
+        }
+        else if (!Materials.instance.tutorial && !Parametre.activeSelf && !MainMenu.activeSelf && !Loadeur.activeSelf && IsInMenue == 1)
+        {
+
             Materials.instance.canMove = true;
+            IsInMenue = 0;
+
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))

@@ -72,7 +72,6 @@ public class HideStart : MonoBehaviour
             submitButton.onClick.AddListener(OnSubmit);
             Materials.instance.canMove = false;
 
-
         }
         else
         {
