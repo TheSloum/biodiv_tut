@@ -15,9 +15,10 @@ MonoBehaviour:
   buildID: 50
   isPaused: 0
   buildDesc: 
-  PolutionEtat: +
-  PopulationEtat: '-'
-  ElecEtat: +
+  PolutionEtat: =
+  PopulationEtat: =
+  ElecEtat: =
+  MoneyMake: =
   buildingObject: {fileID: 0}
   buildClass: 0
   unlocked: 1
@@ -29,7 +30,7 @@ MonoBehaviour:
   bar_0: 0
   bar_1: 0
   bar_2: 0
-  time: 5e+11
+  time: 3.402823e+38
   cons_mat_0: 0
   cons_mat_1: 0
   cons_mat_2: 0

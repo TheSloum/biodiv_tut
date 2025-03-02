@@ -13,6 +13,8 @@ TagManager:
   - OxygenSlider
   - DateText
   - ImpactDisplay
+  - OxygenManager
+  - Victory
   layers:
   - Default
   - TransparentFX

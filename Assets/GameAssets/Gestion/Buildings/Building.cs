@@ -17,6 +17,7 @@ public class Building : ScriptableObject
     public string PolutionEtat;
     public string PopulationEtat;
     public string ElecEtat;
+    public string MoneyMake;
     public GameObject buildingObject;
     public int buildClass = 1;
 

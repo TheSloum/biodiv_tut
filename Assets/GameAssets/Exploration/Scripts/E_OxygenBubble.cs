@@ -21,11 +21,14 @@ public class E_OxygenBubble : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+
+        if (collision.CompareTag("Player"))
         {
+            Debug.Log("Toucher");
             // Ajouter de l'oxygène
-            if(oxygenManager != null)
+            if (oxygenManager != null)
             {
+                Debug.Log("Couler");
                 oxygenManager.AddOxygen(oxygenAmount);
             }
             // Détruire la bulle après collecte

@@ -26,7 +26,7 @@ public class E_OxygenManager : MonoBehaviour
 
     void Start()
     {
-        // CHANGEMENT : Réinitialisation des valeurs au start
+
         currentOxygen = maxOxygen;
         oxygenSlider.maxValue = maxOxygen;
         oxygenSlider.value = currentOxygen;

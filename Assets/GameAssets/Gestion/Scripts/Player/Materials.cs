@@ -1,15 +1,14 @@
 using UnityEngine;
-
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class Materials : MonoBehaviour
 {
     public static Materials instance;
 
-
     public bool tutorial = true;
     public bool tutorialStep = false;
     public bool researchCentr = false;
-
     public bool explored = false;
 
     public string townName;
@@ -34,6 +33,7 @@ public class Materials : MonoBehaviour
 
     public GameObject errorIndicator;
     public Text errorText;
+
     void OnEnable()
     {
         Application.logMessageReceived += HandleLog;
@@ -59,18 +59,35 @@ public class Materials : MonoBehaviour
             }
         }
     }
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded; // ✅ S'assurer que la méthode est bien attachée
             Debug.Log("Materials.instance initialisé.");
         }
         else
         {
             Destroy(gameObject);
             Debug.LogWarning("Multiple instances de Materials détectées.");
+        }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("🔄 Scène chargée : " + scene.name);
+
+        foreach (GameObject obj in Resources.FindObjectsOfTypeAll<GameObject>())
+        {
+            if (obj.CompareTag("Victory"))
+            {
+                victoryScreen = obj;
+                Debug.Log("✅ VictoryScreen trouvé même s'il est désactivé !");
+                break;
+            }
         }
     }
 
@@ -89,8 +106,9 @@ public class Materials : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("GameDataSaver.instance est null dans Materials.Start()");
+            Debug.LogWarning("⚠️ GameDataSaver.instance est null dans Materials.Start()");
         }
+
         if (isLoad)
         {
             tutorial = false;
@@ -105,8 +123,16 @@ public class Materials : MonoBehaviour
 
         if (bar_2 == 0.0f && victory == false)
         {
-            victoryScreen.SetActive(true);
-            victory = true;
+            if (victoryScreen != null)
+            {
+                victoryScreen.SetActive(true);
+                victory = true;
+                Debug.Log("🎉 Victoire !");
+            }
+            else
+            {
+                Debug.LogError("❌ Impossible d'afficher VictoryScreen car il est null !");
+            }
         }
     }
 
@@ -149,6 +175,6 @@ public class Materials : MonoBehaviour
         sessionWood = 0;
         sessionStone = 0;
         sessionIron = 0;
-        Debug.Log("Compteurs session reset.");
+        Debug.Log("🔄 Compteurs session reset.");
     }
 }

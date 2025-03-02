@@ -101,7 +101,7 @@ public class Builder : MonoBehaviour
 
     private float[] numbers = new float[4];    // Array to store numbers to display
     public Sprite[] sprites = new Sprite[4];
-
+    public TMP_Text buildingEtatMoney;
     public TMP_Text buildingNameText;
     public TMP_Text buildingDescriptionText;
     public TMP_Text buildingEtatPolution;
@@ -395,7 +395,6 @@ public class Builder : MonoBehaviour
                     upgrade2.onClick.AddListener(() => LevelUp2(building));
                     upgrade3.onClick.AddListener(() => LevelUp3(building));
 
-                    // Gestion de l'état du bouton pause
                     if (building.isPaused)
                     {
                         pauseImage.sprite = playSprite;
@@ -407,23 +406,19 @@ public class Builder : MonoBehaviour
                         pause.onClick.AddListener(() => StopCycle());
                     }
 
-                    // Mettre à jour le texte
                     buildingNameText.text = building.name;
                     buildingDescriptionText.text = building.buildDesc;
 
                     UpdateTextColor(buildingEtatPolution, building.PolutionEtat, true);
                     UpdateTextColor(buildingEtatPopulation, building.PopulationEtat, false);
                     UpdateTextColor(buildingEtatElec, building.ElecEtat, false);
+                    UpdateTextColor(buildingEtatMoney, building.MoneyMake, false);
 
-                    Debug.Log("Affichage du bâtiment : " + building.name);
-
-                    // Déplacer la caméra vers le bâtiment
                     StartCoroutine(MoveCameraToBuilding(gameObject.transform.position));
                 }
             }
         }
     }
-
 
     private IEnumerator MoveCameraToBuilding(Vector3 targetPosition)
     {
@@ -532,8 +527,6 @@ public class Builder : MonoBehaviour
                 else
                 {
                     GameObject newButton = Instantiate(buttonPrefab, buttonCont);
-                    
-            Debug.Log(counter);
                     newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 0f);
                     Button button = newButton.GetComponent<Button>();
                     TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
@@ -680,14 +673,15 @@ public class Builder : MonoBehaviour
             bar_2_cycle = building.bar_2_cycle;
             price_cycle = building.price_cycle;
             cycleDuration = building.time;
-            Debug.Log("cycleDuration" + building.buildID);
             running = !building.isPaused;
             if (running)
             {
                 StartCycle();
+                Debug.Log(building.buildID);
             }
 
             HideBuildingMenu();
+            Materials.instance.canMove = true;
         }
     }
 
@@ -778,7 +772,6 @@ public class Builder : MonoBehaviour
         Materials.instance.mat_2 += mat_2_cycle;
         Materials.instance.price += price_cycle;
 
-        Debug.Log("Cycle terminé" + price_cycle + " " + Materials.instance.price + " " + numbers[3]);
 
         StartCoroutine(SpawnPrefabs());
 
@@ -803,9 +796,11 @@ public class Builder : MonoBehaviour
 
     public void ContinueCycle()
     {
+
         running = true;
         if (buildState != 0)
         {
+
             Building currentBuilding = buildings.Find(b => b.buildID == buildState);
             if (currentBuilding != null)
             {

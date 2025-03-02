@@ -22,6 +22,7 @@ MonoBehaviour:
   PolutionEtat: ---
   PopulationEtat: +
   ElecEtat: ---
+  MoneyMake: --
   buildingObject: {fileID: 0}
   buildClass: 4
   unlocked: 0
