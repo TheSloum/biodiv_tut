@@ -33652,7 +33652,7 @@ MonoBehaviour:
   buildingEtatPolution: {fileID: 227944630}
   buildingEtatPopulation: {fileID: 1569425034}
   buildingEtatElec: {fileID: 1683186683}
-  Prebuild: 0
+  Prebuild: 1
   cycleBar: {fileID: 1581899316}
   tutorialBuild: 1
 --- !u!212 &1861847500
@@ -34578,7 +34578,7 @@ MonoBehaviour:
   buildingEtatPolution: {fileID: 227944630}
   buildingEtatPopulation: {fileID: 1569425034}
   buildingEtatElec: {fileID: 1683186683}
-  Prebuild: 1
+  Prebuild: 0
   cycleBar: {fileID: 317361069}
   tutorialBuild: 0
 --- !u!212 &1890661660

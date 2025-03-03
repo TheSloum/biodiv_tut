@@ -379,6 +379,14 @@ public class Builder : MonoBehaviour
 
             foreach (Building building in buildings)
             {
+                if (running == false)
+                {
+                    pauseImage.sprite = playSprite;
+                }
+                else
+                {
+                    pauseImage.sprite = pauseSprite;
+                }
                 if (building.unlocked && building.buildID == buildState)
                 {
                     destroyB.onClick.RemoveAllListeners();
@@ -395,9 +403,11 @@ public class Builder : MonoBehaviour
                     upgrade2.onClick.AddListener(() => LevelUp2(building));
                     upgrade3.onClick.AddListener(() => LevelUp3(building));
 
-                    if (building.isPaused)
+                    if (running == false)
                     {
+
                         pauseImage.sprite = playSprite;
+
                         pause.onClick.AddListener(() => ContinueCycle());
                     }
                     else
@@ -741,7 +751,7 @@ public class Builder : MonoBehaviour
 
                 cycleAnim.Play("CycleAnim", 0, progress);
 
-                if (Materials.instance.mat_0 < (-1 * mat_0_cycle) || Materials.instance.mat_1 < (-1 * mat_1_cycle) || Materials.instance.mat_2 < (-1 * mat_2_cycle) || Materials.instance.price < (-1 * price_cycle))
+                if (Materials.instance.mat_0 < (-1 * mat_0_cycle) || Materials.instance.mat_1 < (-1 * mat_1_cycle) || Materials.instance.mat_2 < (-1 * mat_2_cycle) || Materials.instance.price < (-1 * price_cycle) || Materials.instance.bar_0 < (-1 * bar_0_cycle) || Materials.instance.bar_1 < (-1 * bar_1_cycle))
                 {
                     toFloat = true;
                     running = false;

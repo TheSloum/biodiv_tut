@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Habitation
   m_EditorClassIdentifier: 
   buildID: 8
+  isPaused: 0
   buildDesc: "Les stations de traitement d\u2019eaux us\xE9es nettoient l\u2019eau
     utilis\xE9e avant qu\u2019elle ne retourne dans la mer ou les rivi\xE8res. Elles
     \xE9liminent les polluants pour prot\xE9ger les \xE9cosyst\xE8mes marins et fournir
@@ -21,8 +22,10 @@ MonoBehaviour:
   PolutionEtat: ---
   PopulationEtat: +
   ElecEtat: ---
+  MoneyMake: 
+  buildingObject: {fileID: 0}
   buildClass: 4
-  unlocked: 1
+  unlocked: 0
   buildSprite: {fileID: 0}
   price: 50
   mat_0: 50

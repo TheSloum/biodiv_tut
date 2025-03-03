@@ -138,25 +138,27 @@ public class Materials : MonoBehaviour
 
     public void AddWood(int amount)
     {
-        mat_0 += amount;
-        sessionWood += amount;
-
-        if (GameDataSaver.instance != null)
-        {
-            GameDataSaver.instance.mat_0 = mat_0;
-        }
-        Debug.Log(mat_0);
-    }
-
-    public void AddStone(int amount)
-    {
         mat_1 += amount;
-        sessionStone += amount;
+        sessionWood += amount;
 
         if (GameDataSaver.instance != null)
         {
             GameDataSaver.instance.mat_1 = mat_1;
         }
+    }
+
+    public void AddStone(int amount)
+    {
+        mat_0 += amount;
+        sessionStone += amount;
+
+        if (GameDataSaver.instance != null)
+        {
+            GameDataSaver.instance.mat_0 = mat_0;
+        }
+        Debug.Log(sessionStone + "sessionStone");
+        Debug.Log(amount + " Pierres amount");
+        Debug.Log(mat_0 + " Pierres");
     }
 
     public void AddIron(int amount)

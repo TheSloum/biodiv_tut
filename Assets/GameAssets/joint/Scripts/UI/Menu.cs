@@ -32,7 +32,6 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(IsInMenue);
         if (Parametre.activeSelf || MainMenu.activeSelf || Loadeur.activeSelf && IsInMenue == 0)
         {
             Materials.instance.canMove = false;

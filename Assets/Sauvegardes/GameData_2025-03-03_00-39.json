@@ -18,10 +18,10 @@
             "unlocked": true
         },
         {
-            "unlocked": false
+            "unlocked": true
         },
         {
-            "unlocked": false
+            "unlocked": true
         },
         {
             "unlocked": true
@@ -30,10 +30,10 @@
             "unlocked": true
         },
         {
-            "unlocked": false
+            "unlocked": true
         },
         {
-            "unlocked": false
+            "unlocked": true
         },
         {
             "unlocked": true
@@ -75,8 +75,8 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": true,
-            "buildState": 5,
+            "running": false,
+            "buildState": 0,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
             "cons_mat_2": 0,
@@ -89,7 +89,7 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": false,
+            "running": true,
             "buildState": 5,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
@@ -254,9 +254,9 @@
             "price_cycle": 0
         }
     ],
-    "mat_0": 49955,
-    "mat_1": 49910,
-    "mat_2": 49850,
-    "price": 50100,
-    "townName": "çàçàuç"
+    "mat_0": 0,
+    "mat_1": 0,
+    "mat_2": 0,
+    "price": 0,
+    "townName": ""
 }

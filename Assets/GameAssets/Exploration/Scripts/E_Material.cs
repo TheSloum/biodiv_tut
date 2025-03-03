@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class E_Material : MonoBehaviour
 {
-    public float speed = 2f; 
-    public float oxygenPenalty = 10f; 
+    public float speed = 2f;
+    public float oxygenPenalty = 10f;
     public GameObject collectParticlesPrefab;
     public int materialType; // 0 = Bois, 1 = Pierre, 2 = Fer
 
@@ -60,15 +60,12 @@ public class E_Material : MonoBehaviour
                 {
                     case 0: // Bois
                         Materials.instance.AddWood(20);
-                        Materials.instance.mat_0 += 20;
                         break;
                     case 1: // Pierre
                         Materials.instance.AddStone(20);
-                        Materials.instance.mat_0 += 20;
                         break;
                     case 2: // Fer
                         Materials.instance.AddIron(20);
-                        Materials.instance.mat_0 += 20;
                         break;
                     default:
                         Debug.LogWarning("Type de matériau invalide !");
