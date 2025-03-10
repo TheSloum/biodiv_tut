@@ -188,6 +188,10 @@ public class Builder : MonoBehaviour
                 else
                 {
                     notEnothRessourse.SetActive(false);
+                    if(toFloat){
+                        running = true;
+                    }
+                    toFloat = false;
                 }
             }
         }
