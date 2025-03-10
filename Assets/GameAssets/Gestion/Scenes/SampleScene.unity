@@ -27260,8 +27260,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 37b426e7ecd10a049a003c6734620ff4, type: 2}
   - {fileID: 11400000, guid: 0d674fa35fc91504a82650ea1055adc0, type: 2}
   - {fileID: 11400000, guid: a35a053c34d7787459512b236e604724, type: 2}
+  - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   builderData: []
   baseSprite: {fileID: 21300000, guid: a97938fc8172e8041ad617b777ebf442, type: 3}
+  researchSprite: {fileID: 21300000, guid: c6cd4d0301738ca4ab890b9abce0f6f2, type: 3}
   mat_0: 0
   mat_1: 0
   mat_2: 0
@@ -28581,6 +28583,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
   baseSprite: {fileID: 21300000, guid: efbf3019166d3ac448023ae3db425adf, type: 3}
   selectedSprite: {fileID: 21300000, guid: f5e7264fb5e20d24991096db7c39110a, type: 3}
+  buttonBuildingPairs:
+  - button: {fileID: 7432377385701401925}
+    building: {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
+  - button: {fileID: 1400416082}
+    building: {fileID: 11400000, guid: 0fd4ee9c97091cc479fe827ca1dad336, type: 2}
+  - button: {fileID: 814097542}
+    building: {fileID: 11400000, guid: 2fb56aabfd5a74a4bb6d720016524535, type: 2}
+  - button: {fileID: 360816700}
+    building: {fileID: 11400000, guid: 37b426e7ecd10a049a003c6734620ff4, type: 2}
+  - button: {fileID: 1937703494}
+    building: {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
+  - button: {fileID: 504328834}
+    building: {fileID: 11400000, guid: 7256de8bacd7a81409f00b58e62ef615, type: 2}
 --- !u!1 &1460796313
 GameObject:
   m_ObjectHideFlags: 0

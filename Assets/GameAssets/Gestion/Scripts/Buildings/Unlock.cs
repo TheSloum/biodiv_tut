@@ -10,9 +10,32 @@ public class Unlock : MonoBehaviour
         public Sprite baseSprite; 
     public Sprite selectedSprite;
 
-    void Start(){
-        
+
+[System.Serializable]
+    public class ButtonBuildingPair
+    {
+        public Button button;
+        public Building building;
     }
+
+    public List<ButtonBuildingPair> buttonBuildingPairs;
+
+    void Start()
+    {
+        foreach (var pair in buttonBuildingPairs)
+        {
+            if (pair.building.unlocked)
+            {
+                Image buttonImage = pair.button.GetComponent<Image>();
+        buttonImage.sprite = baseSprite;
+        SpriteState spriteState = pair.button.spriteState;
+        spriteState.selectedSprite = selectedSprite;
+        pair.button.spriteState = spriteState;
+
+            }
+        }
+    }
+
     public void unlockBuild(string priceAndID){
         Debug.Log(priceAndID);
         string[] parts = priceAndID.Split(',');
