@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Centrale charbon
   m_EditorClassIdentifier: 
   buildID: 1
-  isPaused: 0
+  isPaused: 1
   buildDesc: "Les centrales thermiques au charbon fonctionnent en br\xFBlant du charbon,
     une roche noire pleine d\u2019\xE9nergie, pour chauffer de l\u2019eau. La vapeur
     cr\xE9\xE9e fait tourner des turbines pour produire de l\u2019\xE9lectricit\xE9.

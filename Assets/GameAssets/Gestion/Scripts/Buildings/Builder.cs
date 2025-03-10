@@ -111,6 +111,8 @@ public class Builder : MonoBehaviour
 
 
     public GameObject cycleBar;
+    public GameObject PauseInfo;
+    public GameObject notEnothRessourse;
     [SerializeField] private bool tutorialBuild;
 
 
@@ -152,9 +154,45 @@ public class Builder : MonoBehaviour
             }
             OnBuildingButtonClick(matchingBuilding);
         }
-
-
     }
+
+    void Update()
+    {
+        foreach (Building building in buildings)
+        {
+            PauseInfo.transform.localPosition = new Vector3(20, 100, 0);
+            notEnothRessourse.transform.localPosition = new Vector3(40, 100, 0);
+
+            if (buildState != 0)
+            {
+                if (running == false)
+                {
+                    PauseInfo.SetActive(true);
+                    pauseImage.sprite = playSprite;
+                }
+                else
+                {
+                    pauseImage.sprite = pauseSprite;
+                    PauseInfo.SetActive(false);
+                }
+
+                if (Materials.instance.mat_0 < (-1 * mat_0_cycle) ||
+                    Materials.instance.mat_1 < (-1 * mat_1_cycle) ||
+                    Materials.instance.mat_2 < (-1 * mat_2_cycle) ||
+                    Materials.instance.price < (-1 * price_cycle) ||
+                    Materials.instance.bar_0 < (-1 * bar_0_cycle) ||
+                    Materials.instance.bar_1 < (-1 * bar_1_cycle))
+                {
+                    notEnothRessourse.SetActive(true);
+                }
+                else
+                {
+                    notEnothRessourse.SetActive(false);
+                }
+            }
+        }
+    }
+
 
     void OnMouseDown()
     {
