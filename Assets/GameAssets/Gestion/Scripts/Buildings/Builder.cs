@@ -205,6 +205,7 @@ public class Builder : MonoBehaviour
             if (buildState == 0)
             {
                 ShowBuildingMenu();
+                editing = true;
             }
             else
             {
@@ -229,6 +230,9 @@ public class Builder : MonoBehaviour
     {
         if (editing == true)
         {
+            if(buildState == 50){
+                Materials.instance.researchCentr = true;
+            }
             cycleBar.transform.localPosition = new Vector3(0, -46, 0);
             buildState = 0;
             buildID = 0;
@@ -681,7 +685,7 @@ public class Builder : MonoBehaviour
 
         cycleBar.transform.localPosition = new Vector3(0, 83, 0);
 
-        if ((Materials.instance.mat_0 >= (-1 * building.mat_0) &&
+        if (editing == true && (Materials.instance.mat_0 >= (-1 * building.mat_0) &&
              Materials.instance.mat_1 >= (-1 * building.mat_1) &&
              Materials.instance.mat_2 >= (-1 * building.mat_2) &&
              Materials.instance.price >= (-1 * building.price)) || Prebuild != 0)
@@ -729,6 +733,7 @@ public class Builder : MonoBehaviour
             }
 
             HideBuildingMenu();
+            editing = false;
             Materials.instance.canMove = true;
         }
     }

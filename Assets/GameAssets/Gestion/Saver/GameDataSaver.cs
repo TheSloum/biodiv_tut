@@ -19,6 +19,7 @@ public class GameDataSaver : MonoBehaviour
     public List<GameObject> builderData;
 
     public Sprite baseSprite;
+    public Sprite researchSprite;
 
     public int mat_0 = 0;
     public int mat_1 = 0;
@@ -53,7 +54,7 @@ public class GameDataSaver : MonoBehaviour
 
             if (trasiButton != null)
             {
-                trasiButton.onClick.AddListener(SaveData);
+                trasiButton.onClick.AddListener(() => SaveData());
             }
             else
             {
@@ -73,7 +74,6 @@ public class GameDataSaver : MonoBehaviour
                 Materials.instance.explored = false;
             }
 
-            SaveData();
         }
     }
 
@@ -101,6 +101,7 @@ public class GameDataSaver : MonoBehaviour
         string datePart = fileNameWithoutExtension.Replace("GameData_", "");
 
         LoadDataAfterExplore(datePart);
+        
     }
 
     public void SaveData()
@@ -175,7 +176,11 @@ public class GameDataSaver : MonoBehaviour
 
 
         // Sauvegarde en fichier
-        string fileName = $"GameData_{DateTime.Now:yyyy-MM-dd_HH-mm}.json";
+        
+        string fileName; 
+
+            fileName = $"GameData_{DateTime.Now:yyyy-MM-dd_HH-mm}.json";
+        
         string path = Path.Combine(Application.dataPath, "Sauvegardes", fileName);
         string json = JsonUtility.ToJson(gameData, true);
         File.WriteAllText(path, json);
@@ -208,8 +213,24 @@ public class GameDataSaver : MonoBehaviour
                 if (bObj == null) continue;
                 Builder builderComponent = bObj.GetComponent<Builder>();
                 SpriteRenderer spriterenderer = bObj.GetComponent<SpriteRenderer>();
-                if (builderComponent != null && spriterenderer != null && buildUnlockData.Count > gameData.builderDataList[i].buildState)
-                {
+                int buildState = gameData.builderDataList[i].buildState;
+
+if (builderComponent != null && spriterenderer != null)
+{
+    if (buildState == 50)
+    {
+                    builderComponent.editing = true;
+                    builderComponent.OnDestroyClicked();
+                    builderComponent.editing = false;
+        builderComponent.buildState = 50;
+        builderComponent.running = true;
+        
+                        Materials.instance.researchCentr = false;
+        
+                        spriterenderer.sprite = researchSprite;
+    }
+    else if (buildState >= 0 && buildState < buildUnlockData.Count)
+    {
                     builderComponent.editing = true;
                     builderComponent.OnDestroyClicked();
                     builderComponent.editing = false;
@@ -227,6 +248,7 @@ public class GameDataSaver : MonoBehaviour
                     builderComponent.bar_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_1_cycle;
                     builderComponent.bar_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_0_cycle;
 
+    
                     if (builderComponent.buildState == 0)
                     {
                         spriterenderer.sprite = baseSprite;
@@ -244,6 +266,7 @@ public class GameDataSaver : MonoBehaviour
                         builderComponent.running = gameData.builderDataList[i].running;
                     }
                 }
+            }
             }
 
             Materials.instance.mat_0 = gameData.mat_0;
@@ -288,8 +311,24 @@ public class GameDataSaver : MonoBehaviour
                 Builder builderComponent = bObj.GetComponent<Builder>();
                 SpriteRenderer spriterenderer = bObj.GetComponent<SpriteRenderer>();
 
-                if (builderComponent != null && spriterenderer != null && buildUnlockData.Count > gameData.builderDataList[i].buildState)
-                {
+                int buildState = gameData.builderDataList[i].buildState;
+
+if (builderComponent != null && spriterenderer != null)
+{
+    if (buildState == 50)
+    {
+                    builderComponent.editing = true;
+                    builderComponent.OnDestroyClicked();
+                    builderComponent.editing = false;
+        builderComponent.buildState = 50;
+        builderComponent.running = true;
+        
+                        spriterenderer.sprite = researchSprite;
+
+                        Materials.instance.researchCentr = false;
+    }
+    else if (buildState >= 0 && buildState < buildUnlockData.Count)
+    {
 
                     builderComponent.editing = true;
                     builderComponent.OnDestroyClicked();
@@ -327,6 +366,7 @@ public class GameDataSaver : MonoBehaviour
                     }
                 }
             }
+            }
             gameData.mat_0 = Materials.instance.mat_0;
             gameData.mat_1 = Materials.instance.mat_1;
             gameData.mat_2 = Materials.instance.mat_2;
@@ -340,6 +380,8 @@ public class GameDataSaver : MonoBehaviour
             Debug.LogWarning("Aucune sauvegarde trouvée à: " + path);
         }
         isSavingCompleted = true;
+        
+            File.Delete(path);
 
     }
 
