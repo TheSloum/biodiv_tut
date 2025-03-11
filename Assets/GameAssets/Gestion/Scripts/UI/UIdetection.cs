@@ -19,6 +19,7 @@ public class UIdetection : MonoBehaviour
     }
     void Update()
     {
+        mouseOverUi = false;
         
         if (EventSystem.current.IsPointerOverGameObject())
         {

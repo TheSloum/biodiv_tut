@@ -34,6 +34,9 @@ public class Materials : MonoBehaviour
     public GameObject errorIndicator;
     public Text errorText;
 
+
+    public bool menuFirst = true;
+
     void OnEnable()
     {
         Application.logMessageReceived += HandleLog;
@@ -74,6 +77,13 @@ public class Materials : MonoBehaviour
             Destroy(gameObject);
             Debug.LogWarning("Multiple instances de Materials détectées.");
         }
+
+        
+        if (menuFirst == true && LoadManager.instance == null){
+            
+        SceneManager.LoadScene("Menue");
+        menuFirst = false;
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -113,6 +123,7 @@ public class Materials : MonoBehaviour
         {
             tutorial = false;
         }
+
     }
 
     void Update()

@@ -39,7 +39,7 @@ MonoBehaviour:
   cons_mat_0: 0
   cons_mat_1: 0
   cons_mat_2: 0
-  bar_0_cycle: -0.02
+  bar_0_cycle: -0.025
   bar_1_cycle: 0.0375
   bar_2_cycle: 0.035
   price_cycle: -300

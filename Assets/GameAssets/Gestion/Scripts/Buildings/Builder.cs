@@ -470,7 +470,6 @@ public class Builder : MonoBehaviour
                     UpdateTextColor(buildingEtatElec, building.ElecEtat, false);
                     UpdateTextColor(buildingEtatMoney, building.MoneyMake, false);
 
-                    StartCoroutine(MoveCameraToBuilding(gameObject.transform.position));
                 }
             }
         }

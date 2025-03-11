@@ -68,8 +68,9 @@ public class GameDataSaver : MonoBehaviour
                 builderData.Add(builder.gameObject);
             }
 
-            if (Materials.instance.isLoad && Materials.instance.explored)
+            if ((Materials.instance.isLoad && Materials.instance.explored) || (LoadManager.instance != null && LoadManager.instance.resumeLoad))
             {
+                Materials.instance.isLoad = true;
                 LoadLatestSaveData();
                 Materials.instance.explored = false;
             }
@@ -83,23 +84,27 @@ public class GameDataSaver : MonoBehaviour
 
     public void LoadLatestSaveData()
     {
+                Debug.Log("ZLFOGZJGJOZPJRZOPJOPSJQEKGOPSKGPOQEJGQRPOGJGPOKJPO");
         string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
 
         if (!Directory.Exists(saveFolderPath))
         {
             return;
         }
+                Debug.Log("ZLFOGZJGJOZPJRZOPJOPSJQEKGOPSKGPOQEJGQRPOGJGPOKJPO");
 
         var saveFiles = Directory.GetFiles(saveFolderPath, "GameData_*.json");
         if (saveFiles.Length == 0)
         {
             return;
         }
+                Debug.Log("ZLFOGZJGJOZPJRZOPJOPSJQEKGOPSKGPOQEJGQRPOGJGPOKJPO");
 
         string latestFile = saveFiles.OrderByDescending(File.GetLastWriteTime).First();
         string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(latestFile);
         string datePart = fileNameWithoutExtension.Replace("GameData_", "");
 
+                Debug.Log(datePart);
         LoadDataAfterExplore(datePart);
         
     }
@@ -289,6 +294,7 @@ if (builderComponent != null && spriterenderer != null)
     {
         Materials.instance.isLoad = true;
         string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
+        
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
@@ -346,6 +352,8 @@ if (builderComponent != null && spriterenderer != null)
                     builderComponent.bar_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_2_cycle;
                     builderComponent.bar_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_1_cycle;
                     builderComponent.bar_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_0_cycle;
+                    
+                    
 
 
                     if (builderComponent.buildState == 0)
@@ -373,7 +381,6 @@ if (builderComponent != null && spriterenderer != null)
             gameData.price = Materials.instance.price;
             Materials.instance.townName = gameData.townName;
             Materials.instance.isLoad = true;
-
         }
         else
         {
@@ -381,7 +388,12 @@ if (builderComponent != null && spriterenderer != null)
         }
         isSavingCompleted = true;
         
+        if(!LoadManager.instance.resumeLoad){
             File.Delete(path);
+        } else {
+            
+        LoadManager.instance.resumeLoad = false;
+        }
 
     }
 
