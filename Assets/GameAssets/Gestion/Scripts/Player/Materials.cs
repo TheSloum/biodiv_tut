@@ -84,6 +84,7 @@ public class Materials : MonoBehaviour
         SceneManager.LoadScene("Menue");
         menuFirst = false;
         }
+
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -112,6 +113,7 @@ public class Materials : MonoBehaviour
             mat_2 = GameDataSaver.instance.mat_2;
             price = GameDataSaver.instance.price;
             Debug.Log($"Materials chargés: Bois = {mat_0}, Pierre = {mat_1}, Fer = {mat_2}, Price = {price}");
+            
             ResetSessionCounts();
         }
         else
@@ -122,6 +124,7 @@ public class Materials : MonoBehaviour
         if (isLoad)
         {
             tutorial = false;
+            
         }
 
     }

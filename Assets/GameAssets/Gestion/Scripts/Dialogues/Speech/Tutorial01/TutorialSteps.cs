@@ -21,17 +21,20 @@ private void OnEnable()
     
     public IEnumerator TutorialP3(){
         Materials.instance.tutorial = false;
+            if (!GameDataSaver.instance.reseachHere){
+                        Materials.instance.researchCentr = true;
+            }
+                    if (Materials.instance.researchCentr){
             yield return new WaitForSecondsRealtime(0.2f);
             ShowDialogue.Instance.DialogueBox(speech[0]);
-            
-                        Materials.instance.researchCentr = true;
-                    
             while (Materials.instance.researchCentr || buildMenu.activeInHierarchy)
         {
             yield return null; 
         }
 
             ShowDialogue.Instance.DialogueBox(speech[1]);
+                    }
+            
 
     }
 

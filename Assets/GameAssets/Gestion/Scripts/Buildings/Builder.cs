@@ -154,10 +154,17 @@ public class Builder : MonoBehaviour
             }
             OnBuildingButtonClick(matchingBuilding);
         }
+        if (buildState == 50){
+            Materials.instance.researchCentr = false;
+        }
     }
 
     void Update()
     {
+        
+        if (buildState == 50){
+            Materials.instance.researchCentr = false;
+        }
         foreach (Building building in buildings)
         {
             PauseInfo.transform.localPosition = new Vector3(20, 100, 0);

@@ -21,6 +21,8 @@ public class GameDataSaver : MonoBehaviour
     public Sprite baseSprite;
     public Sprite researchSprite;
 
+    public bool reseachHere;
+
     public int mat_0 = 0;
     public int mat_1 = 0;
     public int mat_2 = 0;
@@ -228,6 +230,7 @@ if (builderComponent != null && spriterenderer != null)
                     builderComponent.OnDestroyClicked();
                     builderComponent.editing = false;
         builderComponent.buildState = 50;
+        reseachHere = true;
         builderComponent.running = true;
         
                         Materials.instance.researchCentr = false;
@@ -328,6 +331,7 @@ if (builderComponent != null && spriterenderer != null)
                     builderComponent.editing = false;
         builderComponent.buildState = 50;
         builderComponent.running = true;
+        reseachHere = true;
         
                         spriterenderer.sprite = researchSprite;
 
