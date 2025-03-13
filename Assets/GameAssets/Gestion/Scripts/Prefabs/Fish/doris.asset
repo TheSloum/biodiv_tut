@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b540b4fe07f124986e6087daeafad0, type: 3}
+  m_Name: doris
+  m_EditorClassIdentifier: 
+  fishID: 19
+  fishName: DORIS DALMATIEN
+  fishScientistName: Peltodoris atromaculata
+  fishSize: 7-10cm
+  fishOrigin: Fonds rocheux
+  frequence: Commun
+  fishClass: Mollusques, nudibranches
+  mediumWeight: 5-40 m
+  profondeur: 
+  eat: "Se nourrit d\u2019\xE9ponge"
+  lifeTime: 2 ans
+  is_unlocked: 0
+  fishDes: "Le doris dalmatien est d\xE9pourvu de coquille. Il se trouve particuli\xE8rement
+    dans les zones sombres et ombrag\xE9es des fonds marins, dans les grottes, sur
+    les parois ou le plafond, et peut se trouver \xE0 toute profondeur. Elle se trouve
+    g\xE9n\xE9ralement sur l'\xE9ponge pierre Petrosia ficiformis dont elle se nourrit
+    principalement. Ce nudibranche se d\xE9place en rampant sur les rochers, on le
+    rencontre souvent en groupe de deux ou trois individus."
+  fishSprite: {fileID: 21300000, guid: b5c7045f71a02ba4c875916ab939c314, type: 3}
+  fishSpritePixel: {fileID: 21300000, guid: 754eb1b45a37f3948a94e745840bc229, type: 3}

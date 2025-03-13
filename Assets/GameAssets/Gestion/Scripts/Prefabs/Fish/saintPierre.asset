@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b540b4fe07f124986e6087daeafad0, type: 3}
+  m_Name: saintPierre
+  m_EditorClassIdentifier: 
+  fishID: 1
+  fishName: SAINT-PIERRE
+  fishScientistName: Zeus faber
+  fishSize: 30-70cm
+  fishOrigin: Fonds sableux, vaseux, rocheux
+  frequence: assez rare
+  fishClass: "Z\xE9idae"
+  mediumWeight: 20kg
+  profondeur: "20-30m juqu\u2019\xE0 400 m"
+  eat: Carnivore
+  lifeTime: 12 ans
+  is_unlocked: 0
+  fishDes: "Il est commun\xE9ment appel\xE9 Saint-pierre (m\xEAme si ce terme d\xE9signe
+    aussi, mais de fa\xE7on moins courante, deux autres esp\xE8ces de poissons) ou
+    encore Poule de mer, Dor\xE9e ou Z\xE9e. Le Zeus faber se nourrit de poissons
+    vivant en groupes (sardines, petits harengs) et de c\xE9phalopodes. Le Saint-Pierre
+    est facilement reconnaissable par sa tache noire ronde sur ses flancs. Son corps
+    est aplati et de couleur gris-vert avec des reflets dor\xE9s."
+  fishSprite: {fileID: 21300000, guid: 79546533e3050a7469261b49dd7c7a49, type: 3}
+  fishSpritePixel: {fileID: 21300000, guid: a9d9298281dd94c4cb449e082397e9d8, type: 3}
