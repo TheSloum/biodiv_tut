@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b540b4fe07f124986e6087daeafad0, type: 3}
+  m_Name: oursin
+  m_EditorClassIdentifier: 
+  fishID: 18
+  fishName: OURSIN NOIR
+  fishScientistName: Arbacia lixula
+  fishSize: 4-5cm sans les piquants
+  fishOrigin: Fonds rocheux
+  frequence: "Tr\xE8s commun"
+  fishClass: "Echinodermes, \xE9chinid\xE9s"
+  mediumWeight: 
+  profondeur: ' 0-20 m'
+  eat: Omnivore
+  lifeTime: 7-10 ans
+  is_unlocked: 0
+  fishDes: "L\u2019absence de ventouses sur les pieds ambulacraires de la face sup\xE9rieure
+    l\u2019emp\xEAche de se couvrir de d\xE9bris et de progresser dans l\u2019herbier.
+    L\u2019oursin noir aime les surfaces verticales et r\xE9siste parfaitement aux
+    assauts des vagues.  On le trouvera toujours sur substrat rocheux o\xF9 se d\xE9veloppent
+    des algues calcaires encro\xFBtantes (corallinac\xE9es) qui constituent l'essentiel
+    de son alimentation.\_"
+  fishSprite: {fileID: 21300000, guid: f6cca03fc25a607439a2540ddb73b6d0, type: 3}
+  fishSpritePixel: {fileID: 21300000, guid: a59c6040a13bff7408231b4ca180a833, type: 3}

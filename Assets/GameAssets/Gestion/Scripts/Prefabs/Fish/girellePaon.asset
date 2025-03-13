@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b540b4fe07f124986e6087daeafad0, type: 3}
+  m_Name: girellePaon
+  m_EditorClassIdentifier: 
+  fishID: 2
+  fishName: GIRELLE PAON
+  fishScientistName: Thalassoma pavo
+  fishSize: 15-35cm
+  fishOrigin: Fonds rocheux, Herbiers
+  frequence: commun
+  fishClass: Labridae
+  mediumWeight: 0.150kg
+  profondeur: 1-40m
+  eat: "omnivore \xE0 tendance carnivore "
+  lifeTime: 12 ans
+  is_unlocked: 0
+  fishDes: "La girelle paon est aussi appel\xE9e, selon la zone g\xE9ographique,
+    girelle turque. Il s'agit en fait de Thalassoma pavo, un poisson de la famille
+    des Labrid\xE9s.  La girelle paon est un poisson color\xE9 avec des nuances de
+    bleu, vert et jaune. La femelle est g\xE9n\xE9ralement plus terne que le m\xE2le.
+    Cette esp\xE8ce vit surtout pr\xE8s de la surface, autour des rochers couverts
+    d'algues o\xF9 elle trouve sa nourriture. "
+  fishSprite: {fileID: 21300000, guid: 2708ba369c84f874bab624b1f5aa53bf, type: 3}
+  fishSpritePixel: {fileID: 21300000, guid: 3655611144a12014b8748f08b728209c, type: 3}

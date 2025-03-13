@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b540b4fe07f124986e6087daeafad0, type: 3}
+  m_Name: rorqual
+  m_EditorClassIdentifier: 
+  fishID: 4
+  fishName: RORQUAL COMMUN
+  fishScientistName: Balaenoptera physalus
+  fishSize: 1100 cm - 1800 cm
+  fishOrigin: Haute mer
+  frequence: Assez commun
+  fishClass: "C\xE9tac\xE9s, phys\xE9t\xE9rid\xE9s"
+  mediumWeight: 50T
+  profondeur: ' 0-2000m'
+  eat: "Carnivore(krill, petits poissons p\xE9lagiques)"
+  lifeTime: "80 \xE0 100 ans"
+  is_unlocked: 0
+  fishDes: "Le rorqual commun (Balaenoptera physalus) est une esp\xE8ce de c\xE9tac\xE9
+    de la famille des Balaenopteridae. Apr\xE8s la baleine bleue, et avec une longueur
+    d'environ 20 m\xE8tres, c'est le deuxi\xE8me plus grand mammif\xE8re vivant sur
+    la plan\xE8te. On le trouve dans tous les oc\xE9ans, ainsi qu'en mer M\xE9diterran\xE9e,
+    il a une grande long\xE9vit\xE9, probablement une centaine d'ann\xE9es."
+  fishSprite: {fileID: 21300000, guid: e0a19fd96a9d9d4459d6e69ba40178ba, type: 3}
+  fishSpritePixel: {fileID: 21300000, guid: c2f2de1e2197394418008942c21e1485, type: 3}

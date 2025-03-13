@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b540b4fe07f124986e6087daeafad0, type: 3}
+  m_Name: anemone
+  m_EditorClassIdentifier: 
+  fishID: 9
+  fishName: ANEMONE DE MER VERTE
+  fishScientistName: Anemonia viridis
+  fishSize: 10-20cm
+  fishOrigin: Fonds rocheux
+  frequence: "tr\xE8s commune"
+  fishClass: Cnidaire, hexacorallaires
+  mediumWeight: 
+  profondeur: 0-25 m
+  eat: "Carnivore (petits poissons, crustac\xE9s et autres invert\xE9br\xE9s)"
+  lifeTime: 
+  is_unlocked: 0
+  fishDes: "L'an\xE9mone de mer verte vit fix\xE9e sur des substrats durs \xE0 faible
+    profondeur, souvent sur des fonds rocheux ou des algues. Sa souplesse lui permet
+    de r\xE9sister aux mouvements des vagues. Cette esp\xE8ce, pourvue de tentacules
+    \xE9quip\xE9s de cellules urticantes, capture ainsi de petits poissons et invert\xE9br\xE9s.
+    Elle se rencontre dans les milieux calmes et \xE9clair\xE9s, avec un corps brun-verd\xE2tre
+    et jusqu'\xE0 384 tentacules. Elle peut aussi se reproduire sexuellement ou par
+    bourgeonnement, formant parfois des clones."
+  fishSprite: {fileID: 21300000, guid: c2f43210ff824134eac2aae051e7e20d, type: 3}
+  fishSpritePixel: {fileID: 21300000, guid: 6e6770b59be7444489edaaa1f4829ff7, type: 3}
