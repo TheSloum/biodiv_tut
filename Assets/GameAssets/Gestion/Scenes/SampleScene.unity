@@ -505,7 +505,7 @@ MonoBehaviour:
   cycleBar: {fileID: 673363046}
   PauseInfo: {fileID: 1039845543}
   notEnothRessourse: {fileID: 1658671133}
-  tutorialBuild: 1
+  tutorialBuild: 0
 --- !u!212 &13028094
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1544,7 +1544,7 @@ MonoBehaviour:
   cycleBar: {fileID: 1601740271}
   PauseInfo: {fileID: 529872989}
   notEnothRessourse: {fileID: 1449792243}
-  tutorialBuild: 1
+  tutorialBuild: 0
 --- !u!212 &68766121
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5816,7 +5816,7 @@ MonoBehaviour:
   cycleBar: {fileID: 214856529}
   PauseInfo: {fileID: 1795207192}
   notEnothRessourse: {fileID: 1501919979}
-  tutorialBuild: 1
+  tutorialBuild: 0
 --- !u!212 &338367190
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8925,7 +8925,7 @@ MonoBehaviour:
   cycleBar: {fileID: 1782958842}
   PauseInfo: {fileID: 1495934289}
   notEnothRessourse: {fileID: 293641863}
-  tutorialBuild: 1
+  tutorialBuild: 0
 --- !u!212 &494679704
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14970,7 +14970,7 @@ MonoBehaviour:
   cycleBar: {fileID: 1332316412}
   PauseInfo: {fileID: 813097974}
   notEnothRessourse: {fileID: 584462203}
-  tutorialBuild: 1
+  tutorialBuild: 0
 --- !u!212 &861647728
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18498,7 +18498,7 @@ MonoBehaviour:
   cycleBar: {fileID: 1808241839}
   PauseInfo: {fileID: 1799297626}
   notEnothRessourse: {fileID: 955937400}
-  tutorialBuild: 1
+  tutorialBuild: 0
 --- !u!212 &1007327618
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19206,7 +19206,7 @@ MonoBehaviour:
   cycleBar: {fileID: 214242006}
   PauseInfo: {fileID: 414012183}
   notEnothRessourse: {fileID: 705347763}
-  tutorialBuild: 1
+  tutorialBuild: 0
 --- !u!212 &1020965242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22704,7 +22704,7 @@ MonoBehaviour:
   cycleBar: {fileID: 618217916}
   PauseInfo: {fileID: 726443788}
   notEnothRessourse: {fileID: 865630727}
-  tutorialBuild: 1
+  tutorialBuild: 0
 --- !u!212 &1173804924
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23604,7 +23604,7 @@ MonoBehaviour:
   cycleBar: {fileID: 1095543672}
   PauseInfo: {fileID: 1672679110}
   notEnothRessourse: {fileID: 1460796313}
-  tutorialBuild: 1
+  tutorialBuild: 0
 --- !u!212 &1199599271
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34743,7 +34743,7 @@ MonoBehaviour:
   cycleBar: {fileID: 2074022094}
   PauseInfo: {fileID: 1786752776}
   notEnothRessourse: {fileID: 538100183}
-  tutorialBuild: 1
+  tutorialBuild: 0
 --- !u!212 &1768279021
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40662,7 +40662,7 @@ MonoBehaviour:
   cycleBar: {fileID: 702082580}
   PauseInfo: {fileID: 340523384}
   notEnothRessourse: {fileID: 1665052995}
-  tutorialBuild: 1
+  tutorialBuild: 0
 --- !u!212 &2047675823
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -42099,7 +42099,7 @@ MonoBehaviour:
   cycleBar: {fileID: 189250881}
   PauseInfo: {fileID: 1209454334}
   notEnothRessourse: {fileID: 1710698587}
-  tutorialBuild: 1
+  tutorialBuild: 0
 --- !u!212 &2114838284
 SpriteRenderer:
   m_ObjectHideFlags: 0

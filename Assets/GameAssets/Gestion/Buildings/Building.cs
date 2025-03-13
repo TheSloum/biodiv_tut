@@ -27,6 +27,10 @@ public class Building : ScriptableObject
     {
         unlocked = true;
     }
+    public void Relock()
+    {
+        unlocked = false;
+    }
 
 
     [Header("Sprite")]
