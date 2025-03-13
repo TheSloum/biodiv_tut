@@ -15,22 +15,11 @@ public class SceneMainMenu : MonoBehaviour
     public void LoadScene(string Exploration_main)
     {
         Debug.Log("testeridos");
-        StartCoroutine(SaveAndLoadScene(Exploration_main));
-    }
+        SceneManager.LoadScene("Menue");
 
-    private IEnumerator SaveAndLoadScene(string sceneName)
-    {
-
-            savescript.SaveData();
-
-
-        while (!savescript.SaveAndLoadScene)
-        {
-            yield return null;
-        }
         SoundManager.instance.PlayMusic(musicClip);
         SoundManager.instance.PlaySFX(sfxClip);
-        SceneManager.LoadScene(sceneName);
         Time.timeScale = 1f;
     }
+
 }

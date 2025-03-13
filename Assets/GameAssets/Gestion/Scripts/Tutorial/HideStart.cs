@@ -60,6 +60,9 @@ public class HideStart : MonoBehaviour
     [SerializeField] private GameObject dialogueMasking;
 
 
+public SpriteRenderer bar0Hide;
+public SpriteRenderer bar1Hide;
+
     void Start()
     {
         if (!Materials.instance.isLoad)
@@ -178,8 +181,10 @@ public class HideStart : MonoBehaviour
     private IEnumerator MoveToTarget(Transform target, float moveSpeed)
     {
         Materials.instance.canMove = false;
+                Debug.Log("11111111111111");
         while (Vector3.Distance(cameraObject.transform.position, target.position) > 0.05f)
         {
+                Debug.Log("2222222222");
             cameraObject.transform.position = Vector3.Lerp(cameraObject.transform.position, target.position, Time.unscaledDeltaTime * moveSpeed);
             yield return null;
         }
@@ -243,6 +248,15 @@ public class HideStart : MonoBehaviour
         {
             Materials.instance.textDone = false;
             ShowDialogue.Instance.DialogueBox(speech[1]);
+            
+        Color colorBar0 = bar0Hide.color;
+        Color colorBar1 = bar1Hide.color;
+            colorBar0.a = 0f;
+            colorBar1.a = 0f;
+            
+            bar0Hide.color = colorBar0;
+            bar1Hide.color = colorBar1;
+            Debug.Log(colorBar0.a);
             dialogueMasking.SetActive(true);
             StartCoroutine(WaitForTextEnd(1));
             step = 1;
@@ -399,6 +413,15 @@ public class HideStart : MonoBehaviour
         yield return new WaitUntil(() => Materials.instance.textDone == true);
         if (index == 1)
         {
+        Color colorBar0 = bar0Hide.color;
+        Color colorBar1 = bar1Hide.color;
+            
+            colorBar0.a = 1f;
+            colorBar1.a = 1f;
+
+            bar0Hide.color = colorBar0;
+            bar1Hide.color = colorBar1;
+            Debug.Log(colorBar0);
 
             dialogueMasking.SetActive(false);
         }
@@ -444,6 +467,7 @@ public class HideStart : MonoBehaviour
             step = 3;
             unlock3.onClick.AddListener(OnButtonCloseClicked);
         }
+        
     }
 
 

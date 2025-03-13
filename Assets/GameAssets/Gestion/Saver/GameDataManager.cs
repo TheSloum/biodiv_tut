@@ -3,6 +3,7 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameDataManager : MonoBehaviour
 {
@@ -16,11 +17,12 @@ public class GameDataManager : MonoBehaviour
     {
         LoadSaveFiles();
     }
-
     void OnEnable()
     {
 
         LoadSaveFiles();
+    
+    gameDataSaver = Materials.instance.GetComponent<GameDataSaver>();
     }
 
     public void LoadSaveFiles()
@@ -67,7 +69,22 @@ public class GameDataManager : MonoBehaviour
             var buttons = saveButton.GetComponentsInChildren<UnityEngine.UI.Button>();
             if (buttons.Length >= 2)
             {
-                buttons[0].onClick.AddListener(() => gameDataSaver.LoadData(saveDate)); // Load button
+                
+        if (SceneManager.GetActiveScene().name == "Menue"){ 
+            
+                buttons[0].onClick.AddListener(() => {
+        Materials.instance.isLoad = true;
+        Materials.instance.tutorial = false;
+        LoadManager.instance.saveDate = saveDate;
+    LoadManager.instance.resumeLoad = true;
+    SceneManager.LoadScene("SampleScene");
+});
+
+        }
+        else
+        {
+                buttons[0].onClick.AddListener(() => gameDataSaver.LoadData(saveDate));
+                }
                 buttons[1].onClick.AddListener(() => DeleteSave(saveFile, saveButton)); // Delete button
             }
         }

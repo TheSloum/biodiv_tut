@@ -34,6 +34,9 @@ public class Materials : MonoBehaviour
     public GameObject errorIndicator;
     public Text errorText;
 
+
+    public bool menuFirst = true;
+
     void OnEnable()
     {
         Application.logMessageReceived += HandleLog;
@@ -74,6 +77,14 @@ public class Materials : MonoBehaviour
             Destroy(gameObject);
             Debug.LogWarning("Multiple instances de Materials détectées.");
         }
+
+        
+        if (menuFirst == true && LoadManager.instance == null){
+            Debug.Log("loool");
+        SceneManager.LoadScene("Menue");
+        menuFirst = false;
+        }
+
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -102,6 +113,7 @@ public class Materials : MonoBehaviour
             mat_2 = GameDataSaver.instance.mat_2;
             price = GameDataSaver.instance.price;
             Debug.Log($"Materials chargés: Bois = {mat_0}, Pierre = {mat_1}, Fer = {mat_2}, Price = {price}");
+            
             ResetSessionCounts();
         }
         else
@@ -112,7 +124,9 @@ public class Materials : MonoBehaviour
         if (isLoad)
         {
             tutorial = false;
+            
         }
+
     }
 
     void Update()
