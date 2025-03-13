@@ -80,7 +80,7 @@ public class Materials : MonoBehaviour
 
         
         if (menuFirst == true && LoadManager.instance == null){
-            
+            Debug.Log("loool");
         SceneManager.LoadScene("Menue");
         menuFirst = false;
         }

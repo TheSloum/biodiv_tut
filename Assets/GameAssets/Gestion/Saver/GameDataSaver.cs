@@ -27,7 +27,6 @@ public class GameDataSaver : MonoBehaviour
     public int mat_1 = 0;
     public int mat_2 = 0;
     public int price = 0;
-
     private void Awake()
     {
         if (instance == null)
@@ -53,7 +52,6 @@ public class GameDataSaver : MonoBehaviour
         if (scene.name == "SampleScene")
         {
             trasiButton = GameObject.Find("Trasi")?.GetComponent<Button>();
-
             if (trasiButton != null)
             {
                 trasiButton.onClick.AddListener(() => SaveData());
@@ -86,27 +84,23 @@ public class GameDataSaver : MonoBehaviour
 
     public void LoadLatestSaveData()
     {
-                Debug.Log("ZLFOGZJGJOZPJRZOPJOPSJQEKGOPSKGPOQEJGQRPOGJGPOKJPO");
         string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
 
         if (!Directory.Exists(saveFolderPath))
         {
             return;
         }
-                Debug.Log("ZLFOGZJGJOZPJRZOPJOPSJQEKGOPSKGPOQEJGQRPOGJGPOKJPO");
 
         var saveFiles = Directory.GetFiles(saveFolderPath, "GameData_*.json");
         if (saveFiles.Length == 0)
         {
             return;
         }
-                Debug.Log("ZLFOGZJGJOZPJRZOPJOPSJQEKGOPSKGPOQEJGQRPOGJGPOKJPO");
 
         string latestFile = saveFiles.OrderByDescending(File.GetLastWriteTime).First();
         string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(latestFile);
         string datePart = fileNameWithoutExtension.Replace("GameData_", "");
 
-                Debug.Log(datePart);
         LoadDataAfterExplore(datePart);
         
     }
@@ -196,6 +190,12 @@ public class GameDataSaver : MonoBehaviour
 
     public void LoadData(string dataDate)
     {
+        if (SceneManager.GetActiveScene().name == "Menue"){
+            
+                Materials.instance.isLoad = true;
+                Materials.instance.explored = false;
+        SceneManager.LoadScene("SampleScene");
+        }
         Materials.instance.isLoad = true;
         string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
         if (File.Exists(path))
@@ -295,6 +295,10 @@ if (builderComponent != null && spriterenderer != null)
 
     public void LoadDataAfterExplore(string dataDate)
     {
+        if (LoadManager.instance.saveDate != null){
+            dataDate = LoadManager.instance.saveDate; 
+            LoadManager.instance.saveDate = null;
+        }
         Materials.instance.isLoad = true;
         string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
         
@@ -379,10 +383,13 @@ if (builderComponent != null && spriterenderer != null)
                 }
             }
             }
-            gameData.mat_0 = Materials.instance.mat_0;
-            gameData.mat_1 = Materials.instance.mat_1;
-            gameData.mat_2 = Materials.instance.mat_2;
-            gameData.price = Materials.instance.price;
+            Debug.Log(gameData.mat_0);
+            Debug.Log("QROPQERGJEROGPJGSOPJQPORJPOZQRJPDFGKBPOGKSDMFNEIGOJTEJIRHPOJG");
+
+            Materials.instance.mat_0 = gameData.mat_0;
+            Materials.instance.mat_1 = gameData.mat_1;
+            Materials.instance.mat_2 = gameData.mat_2;
+            Materials.instance.price = gameData.price;
             Materials.instance.townName = gameData.townName;
             Materials.instance.isLoad = true;
         }

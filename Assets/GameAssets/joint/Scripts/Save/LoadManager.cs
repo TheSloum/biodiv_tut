@@ -9,6 +9,7 @@ public class LoadManager : MonoBehaviour
 
 
      public bool resumeLoad;
+     public string saveDate;
 
 
 

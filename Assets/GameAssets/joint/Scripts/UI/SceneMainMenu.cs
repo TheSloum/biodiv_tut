@@ -15,7 +15,18 @@ public class SceneMainMenu : MonoBehaviour
     public void LoadScene(string Exploration_main)
     {
         Debug.Log("testeridos");
-        StartCoroutine(SaveAndLoadScene(Exploration_main));
+         GameObject gameManager = GameObject.Find("GameManager");
+        if (gameManager != null)
+        {
+            Destroy(gameManager);
+        }
+
+        Materials.instance = null; 
+
+        SceneManager.LoadScene(0);
+        SoundManager.instance.PlayMusic(musicClip);
+        SoundManager.instance.PlaySFX(sfxClip);
+        Time.timeScale = 1f;
     }
 
     private IEnumerator SaveAndLoadScene(string sceneName)

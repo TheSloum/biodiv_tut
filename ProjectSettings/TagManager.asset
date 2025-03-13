@@ -15,6 +15,7 @@ TagManager:
   - ImpactDisplay
   - OxygenManager
   - Victory
+  - SaveButton
   layers:
   - Default
   - TransparentFX
