@@ -29,7 +29,7 @@ public class GalleryPage : MonoBehaviour
 
     private int currentIndex = 0;
     private int maxIndex = 3;
-    private float moveDistance = 1770f;
+    private float moveDistance = 800f;
     private float animationDuration = 0.2f;
     private bool isMoving = false; // Empêche plusieurs animations en même temps
 
@@ -115,7 +115,7 @@ public class GalleryPage : MonoBehaviour
         if (currentIndex < maxIndex && !isMoving)
         {
             currentIndex++;
-            float newXPosition = containerToMove.transform.position.x - moveDistance;
+            float newXPosition = containerToMove.transform.localPosition.x - moveDistance;
             StartCoroutine(AnimateMove(newXPosition));
         }
     }
@@ -125,7 +125,7 @@ public class GalleryPage : MonoBehaviour
         if (currentIndex > 0 && !isMoving)
         {
             currentIndex--;
-            float newXPosition = containerToMove.transform.position.x + moveDistance;
+            float newXPosition = containerToMove.transform.localPosition.x + moveDistance;
             StartCoroutine(AnimateMove(newXPosition));
         }
     }
@@ -134,18 +134,18 @@ public class GalleryPage : MonoBehaviour
     {
         isMoving = true;
         float elapsedTime = 0;
-        Vector3 startPosition = containerToMove.transform.position;
+        Vector3 startPosition = containerToMove.transform.localPosition;
         Vector3 targetPosition = new Vector3(targetX, startPosition.y, startPosition.z);
 
         while (elapsedTime < animationDuration)
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / animationDuration;
-            containerToMove.transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+            containerToMove.transform.localPosition = Vector3.Lerp(startPosition, targetPosition, t);
             yield return null;
         }
 
-        containerToMove.transform.position = targetPosition;
+        containerToMove.transform.localPosition = targetPosition;
         isMoving = false;
 
         UpdateButtons();
