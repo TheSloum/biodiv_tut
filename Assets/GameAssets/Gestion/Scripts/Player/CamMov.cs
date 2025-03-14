@@ -48,7 +48,7 @@ public class CamMov : MonoBehaviour
     public GameObject pauseUI;
 
     [Header("GUI control")]
-    public GameObject[] menus; 
+    public GameObject[] menus;
     public GameObject gui;
 
     void Awake()
@@ -60,11 +60,12 @@ public class CamMov : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Materials.instance.canMove){
-        HandleMovement();
-        HandleCameraDrag();
-        HandleZoom();
-        HandleKeyboardInput();
+        if (Materials.instance.canMove)
+        {
+            HandleMovement();
+            HandleCameraDrag();
+            HandleZoom();
+            HandleKeyboardInput();
         }
     }
 
@@ -206,7 +207,7 @@ public class CamMov : MonoBehaviour
         }
         else
         {
-            gui.SetActive(true); 
+            gui.SetActive(true);
         }
     }
 
@@ -216,7 +217,7 @@ public class CamMov : MonoBehaviour
         {
             if (obj != null && obj.activeInHierarchy)
             {
-                return true; 
+                return true;
             }
         }
         return false;

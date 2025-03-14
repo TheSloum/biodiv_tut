@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class UIbuttons : MonoBehaviour
 {
-        public AudioClip sfxClip;
+    public AudioClip sfxClip;
     public AudioClip musicClip;
     [SerializeField] private GameObject unlockMenu;
     void Start()
     {
-}
+    }
 
-public void UnlockMenuOpen()
-{
-    SoundManager.instance.PlayMusic(musicClip);
-    SoundManager.instance.PlaySFX(sfxClip);
-    unlockMenu.SetActive(true);
-    Materials.instance.canMove = false;
+    public void UnlockMenuOpen()
+    {
+        unlockMenu.SetActive(true);
+        Materials.instance.canMove = false;
 
-}
+    }
 }

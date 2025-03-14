@@ -6,7 +6,6 @@ using System.Collections;
 public class SceneMainMenu : MonoBehaviour
 {
     public AudioClip sfxClip;
-    public AudioClip musicClip;
 
     public GameDataSaver savescript;
 
@@ -14,10 +13,7 @@ public class SceneMainMenu : MonoBehaviour
 
     public void LoadScene(string Exploration_main)
     {
-        Debug.Log("testeridos");
-        SceneManager.LoadScene("Menue");
-
-        SoundManager.instance.PlayMusic(musicClip);
+        SceneManager.LoadScene("Exploration_main");
         SoundManager.instance.PlaySFX(sfxClip);
         Time.timeScale = 1f;
     }

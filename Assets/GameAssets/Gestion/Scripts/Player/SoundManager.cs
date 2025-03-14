@@ -12,7 +12,8 @@ public class SoundManager : MonoBehaviour
     private float globalVolume = 1f;
     private float musicVolume = 1f;
     private float sfxVolume = 1f;
-
+    private Queue<AudioClip> musicQueue = new Queue<AudioClip>();
+    private Coroutine musicSequenceCoroutine;
     private Coroutine fadeCoroutine;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+
     private void Start()
     {
         globalVolume = PlayerPrefs.GetFloat("GlobalVolume", 1f);
@@ -36,7 +38,41 @@ public class SoundManager : MonoBehaviour
 
         ApplyVolumes();
     }
+    public void PlayMusicSequence(List<AudioClip> clips, float silenceDuration = 2f)
+    {
+        if (clips == null || clips.Count == 0)
+        {
+            return;
+        }
 
+        musicQueue.Clear();
+        foreach (var clip in clips)
+        {
+            musicQueue.Enqueue(clip);
+        }
+
+        if (musicSequenceCoroutine != null)
+        {
+            StopCoroutine(musicSequenceCoroutine);
+        }
+
+        musicSequenceCoroutine = StartCoroutine(PlayMusicWithSilence(silenceDuration));
+    }
+
+    private IEnumerator PlayMusicWithSilence(float silenceDuration)
+    {
+        while (musicQueue.Count > 0)
+        {
+            AudioClip nextClip = musicQueue.Dequeue();
+
+            yield return StartCoroutine(FadeOutAndChangeMusic(nextClip));
+
+            yield return new WaitForSeconds(nextClip.length);
+
+            musicSource.Stop();
+            yield return new WaitForSeconds(silenceDuration);
+        }
+    }
     private void OnApplicationQuit()
     {
         PlayerPrefs.SetFloat("GlobalVolume", globalVolume);
@@ -117,40 +153,40 @@ public class SoundManager : MonoBehaviour
 
     private int currentMusicToken = 0;
 
-private IEnumerator FadeOutAndChangeMusic(AudioClip newClip)
-{
-    int thisMusicToken = ++currentMusicToken;
-    float startVolume = musicSource.volume;
-    float fadeDuration = 0.5f;
-    float timer = 0f;
+    private IEnumerator FadeOutAndChangeMusic(AudioClip newClip)
+    {
+        int thisMusicToken = ++currentMusicToken;
+        float startVolume = musicSource.volume;
+        float fadeDuration = 0.5f;
+        float timer = 0f;
 
-    while (timer < fadeDuration)
-    {
-        if (thisMusicToken != currentMusicToken) yield break;
+        while (timer < fadeDuration)
+        {
+            if (thisMusicToken != currentMusicToken) yield break;
 
-        timer += Time.deltaTime;
-        musicSource.volume = Mathf.Lerp(startVolume, 0f, timer / fadeDuration);
-        yield return null;
-    }
-    if (thisMusicToken == currentMusicToken)
-    {
-        musicSource.Stop();
-        musicSource.clip = newClip;
-        musicSource.Play();
-    }
-    timer = 0f;
-    while (timer < fadeDuration)
-    {
-        if (thisMusicToken != currentMusicToken) yield break;
+            timer += Time.deltaTime;
+            musicSource.volume = Mathf.Lerp(startVolume, 0f, timer / fadeDuration);
+            yield return null;
+        }
+        if (thisMusicToken == currentMusicToken)
+        {
+            musicSource.Stop();
+            musicSource.clip = newClip;
+            musicSource.Play();
+        }
+        timer = 0f;
+        while (timer < fadeDuration)
+        {
+            if (thisMusicToken != currentMusicToken) yield break;
 
-        timer += Time.deltaTime;
-        musicSource.volume = Mathf.Lerp(0f, musicVolume * globalVolume, timer / fadeDuration);
-        yield return null;
+            timer += Time.deltaTime;
+            musicSource.volume = Mathf.Lerp(0f, musicVolume * globalVolume, timer / fadeDuration);
+            yield return null;
+        }
+        if (thisMusicToken == currentMusicToken)
+        {
+            musicSource.volume = musicVolume * globalVolume;
+        }
     }
-    if (thisMusicToken == currentMusicToken)
-    {
-        musicSource.volume = musicVolume * globalVolume;
-    }
-}
 
 }
