@@ -26,7 +26,6 @@ public class E_OxygenManager : MonoBehaviour
 
     void Start()
     {
-
         currentOxygen = maxOxygen;
         oxygenSlider.maxValue = maxOxygen;
         oxygenSlider.value = currentOxygen;
@@ -125,9 +124,25 @@ public class E_OxygenManager : MonoBehaviour
             yield return StartCoroutine(AnimateText(timeText, "Temps Total : ", formattedTime, 2f));
         }
 
-        yield return StartCoroutine(ShowResourceCount(woodText, "Bois Collecté : ", Materials.instance != null ? Materials.instance.sessionWood : 0, 1.5f));
-        yield return StartCoroutine(ShowResourceCount(stoneText, "Pierre Collectée : ", Materials.instance != null ? Materials.instance.sessionStone : 0, 1.5f));
-        yield return StartCoroutine(ShowResourceCount(ironText, "Fer Collecté : ", Materials.instance != null ? Materials.instance.sessionIron : 0, 1.5f));
+        // Lancer l'animation des trois ressources simultanément sur 5 secondes
+        if (woodText != null)
+        {
+            woodText.text = "Bois Collecté : 0";
+            StartCoroutine(AnimateNumberText(woodText, "Bois Collecté : ", Materials.instance != null ? Materials.instance.sessionWood : 0, 5f));
+        }
+        if (stoneText != null)
+        {
+            stoneText.text = "Pierre Collectée : 0";
+            StartCoroutine(AnimateNumberText(stoneText, "Pierre Collectée : ", Materials.instance != null ? Materials.instance.sessionStone : 0, 5f));
+        }
+        if (ironText != null)
+        {
+            ironText.text = "Fer Collecté : 0";
+            StartCoroutine(AnimateNumberText(ironText, "Fer Collecté : ", Materials.instance != null ? Materials.instance.sessionIron : 0, 5f));
+        }
+
+        // Attendre la durée de l'animation
+        yield return new WaitForSecondsRealtime(5f);
 
         yield return new WaitForSecondsRealtime(2f);
         Time.timeScale = 1f;
@@ -135,20 +150,6 @@ public class E_OxygenManager : MonoBehaviour
         Materials.instance.isLoad = true;
 
         SceneManager.LoadScene("SampleScene");
-    }
-
-    IEnumerator ShowResourceCount(TextMeshProUGUI textComponent, string prefix, int targetValue, float duration)
-    {
-        if (textComponent != null && Materials.instance != null)
-        {
-            textComponent.text = prefix + "0";
-            yield return StartCoroutine(AnimateNumberText(textComponent, prefix, targetValue, duration));
-        }
-        else if (textComponent != null)
-        {
-            textComponent.text = prefix + targetValue.ToString();
-            Debug.LogWarning("Materials.instance est null ou " + textComponent.name + " est non assigné dans DisplayResults()");
-        }
     }
 
     IEnumerator AnimateText(TextMeshProUGUI textComponent, string prefix, string targetTime, float duration)
