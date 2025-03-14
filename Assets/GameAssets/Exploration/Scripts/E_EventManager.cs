@@ -1,42 +1,56 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class E_EventManager : MonoBehaviour
 {
-    [Header("Références")]
-    public E_EventSettings settings;
+    #region Références et Variables
+    [Header("References")]
     public E_Event eventSystem;
     public J_TimeManager timeManager;
 
-    [Header("Paramètres des Événements")]
-    [SerializeField] private int invasionCooldown = 1; // Années
-    [SerializeField] private int normalEventCooldown = 3; // Années
+    [Header("Event Definitions")]
+    public E_EventDefinition[] invasionEvents;
+    public E_EventDefinition[] normalEvents;
 
-    private Queue<string> invasionQueue = new Queue<string>();
-    private List<string> availableNormalEvents = new List<string>();
+    [Header("Scheduling Parameters")]
+    [SerializeField] private int invasionCooldownYears = 1;
+    [SerializeField] private int normalEventCooldownYears = 3;
+
+    private Queue<E_EventDefinition> invasionQueue = new Queue<E_EventDefinition>();
+    private List<E_EventDefinition> availableNormalEvents = new List<E_EventDefinition>();
     private Dictionary<string, int> eventCooldowns = new Dictionary<string, int>();
 
     private int lastInvasionYear = -1;
-    private string lastInvasionType;
-    private bool coralFestivalPending;
+    private E_EventDefinition lastInvasionEvent;
+    #endregion
 
+    #region Festival du Corail
+    private bool coralFestivalPending = false;
+    #endregion
+
+    #region Initialisation et Abonnements
     void Start()
     {
-        InitializeEventSystem();
+        InitializeEvents();
         SubscribeToTimeEvents();
     }
 
-    void InitializeEventSystem()
+    void InitializeEvents()
     {
-        if (eventSystem == null)
-            eventSystem = FindObjectOfType<E_Event>();
-        
-        invasionQueue.Enqueue("Méduses");
-        invasionQueue.Enqueue("PoissonLion");
-        invasionQueue.Enqueue("Barracuda");
-        
-        availableNormalEvents.AddRange(new[] { "VagueDechets", "Tempête", "AlguesToxiques" });
+        if (invasionEvents != null && invasionEvents.Length > 0)
+        {
+            foreach (var inv in invasionEvents)
+            {
+                invasionQueue.Enqueue(inv);
+            }
+        }
+
+        if (normalEvents != null)
+        {
+            availableNormalEvents.AddRange(normalEvents);
+        }
     }
 
     void SubscribeToTimeEvents()
@@ -45,30 +59,37 @@ public class E_EventManager : MonoBehaviour
         timeManager.OnYearChanged += HandleYearChange;
     }
 
+    void OnDestroy()
+    {
+        timeManager.OnMonthChanged -= HandleMonthChange;
+        timeManager.OnYearChanged -= HandleYearChange;
+    }
+    #endregion
+
+    #region Gestion des Événements Mensuels et Annuels
     void HandleMonthChange(int month)
     {
         int year = timeManager.GetCurrentYear();
         CheckForScheduledEvents(month, year);
-        CheckCoralFestival(month, year);
+        CheckForCoralFestival(month, year);
     }
 
     void HandleYearChange(int year)
     {
         CleanupCooldowns(year);
     }
+    #endregion
 
+    #region Déclenchement des Événements
     void CheckForScheduledEvents(int currentMonth, int currentYear)
     {
-        // Vérifier les invasions (1 par an)
+        // Exemple : déclencher une invasion en mars si aucune invasion n'a eu lieu cette année
         if (currentMonth == 3 && currentYear > lastInvasionYear)
         {
             TriggerInvasion(currentYear);
         }
-
-        // Vérifier les événements normaux (2 par an)
-        if ((currentMonth == 6 || currentMonth == 9) && 
-           availableNormalEvents.Count > 0 && 
-           !IsEventInCooldown(currentYear))
+        // Exemple : déclencher un événement normal en juin ou en septembre
+        if ((currentMonth == 6 || currentMonth == 9) && availableNormalEvents.Count > 0 && !IsEventInCooldown(currentYear))
         {
             TriggerNormalEvent(currentYear);
         }
@@ -76,116 +97,92 @@ public class E_EventManager : MonoBehaviour
 
     void TriggerInvasion(int currentYear)
     {
-        string invasionType = GetNextInvasionType();
+        if (invasionQueue.Count == 0)
+            return;
+        E_EventDefinition invasionEvent = invasionQueue.Dequeue();
+        invasionQueue.Enqueue(invasionEvent);
         lastInvasionYear = currentYear;
-        lastInvasionType = invasionType;
-
-        eventSystem.TriggerEvent(GetEventIdFromType(invasionType));
-        AddEventCooldown(invasionType, currentYear + invasionCooldown);
+        lastInvasionEvent = invasionEvent;
+        int index = GetEventIndex(invasionEvent);
+        if (index != -1)
+        {
+            eventSystem.TriggerEvent(index);
+            AddEventCooldown(invasionEvent.eventName, currentYear + invasionCooldownYears);
+        }
     }
 
     void TriggerNormalEvent(int currentYear)
     {
-        string eventType = availableNormalEvents[Random.Range(0, availableNormalEvents.Count)];
-        eventSystem.TriggerEvent(GetEventIdFromType(eventType));
-        
-        availableNormalEvents.Remove(eventType);
-        AddEventCooldown(eventType, currentYear + normalEventCooldown);
-    }
-
-    void CheckCoralFestival(int currentMonth, int currentYear)
-    {
-        if (ShouldTriggerCoralFestival(currentMonth, currentYear))
+        if (availableNormalEvents.Count == 0)
+            return;
+        int randomIndex = Random.Range(0, availableNormalEvents.Count);
+        E_EventDefinition normalEvent = availableNormalEvents[randomIndex];
+        int index = GetEventIndex(normalEvent);
+        if (index != -1)
         {
-            if (IsPlayerExploring())
-            {
-                coralFestivalPending = true;
-            }
-            else
-            {
-                StartCoroutine(TriggerDelayedFestival());
-            }
+            eventSystem.TriggerEvent(index);
+            availableNormalEvents.RemoveAt(randomIndex);
+            AddEventCooldown(normalEvent.eventName, currentYear + normalEventCooldownYears);
         }
     }
+    #endregion
 
-    IEnumerator TriggerDelayedFestival()
+    #region Gestion du Festival et des Cooldowns
+    void CheckForCoralFestival(int currentMonth, int currentYear)
     {
-        yield return new WaitUntil(() => !IsPlayerExploring());
-        eventSystem.TriggerEvent(3);
-        coralFestivalPending = false;
-    }
-
-    bool ShouldTriggerCoralFestival(int month, int year)
-    {
-        return month == 6 && 
-              year % 2 == 0 && 
-              !coralFestivalPending && 
-              timeManager.GetCurrentTimer() > 3 * 60; // 3 minutes en secondes
+        // Logique à compléter si besoin pour déclencher un festival du corail
     }
 
     void CleanupCooldowns(int currentYear)
     {
-        List<string> expiredEvents = new List<string>();
-        
+        List<string> expired = new List<string>();
         foreach (var entry in eventCooldowns)
         {
             if (entry.Value <= currentYear)
+                expired.Add(entry.Key);
+        }
+        foreach (string key in expired)
+        {
+            eventCooldowns.Remove(key);
+            // Réintégrer l'événement normal correspondant s'il n'est plus en cooldown
+            foreach (var evt in normalEvents)
             {
-                expiredEvents.Add(entry.Key);
+                if (evt.eventName == key && !availableNormalEvents.Contains(evt))
+                {
+                    availableNormalEvents.Add(evt);
+                }
             }
         }
+    }
 
-        foreach (string eventType in expiredEvents)
+    void AddEventCooldown(string eventName, int expiryYear)
+    {
+        if (!eventCooldowns.ContainsKey(eventName))
         {
-            eventCooldowns.Remove(eventType);
-            if (!availableNormalEvents.Contains(eventType))
-            {
-                availableNormalEvents.Add(eventType);
-            }
-        }
-    }
-
-    int GetEventIdFromType(string eventType)
-    {
-        return eventType switch {
-            "Méduses" => 0,
-            "PoissonLion" => 1,
-            "Barracuda" => 2,
-            "FêteCorail" => 3,
-            "VagueDechets" => 4,
-            _ => -1
-        };
-    }
-
-    string GetNextInvasionType()
-    {
-        string nextType = invasionQueue.Dequeue();
-        invasionQueue.Enqueue(nextType);
-        return nextType;
-    }
-
-    void AddEventCooldown(string eventType, int expiryYear)
-    {
-        if (!eventCooldowns.ContainsKey(eventType))
-        {
-            eventCooldowns.Add(eventType, expiryYear);
+            eventCooldowns.Add(eventName, expiryYear);
         }
     }
 
     bool IsEventInCooldown(int currentYear)
     {
-        return eventCooldowns.ContainsValue(currentYear); 
-    }
-
-    bool IsPlayerExploring()
-    {
-        // Implémentez votre logique de vérification d'exploration ici
+        foreach (var entry in eventCooldowns)
+        {
+            if (entry.Value == currentYear)
+                return true;
+        }
         return false;
     }
+    #endregion
 
-    void OnDestroy()
+    #region Méthode Utilitaire
+    int GetEventIndex(E_EventDefinition eventDef)
     {
-        timeManager.OnMonthChanged -= HandleMonthChange;
-        timeManager.OnYearChanged -= HandleYearChange;
+        for (int i = 0; i < eventSystem.eventDefinitions.Length; i++)
+        {
+            if (eventSystem.eventDefinitions[i] == eventDef)
+                return i;
+        }
+        return -1;
     }
+    #endregion
 }

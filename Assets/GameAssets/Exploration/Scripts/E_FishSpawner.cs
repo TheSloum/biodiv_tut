@@ -2,16 +2,39 @@ using UnityEngine;
 
 public class E_FishSpawner : MonoBehaviour
 {
+    #region Singleton Instance
+    public static E_FishSpawner Instance;
+    #endregion
+
     [Header("Préfabriqués de Poissons")]
     [Tooltip("Liste des préfabriqués de différentes races de poissons.")]
-    public GameObject[] fishPrefabs; // Liste de préfabriqués de poissons à instancier
+    public GameObject[] fishPrefabs;
 
     [Header("Paramètres de Spawn")]
     public float spawnInterval = 3f; // Intervalle de spawn en secondes
-    public float spawnRangeY = 3f; // Variation verticale pour le spawn
+    public float spawnRangeY = 3f;   // Variation verticale pour le spawn
     public float spawnXOffset = 10f; // Distance à droite de l'écran pour le spawn
 
     private float timer = 0f;
+    private float defaultSpawnInterval;
+
+    void Awake()
+    {
+        // Initialisation du singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Start()
+    {
+        defaultSpawnInterval = spawnInterval;
+    }
 
     void Update()
     {
@@ -27,6 +50,7 @@ public class E_FishSpawner : MonoBehaviour
     {
         fishPrefabs = settings.defaultFishPrefabs;
         spawnInterval = settings.defaultFishSpawnRate;
+        defaultSpawnInterval = spawnInterval;
     }
 
     void SpawnFish()
@@ -37,35 +61,27 @@ public class E_FishSpawner : MonoBehaviour
             return;
         }
 
-        // Choisir aléatoirement un préfabriqué de poisson dans la liste
         int randomIndex = Random.Range(0, fishPrefabs.Length);
         GameObject selectedFishPrefab = fishPrefabs[randomIndex];
 
-        // Calculer une position de spawn aléatoire sur l'axe Y
         float spawnY = Random.Range(-spawnRangeY, spawnRangeY);
         Vector3 spawnPosition = new Vector3(transform.position.x + spawnXOffset, spawnY, 0f);
 
-        // Instancier le poisson
-        GameObject fish = Instantiate(selectedFishPrefab, spawnPosition, Quaternion.identity);
+        Instantiate(selectedFishPrefab, spawnPosition, Quaternion.identity);
+    }
 
-        // Vérifier si le prefab possède un SpriteRenderer
-        SpriteRenderer sr = fish.GetComponent<SpriteRenderer>();
-        /*
-        if(sr != null)
-        {
-            // Définir un Order in Layer aléatoire entre -6 et -2 (inclus)
-            int sortingOrder = Random.Range(-1, -1); // -6, -5, -4, -3, -2
-            sr.sortingOrder = sortingOrder;
+    // Méthode appelée lors du début de l'événement "Pêche illégale" pour réduire le taux de spawn (augmentation de l'intervalle)
+    public void ReduceFishSpawnRate()
+    {
+        // Par exemple, doubler l'intervalle de spawn pour réduire le nombre de poissons
+        spawnInterval = defaultSpawnInterval * 2f;
+        Debug.Log("Pêche illégale activée : taux de spawn de poissons réduit.");
+    }
 
-            // Calculer l'échelle en fonction de l'Order in Layer
-            // Plus l'ordre est bas, plus l'échelle est petite
-            float scale = 3f + ((sortingOrder + 6) * 0.5f); // -6 => 3, -5 => 3.5, ..., -2 => 5
-            fish.transform.localScale = Vector3.one * scale;
-        }
-        else
-        {
-            Debug.LogWarning("Le préfabriqué de poisson instancié n'a pas de SpriteRenderer attaché.");
-        }
-    */
+    // Méthode appelée à la fin de l'événement pour restaurer le taux de spawn par défaut
+    public void RestoreDefaultSpawnRate()
+    {
+        spawnInterval = defaultSpawnInterval;
+        Debug.Log("Fin de la pêche illégale : taux de spawn de poissons restauré.");
     }
 }
