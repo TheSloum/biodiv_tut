@@ -154,15 +154,17 @@ public class Builder : MonoBehaviour
             }
             OnBuildingButtonClick(matchingBuilding);
         }
-        if (buildState == 50){
+        if (buildState == 50)
+        {
             Materials.instance.researchCentr = false;
         }
     }
 
     void Update()
     {
-        
-        if (buildState == 50){
+
+        if (buildState == 50)
+        {
             Materials.instance.researchCentr = false;
         }
         foreach (Building building in buildings)
@@ -195,7 +197,8 @@ public class Builder : MonoBehaviour
                 else
                 {
                     notEnothRessourse.SetActive(false);
-                    if(toFloat){
+                    if (toFloat)
+                    {
                         running = true;
                     }
                     toFloat = false;
@@ -241,10 +244,11 @@ public class Builder : MonoBehaviour
     {
         if (editing == true)
         {
-            if(buildState == 50){
+            if (buildState == 50)
+            {
                 Materials.instance.researchCentr = true;
             }
-            cycleBar.transform.localPosition = new Vector3(0, -46, 0);
+            cycleBar.transform.localPosition = new Vector3(0, 0, 0);
             buildState = 0;
             buildID = 0;
             level0 = 0;
