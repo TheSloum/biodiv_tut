@@ -3,8 +3,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 
-<<<<<<< HEAD
-=======
 [System.Serializable]
 public class E_EventDefinitions
 {
@@ -18,7 +16,6 @@ public class E_EventDefinitions
     public UnityEvent OnEventEnd;
 }
 
->>>>>>> 129a613f97d9b799ae17e25b009be4397a31a5c5
 public class E_Event : MonoBehaviour
 {
     [Header("Event Definitions")]
