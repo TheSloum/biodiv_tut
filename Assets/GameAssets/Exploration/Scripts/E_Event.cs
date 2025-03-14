@@ -3,23 +3,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class E_EventDefinitions
-{
-    public string message;
-    public Color messageColor;
-    public float textFadeInDuration;
-    public float textVisibleDuration;
-    public float textFadeOutDuration;
-    public float eventDuration;
-    public UnityEvent OnEventStart;
-    public UnityEvent OnEventEnd;
-}
-
 public class E_Event : MonoBehaviour
 {
     [Header("Event Definitions")]
-    // Nous remplissons le tableau en dur dans le code
     public E_EventDefinition[] eventDefinitions;
 
     [Header("UI & Overlay")]
