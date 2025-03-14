@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class E_FishSpawner : MonoBehaviour
 {
     #region Singleton Instance
@@ -18,6 +18,10 @@ public class E_FishSpawner : MonoBehaviour
     private float timer = 0f;
     private float defaultSpawnInterval;
 
+
+    private float totalWeight;
+    private int tospawn;
+        private float sum = 0f;
     void Awake()
     {
         // Initialisation du singleton
@@ -30,10 +34,54 @@ public class E_FishSpawner : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    
+    List<float> weights = new List<float>();
+    private float cumulativeWeight;
+    private float randomValue;
     void Start()
     {
         defaultSpawnInterval = spawnInterval;
+        
+
+        foreach (GameObject prefab in fishPrefabs)
+        {
+            E_FishController fishScript = prefab.GetComponent<E_FishController>();
+
+            if (fishScript != null)
+            {
+                Fishes fish = fishScript.fishData;
+                weights.Add(fish.freqWeight);
+            }
+        }
+sum = 0f;
+foreach (float value in weights)
+{
+    sum += value;
+}
+    }
+
+    void SpawnFish()
+    {
+        cumulativeWeight = 0f;
+float randomValue = Random.Range(0f, sum);
+Debug.Log("Random de: " + randomValue + " - " + sum);
+        for (int i = 0; i < weights.Count; i++)
+        {
+            cumulativeWeight += weights[i];
+            Debug.Log(i + "AFJV");
+            if (randomValue < cumulativeWeight)
+            {
+                tospawn = i;
+                break;
+            }
+        }
+        GameObject selectedFishPrefab = fishPrefabs[tospawn];
+        Debug.Log("Spawn de " + fishPrefabs[tospawn] + " - " + tospawn);
+
+        float spawnY = Random.Range(-spawnRangeY, spawnRangeY);
+        Vector3 spawnPosition = new Vector3(transform.position.x + spawnXOffset, spawnY, 0f);
+
+        Instantiate(selectedFishPrefab, spawnPosition, Quaternion.identity);
     }
 
     void Update()
@@ -53,22 +101,7 @@ public class E_FishSpawner : MonoBehaviour
         defaultSpawnInterval = spawnInterval;
     }
 
-    void SpawnFish()
-    {
-        if (fishPrefabs == null || fishPrefabs.Length == 0)
-        {
-            Debug.LogWarning("La liste des préfabriqués de poissons est vide. Assignez au moins un préfabriqué dans l'inspecteur.");
-            return;
-        }
-
-        int randomIndex = Random.Range(0, fishPrefabs.Length);
-        GameObject selectedFishPrefab = fishPrefabs[randomIndex];
-
-        float spawnY = Random.Range(-spawnRangeY, spawnRangeY);
-        Vector3 spawnPosition = new Vector3(transform.position.x + spawnXOffset, spawnY, 0f);
-
-        Instantiate(selectedFishPrefab, spawnPosition, Quaternion.identity);
-    }
+    
 
     // Méthode appelée lors du début de l'événement "Pêche illégale" pour réduire le taux de spawn (augmentation de l'intervalle)
     public void ReduceFishSpawnRate()

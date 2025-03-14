@@ -11,6 +11,7 @@ public class Fishes : ScriptableObject
     public string fishSize = "25m";
     public string fishOrigin = " herbiers, algues de zones rocheuses";
     public string frequence = "rare";
+    public float freqWeight = 1f;
     public string fishClass = "Syngnathidae";
     public string mediumWeight = "0.015kg";
     public string profondeur = "10-30m";
