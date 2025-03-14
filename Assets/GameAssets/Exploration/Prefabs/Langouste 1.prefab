@@ -107,7 +107,7 @@ MonoBehaviour:
   frequency: 1
   changeDirectionChance: 0.1
   rotationUpAngle: -15
-  rotationDownAngle: 15
+  rotationDownAngle: 0
   rotationSpeed: 5
   rotationThreshold: 0.00001
   fishData: {fileID: 11400000, guid: 58c2ae92d748d194a81dd5d3e597f87a, type: 2}
