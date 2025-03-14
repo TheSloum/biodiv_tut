@@ -23,22 +23,21 @@ public class E_EventSettings : ScriptableObject
 
     [Header("Invasion Settings")]
     public List<InvasionType> invasionTypes = new List<InvasionType>();
-    public GameObject[] jellyfishPrefabs;
-    public GameObject[] lionfishPrefabs;
-    public GameObject[] barracudaPrefabs;
-
+    
     [Header("Normal Events")]
-    public List<NormalEventType> normalEvents = new List<NormalEventType>();
+    public List<NormalEventType> normalEvents = new List<NormalEventType>()
+    {
+        new NormalEventType { name = "Pêche illégale", eventID = 4 },
+        new NormalEventType { name = "Vague de déchets", eventID = 5 }
+    };
 
-    [Header("Cooldown Settings")]
-    public int invasionCooldownYears = 1;
-    public int normalEventCooldownYears = 3;
+    [Header("Cooldown & Festival Settings")]
+    public int invasionCooldownYears = 3; // Exemple : 3 ans de cooldown pour les invasions
+    public int normalEventCooldownYears = 5; // Exemple : 5 ans de cooldown pour les événements normaux
 
-    [Header("Festival Settings")] 
+    [Header("Festival and Trash Wave Settings")]
     public float festivalSpawnMultiplier = 1.5f;
     public Color festivalTextColor = Color.yellow;
-
-    [Header("Trash Wave Settings")]
     public float trashWaveFishReduction = 0.5f;
     public float trashWaveSpawnIncrease = 2f;
     public Color trashTextColor = Color.gray;
@@ -47,7 +46,7 @@ public class E_EventSettings : ScriptableObject
     public float overlayMaxOpacity = 0.7f;
     public float overlayFadeOutDuration = 2f;
 
-    [Header("Default Settings")] 
+    [Header("Default Settings")]
     public GameObject[] defaultFishPrefabs;
 }
 
