@@ -15,6 +15,7 @@ public class E_Scroller : MonoBehaviour
     private Vector3 screenBounds; // Screen size in world units
 
     public int layer = 0;
+    public bool fore = false;
 
     void Start()
     {
@@ -24,7 +25,16 @@ public class E_Scroller : MonoBehaviour
 
         // Initialize the first image
         currentImage = CreateImageFromSprite(GetRandomSprite(type1Sprites));
-        currentImage.transform.position = Vector3.zero; // Center on screen
+        foreach (Sprite sprite in type1Sprites)
+    {
+        if (sprite != null && sprite.name == "Foreground")
+        {
+        currentImage.transform.position = new Vector3(0, 0, 0);
+        } else {
+            
+        currentImage.transform.position = new Vector3(0, 0.7f, 0);
+        }
+    }
 
         // Create the next image
         CreateNextImage();
@@ -55,7 +65,13 @@ public class E_Scroller : MonoBehaviour
 
         // Position the next image to the right of the current image
         float imageWidth = currentImage.GetComponent<SpriteRenderer>().bounds.size.x;
+        if (nextSprite != null && nextSprite.name == "Foreground")
+{
         nextImage.transform.position = new Vector3(currentImage.transform.position.x + imageWidth, 0, 0);
+} else {
+    
+        nextImage.transform.position = new Vector3(currentImage.transform.position.x + imageWidth, 0.7f, 0);
+}
 
         // Update the current type
         currentType = GetNextType();

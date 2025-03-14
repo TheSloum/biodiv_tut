@@ -79,7 +79,7 @@ public class Materials : MonoBehaviour
         }
 
         
-        if (menuFirst == true && LoadManager.instance == null){
+        if (menuFirst == true && LoadManager.instance == null && SceneManager.GetActiveScene().name != "Exploration_main") {
             Debug.Log("loool");
         SceneManager.LoadScene("Menue");
         menuFirst = false;
