@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LoadManager : MonoBehaviour
 {
-     public static LoadManager instance;
+    public static LoadManager instance;
 
 
-     public bool resumeLoad;
-     public string saveDate;
+    public bool resumeLoad;
+    public string saveDate = null;
 
 
 
@@ -17,31 +17,32 @@ public class LoadManager : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
             return;
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject); 
+        DontDestroyOnLoad(gameObject);
         Materials.instance.menuFirst = false;
     }
-        void Start()
+    void Start()
     {
-        
+
     }
 
-public static void DestroyInstance()
+    public static void DestroyInstance()
     {
         if (instance != null)
         {
             Destroy(instance.gameObject);
-            instance = null;  
+            instance = null;
         }
     }
 
     public void Resume()
     {
         resumeLoad = true;
+        saveDate = null;
         Materials.instance.isLoad = true;
         Materials.instance.tutorial = false;
         SceneManager.LoadScene("SampleScene");

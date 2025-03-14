@@ -68,8 +68,10 @@ public class GameDataSaver : MonoBehaviour
                 builderData.Add(builder.gameObject);
             }
 
+            Debug.Log("ResumeB4");
             if ((Materials.instance.isLoad && Materials.instance.explored) || (LoadManager.instance != null && LoadManager.instance.resumeLoad))
             {
+                Debug.Log("ResumeStart");
                 Materials.instance.isLoad = true;
                 LoadLatestSaveData();
                 Materials.instance.explored = false;
@@ -102,7 +104,7 @@ public class GameDataSaver : MonoBehaviour
         string datePart = fileNameWithoutExtension.Replace("GameData_", "");
 
         LoadDataAfterExplore(datePart);
-        
+
     }
 
     public void SaveData()
@@ -177,11 +179,11 @@ public class GameDataSaver : MonoBehaviour
 
 
         // Sauvegarde en fichier
-        
-        string fileName; 
 
-            fileName = $"GameData_{DateTime.Now:yyyy-MM-dd_HH-mm}.json";
-        
+        string fileName;
+
+        fileName = $"GameData_{DateTime.Now:yyyy-MM-dd_HH-mm}.json";
+
         string path = Path.Combine(Application.dataPath, "Sauvegardes", fileName);
         string json = JsonUtility.ToJson(gameData, true);
         File.WriteAllText(path, json);
@@ -190,11 +192,12 @@ public class GameDataSaver : MonoBehaviour
 
     public void LoadData(string dataDate)
     {
-        if (SceneManager.GetActiveScene().name == "Menue"){
-            
-                Materials.instance.isLoad = true;
-                Materials.instance.explored = false;
-        SceneManager.LoadScene("SampleScene");
+        if (SceneManager.GetActiveScene().name == "Menue")
+        {
+
+            Materials.instance.isLoad = true;
+            Materials.instance.explored = false;
+            SceneManager.LoadScene("SampleScene");
         }
         Materials.instance.isLoad = true;
         string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
@@ -222,59 +225,59 @@ public class GameDataSaver : MonoBehaviour
                 SpriteRenderer spriterenderer = bObj.GetComponent<SpriteRenderer>();
                 int buildState = gameData.builderDataList[i].buildState;
 
-if (builderComponent != null && spriterenderer != null)
-{
-    if (buildState == 50)
-    {
-                    builderComponent.editing = true;
-                    builderComponent.OnDestroyClicked();
-                    builderComponent.editing = false;
-        builderComponent.buildState = 50;
-        reseachHere = true;
-        builderComponent.running = true;
-        
+                if (builderComponent != null && spriterenderer != null)
+                {
+                    if (buildState == 50)
+                    {
+                        builderComponent.editing = true;
+                        builderComponent.OnDestroyClicked();
+                        builderComponent.editing = false;
+                        builderComponent.buildState = 50;
+                        reseachHere = true;
+                        builderComponent.running = true;
+
                         Materials.instance.researchCentr = false;
-        
+
                         spriterenderer.sprite = researchSprite;
-    }
-    else if (buildState >= 0 && buildState < buildUnlockData.Count)
-    {
-                    builderComponent.editing = true;
-                    builderComponent.OnDestroyClicked();
-                    builderComponent.editing = false;
-                    builderComponent.progress = 0f;
-                    builderComponent.level0 = gameData.builderDataList[i].level0;
-                    builderComponent.level1 = gameData.builderDataList[i].level1;
-                    builderComponent.level2 = gameData.builderDataList[i].level2;
-                    builderComponent.running = gameData.builderDataList[i].running;
-                    builderComponent.buildState = gameData.builderDataList[i].buildState;
-                    builderComponent.price_cycle = buildUnlockData[gameData.builderDataList[i].buildState].price_cycle;
-                    builderComponent.mat_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_0;
-                    builderComponent.mat_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_1;
-                    builderComponent.mat_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_2;
-                    builderComponent.bar_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_2_cycle;
-                    builderComponent.bar_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_1_cycle;
-                    builderComponent.bar_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_0_cycle;
-
-    
-                    if (builderComponent.buildState == 0)
-                    {
-                        spriterenderer.sprite = baseSprite;
                     }
-                    else
+                    else if (buildState >= 0 && buildState < buildUnlockData.Count)
                     {
-                        builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
-                        spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
-                    }
-
-                    builderComponent.cycleDuration = buildUnlockData[gameData.builderDataList[i].buildState].time;
-                    if (builderComponent.buildState > 0 && builderComponent.running)
-                    {
-                        builderComponent.StartCycle();
+                        builderComponent.editing = true;
+                        builderComponent.OnDestroyClicked();
+                        builderComponent.editing = false;
+                        builderComponent.progress = 0f;
+                        builderComponent.level0 = gameData.builderDataList[i].level0;
+                        builderComponent.level1 = gameData.builderDataList[i].level1;
+                        builderComponent.level2 = gameData.builderDataList[i].level2;
                         builderComponent.running = gameData.builderDataList[i].running;
+                        builderComponent.buildState = gameData.builderDataList[i].buildState;
+                        builderComponent.price_cycle = buildUnlockData[gameData.builderDataList[i].buildState].price_cycle;
+                        builderComponent.mat_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_0;
+                        builderComponent.mat_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_1;
+                        builderComponent.mat_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_2;
+                        builderComponent.bar_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_2_cycle;
+                        builderComponent.bar_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_1_cycle;
+                        builderComponent.bar_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_0_cycle;
+
+
+                        if (builderComponent.buildState == 0)
+                        {
+                            spriterenderer.sprite = baseSprite;
+                        }
+                        else
+                        {
+                            builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
+                            spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
+                        }
+
+                        builderComponent.cycleDuration = buildUnlockData[gameData.builderDataList[i].buildState].time;
+                        if (builderComponent.buildState > 0 && builderComponent.running)
+                        {
+                            builderComponent.StartCycle();
+                            builderComponent.running = gameData.builderDataList[i].running;
+                        }
                     }
                 }
-            }
             }
 
             Materials.instance.mat_0 = gameData.mat_0;
@@ -295,13 +298,14 @@ if (builderComponent != null && spriterenderer != null)
 
     public void LoadDataAfterExplore(string dataDate)
     {
-        if (LoadManager.instance.saveDate != null){
-            dataDate = LoadManager.instance.saveDate; 
+        if (LoadManager.instance.saveDate != null)
+        {
+            dataDate = LoadManager.instance.saveDate;
             LoadManager.instance.saveDate = null;
         }
         Materials.instance.isLoad = true;
         string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
-        
+
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
@@ -326,65 +330,64 @@ if (builderComponent != null && spriterenderer != null)
 
                 int buildState = gameData.builderDataList[i].buildState;
 
-if (builderComponent != null && spriterenderer != null)
-{
-    if (buildState == 50)
-    {
-                    builderComponent.editing = true;
-                    builderComponent.OnDestroyClicked();
-                    builderComponent.editing = false;
-        builderComponent.buildState = 50;
-        builderComponent.running = true;
-        reseachHere = true;
-        
+                if (builderComponent != null && spriterenderer != null)
+                {
+                    if (buildState == 50)
+                    {
+                        builderComponent.editing = true;
+                        builderComponent.OnDestroyClicked();
+                        builderComponent.editing = false;
+                        builderComponent.buildState = 50;
+                        builderComponent.running = true;
+                        reseachHere = true;
+
                         spriterenderer.sprite = researchSprite;
 
                         Materials.instance.researchCentr = false;
-    }
-    else if (buildState >= 0 && buildState < buildUnlockData.Count)
-    {
-
-                    builderComponent.editing = true;
-                    builderComponent.OnDestroyClicked();
-                    builderComponent.editing = false;
-                    builderComponent.progress = 0f;
-                    builderComponent.level0 = gameData.builderDataList[i].level0;
-                    builderComponent.level1 = gameData.builderDataList[i].level1;
-                    builderComponent.level2 = gameData.builderDataList[i].level2;
-                    builderComponent.running = gameData.builderDataList[i].running;
-                    builderComponent.buildState = gameData.builderDataList[i].buildState;
-                    builderComponent.price_cycle = buildUnlockData[gameData.builderDataList[i].buildState].price_cycle;
-                    builderComponent.mat_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_0;
-                    builderComponent.mat_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_1;
-                    builderComponent.mat_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_2;
-                    builderComponent.bar_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_2_cycle;
-                    builderComponent.bar_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_1_cycle;
-                    builderComponent.bar_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_0_cycle;
-                    
-                    
-
-
-                    if (builderComponent.buildState == 0)
-                    {
-                        spriterenderer.sprite = baseSprite;
                     }
-                    else
+                    else if (buildState >= 0 && buildState < buildUnlockData.Count)
                     {
-                        builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
-                        spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
-                    }
 
-                    builderComponent.cycleDuration = buildUnlockData[gameData.builderDataList[i].buildState].time;
-                    if (builderComponent.buildState > 0 && builderComponent.running)
-                    {
-                        builderComponent.StartCycle();
+                        builderComponent.editing = true;
+                        builderComponent.OnDestroyClicked();
+                        builderComponent.editing = false;
+                        builderComponent.progress = 0f;
+                        builderComponent.level0 = gameData.builderDataList[i].level0;
+                        builderComponent.level1 = gameData.builderDataList[i].level1;
+                        builderComponent.level2 = gameData.builderDataList[i].level2;
                         builderComponent.running = gameData.builderDataList[i].running;
+                        builderComponent.buildState = gameData.builderDataList[i].buildState;
+                        builderComponent.price_cycle = buildUnlockData[gameData.builderDataList[i].buildState].price_cycle;
+                        builderComponent.mat_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_0;
+                        builderComponent.mat_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_1;
+                        builderComponent.mat_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_2;
+                        builderComponent.bar_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_2_cycle;
+                        builderComponent.bar_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_1_cycle;
+                        builderComponent.bar_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_0_cycle;
+
+
+
+
+                        if (builderComponent.buildState == 0)
+                        {
+                            spriterenderer.sprite = baseSprite;
+                        }
+                        else
+                        {
+                            builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
+                            spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
+                        }
+
+                        builderComponent.cycleDuration = buildUnlockData[gameData.builderDataList[i].buildState].time;
+                        if (builderComponent.buildState > 0 && builderComponent.running)
+                        {
+                            builderComponent.StartCycle();
+                            builderComponent.running = gameData.builderDataList[i].running;
+                        }
                     }
                 }
             }
-            }
             Debug.Log(gameData.mat_0);
-            Debug.Log("QROPQERGJEROGPJGSOPJQPORJPOZQRJPDFGKBPOGKSDMFNEIGOJTEJIRHPOJG");
 
             Materials.instance.mat_0 = gameData.mat_0;
             Materials.instance.mat_1 = gameData.mat_1;
@@ -398,12 +401,15 @@ if (builderComponent != null && spriterenderer != null)
             Debug.LogWarning("Aucune sauvegarde trouvée à: " + path);
         }
         isSavingCompleted = true;
-        
-        if(!LoadManager.instance.resumeLoad){
+
+        if (!LoadManager.instance.resumeLoad)
+        {
             File.Delete(path);
-        } else {
-            
-        LoadManager.instance.resumeLoad = false;
+        }
+        else
+        {
+            Debug.Log("ResumeDone");
+            LoadManager.instance.resumeLoad = false;
         }
 
     }
