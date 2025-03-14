@@ -29,7 +29,7 @@ public class GalleryPage : MonoBehaviour
 
     private int currentIndex = 0;
     private int maxIndex = 3;
-    private float moveDistance = 1494f;
+    private float moveDistance = 1770f;
     private float animationDuration = 0.2f;
     private bool isMoving = false; // Empêche plusieurs animations en même temps
 
