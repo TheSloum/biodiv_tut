@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class FishMouvement : MonoBehaviour
 {
-    public float speed = 600f; 
-    public float swimAmplitude = 200f; 
+    public float speed = 600f;
+    public float swimAmplitude = 200f;
     public float swimFrequency = 4f;
 
     private Vector2 screenBounds;
@@ -78,8 +78,10 @@ public class FishMouvement : MonoBehaviour
     {
         Vector3 fishPos = Camera.main.WorldToViewportPoint(transform.position);
 
-        float width = GetComponent<SpriteRenderer>().bounds.size.x / 2;
-        float height = GetComponent<SpriteRenderer>().bounds.size.y / 2;
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        float width = rectTransform.rect.width / 2;
+        float height = rectTransform.rect.height / 2;
+
 
         return fishPos.x < -width || fishPos.x > 1 + width || fishPos.y < -height || fishPos.y > 1 + height;
     }
