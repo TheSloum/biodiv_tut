@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 15-35cm
   fishOrigin: Fonds rocheux, Herbiers
   frequence: commun
+  freqWeight: 60
   fishClass: Labridae
   mediumWeight: 0.150kg
   profondeur: 1-40m

@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 20-30cm
   fishOrigin: herbiers, algues de zones rocheuses
   frequence: rare
+  freqWeight: 20
   fishClass: Syngnathidae
   mediumWeight: 0.015kg
   profondeur: 10-30m

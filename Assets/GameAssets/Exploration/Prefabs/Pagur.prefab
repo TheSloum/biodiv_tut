@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2388417884662715917}
   - component: {fileID: 2972860796415731924}
   - component: {fileID: 4825104135234033327}
+  - component: {fileID: -5686080667678491729}
   m_Layer: 0
   m_Name: Pagur
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b58cfc630921db44185ade0d957ed813, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e43a268f74ad4274a8667927473df613, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,13 +101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c776746a882f42ec8d494e8f292f285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 2
-  speedVariance: 1
-  amplitude: 2
+  baseSpeed: 3
+  speedVariance: 0.2
+  amplitude: 0
   frequency: 1
-  changeDirectionChance: 0.1
-  rotationUpAngle: -15
-  rotationDownAngle: 15
+  changeDirectionChance: 0.05
+  rotationUpAngle: 0
+  rotationDownAngle: 0
   rotationSpeed: 5
   rotationThreshold: 0.00001
   fishData: {fileID: 11400000, guid: 08b653cb1ec5b17478735b1aad083bc6, type: 2}
@@ -210,3 +211,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-5686080667678491729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388417884662715918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5630e7bbf320d9440b75c720ec3cf52d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineThickness: 0.01

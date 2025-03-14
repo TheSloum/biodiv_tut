@@ -25,9 +25,13 @@ public class E_FishController : MonoBehaviour
     private float previousY;
 
     private bool hasInteracted = false; // Indicateur pour s'assurer que l'interaction se produit une seule fois
-
     void Start()
     {
+        if (fishData.is_unlocked)
+        {
+    E_Outline outline = GetComponent<E_Outline>();
+            Destroy(outline);
+        }
         if (fishData == null)
         {
             Debug.LogError("FishData n'est pas assigné à E_FishController !");
@@ -39,6 +43,7 @@ public class E_FishController : MonoBehaviour
         movementTimer = Random.Range(0f, 2f * Mathf.PI);
         previousY = transform.position.y;
     }
+    
 
     void Update()
     {

@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 30-35 cm
   fishOrigin: 
   frequence: Invasif
+  freqWeight: 100
   fishClass: Scorpaenidae
   mediumWeight: 1kg
   profondeur: 0-85m

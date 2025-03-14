@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 10-15 cm
   fishOrigin: Fond rocheux
   frequence: Commune
+  freqWeight: 60
   fishClass: "Echinodermes, ast\xE9ries"
   mediumWeight: 
   profondeur: 1-250 m

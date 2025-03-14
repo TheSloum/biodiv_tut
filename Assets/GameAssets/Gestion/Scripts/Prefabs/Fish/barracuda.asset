@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 140 cm
   fishOrigin: "Zone rocheuse, r\xE9cif coralien"
   frequence: Invasif
+  freqWeight: 100
   fishClass: Sphyraenidae
   mediumWeight: 2,5 kg - 9kg
   profondeur: 1-1000m

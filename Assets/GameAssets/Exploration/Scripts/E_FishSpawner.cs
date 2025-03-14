@@ -64,11 +64,9 @@ foreach (float value in weights)
     {
         cumulativeWeight = 0f;
 float randomValue = Random.Range(0f, sum);
-Debug.Log("Random de: " + randomValue + " - " + sum);
         for (int i = 0; i < weights.Count; i++)
         {
             cumulativeWeight += weights[i];
-            Debug.Log(i + "AFJV");
             if (randomValue < cumulativeWeight)
             {
                 tospawn = i;
@@ -76,10 +74,9 @@ Debug.Log("Random de: " + randomValue + " - " + sum);
             }
         }
         GameObject selectedFishPrefab = fishPrefabs[tospawn];
-        Debug.Log("Spawn de " + fishPrefabs[tospawn] + " - " + tospawn);
 
         float spawnY = Random.Range(-spawnRangeY, spawnRangeY);
-        Vector3 spawnPosition = new Vector3(transform.position.x + spawnXOffset, spawnY, 0f);
+        Vector3 spawnPosition = new Vector3(transform.position.x + spawnXOffset, transform.position.y + spawnY, 0f);
 
         Instantiate(selectedFishPrefab, spawnPosition, Quaternion.identity);
     }
@@ -97,7 +94,7 @@ Debug.Log("Random de: " + randomValue + " - " + sum);
     public void ResetToDefault(E_EventSettings settings)
     {
         fishPrefabs = settings.defaultFishPrefabs;
-        spawnInterval = settings.defaultFishSpawnRate;
+        spawnInterval = settings.defaultFishSpawnRate - Random.Range(0f, 10f);
         defaultSpawnInterval = spawnInterval;
     }
 

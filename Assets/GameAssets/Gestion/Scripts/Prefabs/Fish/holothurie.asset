@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 15-40cm
   fishOrigin: Herbiers, rochers, grottes
   frequence: Commune
+  freqWeight: 60
   fishClass: Echinodermes, holothuries
   mediumWeight: 0,900 kg
   profondeur: 1-100m

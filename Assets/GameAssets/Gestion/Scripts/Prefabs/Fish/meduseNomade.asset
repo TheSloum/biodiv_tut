@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 30-50cm
   fishOrigin: 
   frequence: Invasif
+  freqWeight: 100
   fishClass: Rhizostomatidae
   mediumWeight: 10kg
   profondeur: 0-3m
