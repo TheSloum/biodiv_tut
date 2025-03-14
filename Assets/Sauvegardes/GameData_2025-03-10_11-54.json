@@ -1,0 +1,51 @@
+{
+    "fishDataList": [
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        }
+    ],
+    "buildingDataList": [
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        }
+    ],
+    "builderDataList": [],
+    "mat_0": 0,
+    "mat_1": 0,
+    "mat_2": 0,
+    "price": 450,
+    "townName": "d"
+}

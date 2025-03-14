@@ -1,7 +1,7 @@
 {
     "fishDataList": [
         {
-            "is_unlocked": true
+            "is_unlocked": false
         },
         {
             "is_unlocked": false
@@ -256,12 +256,7 @@
     ],
     "mat_0": 0,
     "mat_1": 0,
-<<<<<<<< Updated upstream:Assets/Sauvegardes/GameData_2025-03-11_09-59.json
     "mat_2": 0,
     "price": 0,
-========
-    "mat_2": 20,
-    "price": 600,
->>>>>>>> Stashed changes:Assets/Sauvegardes/GameData_2025-03-13_15-49.json
     "townName": ""
 }
