@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class E_EventDefinition
+public class E_EventDefinitions
 {
     public string message;
     public Color messageColor;
