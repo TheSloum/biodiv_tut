@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 10-25 cm
   fishOrigin: Fonds rocheux, herbiers
   frequence: "Tr\xE8s commun"
+  freqWeight: 80
   fishClass: "T\xE9l\xE9ost\xE9ens, labrid\xE9s"
   mediumWeight: 
   profondeur: 1-30 m

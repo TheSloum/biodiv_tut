@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: "10 \xE0 1000 cm2"
   fishOrigin: Parois rocheuses
   frequence: "tr\xE8s commune"
+  freqWeight: 80
   fishClass: Spongiaire
   mediumWeight: 
   profondeur: 5-40 m

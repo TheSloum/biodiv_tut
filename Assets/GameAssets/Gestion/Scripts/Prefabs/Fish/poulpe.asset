@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 10-20 cm
   fishOrigin: Fonds rocheux
   frequence: "Tr\xE8s commun"
+  freqWeight: 80
   fishClass: "Mollusques, c\xE9phalopodes"
   mediumWeight: 3 kg
   profondeur: 0-100 m

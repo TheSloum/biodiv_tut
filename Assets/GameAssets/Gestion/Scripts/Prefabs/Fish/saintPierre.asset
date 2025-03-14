@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 30-70cm
   fishOrigin: Fonds sableux, vaseux, rocheux
   frequence: assez rare
+  freqWeight: 40
   fishClass: "Z\xE9idae"
   mediumWeight: 20kg
   profondeur: "20-30m juqu\u2019\xE0 400 m"

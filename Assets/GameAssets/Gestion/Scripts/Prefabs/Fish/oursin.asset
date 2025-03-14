@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 4-5cm sans les piquants
   fishOrigin: Fonds rocheux
   frequence: "Tr\xE8s commun"
+  freqWeight: 80
   fishClass: "Echinodermes, \xE9chinid\xE9s"
   mediumWeight: 
   profondeur: ' 0-20 m'

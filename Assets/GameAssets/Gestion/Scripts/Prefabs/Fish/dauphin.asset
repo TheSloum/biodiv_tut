@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 150cm - 220 cm (max 260 cm)
   fishOrigin: Haute mer
   frequence: Commun
+  freqWeight: 60
   fishClass: "C\xE9tac\xE9, delphinid\xE9"
   mediumWeight: 200kg
   profondeur: 0-200m

@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 5-20 cm
   fishOrigin: "Corallig\xE8ne, grottes"
   frequence: assez rare
+  freqWeight: 40
   fishClass: Cnidaire, Octocoralliaire
   mediumWeight: 
   profondeur: 5-10000m

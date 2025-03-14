@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 20-50cm
   fishOrigin: Fonds meubles, herbiers
   frequence: Assez rare
+  freqWeight: 40
   fishClass: Mollusques, bivalves
   mediumWeight: 
   profondeur: 2-40 m

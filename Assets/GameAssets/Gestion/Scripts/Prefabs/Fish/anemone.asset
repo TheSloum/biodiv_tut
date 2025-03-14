@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 10-20cm
   fishOrigin: Fonds rocheux
   frequence: "tr\xE8s commune"
+  freqWeight: 80
   fishClass: Cnidaire, hexacorallaires
   mediumWeight: 
   profondeur: 0-25 m
