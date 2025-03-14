@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 7-10cm
   fishOrigin: Fonds rocheux
   frequence: Commun
+  freqWeight: 60
   fishClass: Mollusques, nudibranches
   mediumWeight: 5-40 m
   profondeur: 

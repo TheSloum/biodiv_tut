@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: "jusqu\u2019\xE0 150 m"
   fishOrigin: Fond sableux, rocheux
   frequence: "tr\xE8s commune"
+  freqWeight: 80
   fishClass: "Phan\xE9rogame"
   mediumWeight: 
   profondeur: 0-38m

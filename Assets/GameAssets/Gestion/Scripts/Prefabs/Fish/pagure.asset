@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 10cm
   fishOrigin: "Fonds s\xE9dimentaires, rocheux"
   frequence: Commun
+  freqWeight: 60
   fishClass: "Crustac\xE9s, d\xE9capodes"
   mediumWeight: 
   profondeur: 2-100m

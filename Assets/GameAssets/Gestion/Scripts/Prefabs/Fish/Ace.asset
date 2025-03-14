@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 2-3 cm
   fishOrigin: Fonds rocheux
   frequence: "Tr\xE8s commune"
+  freqWeight: 80
   fishClass: Algue verte, dasycladale
   mediumWeight: 0-20m
   profondeur: /

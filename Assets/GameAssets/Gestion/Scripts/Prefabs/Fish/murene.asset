@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 50-100cm
   fishOrigin: Fonds rocheux
   frequence: Assez commune
+  freqWeight: 50
   fishClass: "T\xE9l\xE9ost\xE9ens, mur\xE9nid\xE9s"
   mediumWeight: 6 kg
   profondeur: 5-50 m

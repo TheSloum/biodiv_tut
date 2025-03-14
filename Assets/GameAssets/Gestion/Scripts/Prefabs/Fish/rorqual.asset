@@ -18,6 +18,7 @@ MonoBehaviour:
   fishSize: 1100 cm - 1800 cm
   fishOrigin: Haute mer
   frequence: Assez commun
+  freqWeight: 60
   fishClass: "C\xE9tac\xE9s, phys\xE9t\xE9rid\xE9s"
   mediumWeight: 50T
   profondeur: ' 0-2000m'
