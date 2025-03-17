@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ButtonReasign : MonoBehaviour
 {
- private Button saveButton;
+    private Button saveButton;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class ButtonReasign : MonoBehaviour
 
     void SaveGameData()
     {
-        GameObject gameManager = GameObject.Find("GameManager"); // Ensure the name matches the actual object
+        GameObject gameManager = GameObject.Find("GameManager");
         if (gameManager != null)
         {
             GameDataSaver gameDataSaver = gameManager.GetComponent<GameDataSaver>();
