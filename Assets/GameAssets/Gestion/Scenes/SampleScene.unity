@@ -53262,8 +53262,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6434980531162835446}
-        m_TargetAssemblyTypeName: SceneMainMenu, Assembly-CSharp
+      - m_Target: {fileID: 7880076301076111641}
+        m_TargetAssemblyTypeName: SceneMainMenu1, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -59550,20 +59550,6 @@ RectTransform:
   m_AnchoredPosition: {x: -260, y: -100}
   m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6434980531162835446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7880076301076111638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a68556dcab79c0249beb340b5d84b65c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sfxClip: {fileID: 8300000, guid: 1b7c1bea919e6f347b345b51d269c6a5, type: 3}
-  savescript: {fileID: 1383650388}
 --- !u!114 &6439644650158007531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64843,7 +64829,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5172143661867890467}
   - component: {fileID: 6424757362674741707}
-  - component: {fileID: 6434980531162835446}
+  - component: {fileID: 7880076301076111641}
   - component: {fileID: 4497791503491707849}
   - component: {fileID: 7880076301076111640}
   - component: {fileID: 7880076301076111639}
@@ -64955,6 +64941,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26313a59ee66a1c478eec7ac26e35c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7880076301076111641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7880076301076111638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf2115ae6c60124882d288da4bbebfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxClip: {fileID: 8300000, guid: 1b7c1bea919e6f347b345b51d269c6a5, type: 3}
+  savescript: {fileID: 1383650388}
 --- !u!222 &7883806247233217840
 CanvasRenderer:
   m_ObjectHideFlags: 0
