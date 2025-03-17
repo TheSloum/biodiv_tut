@@ -132,8 +132,8 @@ public class E_OxygenManager : MonoBehaviour
         }
         if (stoneText != null)
         {
-            stoneText.text = " 0";
-            StartCoroutine(AnimateNumberText(stoneText, " ", Materials.instance != null ? Materials.instance.sessionStone : 0, 5f));
+            stoneText.text = "0";
+            StartCoroutine(AnimateNumberText(stoneText, "", Materials.instance != null ? Materials.instance.sessionStone : 0, 5f));
         }
         if (ironText != null)
         {
