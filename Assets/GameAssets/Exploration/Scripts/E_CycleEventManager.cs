@@ -53,6 +53,7 @@ public class E_CycleEventManager : MonoBehaviour
             FillEventQueue(currentYear);
             lastYear = currentYear;
         }
+        
         // Changement de mois : déclenchement de la Fête du Corail si c'est le bon mois
         if (currentMonth != lastMonth)
         {
@@ -63,20 +64,43 @@ public class E_CycleEventManager : MonoBehaviour
             }
             lastMonth = currentMonth;
         }
-        // Changement de jour : tenter de démarrer un événement si les conditions sont réunies
+        
+        // Changement de jour : vérifier si un événement doit être déclenché aujourd'hui
         if (currentDay != lastDay)
         {
-            if (!isEventActive && !waitingCooldown)
+            if (!isEventActive && !waitingCooldown && eventQueue.Count > 0)
             {
-                // On ne déclenche pas d'événement en début/fin de mois selon les réglages
-                if (currentDay > eventSettings.noEventStartDays && currentDay < (timeManager.daysPerMonth - eventSettings.noEventEndDays))
+                // Vérifier si la date actuelle correspond à celle du prochain événement planifié
+                ScheduledEvent nextEvent = eventQueue.Peek();
+                if (currentMonth == nextEvent.scheduledMonth && currentDay == nextEvent.scheduledDay)
                 {
-                    StartNextEvent();
+                    eventQueue.Dequeue();
+                    isEventActive = true;
+                    Debug.Log("Démarrage de l'événement : " + nextEvent.name);
+                    
+                    // Déclenche l'événement avec son ID et sa durée spécifique (en mois)
+                    eventSystem.TriggerEvent(nextEvent.eventID, nextEvent.durationInMonths);
+                    
+                    // Gestion spécifique pour une invasion
+                    if (nextEvent.type == EventType.Invasion)
+                    {
+                        var invasionType = eventSettings.invasionTypes.Find(inv => inv.eventID == nextEvent.eventID);
+                        if (invasionType != null && invasionType.prefabs.Length > 0)
+                        {
+                            E_FishSpawner.Instance.EnableInvasionMode(invasionType.prefabs[0]);
+                            Debug.Log("Mode invasion activé avec le prefab : " + invasionType.prefabs[0].name);
+                        }
+                        else
+                        {
+                            Debug.LogWarning("Prefab d'invasion non trouvé pour l'event ID " + nextEvent.eventID);
+                        }
+                    }
                 }
             }
             lastDay = currentDay;
         }
     }
+
 
     // Remplit la file avec 3 événements (1 invasion et 2 normaux) dans un ordre aléatoire prédéfini
     void FillEventQueue(int year)
@@ -107,18 +131,24 @@ public class E_CycleEventManager : MonoBehaviour
             }
         }
 
-        // Choix d'un ordre parmi trois possibilités
-        int order = Random.Range(1, 4); // 1, 2 ou 3
-        Queue<ScheduledEvent> orderedQueue = new Queue<ScheduledEvent>();
+        if (eventsList.Count < 3)
+        {
+            Debug.LogWarning("Pas assez d'événements pour remplir la file.");
+            return;
+        }
 
+        // On récupère les événements par type pour le switch
         List<ScheduledEvent> normalEvents = eventsList.FindAll(e => e.type == EventType.Normal);
         ScheduledEvent invasionEvent = eventsList.Find(e => e.type == EventType.Invasion);
-
         if(normalEvents.Count < 2 || invasionEvent == null)
         {
             Debug.LogWarning("Pas assez d'événements pour remplir la file.");
             return;
         }
+
+        // Application du switch pour déterminer l'ordre des types d'événements
+        Queue<ScheduledEvent> orderedQueue = new Queue<ScheduledEvent>();
+        int order = Random.Range(1, 4); // 1, 2 ou 3
 
         switch(order)
         {
@@ -142,8 +172,38 @@ public class E_CycleEventManager : MonoBehaviour
                 break;
         }
 
-        eventQueue = orderedQueue;
+        // Génération de trois dates chronologiques en respectant un intervalle d'au moins 1 mois entre chaque événement.
+        // Par exemple : premier événement entre mois 1 et 8, deuxième entre (premier + 2) et 10, troisième entre (deuxième + 2) et 12.
+        int firstEventMonth = Random.Range(1, 9); // 1 inclus, 9 exclus => max 8
+        int secondEventMonth = Random.Range(firstEventMonth + 2, 11); // max 10
+        int thirdEventMonth = Random.Range(secondEventMonth + 2, 13); // max 12
+
+        // Pour le jour, on choisit aléatoirement une valeur comprise entre noEventStartDays+1 et (daysPerMonth - noEventEndDays)
+        int firstEventDay = Random.Range(eventSettings.noEventStartDays + 1, timeManager.daysPerMonth - eventSettings.noEventEndDays);
+        int secondEventDay = Random.Range(eventSettings.noEventStartDays + 1, timeManager.daysPerMonth - eventSettings.noEventEndDays);
+        int thirdEventDay = Random.Range(eventSettings.noEventStartDays + 1, timeManager.daysPerMonth - eventSettings.noEventEndDays);
+
+        // On transforme la queue en liste pour pouvoir assigner les dates dans l'ordre généré
+        List<ScheduledEvent> orderedEvents = new List<ScheduledEvent>(orderedQueue);
+        if(orderedEvents.Count >= 3)
+        {
+            orderedEvents[0].scheduledMonth = firstEventMonth;
+            orderedEvents[0].scheduledDay = firstEventDay;
+            orderedEvents[1].scheduledMonth = secondEventMonth;
+            orderedEvents[1].scheduledDay = secondEventDay;
+            orderedEvents[2].scheduledMonth = thirdEventMonth;
+            orderedEvents[2].scheduledDay = thirdEventDay;
+        }
+
+        // On vide la queue et on la remplit avec la liste dans l'ordre défini (les dates seront donc chronologiques)
+        eventQueue.Clear();
+        foreach (var scheduledEvent in orderedEvents)
+        {
+            eventQueue.Enqueue(scheduledEvent);
+            Debug.Log($"Événement '{scheduledEvent.name}' planifié le mois {scheduledEvent.scheduledMonth} jour {scheduledEvent.scheduledDay}");
+        }
     }
+
 
     // Démarre l'événement suivant dans la file
     void StartNextEvent()
@@ -205,6 +265,9 @@ public class E_CycleEventManager : MonoBehaviour
         public int eventID;
         public string name;
         public int durationInMonths;
+
+        public int scheduledMonth;
+        public int scheduledDay;
 
         public ScheduledEvent(EventType type, int eventID, string name, int durationInMonths)
         {

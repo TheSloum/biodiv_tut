@@ -65,6 +65,13 @@ public class E_TrashSpawner : MonoBehaviour
         Debug.Log("Vague de déchets activée : spawn des Trash augmenté.");
     }
 
+    public void ActivateTrashWaveEffect()
+    {
+        spawnInterval = defaultSpawnInterval * 0.5f;
+        Debug.Log("Vague de déchets activée : intervalle de spawn des trash diminué (spawn plus fréquent).");
+    }
+
+
     // Restaure le taux de spawn des Trash à la valeur par défaut
     public void RestoreDefaultTrashSpawnRate()
     {
