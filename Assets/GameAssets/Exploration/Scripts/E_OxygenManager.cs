@@ -18,6 +18,7 @@ public class E_OxygenManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI stoneText;
     [SerializeField] private TextMeshProUGUI ironText;
     [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private GameObject Btnend;
 
     [HideInInspector] public int trashCollected = 0;
 
@@ -120,37 +121,39 @@ public class E_OxygenManager : MonoBehaviour
     {
         if (timeText != null)
         {
-            timeText.text = "Temps Total : 0:00";
-            yield return StartCoroutine(AnimateText(timeText, "Temps Total : ", formattedTime, 2f));
+            timeText.text = "0:00";
+            yield return StartCoroutine(AnimateText(timeText, "", formattedTime, 2f));
         }
 
-        // Lancer l'animation des trois ressources simultanément sur 5 secondes
         if (woodText != null)
         {
-            woodText.text = "Bois Collecté : 0";
-            StartCoroutine(AnimateNumberText(woodText, "Bois Collecté : ", Materials.instance != null ? Materials.instance.sessionWood : 0, 5f));
+            woodText.text = "0";
+            StartCoroutine(AnimateNumberText(woodText, "", Materials.instance != null ? Materials.instance.sessionWood : 0, 5f));
         }
         if (stoneText != null)
         {
-            stoneText.text = "Pierre Collectée : 0";
-            StartCoroutine(AnimateNumberText(stoneText, "Pierre Collectée : ", Materials.instance != null ? Materials.instance.sessionStone : 0, 5f));
+            stoneText.text = " 0";
+            StartCoroutine(AnimateNumberText(stoneText, " ", Materials.instance != null ? Materials.instance.sessionStone : 0, 5f));
         }
         if (ironText != null)
         {
-            ironText.text = "Fer Collecté : 0";
-            StartCoroutine(AnimateNumberText(ironText, "Fer Collecté : ", Materials.instance != null ? Materials.instance.sessionIron : 0, 5f));
+            ironText.text = "0";
+            StartCoroutine(AnimateNumberText(ironText, "", Materials.instance != null ? Materials.instance.sessionIron : 0, 5f));
         }
 
-        // Attendre la durée de l'animation
         yield return new WaitForSecondsRealtime(5f);
 
         yield return new WaitForSecondsRealtime(2f);
+    }
+
+    public void OnRestartButtonPressed()
+    {
         Time.timeScale = 1f;
         Materials.instance.explored = true;
         Materials.instance.isLoad = true;
-
         SceneManager.LoadScene("SampleScene");
     }
+
 
     IEnumerator AnimateText(TextMeshProUGUI textComponent, string prefix, string targetTime, float duration)
     {
@@ -220,13 +223,6 @@ public class E_OxygenManager : MonoBehaviour
         return string.Format("{0:0}:{1:00}", minutes, seconds);
     }
 
-    public void OnRestartButtonPressed()
-    {
-        Time.timeScale = 1f;
-        Materials.instance.explored = true;
-        Materials.instance.isLoad = true;
-        SceneManager.LoadScene("SampleScene");
-    }
 
     public void OnQuitButtonPressed()
     {

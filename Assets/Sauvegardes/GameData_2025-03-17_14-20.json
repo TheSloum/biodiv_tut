@@ -4,7 +4,7 @@
             "is_unlocked": false
         },
         {
-            "is_unlocked": false
+            "is_unlocked": true
         },
         {
             "is_unlocked": false
@@ -13,7 +13,16 @@
             "is_unlocked": false
         },
         {
+            "is_unlocked": true
+        },
+        {
             "is_unlocked": false
+        },
+        {
+            "is_unlocked": true
+        },
+        {
+            "is_unlocked": true
         },
         {
             "is_unlocked": false
@@ -22,7 +31,13 @@
             "is_unlocked": false
         },
         {
-            "is_unlocked": false
+            "is_unlocked": true
+        },
+        {
+            "is_unlocked": true
+        },
+        {
+            "is_unlocked": true
         },
         {
             "is_unlocked": false
@@ -31,37 +46,22 @@
             "is_unlocked": false
         },
         {
-            "is_unlocked": false
+            "is_unlocked": true
         },
         {
-            "is_unlocked": false
+            "is_unlocked": true
         },
         {
-            "is_unlocked": false
+            "is_unlocked": true
         },
         {
-            "is_unlocked": false
+            "is_unlocked": true
         },
         {
-            "is_unlocked": false
+            "is_unlocked": true
         },
         {
-            "is_unlocked": false
-        },
-        {
-            "is_unlocked": false
-        },
-        {
-            "is_unlocked": false
-        },
-        {
-            "is_unlocked": false
-        },
-        {
-            "is_unlocked": false
-        },
-        {
-            "is_unlocked": false
+            "is_unlocked": true
         },
         {
             "is_unlocked": false
@@ -81,7 +81,7 @@
             "unlocked": false
         },
         {
-            "unlocked": false
+            "unlocked": true
         },
         {
             "unlocked": false
@@ -321,5 +321,5 @@
     "mat_1": 0,
     "mat_2": 0,
     "price": 500,
-    "townName": "Steven"
+    "townName": "Borddeleau"
 }

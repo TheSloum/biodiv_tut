@@ -38,7 +38,7 @@ public class E_WallSpawner : MonoBehaviour
         float randomY = Random.Range(-spawnRangeY, spawnRangeY);
 
         // Position de spawn à droite de l'écran
-        Vector3 spawnPosition = new Vector3(screenRightEdge + spawnXOffset, randomY, 0f);
+        Vector3 spawnPosition = new Vector3(screenRightEdge + spawnXOffset, randomY - 4f, 0f);
 
         // Instancier le mur
         Instantiate(wallPrefab, spawnPosition, Quaternion.identity);
