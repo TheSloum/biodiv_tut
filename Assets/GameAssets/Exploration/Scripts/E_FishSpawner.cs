@@ -143,6 +143,13 @@ public class E_FishSpawner : MonoBehaviour
         Debug.Log("Vague de déchets : Taux de spawn réduit.");
     }
 
+    public void ActivateTrashWaveEffect()
+    {
+        spawnInterval = defaultSpawnInterval * 2f;
+        Debug.Log("Intervalle de spawn des poissons réduit (spawn moins rapide).");
+    }
+
+
     // Méthode appelée pour restaurer le taux de spawn par défaut (exécutée à la fin de la Fête du Corail)
     public void RestoreDefaultSpawnRate()
     {
@@ -150,17 +157,5 @@ public class E_FishSpawner : MonoBehaviour
         Debug.Log("Fête du Corail : Taux de spawn restauré.");
     }
 
-    #region Abonnement à l'EventBus
-    void OnEnable()
-    {
-        EventBus.OnCoralFestivalStart += IncreaseFishSpawnRate;
-        EventBus.OnCoralFestivalEnd += RestoreDefaultSpawnRate;
-    }
 
-    void OnDisable()
-    {
-        EventBus.OnCoralFestivalStart -= IncreaseFishSpawnRate;
-        EventBus.OnCoralFestivalEnd -= RestoreDefaultSpawnRate;
-    }
-    #endregion
 }
