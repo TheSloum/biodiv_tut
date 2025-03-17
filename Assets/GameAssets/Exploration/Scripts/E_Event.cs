@@ -1,88 +1,46 @@
 using System.Collections;
 using UnityEngine;
-using TMPro;
-using UnityEngine.Events;
 
 public class E_Event : MonoBehaviour
 {
-    [Header("Event Definitions")]
-    public E_EventDefinition[] eventDefinitions;
-
-    [Header("UI & Overlay")]
-    public TextMeshProUGUI eventText;
-    public float overlayFadeInDuration = 3f;
-    public float overlayFadeOutDuration = 2f;
-
     private bool isEventActive = false;
 
-    void Start()
+    /// <summary>
+    /// Déclenche l’événement avec l’ID spécifié et pour la durée donnée (en mois in game).
+    /// </summary>
+    /// <param name="eventID">Identifiant de l’événement</param>
+    /// <param name="durationInMonths">Durée de l’événement en mois</param>
+    public void TriggerEvent(int eventID, int durationInMonths)
     {
-        // Initialisation de l'UI
-        if (eventText != null)
-        {
-            eventText.color = new Color(eventText.color.r, eventText.color.g, eventText.color.b, 0f);
-            eventText.gameObject.SetActive(false);
-        }
-    }
-
-    // Méthode pour déclencher un événement via son index dans le tableau eventDefinitions
-    public void TriggerEvent(int eventIndex)
-    {
-        if (isEventActive || eventDefinitions == null || eventIndex < 0 || eventIndex >= eventDefinitions.Length)
+        if (isEventActive)
             return;
-        StartCoroutine(RunEvent(eventDefinitions[eventIndex]));
+        StartCoroutine(RunEvent(eventID, durationInMonths));
     }
 
-    IEnumerator RunEvent(E_EventDefinition eventDef)
+    IEnumerator RunEvent(int eventID, int durationInMonths)
     {
         isEventActive = true;
+        Debug.Log("Début de l'événement " + eventID + " pour " + durationInMonths + " mois.");
 
-        // Optionnel : fade in de l'overlay
+        // Conversion de la durée en mois en secondes réelles via le TimeManager
+        float secondsPerMonth = J_TimeManager.Instance.secondsPerDay * J_TimeManager.Instance.daysPerMonth;
+        float realDuration = durationInMonths * secondsPerMonth;
+        yield return new WaitForSeconds(realDuration);
 
-        // Affichage du texte avec effet fade in/out
-        yield return StartCoroutine(DisplayEventText(eventDef.message, eventDef.messageColor, eventDef.textFadeInDuration, eventDef.textVisibleDuration, eventDef.textFadeOutDuration));
+        Debug.Log("Fin de l'événement " + eventID + ".");
 
-        // Déclenchement du callback de début d'événement
-        eventDef.OnEventStart?.Invoke();
-
-        // Durée de l'événement
-        yield return new WaitForSeconds(eventDef.eventDuration);
-
-        // Déclenchement du callback de fin d'événement
-        eventDef.OnEventEnd?.Invoke();
-
-
+        // Si le mode invasion est actif, le désactiver pour rétablir le spawn normal
+        if (E_FishSpawner.Instance != null && E_FishSpawner.Instance.invasionModeActive)
+        {
+            E_FishSpawner.Instance.DisableInvasionMode();
+        }
 
         isEventActive = false;
-    }
-
-    IEnumerator DisplayEventText(string message, Color color, float fadeInDuration, float visibleDuration, float fadeOutDuration)
-    {
-        eventText.text = message;
-        eventText.color = new Color(color.r, color.g, color.b, 0f);
-        eventText.gameObject.SetActive(true);
-
-        float timer = 0f;
-        while (timer < fadeInDuration)
+        // Notifier le Cycle Event Manager que l'événement est terminé pour lancer le cooldown
+        E_CycleEventManager cycleManager = FindObjectOfType<E_CycleEventManager>();
+        if (cycleManager != null)
         {
-            float alpha = Mathf.Lerp(0f, 1f, timer / fadeInDuration);
-            eventText.color = new Color(color.r, color.g, color.b, alpha);
-            timer += Time.deltaTime;
-            yield return null;
+            cycleManager.EndEvent();
         }
-        eventText.color = new Color(color.r, color.g, color.b, 1f);
-        yield return new WaitForSeconds(visibleDuration);
-
-        timer = 0f;
-        while (timer < fadeOutDuration)
-        {
-            float alpha = Mathf.Lerp(1f, 0f, timer / fadeOutDuration);
-            eventText.color = new Color(color.r, color.g, color.b, alpha);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-        eventText.gameObject.SetActive(false);
     }
-
-
 }
