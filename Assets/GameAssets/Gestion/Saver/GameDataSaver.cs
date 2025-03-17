@@ -395,11 +395,12 @@ public class GameDataSaver : MonoBehaviour
                 }
             }
             Debug.Log(gameData.mat_0);
-
+            if(!Materials.instance.explored){
             Materials.instance.mat_0 = gameData.mat_0;
             Materials.instance.mat_1 = gameData.mat_1;
             Materials.instance.mat_2 = gameData.mat_2;
             Materials.instance.price = gameData.price;
+            }
             Materials.instance.townName = gameData.townName;
             Materials.instance.isLoad = true;
         }
