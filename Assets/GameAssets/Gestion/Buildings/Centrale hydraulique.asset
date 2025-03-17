@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c505cf12c64c04fbf956b540a788e6, type: 3}
+  m_Name: Centrale hydraulique
+  m_EditorClassIdentifier: 
+  buildID: 3
+  isPaused: 0
+  buildDesc: "Une centrale hydraulique utilise la force de l\u2019eau pour produire
+    de l\u2019\xE9lectricit\xE9. Par exemple, un barrage retient l\u2019eau d\u2019une
+    rivi\xE8re et lorsqu\u2019on lib\xE8re cette eau, elle fait tourner des turbines.
+    C\u2019est une \xE9nergie propre et renouvelable, mais la construction des barrages
+    peut perturber les poissons et les \xE9cosyst\xE8mes autour des rivi\xE8res.
+    Les barrages permettent aussi de limiter les inondations et de stocker l\u2019eau
+    pour l\u2019irrigation."
+  PolutionEtat: '-'
+  PopulationEtat: '-'
+  ElecEtat: ++
+  MoneyMake: '-'
+  buildingObject: {fileID: 0}
+  buildClass: 1
+  unlocked: 0
+  buildSprite: {fileID: 21300000, guid: 7a6df2c1fff3ee24397550fe99c6da57, type: 3}
+  price: -100
+  mat_0: -50
+  mat_1: -5
+  mat_2: -10
+  bar_0: 0
+  bar_1: 0
+  bar_2: 0
+  time: 20
+  cons_mat_0: 0
+  cons_mat_1: 0
+  cons_mat_2: 0
+  bar_0_cycle: -0.0175
+  bar_1_cycle: 0.0175
+  bar_2_cycle: 0.0075
+  price_cycle: -75
+  upgradeMult: 1.1
+  up_mat_0: 500
+  up_mat_1: 50
+  up_mat_2: 50
+  up_price: 50
+  debug: '#03fc39'

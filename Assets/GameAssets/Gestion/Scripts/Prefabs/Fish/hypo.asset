@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b540b4fe07f124986e6087daeafad0, type: 3}
+  m_Name: hypo
+  m_EditorClassIdentifier: 
+  fishID: 0
+  fishName: HIPPOCAMPE
+  fishScientistName: Hippocampus hippocampus
+  fishSize: 20-30cm
+  fishOrigin: herbiers, algues de zones rocheuses
+  frequence: rare
+  freqWeight: 20
+  fishClass: Syngnathidae
+  mediumWeight: 0.015kg
+  profondeur: 10-30m
+  eat: Planctophage
+  lifeTime: 2-4 ans
+  is_unlocked: 0
+  fishDes: "Le nom \"hippocampe\" vient du grec \u1F35\u03C0\u03C0\u03BF\u03C2, h\xEDppos,
+    \xAB cheval \xBB et de \u03BA\u03AC\u03BC\u03C0\u03BF\u03C2, k\xE1mpos, \xAB
+    poisson marin \xBB. Ils font famili\xE8rement appel\xE9s chevaux de mer. Ils
+    vivent souvent attach\xE9s par leur queue pr\xE9hensile \xE0 une algue ou une
+    feuille de posidonie. Ils utilisent leur bouche comme un puissant aspirateur.
+    On les retrouvent principalement dans les herbiers marins et les r\xE9cifs c\xF4tiers
+    peu profonds."
+  fishSprite: {fileID: 21300000, guid: f05a14a7a0e5f4944adad8764b6e4316, type: 3}
+  fishSpritePixel: {fileID: 21300000, guid: ca67b0bf54967c24baebe4f839adcd75, type: 3}

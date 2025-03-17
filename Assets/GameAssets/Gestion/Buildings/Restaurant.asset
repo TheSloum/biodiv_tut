@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c505cf12c64c04fbf956b540a788e6, type: 3}
+  m_Name: Restaurant
+  m_EditorClassIdentifier: 
+  buildID: 5
+  isPaused: 0
+  buildDesc: "Un restaurant est un lieu o\xF9 les habitants et les touristes peuvent
+    venir manger. Cela peut attirer des visiteurs mais aussi avoir un impact sur
+    la qualit\xE9 de vie des habitants."
+  PolutionEtat: +
+  PopulationEtat: ++
+  ElecEtat: --
+  MoneyMake: +
+  buildingObject: {fileID: 0}
+  buildClass: 3
+  unlocked: 1
+  buildSprite: {fileID: 21300000, guid: 9725d100e4ef4884f9f20b8aa7b57048, type: 3}
+  price: -100
+  mat_0: -5
+  mat_1: -10
+  mat_2: -50
+  bar_0: 0
+  bar_1: 0
+  bar_2: 0
+  time: 10
+  cons_mat_0: 0
+  cons_mat_1: 0
+  cons_mat_2: 0
+  bar_0_cycle: 0.0075
+  bar_1_cycle: -0.01
+  bar_2_cycle: 0.005
+  price_cycle: 150
+  upgradeMult: 1
+  up_mat_0: 800
+  up_mat_1: 800
+  up_mat_2: 800
+  up_price: 800
+  debug: FF57733

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - ButtonPriority
+  - Trash
+  - Building
+  - Wall
+  - SaveDate
+  - ButtonTutorial
+  - OxygenSlider
+  - DateText
+  - ImpactDisplay
+  - OxygenManager
+  - Victory
+  - SaveButton
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Text
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1875665545
+    locked: 0
+  - name: Text
+    uniqueID: 614347701
+    locked: 0
+  - name: POI
+    uniqueID: 3679107619
+    locked: 0
+  - name: Dialogue
+    uniqueID: 208921287
+    locked: 0

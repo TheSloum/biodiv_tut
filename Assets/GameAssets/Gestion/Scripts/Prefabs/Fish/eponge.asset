@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b540b4fe07f124986e6087daeafad0, type: 3}
+  m_Name: eponge
+  m_EditorClassIdentifier: 
+  fishID: 8
+  fishName: EPONGE ENCROUTANTE ORANGE
+  fishScientistName: Crambe crambe
+  fishSize: "10 \xE0 1000 cm2"
+  fishOrigin: Parois rocheuses
+  frequence: "tr\xE8s commune"
+  freqWeight: 80
+  fishClass: Spongiaire
+  mediumWeight: 
+  profondeur: 5-40 m
+  eat: "filtration de micro-organismes, bact\xE9ries et algues uni-cellulaires"
+  lifeTime: 
+  is_unlocked: 0
+  fishDes: "L'\xE9ponge encro\xFBtante orange, forme une plaque lisse et minuscule
+    sur des substrats durs, souvent bien expos\xE9s \xE0 la lumi\xE8re. Sa surface
+    est perfor\xE9e de nombreux orifices ronds. Cette esp\xE8ce sessile se reproduit
+    par la lib\xE9ration de larves qui, apr\xE8s une phase planctonique, se fixent
+    sur le fond et se m\xE9tamorphosent. Elle est courante sur les parois rocheuses
+    et parfois sur des coquilles de mollusques, jouant un r\xF4le essentiel dans
+    le filtrage de l'eau en \xE9liminant micro-organismes et algues."
+  fishSprite: {fileID: 21300000, guid: f92ac95488890dd45869010d994b82dc, type: 3}
+  fishSpritePixel: {fileID: 21300000, guid: 054f28d6b6c7b8445b25e7936d0a9e83, type: 3}

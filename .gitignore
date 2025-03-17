@@ -1,0 +1,29 @@
+# Fichiers et dossiers Unity à ignorer
+
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Fichiers spécifiques de build
+*.apk
+*.aab
+*.xcodeproj
+
+# Fichiers spécifiques aux IDE
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.unityproj
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+Assets/Sauvegardes/GameData_2025-03-10_11-54.json.meta
+Assets/Sauvegardes/GameData_2025-03-10_11-55.json.meta
+Assets/Sauvegardes/GameData_2025-03-11_11-32.json.meta
+Assets/Sauvegardes/GameData_2025-03-11_11-33.json.meta

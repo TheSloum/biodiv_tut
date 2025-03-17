@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b540b4fe07f124986e6087daeafad0, type: 3}
+  m_Name: dauphin
+  m_EditorClassIdentifier: 
+  fishID: 3
+  fishName: DAUPHIN BLEU ET BLANC
+  fishScientistName: Stenella coeruleoalba
+  fishSize: 150cm - 220 cm (max 260 cm)
+  fishOrigin: Haute mer
+  frequence: Commun
+  freqWeight: 60
+  fishClass: "C\xE9tac\xE9, delphinid\xE9"
+  mediumWeight: 200kg
+  profondeur: 0-200m
+  eat: piscivore
+  lifeTime: 55-60 ans
+  is_unlocked: 0
+  fishDes: "Mammif\xE8re marin appartenant \xE0 l'ordre des c\xE9tac\xE9s \xE0 dents,
+    incluant deux familles : Delphinidae (dauphins oc\xE9aniques) et Platanistidae,
+    (dauphins de rivi\xE8re).\LLes dauphins, gr\xE9gaires, sont bien connus pour
+    leur nature sociable et leur grande intelligence.  On trouve des dauphins dans
+    tous les oc\xE9ans et mers du monde, et m\xEAme dans certaines rivi\xE8res. "
+  fishSprite: {fileID: 21300000, guid: 23101b3a7cbbf3948911c15cb71bfe23, type: 3}
+  fishSpritePixel: {fileID: 21300000, guid: 629244b5cbdb27341b1c4b8fd9440aa3, type: 3}

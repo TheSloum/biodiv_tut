@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b540b4fe07f124986e6087daeafad0, type: 3}
+  m_Name: meduseNomade
+  m_EditorClassIdentifier: 
+  fishID: 10
+  fishName: MEDUSE NOMADE
+  fishScientistName: Rhopilema nomadica
+  fishSize: 30-50cm
+  fishOrigin: 
+  frequence: Invasif
+  freqWeight: 100
+  fishClass: Rhizostomatidae
+  mediumWeight: 10kg
+  profondeur: 0-3m
+  eat: Planctonophage
+  lifeTime: 
+  is_unlocked: 0
+  fishDes: "La m\xE9duse nomade est arriv\xE9e en M\xE9diterran\xE9e par le canal
+    de Suez (esp\xE8ce lessepsienne) et a \xE9t\xE9 observ\xE9e en Isra\xEBl pour
+    la premi\xE8re fois en 1976. Sa propagation, est probablement li\xE9e \xE0 l\u2019augmentation
+    de la temp\xE9rature de l\u2019eau \xE0 la surface. Cette esp\xE8ce est urticante
+    pour l\u2019homme et peut provoquer des piq\xFBres douloureuses. Elles peuvent
+    avoir des r\xE9percussions \xE9conomiques et sociales importantes lorsqu\u2019elles
+    forment des essaims. Ces derniers peuvent bloquer l\u2019arriv\xE9e d\u2019eau
+    de centrales \xE9lectriques c\xF4ti\xE8res et des syst\xE8mes de refroidissement
+    des navires."
+  fishSprite: {fileID: 21300000, guid: 7506dab445f0514459979632bc197ec4, type: 3}
+  fishSpritePixel: {fileID: 21300000, guid: 8b7a6a270379bac4ba21788cd8f90554, type: 3}

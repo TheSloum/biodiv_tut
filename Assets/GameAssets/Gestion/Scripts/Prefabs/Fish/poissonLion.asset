@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b540b4fe07f124986e6087daeafad0, type: 3}
+  m_Name: poissonLion
+  m_EditorClassIdentifier: 
+  fishID: 11
+  fishName: POISSON-LION
+  fishScientistName: Pterois miles
+  fishSize: 30-35 cm
+  fishOrigin: 
+  frequence: Invasif
+  freqWeight: 100
+  fishClass: Scorpaenidae
+  mediumWeight: 1kg
+  profondeur: 0-85m
+  eat: Carnivore
+  lifeTime: 30 ans
+  is_unlocked: 0
+  fishDes: "Le poisson-lion, esp\xE8ce invasive en M\xE9diterran\xE9e orientale,
+    est un pr\xE9dateur nocturne qui chasse \xE0 l\u2019aff\xFBt. Il peut vivre seul
+    ou en groupe et se reproduit en pondant ses \u0153ufs en eau libre. Dot\xE9 d\u2019\xE9pines
+    venimeuses, il se d\xE9fend efficacement lorsqu'il se sent menac\xE9, provoquant
+    une douleur intense en cas de piq\xFBre. "
+  fishSprite: {fileID: 21300000, guid: b7f8bf3aac578be418b15fdf3a93e699, type: 3}
+  fishSpritePixel: {fileID: 21300000, guid: baed4d157cfc27947a481f6c63ca5709, type: 3}

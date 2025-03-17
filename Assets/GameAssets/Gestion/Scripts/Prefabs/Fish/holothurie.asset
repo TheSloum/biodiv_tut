@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b540b4fe07f124986e6087daeafad0, type: 3}
+  m_Name: holothurie
+  m_EditorClassIdentifier: 
+  fishID: 17
+  fishName: HOLOTHURIE NOIRE
+  fishScientistName: Holothuria forskali
+  fishSize: 15-40cm
+  fishOrigin: Herbiers, rochers, grottes
+  frequence: Commune
+  freqWeight: 60
+  fishClass: Echinodermes, holothuries
+  mediumWeight: 0,900 kg
+  profondeur: 1-100m
+  eat: Omnivore
+  lifeTime: 5-10 ans
+  is_unlocked: 0
+  fishDes: "Lorsqu\u2019elle se sent menac\xE9e,  elle expulse par son orifice anal
+    de long filaments blanch\xE2tres collants (les tubes de Cuvier), une originalit\xE9
+    qu\u2019elle partage avec sa cousine Holothuria sanctori. L'endosquelette d'Holothuria
+    forskali\_est compos\xE9 de tr\xE8s petites plaques calcaires. Ces scl\xE9rites
+    sont moins vari\xE9es et moins grandes que celles trouv\xE9es chez les esp\xE8ces
+    voisines."
+  fishSprite: {fileID: 21300000, guid: 081c41960fa3be14bb615d3577a492b5, type: 3}
+  fishSpritePixel: {fileID: 21300000, guid: 5e49f780f727edf42a8310eacd76df21, type: 3}
