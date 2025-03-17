@@ -321,5 +321,9 @@
     "mat_1": 0,
     "mat_2": 0,
     "price": 500,
+<<<<<<<< HEAD:Assets/Sauvegardes/GameData_2025-03-17_15-35.json
+    "townName": "joji"
+========
     "townName": "Borddeleau"
+>>>>>>>> 048808a119049d7c962c21c402cd73c18bf9f246:Assets/Sauvegardes/GameData_2025-03-17_14-20.json
 }

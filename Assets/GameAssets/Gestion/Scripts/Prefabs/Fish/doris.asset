@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 
   eat: "Se nourrit d\u2019\xE9ponge"
   lifeTime: 2 ans
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "Le doris dalmatien est d\xE9pourvu de coquille. Il se trouve particuli\xE8rement
     dans les zones sombres et ombrag\xE9es des fonds marins, dans les grottes, sur
     les parois ou le plafond, et peut se trouver \xE0 toute profondeur. Elle se trouve
