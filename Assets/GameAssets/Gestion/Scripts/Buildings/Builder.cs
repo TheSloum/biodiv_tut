@@ -565,6 +565,8 @@ public class Builder : MonoBehaviour
     private void ShowBuildingMenu()
     {
         validation.SetActive(false);
+        
+        
         buildingMenu.SetActive(true);
         closeMenu.SetActive(true);
 
@@ -685,6 +687,9 @@ public class Builder : MonoBehaviour
         price2.text = building.mat_2.ToString();
         price3.text = building.price.ToString();
         EventSystem.current.SetSelectedGameObject(buttonObject);
+        
+            validationButton.onClick.RemoveAllListeners();
+
         validationButton.onClick.AddListener(() => OnBuildingButtonClick(building));
 
     }
@@ -740,10 +745,11 @@ public class Builder : MonoBehaviour
             price_cycle = building.price_cycle;
             cycleDuration = building.time;
             running = !building.isPaused;
+            
+        Debug.Log(building.buildID);
             if (running)
             {
                 StartCycle();
-                Debug.Log(building.buildID);
             }
 
             HideBuildingMenu();

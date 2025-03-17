@@ -299,13 +299,15 @@ public class GameDataSaver : MonoBehaviour
 
     public void LoadDataAfterExplore(string dataDate)
     {
-        if (LoadManager.instance.saveDate != null)
+        Debug.Log(dataDate);
+        if (LoadManager.instance.saveDate != null && !Materials.instance.explored)
         {
             dataDate = LoadManager.instance.saveDate;
             LoadManager.instance.saveDate = null;
         }
         Materials.instance.isLoad = true;
         string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
+
 
         if (File.Exists(path))
         {
