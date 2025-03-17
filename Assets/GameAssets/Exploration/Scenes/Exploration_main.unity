@@ -482,6 +482,7 @@ GameObject:
   - component: {fileID: 57760514}
   - component: {fileID: 57760517}
   - component: {fileID: 57760518}
+  - component: {fileID: 57760519}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -545,7 +546,7 @@ SpriteRenderer:
   m_SortingLayerID: 1543452183
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 5f33373f0f4264dbab4ad11f5fe7b749, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0016145867d9bc478a9672f084ba1f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -565,8 +566,8 @@ Transform:
   m_GameObject: {fileID: 57760513}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.815, y: 0.525, z: 860.88165}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: -5.28, y: -0.02, z: 860.88165}
+  m_LocalScale: {x: 3.0126128, y: 3.0126128, z: 3.0126128}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -603,18 +604,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.710763, y: 0.1938451}
+  m_Offset: {x: -0.028123498, y: 0.15242721}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 11.5, y: 11.4}
+    oldSize: {x: 1.15, y: 1.14}
     newSize: {x: 11.52, y: 11.45}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.470751, y: 3.8830905}
+  m_Size: {x: 1.0033271, y: 0.73668873}
   m_EdgeRadius: 0
 --- !u!50 &57760518
 Rigidbody2D:
@@ -643,6 +644,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &57760519
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57760513}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3555f98ce7081e24ca744566bcd3546c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &62702779
 GameObject:
   m_ObjectHideFlags: 0
@@ -11153,7 +11175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1748180153
 RectTransform:
   m_ObjectHideFlags: 0
