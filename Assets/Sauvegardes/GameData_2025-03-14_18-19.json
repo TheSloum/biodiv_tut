@@ -81,7 +81,7 @@
             "unlocked": false
         },
         {
-            "unlocked": false
+            "unlocked": true
         },
         {
             "unlocked": false
@@ -124,50 +124,8 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": false,
-            "buildState": 0,
-            "cons_mat_0": 0,
-            "cons_mat_1": 0,
-            "cons_mat_2": 0,
-            "bar_0_cycle": 0.0,
-            "bar_1_cycle": 0.0,
-            "bar_2_cycle": 0.0,
-            "price_cycle": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0,
-            "cons_mat_0": 0,
-            "cons_mat_1": 0,
-            "cons_mat_2": 0,
-            "bar_0_cycle": 0.0,
-            "bar_1_cycle": 0.0,
-            "bar_2_cycle": 0.0,
-            "price_cycle": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0,
-            "cons_mat_0": 0,
-            "cons_mat_1": 0,
-            "cons_mat_2": 0,
-            "bar_0_cycle": 0.0,
-            "bar_1_cycle": 0.0,
-            "bar_2_cycle": 0.0,
-            "price_cycle": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
             "running": true,
-            "buildState": 5,
+            "buildState": 3,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
             "cons_mat_2": 0,
@@ -206,24 +164,10 @@
         },
         {
             "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0,
-            "cons_mat_0": 0,
-            "cons_mat_1": 0,
-            "cons_mat_2": 0,
-            "bar_0_cycle": 0.0,
-            "bar_1_cycle": 0.0,
-            "bar_2_cycle": 0.0,
-            "price_cycle": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0,
+            "level1": 1,
+            "level2": 2,
+            "running": true,
+            "buildState": 50,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
             "cons_mat_2": 0,
@@ -279,6 +223,62 @@
             "level1": 0,
             "level2": 0,
             "running": true,
+            "buildState": 3,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
             "buildState": 1,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
@@ -317,9 +317,9 @@
             "price_cycle": 0
         }
     ],
-    "mat_0": 0,
-    "mat_1": 0,
-    "mat_2": 0,
-    "price": 650,
-    "townName": ""
+    "mat_0": 999999849,
+    "mat_1": 9999939,
+    "mat_2": 2147483577,
+    "price": 99994174,
+    "townName": "Lucaas"
 }
