@@ -4540,6 +4540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oxygenManagerObject: {fileID: 576584556}
+  fishUnlockData: 0000000000000000000000000000000000000000000000
 --- !u!114 &754427716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13120,7 +13121,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4362891b391054e4f96c1235aba9f346, type: 3}
   type3Sprites:
   - {fileID: 21300000, guid: 3ace632e1ae5c3c4186de0043c07e90d, type: 3}
-  layer: -4
+  layer: -5
   fore: 0
 --- !u!114 &2558179808699433075
 MonoBehaviour:
@@ -13148,7 +13149,7 @@ MonoBehaviour:
   type3Sprites:
   - {fileID: 21300000, guid: 81c61405b953f3540b89d8d00aab1c27, type: 3}
   - {fileID: 21300000, guid: abf69faf7e82e2e4b9b0c632e4c0e643, type: 3}
-  layer: -5
+  layer: -6
   fore: 0
 --- !u!114 &2558179808699433077
 MonoBehaviour:
@@ -13175,7 +13176,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ffbc5ba2b6e17c744b907cefcefd52e4, type: 3}
   - {fileID: 21300000, guid: ecaf595e9a79353468e3e683c94e4749, type: 3}
   - {fileID: 21300000, guid: 2a5228ecdfa1364429bbd3c837fd0d80, type: 3}
-  layer: -3
+  layer: -4
   fore: 0
 --- !u!4 &2558179808699433078
 Transform:
@@ -13224,7 +13225,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b2c07d39008ced44ab0ef6d3b8ad3d41, type: 3}
   - {fileID: 21300000, guid: 9f70c437dd087004e8fa4015d366eb68, type: 3}
   - {fileID: 21300000, guid: 5d2d6b0882cf08942871f9f6885bec83, type: 3}
-  layer: -2
+  layer: -3
   fore: 0
 --- !u!1 &2558179808699433080
 GameObject:

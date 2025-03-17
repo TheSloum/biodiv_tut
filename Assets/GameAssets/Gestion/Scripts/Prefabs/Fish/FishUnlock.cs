@@ -29,6 +29,7 @@ public class FishUnlock : MonoBehaviour
     /// <returns>True si le poisson a été déverrouillé maintenant, False s'il était déjà déverrouillé ou non trouvé.</returns>
     public bool UnlockFish(int fishID)
     {
+        int fishIndex = 0;
         foreach (Fishes fish in fishes)
         {
             if (fish.fishID == fishID)
@@ -36,6 +37,7 @@ public class FishUnlock : MonoBehaviour
                 if (!fish.is_unlocked)
                 {
                     fish.UnlockFish();
+                    E_GameManager.instance.UnlockFishData(fishIndex);
                     Debug.Log($"Poisson '{fish.fishName}' avec ID {fishID} a été déverrouillé !");
                     return true; // Déverrouillage réussi
                 }
@@ -45,6 +47,7 @@ public class FishUnlock : MonoBehaviour
                     return false; // Déjà déverrouillé
                 }
             }
+            fishIndex++;
         }
         Debug.LogWarning($"Poisson avec ID {fishID} non trouvé dans le Pokedex.");
         return false; // Poisson non trouvé
