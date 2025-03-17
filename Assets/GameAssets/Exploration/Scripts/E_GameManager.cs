@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;using System.Collections.Generic;
 
 public class E_GameManager : MonoBehaviour
 {
@@ -10,6 +10,9 @@ public class E_GameManager : MonoBehaviour
 
     public GameObject oxygenManagerObject;
     private E_OxygenManager oxygenManager;
+
+    public List<bool> fishUnlockData = new List<bool>(new bool[23]);
+
 
     void Awake()
     {
@@ -104,6 +107,10 @@ public class E_GameManager : MonoBehaviour
         {
             Debug.LogWarning("Aucune sauvegarde trouvée.");
         }
+    }
+
+    public void UnlockFishData(int index){ //Rajout d'une fonction pour s'assurer que les poissons s'unlockent (la sauvegarde de retour à la gestion s'effectue avant l'exploration, donc on revient à l'état avant les unlocks de poisson)
+        fishUnlockData[index] = true;
     }
 
     void Update()
