@@ -9,24 +9,22 @@ public class E_EventManager : MonoBehaviour
     [Header("References")]
     public E_Event eventSystem;
     public J_TimeManager timeManager;
-
-    [Header("Event Definitions")]
-    public E_EventDefinition[] invasionEvents;
-    public E_EventDefinition[] normalEvents;
+    public E_EventSettings eventSettings; // Référence à l'asset de configuration
 
     [Header("Scheduling Parameters")]
     [SerializeField] private int invasionCooldownYears = 1;
     [SerializeField] private int normalEventCooldownYears = 3;
 
-    private Queue<E_EventDefinition> invasionQueue = new Queue<E_EventDefinition>();
-    private List<E_EventDefinition> availableNormalEvents = new List<E_EventDefinition>();
+    // File et liste d'événements planifiés en utilisant les types définis dans l'asset
+    private Queue<InvasionType> invasionQueue = new Queue<InvasionType>();
+    private List<NormalEventType> availableNormalEvents = new List<NormalEventType>();
     private Dictionary<string, int> eventCooldowns = new Dictionary<string, int>();
 
     private int lastInvasionYear = -1;
-    private E_EventDefinition lastInvasionEvent;
+    private InvasionType lastInvasionEvent;
     #endregion
 
-    #region Festival du Corail
+    #region Festival du Corail (optionnel)
     private bool coralFestivalPending = false;
     #endregion
 
@@ -39,17 +37,19 @@ public class E_EventManager : MonoBehaviour
 
     void InitializeEvents()
     {
-        if (invasionEvents != null && invasionEvents.Length > 0)
+        // Remplissage de la file des invasions à partir des paramètres
+        if (eventSettings.invasionTypes != null && eventSettings.invasionTypes.Count > 0)
         {
-            foreach (var inv in invasionEvents)
+            foreach (var inv in eventSettings.invasionTypes)
             {
                 invasionQueue.Enqueue(inv);
             }
         }
 
-        if (normalEvents != null)
+        // Remplissage de la liste des événements normaux à partir des paramètres
+        if (eventSettings.normalEvents != null)
         {
-            availableNormalEvents.AddRange(normalEvents);
+            availableNormalEvents.AddRange(eventSettings.normalEvents);
         }
     }
 
@@ -99,15 +99,26 @@ public class E_EventManager : MonoBehaviour
     {
         if (invasionQueue.Count == 0)
             return;
-        E_EventDefinition invasionEvent = invasionQueue.Dequeue();
-        invasionQueue.Enqueue(invasionEvent);
+
+        InvasionType invasionEvent = invasionQueue.Dequeue();
+        invasionQueue.Enqueue(invasionEvent); // Réinsérer l'événement pour qu'il puisse se reproduire
+
         lastInvasionYear = currentYear;
         lastInvasionEvent = invasionEvent;
-        int index = GetEventIndex(invasionEvent);
-        if (index != -1)
+
+        // Déclenche l'événement avec son ID et la durée spécifique définie dans l'asset
+        eventSystem.TriggerEvent(invasionEvent.eventID, invasionEvent.durationInMonths);
+        AddEventCooldown(invasionEvent.name, currentYear + invasionCooldownYears);
+
+        // Activation du mode invasion dans le spawner si un prefab est défini
+        if (invasionEvent.prefabs != null && invasionEvent.prefabs.Length > 0)
         {
-            eventSystem.TriggerEvent(index);
-            AddEventCooldown(invasionEvent.eventName, currentYear + invasionCooldownYears);
+            E_FishSpawner.Instance.EnableInvasionMode(invasionEvent.prefabs[0]);
+            Debug.Log("Invasion déclenchée : " + invasionEvent.name);
+        }
+        else
+        {
+            Debug.LogWarning("Aucun prefab trouvé pour l'événement d'invasion : " + invasionEvent.name);
         }
     }
 
@@ -115,22 +126,21 @@ public class E_EventManager : MonoBehaviour
     {
         if (availableNormalEvents.Count == 0)
             return;
+
         int randomIndex = Random.Range(0, availableNormalEvents.Count);
-        E_EventDefinition normalEvent = availableNormalEvents[randomIndex];
-        int index = GetEventIndex(normalEvent);
-        if (index != -1)
-        {
-            eventSystem.TriggerEvent(index);
-            availableNormalEvents.RemoveAt(randomIndex);
-            AddEventCooldown(normalEvent.eventName, currentYear + normalEventCooldownYears);
-        }
+        NormalEventType normalEvent = availableNormalEvents[randomIndex];
+
+        // Déclenche l'événement normal avec sa durée spécifique définie dans l'asset
+        eventSystem.TriggerEvent(normalEvent.eventID, normalEvent.durationInMonths);
+        availableNormalEvents.RemoveAt(randomIndex);
+        AddEventCooldown(normalEvent.name, currentYear + normalEventCooldownYears);
     }
     #endregion
 
     #region Gestion du Festival et des Cooldowns
     void CheckForCoralFestival(int currentMonth, int currentYear)
     {
-        // Logique à compléter si besoin pour déclencher un festival du corail
+        // Logique pour le festival du corail si besoin (similaire aux autres scripts)
     }
 
     void CleanupCooldowns(int currentYear)
@@ -145,9 +155,9 @@ public class E_EventManager : MonoBehaviour
         {
             eventCooldowns.Remove(key);
             // Réintégrer l'événement normal correspondant s'il n'est plus en cooldown
-            foreach (var evt in normalEvents)
+            foreach (var evt in eventSettings.normalEvents)
             {
-                if (evt.eventName == key && !availableNormalEvents.Contains(evt))
+                if (evt.name == key && !availableNormalEvents.Contains(evt))
                 {
                     availableNormalEvents.Add(evt);
                 }
@@ -171,18 +181,6 @@ public class E_EventManager : MonoBehaviour
                 return true;
         }
         return false;
-    }
-    #endregion
-
-    #region Méthode Utilitaire
-    int GetEventIndex(E_EventDefinition eventDef)
-    {
-        for (int i = 0; i < eventSystem.eventDefinitions.Length; i++)
-        {
-            if (eventSystem.eventDefinitions[i] == eventDef)
-                return i;
-        }
-        return -1;
     }
     #endregion
 }
