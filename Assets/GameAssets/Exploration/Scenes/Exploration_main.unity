@@ -6043,7 +6043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   woodPrefab: {fileID: 1465899972831079035, guid: c1e00e719098e4f5f936f0824954bbf9, type: 3}
   stonePrefab: {fileID: 1174082011079864740, guid: 839373a1dd1f445bcb8fc42bec10da12, type: 3}
-  ironPrefab: {fileID: 4419618847227860153, guid: 62dc2b51b2ca341cea8e9c816f3982d1, type: 3}
+  ironPrefab: {fileID: 1174082011079864740, guid: 0457b4c388e0d6a46a469ada32a03807, type: 3}
   spawnInterval: 5
   spawnYMin: -4
   spawnYMax: 4
@@ -14562,8 +14562,8 @@ SceneRoots:
   - {fileID: 1425227647}
   - {fileID: 2558179808699433078}
   - {fileID: 373324777}
-  - {fileID: 1011239395}
   - {fileID: 4633539634217911625}
+  - {fileID: 1011239395}
   - {fileID: 2071141055}
   - {fileID: 416358902}
   - {fileID: 1974047076}
