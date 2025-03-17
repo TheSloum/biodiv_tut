@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6e9671d0b0004241b8ba047ffe149f3, type: 3}
-  m_Name: VagueDeDechets
+  m_Name: InvasionPoissonLion
   m_EditorClassIdentifier: 
-  eventID: 0
-  eventName: 
+  eventID: 6
+  eventName: Invasion de poissons lions
   message: 
   messageColor: {r: 1, g: 1, b: 1, a: 1}
   textFadeInDuration: 1
@@ -23,7 +23,7 @@ MonoBehaviour:
   OnEventStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11500000, guid: fdd6b69dc00a94ec49fcd55d7cdc69c1, type: 3}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 0

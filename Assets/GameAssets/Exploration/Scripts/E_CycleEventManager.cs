@@ -101,7 +101,6 @@ public class E_CycleEventManager : MonoBehaviour
     #region Gestion des Événements liés au Temps
     void OnDayChanged(int newDay, int newMonth)
     {
-        // Lancer un événement si aucun n'est actif et hors période de cooldown
         if (!isEventActive && !waitingNoEventCooldown)
         {
             if (newDay > eventSettings.noEventStartDays && newDay < (timeManager.daysPerMonth - eventSettings.noEventEndDays))
@@ -114,7 +113,6 @@ public class E_CycleEventManager : MonoBehaviour
     void OnMonthChanged(int newMonth)
     {
         int currentYear = timeManager.GetCurrentYear();
-        // Déclencher la Fête du Corail si on est dans le mois défini et que ce n'est pas déjà fait
         if (newMonth == eventSettings.coralFestivalMonth && !coralFestivalDoneThisYear)
         {
             TriggerCoralFestivalIfNeeded(currentYear);
@@ -234,16 +232,35 @@ public class E_CycleEventManager : MonoBehaviour
 
         if (type == EventType.Invasion)
         {
+            // Activation du mode invasion sur le spawner
             TriggerInvasion(eventID);
             int currentYear = timeManager.GetCurrentYear();
             invasionHistory.Add((currentYear, eventID));
             lastInvasionEventID = eventID;
         }
 
-        float realDuration = (type == EventType.CoralFestival)
-            ? eventSettings.coralFestivalDuration * 300f
-            : durationMonths * 300f;
-        yield return new WaitForSeconds(realDuration);
+        if (type == EventType.Invasion)
+        {
+            // Attendre que la date ingame atteigne (ou dépasse) la date de fin de l'événement
+            yield return new WaitUntil(() => {
+                int currentYear = timeManager.GetCurrentYear();
+                int currentMonth = timeManager.GetCurrentMonth();
+                return (currentYear > eventEndDate.Item1) || (currentYear == eventEndDate.Item1 && currentMonth >= eventEndDate.Item2);
+            });
+        }
+        else
+        {
+            float realDuration = (type == EventType.CoralFestival)
+                ? eventSettings.coralFestivalDuration * 300f
+                : durationMonths * 300f;
+            yield return new WaitForSeconds(realDuration);
+        }
+
+        if (type == EventType.Invasion)
+        {
+            // Fin de l'invasion : rétablir le spawn normal
+            E_FishSpawner.Instance.DisableInvasionMode();
+        }
 
         isEventActive = false;
         currentEvent = null;
@@ -281,7 +298,7 @@ public class E_CycleEventManager : MonoBehaviour
 
     bool IsPlayerExploring()
     {
-        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Exploration_main";
+        return SceneManager.GetActiveScene().name == "Exploration_main";
     }
     #endregion
 
@@ -319,7 +336,9 @@ public class E_CycleEventManager : MonoBehaviour
 
     void CleanupNormalEventCooldowns(int currentYear)
     {
-        var keysToRemove = normalEventCooldowns.Where(kvp => kvp.Value <= currentYear).Select(kvp => kvp.Key).ToList();
+        var keysToRemove = normalEventCooldowns.Where(kvp => kvp.Value <= currentYear)
+                                               .Select(kvp => kvp.Key)
+                                               .ToList();
         foreach (int key in keysToRemove)
         {
             normalEventCooldowns.Remove(key);
@@ -337,11 +356,9 @@ public class E_CycleEventManager : MonoBehaviour
         var invasion = eventSettings.invasionTypes.FirstOrDefault(inv => inv.eventID == invasionID);
         if (invasion != null && invasion.prefabs.Length > 0)
         {
-            foreach (var prefab in invasion.prefabs)
-            {
-                Instantiate(prefab, Vector3.zero, Quaternion.identity);
-            }
-            Debug.Log($"Invasion déclenchée : {invasion.name} (ID: {invasionID})");
+            GameObject invasionPrefab = invasion.prefabs[0];
+            E_FishSpawner.Instance.EnableInvasionMode(invasionPrefab);
+            Debug.Log($"Invasion déclenchée : {invasion.name} (ID: {invasionID}) - Mode invasion activé.");
         }
         else
         {
