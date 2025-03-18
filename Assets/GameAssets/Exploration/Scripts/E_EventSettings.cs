@@ -54,6 +54,7 @@ public class InvasionType
     public GameObject[] prefabs;
     // Durée spécifique (en mois) pour cet événement d'invasion
     public int durationInMonths = 2; 
+    public Speech dialogue; 
 }
 
 [System.Serializable]
@@ -63,4 +64,5 @@ public class NormalEventType
     public int eventID;
     // Durée spécifique (en mois) pour cet événement normal
     public int durationInMonths = 2; 
+    public Speech dialogue; 
 }

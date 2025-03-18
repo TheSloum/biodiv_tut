@@ -1,9 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement; // Pour vérifier le nom de la scène
 
 public class E_Event : MonoBehaviour
 {
     private bool isEventActive = false;
+
+    // Référence à l'asset de configuration des événements
+    public E_EventSettings eventSettings;
 
     /// <summary>
     /// Déclenche l’événement avec l’ID spécifié et pour la durée donnée (en mois in game).
@@ -21,6 +25,40 @@ public class E_Event : MonoBehaviour
     {
         isEventActive = true;
         Debug.Log("Début de l'événement " + eventID + " pour " + durationInMonths + " mois.");
+
+        // --- Déclenchement du dialogue uniquement dans la scène de gestion ("SampleScene") ---
+        if (SceneManager.GetActiveScene().name == "SampleScene")
+        {
+            Speech dialogueToUse = null;
+            // Recherche dans les NormalEvents
+            NormalEventType normalEvent = eventSettings.normalEvents.Find(e => e.eventID == eventID);
+            if (normalEvent != null && normalEvent.dialogue != null)
+            {
+                dialogueToUse = normalEvent.dialogue;
+            }
+            else
+            {
+                // Recherche dans les InvasionTypes
+                InvasionType invasionEvent = eventSettings.invasionTypes.Find(e => e.eventID == eventID);
+                if (invasionEvent != null && invasionEvent.dialogue != null)
+                {
+                    dialogueToUse = invasionEvent.dialogue;
+                }
+            }
+
+            if (dialogueToUse != null)
+            {
+                if (ShowDialogue.Instance != null)
+                {
+                    ShowDialogue.Instance.DialogueBox(dialogueToUse);
+                }
+                else
+                {
+                    Debug.LogWarning("ShowDialogue.Instance non trouvé dans la scène.");
+                }
+            }
+        }
+        // --- Fin du déclenchement du dialogue ---
 
         // Gestion des effets propres à l’événement
         if (eventID == 0)
@@ -74,14 +112,11 @@ public class E_Event : MonoBehaviour
         else if (eventID == 3)
         {
             // --- Début de l'Event 3 ---
-            // Baisse de la qualité de vie : on diminue bar_0 de 0.2 (sans descendre sous 0)
             Materials.instance.bar_0 = Mathf.Max(Materials.instance.bar_0 - 0.2f, 0f);
-            // On peut activer un flag pour cet event si besoin ailleurs
             Materials.instance.event3Active = true;
             Debug.Log("Event 3 activé : Qualité de vie diminuée.");
 
             // Augmenter le temps des cycles pour les bâtiments énergie/tourisme.
-            // Nous supposons ici que ces bâtiments ont buildClass == 1 ou 2.
             Builder[] builders = FindObjectsOfType<Builder>();
             foreach (var builder in builders)
             {
@@ -126,7 +161,7 @@ public class E_Event : MonoBehaviour
                 if (sr != null)
                 {
                     Color col = sr.color;
-                    col.a = 0f; 
+                    col.a = 0f;
                     sr.color = col;
                     Debug.Log("MareeNoire : Opacité du BlackOverlay remise à 0%.");
                 }
@@ -150,12 +185,10 @@ public class E_Event : MonoBehaviour
         else if (eventID == 3)
         {
             // --- Fin de l'Event 3 ---
-            // Restaurer la qualité de vie : on réajoute 0.2 (en veillant à ne pas dépasser la limite)
             Materials.instance.bar_0 = Mathf.Min(Materials.instance.bar_0 + 0.2f, 0.99f);
             Materials.instance.event3Active = false;
             Debug.Log("Event 3 terminé : Qualité de vie restaurée.");
 
-            // Rétablir la durée de cycle initiale pour les bâtiments énergie/tourisme
             Builder[] builders = FindObjectsOfType<Builder>();
             foreach (var builder in builders)
             {
@@ -181,6 +214,4 @@ public class E_Event : MonoBehaviour
             cycleManager.EndEvent();
         }
     }
-
-
 }

@@ -6838,11 +6838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2434f5799688f0440a46aa1594dffb6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 1424737535}
-  timeManager: {fileID: 1823017115}
-  eventSettings: {fileID: 0}
-  invasionCooldownYears: 1
-  normalEventCooldownYears: 3
 --- !u!1 &1048153803
 GameObject:
   m_ObjectHideFlags: 0
@@ -7792,7 +7787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -235.1, y: 193.1}
+  m_AnchoredPosition: {x: -235.1, y: 191.7}
   m_SizeDelta: {x: 200, y: 40.803}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1172460727
@@ -8888,7 +8883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -235.09999, y: 123.17634}
+  m_AnchoredPosition: {x: -235.09999, y: 125.67}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1403291777
@@ -9200,6 +9195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea1cd0748128ae54c8c7f5a69f8bdbec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventSettings: {fileID: 11400000, guid: 65ac918ee0245574c84a84c0da019715, type: 2}
 --- !u!1 &1425227646
 GameObject:
   m_ObjectHideFlags: 0
@@ -12906,7 +12902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speech:
-  - {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
+  - {fileID: 11400000, guid: dfa0a727eb4e14c8fa7ef738fe615fe7, type: 2}
   - {fileID: 11400000, guid: e50f252204cbc3a41a3c2e0a6f726425, type: 2}
   - {fileID: 11400000, guid: ac7b504adda4fb34c8a5d0eee4019283, type: 2}
   - {fileID: 11400000, guid: 5b7c289d8d9ea1d4fbda41ad09157207, type: 2}
