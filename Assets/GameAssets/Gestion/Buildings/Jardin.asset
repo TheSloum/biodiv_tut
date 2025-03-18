@@ -22,7 +22,7 @@ MonoBehaviour:
     et les papillons."
   PolutionEtat: --
   PopulationEtat: ++
-  ElecEtat: =
+  ElecEtat: '-'
   MoneyMake: =
   buildingObject: {fileID: 0}
   buildClass: 4

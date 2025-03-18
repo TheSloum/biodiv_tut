@@ -20,5 +20,5 @@ MonoBehaviour:
     de journ\xE9e.\r\n"
   - "Cliquez sur un b\xE2timent pour avoir plus d\u2019information."
   position: {x: -335.4, y: 144.4, z: 0}
-  size: {x: 75, y: 0, z: 0}
+  size: {x: 140, y: 0, z: 0}
   character: {fileID: 0}

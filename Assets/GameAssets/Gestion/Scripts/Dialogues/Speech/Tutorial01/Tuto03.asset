@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Tuto03
   m_EditorClassIdentifier: 
   textList:
-  - "Voici les informations du b\xE2timent. Vous pouvez y trouvez\r: \n-La dur\xE9e
-    de son cycle,\r \n-Et son impact sur <u>{Materials.instance.townName}</u>."
+  - "Voici les informations du b\xE2timent. Vous pouvez y trouvez\r: \r \n-Son impact
+    sur <u>{Materials.instance.townName}</u>."
   - Cliquez sur "X" pour fermer la page.
   position: {x: -46, y: -80, z: 0}
   size: {x: 200, y: 0, z: 0}
