@@ -15,7 +15,7 @@ MonoBehaviour:
   textList:
   - Allo ? Allo ! Vous me recevez ?
   - "Vous voil\xE0 sous l\u2019eau ! Pour vous d\xE9placer, utilisez les touches
-    directionnelles <b>\u2190\u2191\u2192\u2193</b> ou <b>ZQSD</b>.\r"
+    directionnelles <b>Haut bas gauche droite</b> ou <b>Z Q S D</b>.\r"
   position: {x: -6.46, y: -1, z: 0}
   size: {x: 350, y: 40, z: 0}
   character: {fileID: 0}
