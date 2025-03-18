@@ -113,6 +113,8 @@ public class Builder : MonoBehaviour
 
 
     public GameObject cycleBar;
+
+    public GameObject menuRecherche;
     public GameObject PauseInfo;
     public GameObject notEnothRessourse;
     [SerializeField] private bool tutorialBuild;
@@ -433,6 +435,11 @@ public class Builder : MonoBehaviour
     {
         if (editing)
         {
+            if (buildState == 50)
+            {
+                menuRecherche.SetActive(true);
+                return;
+            }
             Materials.instance.canMove = false;
             manageMenu.SetActive(true);
 
@@ -567,8 +574,8 @@ public class Builder : MonoBehaviour
     private void ShowBuildingMenu()
     {
         validation.SetActive(false);
-        
-        
+
+
         buildingMenu.SetActive(true);
         closeMenu.SetActive(true);
 
@@ -596,6 +603,7 @@ public class Builder : MonoBehaviour
                 else if (!Materials.instance.researchCentr && building.buildClass == 0) { }
                 else
                 {
+
                     GameObject newButton = Instantiate(buttonPrefab, buttonCont);
                     newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 0f);
                     Button button = newButton.GetComponent<Button>();
@@ -605,7 +613,6 @@ public class Builder : MonoBehaviour
                     buttonImage.sprite = building.buildSprite;
                     buttonText.text = $"{building.name}";
                     counter += 1;
-
                     foreach (Transform child in newButton.transform)
                     {
                         if (child.CompareTag("ImpactDisplay") && child.name == "airImpact")
@@ -689,8 +696,8 @@ public class Builder : MonoBehaviour
         price2.text = building.mat_2.ToString();
         price3.text = building.price.ToString();
         EventSystem.current.SetSelectedGameObject(buttonObject);
-        
-            validationButton.onClick.RemoveAllListeners();
+
+        validationButton.onClick.RemoveAllListeners();
 
         validationButton.onClick.AddListener(() => OnBuildingButtonClick(building));
 
@@ -748,8 +755,7 @@ public class Builder : MonoBehaviour
             price_cycle = building.price_cycle;
             cycleDuration = building.time;
             running = !building.isPaused;
-            
-        Debug.Log(building.buildID);
+            Debug.Log(building.buildID);
             if (running)
             {
                 StartCycle();
