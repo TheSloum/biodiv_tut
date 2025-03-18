@@ -12897,7 +12897,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ac7b504adda4fb34c8a5d0eee4019283, type: 2}
   - {fileID: 11400000, guid: 5b7c289d8d9ea1d4fbda41ad09157207, type: 2}
   oxygenObject: {fileID: 576584556}
-  e_tutorial: 0
+  e_tutorial: 1
   oxygenBar: {fileID: 500687706}
 --- !u!1 &1984105327
 GameObject:
