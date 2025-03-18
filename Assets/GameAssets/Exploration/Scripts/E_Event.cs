@@ -38,7 +38,6 @@ public class E_Event : MonoBehaviour
         else if (eventID == 1)
         {
             // Effets pour MareeNoire
-            // 1. Modifier l'opacité du BlackOverlay via son SpriteRenderer
             GameObject blackOverlay = GameObject.FindWithTag("BlackOverlay");
             if (blackOverlay != null)
             {
@@ -46,7 +45,7 @@ public class E_Event : MonoBehaviour
                 if (sr != null)
                 {
                     Color col = sr.color;
-                    col.a = 0.7f; // 70% d'opacité
+                    col.a = 0.4f; // 40% d'opacité
                     sr.color = col;
                     Debug.Log("MareeNoire : Opacité du BlackOverlay mise à 70%.");
                 }
@@ -59,7 +58,6 @@ public class E_Event : MonoBehaviour
             {
                 Debug.LogWarning("MareeNoire : BlackOverlay non trouvé !");
             }
-            // 2. Diminuer l'intervalle de spawn (augmenter le taux de spawn)
             if (E_FishSpawner.Instance != null)
             {
                 E_FishSpawner.Instance.IncreaseFishSpawnRate();
@@ -71,6 +69,27 @@ public class E_Event : MonoBehaviour
             if (E_FishSpawner.Instance != null)
             {
                 E_FishSpawner.Instance.ActivateTrashWaveEffect();
+            }
+        }
+        else if (eventID == 3)
+        {
+            // --- Début de l'Event 3 ---
+            // Baisse de la qualité de vie : on diminue bar_0 de 0.2 (sans descendre sous 0)
+            Materials.instance.bar_0 = Mathf.Max(Materials.instance.bar_0 - 0.2f, 0f);
+            // On peut activer un flag pour cet event si besoin ailleurs
+            Materials.instance.event3Active = true;
+            Debug.Log("Event 3 activé : Qualité de vie diminuée.");
+
+            // Augmenter le temps des cycles pour les bâtiments énergie/tourisme.
+            // Nous supposons ici que ces bâtiments ont buildClass == 1 ou 2.
+            Builder[] builders = FindObjectsOfType<Builder>();
+            foreach (var builder in builders)
+            {
+                if (builder.buildClass == 1 || builder.buildClass == 2)
+                {
+                    builder.cycleDuration *= 1.5f; // Augmente de 50%
+                    Debug.Log("Cycle augmenté pour un bâtiment de type " + builder.buildClass);
+                }
             }
         }
 
@@ -95,13 +114,11 @@ public class E_Event : MonoBehaviour
         }
         else if (eventID == 1)
         {
-            // Restaurer l'intervalle de spawn par défaut
             if (E_FishSpawner.Instance != null)
             {
                 E_FishSpawner.Instance.RestoreDefaultSpawnRate();
                 Debug.Log("MareeNoire terminé : Intervalle de spawn restauré.");
             }
-            // Réinitialiser l'opacité du BlackOverlay à 0%
             GameObject blackOverlay = GameObject.FindWithTag("BlackOverlay");
             if (blackOverlay != null)
             {
@@ -109,7 +126,7 @@ public class E_Event : MonoBehaviour
                 if (sr != null)
                 {
                     Color col = sr.color;
-                    col.a = 0f; // Opacité 0%
+                    col.a = 0f; 
                     sr.color = col;
                     Debug.Log("MareeNoire : Opacité du BlackOverlay remise à 0%.");
                 }
@@ -128,6 +145,25 @@ public class E_Event : MonoBehaviour
             if (E_FishSpawner.Instance != null)
             {
                 E_FishSpawner.Instance.RestoreDefaultSpawnRate();
+            }
+        }
+        else if (eventID == 3)
+        {
+            // --- Fin de l'Event 3 ---
+            // Restaurer la qualité de vie : on réajoute 0.2 (en veillant à ne pas dépasser la limite)
+            Materials.instance.bar_0 = Mathf.Min(Materials.instance.bar_0 + 0.2f, 0.99f);
+            Materials.instance.event3Active = false;
+            Debug.Log("Event 3 terminé : Qualité de vie restaurée.");
+
+            // Rétablir la durée de cycle initiale pour les bâtiments énergie/tourisme
+            Builder[] builders = FindObjectsOfType<Builder>();
+            foreach (var builder in builders)
+            {
+                if (builder.buildClass == 1 || builder.buildClass == 2)
+                {
+                    builder.cycleDuration /= 1.5f; // Restaure la durée d'origine
+                    Debug.Log("Cycle restauré pour un bâtiment de type " + builder.buildClass);
+                }
             }
         }
 

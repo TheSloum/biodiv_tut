@@ -9,10 +9,10 @@ public class E_CycleEventManager : MonoBehaviour
     public J_TimeManager timeManager;
     public E_EventSettings eventSettings;
 
-    // File des événements planifiés pour l'année
+    // Queue
     private Queue<ScheduledEvent> eventQueue = new Queue<ScheduledEvent>();
 
-    // Variables pour détecter les changements de date
+    // Detecter changement date
     private int lastDay, lastMonth, lastYear;
 
     // Flags pour la gestion des états d'événement
@@ -28,11 +28,11 @@ public class E_CycleEventManager : MonoBehaviour
             eventSystem = FindObjectOfType<E_Event>();
         if (eventSettings == null)
         {
-            Debug.LogError("EventSettings n'est pas assigné.");
+            Debug.LogError("EventSettings non assigné.");
             return;
         }
 
-        // Initialiser les variables de temps
+        // Variables de temps
         lastDay = timeManager.currentDay;
         lastMonth = timeManager.currentMonth;
         lastYear = timeManager.currentYear;
@@ -88,7 +88,7 @@ public class E_CycleEventManager : MonoBehaviour
                         if (invasionType != null && invasionType.prefabs.Length > 0)
                         {
                             E_FishSpawner.Instance.EnableInvasionMode(invasionType.prefabs[0]);
-                            Debug.Log("Mode invasion activé avec le prefab : " + invasionType.prefabs[0].name);
+                            Debug.Log("Mode invasion pour le poisson : " + invasionType.prefabs[0].name);
                         }
                         else
                         {
@@ -175,9 +175,8 @@ public class E_CycleEventManager : MonoBehaviour
         // Génération de trois dates chronologiques en respectant un intervalle d'au moins 1 mois entre chaque événement.
         // Par exemple : premier événement entre mois 1 et 8, deuxième entre (premier + 2) et 10, troisième entre (deuxième + 2) et 12.
         int firstEventMonth = Random.Range(1, 9); // 1 inclus, 9 exclus => max 8
-        int secondEventMonth = Random.Range(firstEventMonth + 2, 11); // max 10
-        int thirdEventMonth = Random.Range(secondEventMonth + 2, 13); // max 12
-
+        int secondEventMonth = Random.Range(firstEventMonth + 2, 11); 
+        int thirdEventMonth = Random.Range(secondEventMonth + 2, 13); //
         // Pour le jour, on choisit aléatoirement une valeur comprise entre noEventStartDays+1 et (daysPerMonth - noEventEndDays)
         int firstEventDay = Random.Range(eventSettings.noEventStartDays + 1, timeManager.daysPerMonth - eventSettings.noEventEndDays);
         int secondEventDay = Random.Range(eventSettings.noEventStartDays + 1, timeManager.daysPerMonth - eventSettings.noEventEndDays);
