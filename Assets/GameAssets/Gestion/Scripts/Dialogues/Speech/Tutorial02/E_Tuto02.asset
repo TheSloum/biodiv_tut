@@ -15,5 +15,5 @@ MonoBehaviour:
   textList:
   - "L\xE0 ! Une ressource, ramassez-la !"
   position: {x: -6.46, y: -1, z: 0}
-  size: {x: 350, y: 40, z: 0}
+  size: {x: 0.2, y: 0.2, z: 0}
   character: {fileID: 0}

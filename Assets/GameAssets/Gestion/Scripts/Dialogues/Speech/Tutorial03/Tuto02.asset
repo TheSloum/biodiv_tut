@@ -16,7 +16,7 @@ MonoBehaviour:
   - "F\xE9licitations ! <u>{Materials.instance.townName}</u> poss\xE8de enfin son
     centre de recherche. "
   - "D\xE9sormais, pendant votre <b>exploration</b>, vous pourrez <b>photographier</b>
-    la faune et la flore en appuyant sur <b>espace</b>."
+    la faune et la flore."
   - "Ensemble, faisons de <u>{Materials.instance.townName}</u> une ville enti\xE8rement
     <b>d\xE9pollu\xE9e</b> !"
   - Je reviendrai vers vous en cas de besoin. Bonne chance !
