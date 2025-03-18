@@ -72,6 +72,8 @@ public class Builder : MonoBehaviour
     public int level1 = 0;
     public int level2 = 0;
 
+    private int buildClass;
+
     private float level1ScaleUp = 0.2f;
     private float level2ScaleUp = 0.4f;
     private float level3ScaleUp = 0.6f;
@@ -710,6 +712,7 @@ public class Builder : MonoBehaviour
              Materials.instance.price >= (-1 * building.price)) || Prebuild != 0)
         {
             buildState = building.buildID;
+            buildClass = building.buildClass;
             spriteRenderer.sprite = building.buildSprite;
 
             if (Prebuild == 0)
