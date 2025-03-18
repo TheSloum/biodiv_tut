@@ -504,6 +504,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 673363046}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1039845543}
   notEnothRessourse: {fileID: 1658671133}
   tutorialBuild: 0
@@ -1544,6 +1545,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 1601740271}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 529872989}
   notEnothRessourse: {fileID: 1449792243}
   tutorialBuild: 0
@@ -2481,7 +2483,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 128368382}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -5951,6 +5953,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 214856529}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1795207192}
   notEnothRessourse: {fileID: 1501919979}
   tutorialBuild: 0
@@ -8794,6 +8797,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 1782958842}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1495934289}
   notEnothRessourse: {fileID: 293641863}
   tutorialBuild: 0
@@ -9142,6 +9146,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 5
   cycleBar: {fileID: 571080056}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 447649424}
   notEnothRessourse: {fileID: 849170610}
   tutorialBuild: 1
@@ -14146,6 +14151,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 1332316412}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 813097974}
   notEnothRessourse: {fileID: 584462203}
   tutorialBuild: 0
@@ -17673,6 +17679,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 1808241839}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1799297626}
   notEnothRessourse: {fileID: 955937400}
   tutorialBuild: 0
@@ -18382,6 +18389,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 214242006}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 414012183}
   notEnothRessourse: {fileID: 705347763}
   tutorialBuild: 0
@@ -19984,7 +19992,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: c0e0ed6a21760f748b397ce758c308e3, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -19992,7 +20000,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2.5
 --- !u!222 &1117994528
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21788,6 +21796,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 618217916}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 726443788}
   notEnothRessourse: {fileID: 865630727}
   tutorialBuild: 0
@@ -22518,6 +22527,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 1095543672}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1672679110}
   notEnothRessourse: {fileID: 1460796313}
   tutorialBuild: 0
@@ -28041,6 +28051,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 357237858}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 440564029}
   notEnothRessourse: {fileID: 461171603}
   tutorialBuild: 1
@@ -33744,6 +33755,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 2074022094}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1786752776}
   notEnothRessourse: {fileID: 538100183}
   tutorialBuild: 0
@@ -36116,6 +36128,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 1
   cycleBar: {fileID: 1581899316}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1587774054}
   notEnothRessourse: {fileID: 1556991691}
   tutorialBuild: 1
@@ -39022,6 +39035,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 702082580}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 340523384}
   notEnothRessourse: {fileID: 1665052995}
   tutorialBuild: 0
@@ -40099,6 +40113,7 @@ MonoBehaviour:
   buildingEtatElec: {fileID: 1683186683}
   Prebuild: 0
   cycleBar: {fileID: 189250881}
+  menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1209454334}
   notEnothRessourse: {fileID: 1710698587}
   tutorialBuild: 0

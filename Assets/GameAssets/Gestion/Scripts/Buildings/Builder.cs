@@ -710,8 +710,11 @@ public class Builder : MonoBehaviour
         {
             Materials.instance.researchCentr = false;
         }
-
-        cycleBar.transform.localPosition = new Vector3(0, 83, 0);
+        if (building.buildID != 50)
+        {
+            Debug.Log(buildState + "DDD");
+            cycleBar.transform.localPosition = new Vector3(0, 83, 0);
+        }
 
         if (editing == true && (Materials.instance.mat_0 >= (-1 * building.mat_0) &&
              Materials.instance.mat_1 >= (-1 * building.mat_1) &&
@@ -755,7 +758,6 @@ public class Builder : MonoBehaviour
             price_cycle = building.price_cycle;
             cycleDuration = building.time;
             running = !building.isPaused;
-            Debug.Log(building.buildID);
             if (running)
             {
                 StartCycle();
