@@ -2230,7 +2230,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -15678,7 +15678,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cabe693331e97464ab7f14bd6a4940f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 78a7cbbcdf3ee9b4ebfd9e262e3feb71, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17925,7 +17925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1009813247
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21473,7 +21473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 008dfe9949b21ab44b8ba392a309f730, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c1de1dd9b24b9840a6a3fce4cdd00be, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -27613,8 +27613,22 @@ MonoBehaviour:
   page3: {fileID: 952730010}
   page4: {fileID: 2031692453}
   page5: {fileID: 1725385672}
+  buttons:
+  - {fileID: 1615011938}
+  - {fileID: 1476129013}
+  - {fileID: 126388841}
+  - {fileID: 1837322576}
+  activeSprites:
+  - {fileID: 21300000, guid: 7c7c60d44a316e146ad510fedc9c7eac, type: 3}
+  - {fileID: 21300000, guid: dff9148dc56757144ab0981f4dc5f1cb, type: 3}
+  - {fileID: 21300000, guid: 1ad0e48020c0e9444a34c465eaee6b07, type: 3}
+  - {fileID: 21300000, guid: 9e5034f40db802845bddaaebe04b88de, type: 3}
+  inactiveSprites:
+  - {fileID: 21300000, guid: 57c45763bd2d6f545b42424d5f3e2d95, type: 3}
+  - {fileID: 21300000, guid: b044678c9399cad4e9194a96dfeefe42, type: 3}
+  - {fileID: 21300000, guid: c448cf1265289b7429a65dbf2b4f3b5f, type: 3}
+  - {fileID: 21300000, guid: d1cf1fd4b2da79146afb50763f0bae32, type: 3}
   sfxClip: {fileID: 8300000, guid: 1b7c1bea919e6f347b345b51d269c6a5, type: 3}
-  musicClip: {fileID: 8300000, guid: d6075720af1de91428b2d6db342e7938, type: 3}
 --- !u!114 &1454677919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28300,7 +28314,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -30712,7 +30726,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -35681,7 +35695,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -64068,7 +64082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7633687358449335659
 RectTransform:
   m_ObjectHideFlags: 0

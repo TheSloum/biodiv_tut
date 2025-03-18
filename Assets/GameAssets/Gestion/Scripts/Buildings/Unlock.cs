@@ -6,12 +6,12 @@ public class Unlock : MonoBehaviour
 {
 
 
-        public List<Building> buildings;
-        public Sprite baseSprite; 
+    public List<Building> buildings;
+    public Sprite baseSprite;
     public Sprite selectedSprite;
 
 
-[System.Serializable]
+    [System.Serializable]
     public class ButtonBuildingPair
     {
         public Button button;
@@ -27,16 +27,17 @@ public class Unlock : MonoBehaviour
             if (pair.building.unlocked)
             {
                 Image buttonImage = pair.button.GetComponent<Image>();
-        buttonImage.sprite = baseSprite;
-        SpriteState spriteState = pair.button.spriteState;
-        spriteState.selectedSprite = selectedSprite;
-        pair.button.spriteState = spriteState;
+                buttonImage.sprite = baseSprite;
+                SpriteState spriteState = pair.button.spriteState;
+                spriteState.selectedSprite = selectedSprite;
+                pair.button.spriteState = spriteState;
 
             }
         }
     }
 
-    public void unlockBuild(string priceAndID){
+    public void unlockBuild(string priceAndID)
+    {
         Debug.Log(priceAndID);
         string[] parts = priceAndID.Split(',');
         int price = int.Parse(parts[0]);
@@ -44,30 +45,29 @@ public class Unlock : MonoBehaviour
 
 
 
-        if(Materials.instance.price >= price){
-            foreach (Building building in buildings)
+        if (Materials.instance.price >= price)
         {
-            if (building.buildID == unlockID && !building.unlocked)
+            foreach (Building building in buildings)
             {
+                if (building.buildID == unlockID && !building.unlocked)
+                {
 
-                
-        string buttonName = "UnlockBuild_" + unlockID.ToString();
 
-        GameObject buttonObject = GameObject.Find(buttonName);
-        Button button = buttonObject.GetComponent<Button>();
-                Image buttonImage = button.GetComponent<Image>();
-        buttonImage.sprite = baseSprite;
-        SpriteState spriteState = button.spriteState;
-        spriteState.selectedSprite = selectedSprite;
-        button.spriteState = spriteState;
+                    string buttonName = "UnlockBuild_" + unlockID.ToString();
 
-                building.Unlock();
-                
-        Debug.Log(building.unlocked);
-                Materials.instance.price -= price;
-                return;
+                    GameObject buttonObject = GameObject.Find(buttonName);
+                    Button button = buttonObject.GetComponent<Button>();
+                    Image buttonImage = button.GetComponent<Image>();
+                    buttonImage.sprite = baseSprite;
+                    SpriteState spriteState = button.spriteState;
+                    spriteState.selectedSprite = selectedSprite;
+                    button.spriteState = spriteState;
+
+                    building.Unlock();
+                    Materials.instance.price -= price;
+                    return;
+                }
             }
-        }
         }
     }
 }
