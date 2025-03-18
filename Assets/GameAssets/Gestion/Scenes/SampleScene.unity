@@ -13638,7 +13638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 377.3}
+  m_AnchoredPosition: {x: 0, y: 206.5}
   m_SizeDelta: {x: 818, y: 126.3596}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &823728912
@@ -21334,10 +21334,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Construis un nouveau baptiment
+  m_text: "Construis un b\xE2timent"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 679653cd1ae234845b8082c8e2ae82f3, type: 2}
-  m_sharedMaterial: {fileID: 3544728804099874050, guid: 679653cd1ae234845b8082c8e2ae82f3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4f5540ef2fb9dee4b8c664eaf39edadb, type: 2}
+  m_sharedMaterial: {fileID: 2060749522083482201, guid: 4f5540ef2fb9dee4b8c664eaf39edadb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -23930,8 +23930,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -25769,7 +25769,7 @@ MonoBehaviour:
   Gestion1: {fileID: 8300000, guid: 57c7b567bfe5b5143a30a712d41b0ec6, type: 3}
   Gestion2: {fileID: 8300000, guid: bdcb44d47aa605c48b188f0c07da82c2, type: 3}
   Gestion3: {fileID: 8300000, guid: 6def2c47321805647bc294215864d0ab, type: 3}
-  Exploration: {fileID: 8300000, guid: de8cf3f4fa230421fb5dea9e3a52840b, type: 3}
+  Exploration: {fileID: 8300000, guid: 7c35fbd2251b9f84bb70483a9c1f00a3, type: 3}
   Menue: {fileID: 8300000, guid: 7c35fbd2251b9f84bb70483a9c1f00a3, type: 3}
 --- !u!1 &1391366525
 GameObject:
@@ -39224,8 +39224,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -8.2}
-  m_SizeDelta: {x: 765.4, y: 50}
+  m_AnchoredPosition: {x: 0, y: -13.1}
+  m_SizeDelta: {x: 765.4, y: 80.1808}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2082462941
 MonoBehaviour:
@@ -39249,8 +39249,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Ach\xE8te un plan de construction"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 679653cd1ae234845b8082c8e2ae82f3, type: 2}
-  m_sharedMaterial: {fileID: 3544728804099874050, guid: 679653cd1ae234845b8082c8e2ae82f3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4f5540ef2fb9dee4b8c664eaf39edadb, type: 2}
+  m_sharedMaterial: {fileID: 2060749522083482201, guid: 4f5540ef2fb9dee4b8c664eaf39edadb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -39282,7 +39282,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

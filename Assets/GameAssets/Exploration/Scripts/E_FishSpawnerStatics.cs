@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+
 public class E_FishSpawnerStatics : MonoBehaviour
 {
     #region Singleton Instance
@@ -11,20 +12,20 @@ public class E_FishSpawnerStatics : MonoBehaviour
     public GameObject[] fishPrefabs;
 
     [Header("Paramètres de Spawn")]
-    public float spawnInterval = 3f; // Intervalle de spawn en secondes
-    public float spawnRangeY = 3f;   // Variation verticale pour le spawn
-    public float spawnXOffset = 10f; // Distance à droite de l'écran pour le spawn
+    public float minSpawnInterval = 2f; // Intervalle minimal
+    public float maxSpawnInterval = 5f; // Intervalle maximal
+    public float spawnRangeY = 3f;
+    public float spawnXOffset = 10f;
 
     private float timer = 0f;
-    private float defaultSpawnInterval;
-
-
-    private float totalWeight;
+    private float currentSpawnInterval;
+    private float sum = 0f;
     private int tospawn;
-        private float sum = 0f;
+
+    List<float> weights = new List<float>();
+
     void Awake()
     {
-        // Initialisation du singleton
         if (Instance == null)
         {
             Instance = this;
@@ -34,36 +35,43 @@ public class E_FishSpawnerStatics : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    List<float> weights = new List<float>();
-    private float cumulativeWeight;
-    private float randomValue;
+
     void Start()
     {
-        defaultSpawnInterval = spawnInterval;
-        
+        currentSpawnInterval = Random.Range(minSpawnInterval, maxSpawnInterval);
 
         foreach (GameObject prefab in fishPrefabs)
         {
             E_FishController fishScript = prefab.GetComponent<E_FishController>();
-
             if (fishScript != null)
             {
-                Fishes fish = fishScript.fishData;
-                weights.Add(fish.freqWeight);
+                weights.Add(fishScript.fishData.freqWeight);
             }
         }
-sum = 0f;
-foreach (float value in weights)
-{
-    sum += value;
-}
+
+        sum = 0f;
+        foreach (float value in weights)
+        {
+            sum += value;
+        }
+    }
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer >= currentSpawnInterval)
+        {
+            SpawnFish();
+            timer = 0f;
+            currentSpawnInterval = Random.Range(minSpawnInterval, maxSpawnInterval);
+        }
     }
 
     void SpawnFish()
     {
-        cumulativeWeight = 0f;
-float randomValue = Random.Range(0f, sum);
+        float cumulativeWeight = 0f;
+        float randomValue = Random.Range(0f, sum);
+
         for (int i = 0; i < weights.Count; i++)
         {
             cumulativeWeight += weights[i];
@@ -73,6 +81,7 @@ float randomValue = Random.Range(0f, sum);
                 break;
             }
         }
+
         GameObject selectedFishPrefab = fishPrefabs[tospawn];
 
         float spawnY = Random.Range(-spawnRangeY, spawnRangeY);
@@ -81,37 +90,24 @@ float randomValue = Random.Range(0f, sum);
         Instantiate(selectedFishPrefab, spawnPosition, Quaternion.identity);
     }
 
-    void Update()
-    {
-        timer += Time.deltaTime;
-        if(timer >= spawnInterval)
-        {
-            SpawnFish();
-            timer = 0f;
-        }
-    }
-
     public void ResetToDefault(E_EventSettings settings)
     {
         fishPrefabs = settings.defaultFishPrefabs;
-        spawnInterval = settings.defaultFishSpawnRate;
-        defaultSpawnInterval = spawnInterval;
+        minSpawnInterval = settings.defaultFishSpawnRate - Random.Range(0f, 3f);
+        maxSpawnInterval = settings.defaultFishSpawnRate + Random.Range(0f, 3f);
     }
 
-    
-
-    // Méthode appelée lors du début de l'événement "Pêche illégale" pour réduire le taux de spawn (augmentation de l'intervalle)
     public void ReduceFishSpawnRate()
     {
-        // Par exemple, doubler l'intervalle de spawn pour réduire le nombre de poissons
-        spawnInterval = defaultSpawnInterval * 2f;
-        Debug.Log("Pêche illégale activée : taux de spawn de poissons réduit.");
+        minSpawnInterval *= 2f;
+        maxSpawnInterval *= 2f;
+        Debug.Log("Pêche illégale activée : taux de spawn réduit.");
     }
 
-    // Méthode appelée à la fin de l'événement pour restaurer le taux de spawn par défaut
     public void RestoreDefaultSpawnRate()
     {
-        spawnInterval = defaultSpawnInterval;
-        Debug.Log("Fin de la pêche illégale : taux de spawn de poissons restauré.");
+        minSpawnInterval = 2f;
+        maxSpawnInterval = 5f;
+        Debug.Log("Fin de la pêche illégale : taux de spawn restauré.");
     }
 }
