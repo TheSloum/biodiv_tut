@@ -72,7 +72,7 @@ public class Builder : MonoBehaviour
     public int level1 = 0;
     public int level2 = 0;
 
-    private int buildClass;
+    public int buildClass;
 
     private float level1ScaleUp = 0.2f;
     private float level2ScaleUp = 0.4f;
