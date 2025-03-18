@@ -568,14 +568,9 @@ public class Builder : MonoBehaviour
     }
 
 
-
-
-
     private void ShowBuildingMenu()
     {
         validation.SetActive(false);
-
-
         buildingMenu.SetActive(true);
         closeMenu.SetActive(true);
 
@@ -592,83 +587,97 @@ public class Builder : MonoBehaviour
 
         foreach (Building building in buildings)
         {
-
-
             if (building.unlocked)
             {
                 if (Materials.instance.researchCentr && building.buildClass != 0)
                 {
-
+                    continue;
                 }
-                else if (!Materials.instance.researchCentr && building.buildClass == 0) { }
-                else
+                else if (!Materials.instance.researchCentr && building.buildClass == 0)
+                {
+                    continue;
+                }
+
+                GameObject newButton = Instantiate(buttonPrefab, buttonCont);
+                newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 0f);
+                Button button = newButton.GetComponent<Button>();
+                TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
+                Transform buttonSprite = newButton.transform.Find("BuildIMG");
+                Image buttonImage = buttonSprite.GetComponent<Image>();
+                buttonImage.sprite = building.buildSprite;
+                buttonText.text = $"{building.name}";
+                counter += 1;
+
+                foreach (Transform child in newButton.transform)
+                {
+                    if (child.CompareTag("ImpactDisplay"))
+                    {
+                        TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
+
+                        switch (child.name)
+                        {
+                            case "airImpact":
+                                if (building.bar_2_cycle < 0)
+                                {
+                                    tmp.text = "-";
+                                    tmp.color = Color.blue;
+                                }
+                                break;
+                            case "energyImpact":
+                                if (building.bar_1_cycle < 0)
+                                {
+                                    tmp.text = "-";
+                                    tmp.color = Color.red;
+                                }
+                                break;
+                            case "qolImpact":
+                                if (building.bar_0_cycle < 0)
+                                {
+                                    tmp.text = "-";
+                                    tmp.color = Color.red;
+                                }
+                                break;
+                            case "moneyImpact":
+                                if (building.price_cycle < 0)
+                                {
+                                    tmp.text = "-";
+                                    tmp.color = Color.red;
+                                }
+                                break;
+                        }
+                    }
+                }
+
+                if (building.buildID == 50)
                 {
 
-                    GameObject newButton = Instantiate(buttonPrefab, buttonCont);
-                    newButton.transform.localPosition += new Vector3(-280f + (counter * 280f), 69f, 0f);
-                    Button button = newButton.GetComponent<Button>();
-                    TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
-                    Transform buttonSprite = newButton.transform.Find("BuildIMG");
-                    Image buttonImage = buttonSprite.GetComponent<Image>();
-                    buttonImage.sprite = building.buildSprite;
-                    buttonText.text = $"{building.name}";
-                    counter += 1;
-                    foreach (Transform child in newButton.transform)
+                    Transform explanationText = newButton.transform.Find("ExpliationText");
+                    if (explanationText != null)
                     {
-                        if (child.CompareTag("ImpactDisplay") && child.name == "airImpact")
-                        {
-                            TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
-
-                            if (building.bar_2_cycle < 0)
-                            {
-                                tmp.text = "-";
-                                tmp.color = Color.blue;
-                            }
-                        }
-                        if (child.CompareTag("ImpactDisplay") && child.name == "energyImpact")
-                        {
-                            TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
-
-                            if (building.bar_1_cycle < 0)
-                            {
-                                tmp.text = "-";
-                                tmp.color = Color.red;
-                            }
-                        }
-                        if (child.CompareTag("ImpactDisplay") && child.name == "qolImpact")
-                        {
-                            TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
-
-                            if (building.bar_0_cycle < 0)
-                            {
-                                tmp.text = "-";
-                                tmp.color = Color.red;
-                            }
-                        }
-                        if (child.CompareTag("ImpactDisplay") && child.name == "moneyImpact")
-                        {
-                            TextMeshProUGUI tmp = child.GetComponentInChildren<TextMeshProUGUI>();
-
-                            if (building.price_cycle < 0)
-                            {
-                                tmp.text = "-";
-                                tmp.color = Color.red;
-                            }
-                        }
+                        explanationText.gameObject.SetActive(true);
                     }
 
-
-                    if (Materials.instance.tutorial)
+                    string[] impactNames = { "energyImpact", "airImpact", "moneyImpact", "qolImpact", "Impacts (TMP)" };
+                    foreach (string impactName in impactNames)
                     {
-                        button.interactable = false;
+                        Transform impactTransform = newButton.transform.Find(impactName);
+                        if (impactTransform != null)
+                        {
+                            impactTransform.gameObject.SetActive(false);
+                        }
                     }
-
-                    button.onClick.AddListener(() => SelectBuild(building, button.gameObject));
                 }
-            }
 
+                if (Materials.instance.tutorial)
+                {
+                    button.interactable = false;
+                }
+
+                button.onClick.AddListener(() => SelectBuild(building, button.gameObject));
+            }
         }
     }
+
 
     public void SelectBuild(Building building, GameObject buttonObject)
     {
