@@ -19,7 +19,7 @@ public class E_TrashSpawner : MonoBehaviour
     private float screenRightEdge;
 
     private float targetSpawnInterval;
-    private float intervalIncreaseSpeed = 0.1f;
+    private float intervalIncreaseSpeed = 1f;
 
     void Awake()
     {
@@ -42,7 +42,7 @@ public class E_TrashSpawner : MonoBehaviour
             screenRightEdge = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, mainCamera.nearClipPlane)).x;
         }
 
-        // Initialiser le targetSpawnInterval
+
         targetSpawnInterval = maxSpawnInterval;
     }
 
@@ -50,7 +50,6 @@ public class E_TrashSpawner : MonoBehaviour
     {
         AdjustSpawnRateBasedOnMaterials();
 
-        // Mettre à jour l'intervalle cible de spawn (incrémentation progressive)
         if (spawnInterval < targetSpawnInterval)
         {
             spawnInterval += intervalIncreaseSpeed * Time.deltaTime;
@@ -72,24 +71,20 @@ public class E_TrashSpawner : MonoBehaviour
     {
         if (trashPrefabs.Length == 0) return;
 
-        // Sélectionner un prefab aléatoire
         GameObject selectedTrash = trashPrefabs[Random.Range(0, trashPrefabs.Length)];
 
-        // Calculer une position aléatoire sur l'axe Y dans la plage spécifiée
         float randomY = Random.Range(-spawnRangeY, spawnRangeY);
         Vector3 spawnPosition = new Vector3(screenRightEdge + spawnXOffset, randomY, 0f);
 
-        // Instancier le Trash sélectionné
         Instantiate(selectedTrash, spawnPosition, Quaternion.identity);
     }
 
     private void AdjustSpawnRateBasedOnMaterials()
     {
-        // Si bar_2 est proche de 1, on commence avec un intervalle de spawn de base
         if (Materials.instance.bar_2 >= 0 && Materials.instance.bar_2 <= 1)
         {
             spawnInterval = Mathf.Lerp(maxSpawnInterval, minSpawnInterval, Materials.instance.bar_2);
-            targetSpawnInterval = Mathf.Lerp(16f, maxIntervalLimit, Materials.instance.bar_2); // Le délai cible se règle en fonction de bar_2
+            targetSpawnInterval = Mathf.Lerp(16f, maxIntervalLimit, Materials.instance.bar_2);
         }
     }
 
