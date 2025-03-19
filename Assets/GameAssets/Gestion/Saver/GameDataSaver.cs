@@ -216,7 +216,12 @@ public class GameDataSaver : MonoBehaviour
             for (int i = 0; i < fishUnlockData.Count && i < gameData.fishDataList.Count; i++)
             {
                 fishUnlockData[i].is_unlocked = gameData.fishDataList[i].is_unlocked;
-                Debug.Log(fishUnlockData[i].is_unlocked);
+            Debug.Log(fishUnlockData[i].is_unlocked);
+            
+            if (fishUnlockData[i].is_unlocked)
+    {
+        fishUnlockData[i].UnlockFish();
+    }
             }
 
             for (int i = 0; i < buildUnlockData.Count && i < gameData.buildingDataList.Count; i++)

@@ -14,6 +14,9 @@ public GameObject resumeButtonDis;
 
     public bool resumeLoad;
     public string saveDate = null;
+
+
+    
 public string folderPath = Path.Combine(Application.dataPath, "Sauvegardes");
 
 
@@ -28,6 +31,7 @@ public string folderPath = Path.Combine(Application.dataPath, "Sauvegardes");
         instance = this;
         DontDestroyOnLoad(gameObject);
         Materials.instance.menuFirst = false;
+
     }
     void Start()
     {

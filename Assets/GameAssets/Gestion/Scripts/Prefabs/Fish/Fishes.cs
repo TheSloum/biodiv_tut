@@ -29,11 +29,14 @@ public class Fishes : ScriptableObject
     /// </summary>
     public void UnlockFish()
     {
-        if (!is_unlocked)
-        {
             is_unlocked = true;
             // Ajoute ici des actions supplémentaires, comme l'affichage d'une notification
             Debug.Log($"Poisson '{fishName}' avec ID {fishID} a été déverrouillé !");
-        }
+        
+    }
+    public void RelockFish()
+    {
+            is_unlocked = false;
+        
     }
 }
