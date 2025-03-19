@@ -2250,8 +2250,8 @@ GameObject:
   - component: {fileID: 253596893}
   - component: {fileID: 253596892}
   m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
+  m_Name: ImageFlashing
+  m_TagString: FlashIMG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5364,7 +5364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be553cd61f18d4e9f8b66a316aa8da26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashImage: {fileID: 253596892}
+  flashImage: {fileID: 0}
   flashDuration: 0.2
   flashAlpha: 1
 --- !u!1 &773114793

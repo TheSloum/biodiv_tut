@@ -8,36 +8,6 @@
         },
         {
             "is_unlocked": false
-<<<<<<<< HEAD:Assets/Sauvegardes/GameData_2025-03-19_12-08.json
-        },
-        {
-            "is_unlocked": false
-        },
-        {
-            "is_unlocked": false
-========
->>>>>>>> 1c6d514ca35038668dbd004bbd2ad0551fdf0742:Assets/Sauvegardes/GameData_2025-03-18_10-30.json
-        },
-        {
-            "is_unlocked": false
-        },
-        {
-            "is_unlocked": false
-        },
-        {
-            "is_unlocked": false
-        },
-        {
-            "is_unlocked": false
-<<<<<<<< HEAD:Assets/Sauvegardes/GameData_2025-03-19_12-08.json
-        },
-        {
-            "is_unlocked": false
-        },
-        {
-            "is_unlocked": true
-========
->>>>>>>> 1c6d514ca35038668dbd004bbd2ad0551fdf0742:Assets/Sauvegardes/GameData_2025-03-18_10-30.json
         },
         {
             "is_unlocked": false
@@ -58,15 +28,6 @@
             "is_unlocked": false
         },
         {
-<<<<<<<< HEAD:Assets/Sauvegardes/GameData_2025-03-19_12-08.json
-========
-            "is_unlocked": false
-        },
-        {
-            "is_unlocked": false
-        },
-        {
->>>>>>>> 1c6d514ca35038668dbd004bbd2ad0551fdf0742:Assets/Sauvegardes/GameData_2025-03-18_10-30.json
             "is_unlocked": false
         },
         {
@@ -74,8 +35,6 @@
         },
         {
             "is_unlocked": false
-<<<<<<<< HEAD:Assets/Sauvegardes/GameData_2025-03-19_12-08.json
-========
         },
         {
             "is_unlocked": false
@@ -85,7 +44,24 @@
         },
         {
             "is_unlocked": false
->>>>>>>> 1c6d514ca35038668dbd004bbd2ad0551fdf0742:Assets/Sauvegardes/GameData_2025-03-18_10-30.json
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
         },
         {
             "is_unlocked": false
@@ -132,90 +108,6 @@
     "builderDataList": [
         {
             "level0": 0,
-            "level1": 1,
-            "level2": 2,
-            "running": true,
-            "buildState": 50,
-            "cons_mat_0": 0,
-            "cons_mat_1": 0,
-            "cons_mat_2": 0,
-            "bar_0_cycle": 0.0,
-            "bar_1_cycle": 0.0,
-            "bar_2_cycle": 0.0,
-            "price_cycle": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0,
-            "cons_mat_0": 0,
-            "cons_mat_1": 0,
-            "cons_mat_2": 0,
-            "bar_0_cycle": 0.0,
-            "bar_1_cycle": 0.0,
-            "bar_2_cycle": 0.0,
-            "price_cycle": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0,
-            "cons_mat_0": 0,
-            "cons_mat_1": 0,
-            "cons_mat_2": 0,
-            "bar_0_cycle": 0.0,
-            "bar_1_cycle": 0.0,
-            "bar_2_cycle": 0.0,
-            "price_cycle": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0,
-            "cons_mat_0": 0,
-            "cons_mat_1": 0,
-            "cons_mat_2": 0,
-            "bar_0_cycle": 0.0,
-            "bar_1_cycle": 0.0,
-            "bar_2_cycle": 0.0,
-            "price_cycle": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": true,
-            "buildState": 5,
-            "cons_mat_0": 0,
-            "cons_mat_1": 0,
-            "cons_mat_2": 0,
-            "bar_0_cycle": 0.0,
-            "bar_1_cycle": 0.0,
-            "bar_2_cycle": 0.0,
-            "price_cycle": 0
-        },
-        {
-            "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0,
-            "cons_mat_0": 0,
-            "cons_mat_1": 0,
-            "cons_mat_2": 0,
-            "bar_0_cycle": 0.0,
-            "bar_1_cycle": 0.0,
-            "bar_2_cycle": 0.0,
-            "price_cycle": 0
-        },
-        {
-            "level0": 0,
             "level1": 0,
             "level2": 0,
             "running": false,
@@ -302,8 +194,6 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-<<<<<<<< HEAD:Assets/Sauvegardes/GameData_2025-03-19_12-08.json
-========
             "running": false,
             "buildState": 0,
             "cons_mat_0": 0,
@@ -360,7 +250,20 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
->>>>>>>> 1c6d514ca35038668dbd004bbd2ad0551fdf0742:Assets/Sauvegardes/GameData_2025-03-18_10-30.json
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
             "running": true,
             "buildState": 1,
             "cons_mat_0": 0,
@@ -400,17 +303,9 @@
             "price_cycle": 0
         }
     ],
-<<<<<<<< HEAD:Assets/Sauvegardes/GameData_2025-03-19_12-08.json
-    "mat_0": 4970,
-    "mat_1": 4970,
-    "mat_2": 4970,
-    "price": 1050,
-    "townName": "iugiugi"
-========
     "mat_0": 0,
     "mat_1": 0,
     "mat_2": 0,
     "price": 500,
-    "townName": "r"
->>>>>>>> 1c6d514ca35038668dbd004bbd2ad0551fdf0742:Assets/Sauvegardes/GameData_2025-03-18_10-30.json
+    "townName": "opjpo"
 }

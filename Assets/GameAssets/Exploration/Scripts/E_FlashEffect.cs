@@ -28,6 +28,12 @@ public class E_FlashEffect : MonoBehaviour
     // Méthode publique pour déclencher le flash
     public void TriggerFlash()
     {
+        
+        GameObject flashObj = GameObject.FindGameObjectWithTag("FlashIMG");
+        if (flashObj != null)
+        {
+            flashImage = flashObj.GetComponent<Image>();
+        }
         StartCoroutine(FlashCoroutine());
     }
 

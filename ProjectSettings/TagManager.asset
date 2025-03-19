@@ -16,6 +16,7 @@ TagManager:
   - OxygenManager
   - Victory
   - SaveButton
+  - FlashIMG
   layers:
   - Default
   - TransparentFX
