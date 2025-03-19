@@ -146,7 +146,25 @@ public class Unlock : MonoBehaviour
         SpriteState spriteState = button.spriteState;
         spriteState.selectedSprite = selected;
         button.spriteState = spriteState;
+
+        if (normal == baseSprite)
+        {
+            Transform priceTransform = button.transform.Find("Price");
+            if (priceTransform != null)
+            {
+                priceTransform.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            Transform priceTransform = button.transform.Find("Price");
+            if (priceTransform != null)
+            {
+                priceTransform.gameObject.SetActive(true);
+            }
+        }
     }
+
 
     private void SetConfirmButtonSprite(Sprite sprite)
     {
