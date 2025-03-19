@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c505cf12c64c04fbf956b540a788e6, type: 3}
   m_Name: "Centre de plong\xE9e"
   m_EditorClassIdentifier: 
-  buildID: 6
+  buildID: 11
   isPaused: 0
   buildDesc: "Les centres de plong\xE9e permettent aux touristes d\u2019explorer
     les fonds marins et de d\xE9couvrir la biodiversit\xE9 sous-marine. Ils sensibilisent
@@ -25,7 +25,7 @@ MonoBehaviour:
   MoneyMake: ++
   buildingObject: {fileID: 0}
   buildClass: 3
-  unlocked: 0
+  unlocked: 1
   buildSprite: {fileID: 21300000, guid: e4394dc83e6531142b4f5b376b5684f8, type: 3}
   price: -100
   mat_0: -5

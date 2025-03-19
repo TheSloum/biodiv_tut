@@ -27,8 +27,8 @@ MonoBehaviour:
   MoneyMake: '-'
   buildingObject: {fileID: 0}
   buildClass: 1
-  unlocked: 0
-  buildSprite: {fileID: 21300000, guid: 1cc4599c2cbc8424e8472f9fec533ac7, type: 3}
+  unlocked: 1
+  buildSprite: {fileID: 21300000, guid: 5db02b9593d5393418890ba9adac8dca, type: 3}
   price: -100
   mat_0: -50
   mat_1: -5

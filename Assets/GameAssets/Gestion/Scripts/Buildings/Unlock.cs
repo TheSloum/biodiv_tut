@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class Unlock : MonoBehaviour
 {
     public List<Building> buildings;
-    public Sprite baseSprite; // Sprite pour les boutons déverrouillés
+    public Sprite baseSprite;
     public Sprite selectedSprite;
-    public Sprite lockedSprite; // Sprite pour les boutons verrouillés
-    public Sprite confirmNormalSprite; // Sprite pour le bouton de confirmation lorsque l'utilisateur a assez d'argent
-    public Sprite confirmInsufficientSprite; // Sprite pour le bouton de confirmation lorsque l'utilisateur n'a pas assez d'argent
+    public Sprite lockedSprite;
+    public Sprite confirmNormalSprite;
+    public Sprite confirmInsufficientSprite;
 
     [System.Serializable]
     public class ButtonBuildingPair
@@ -26,44 +26,40 @@ public class Unlock : MonoBehaviour
 
     private int tempPrice;
     private int tempUnlockID;
-    private Button tempButton; // Stocke le bouton en attente de confirmation
-    private Button lastSelectedButton; // Le dernier bouton sélectionné
+    private Button tempButton;
+    private Button lastSelectedButton;
 
     void Start()
     {
         confirmButton.SetActive(false);
 
-        // Initialiser l'état des boutons au démarrage
         foreach (var pair in buttonBuildingPairs)
         {
             if (pair.building.unlocked)
             {
-                // Si le bâtiment est déjà déverrouillé, appliquer baseSprite et désactiver l'interaction
                 SetButtonSprite(pair.button, baseSprite, selectedSprite);
-                pair.button.interactable = false; // Désactive l'interaction (survol et clic)
+                pair.button.interactable = false;
             }
             else
             {
-                // Si le bâtiment est verrouillé, appliquer lockedSprite et rendre interactif
                 SetButtonSprite(pair.button, lockedSprite, selectedSprite);
-                pair.button.interactable = true; // L'option reste interactive
+                pair.button.interactable = true;
             }
         }
     }
 
     void Update()
     {
-        // Vérifie si l'utilisateur a suffisamment d'argent en temps réel et met à jour le bouton de confirmation
-        if (confirmButton.activeSelf) // S'assurer que le bouton de confirmation est actif
+
+        if (confirmButton.activeSelf)
         {
             if (Materials.instance.price >= tempPrice)
             {
-                // L'utilisateur a assez d'argent, appliquer le sprite normal
+
                 SetConfirmButtonSprite(confirmNormalSprite);
             }
             else
             {
-                // L'utilisateur n'a pas assez d'argent, appliquer le sprite d'insuffisance
                 SetConfirmButtonSprite(confirmInsufficientSprite);
             }
         }
@@ -82,19 +78,15 @@ public class Unlock : MonoBehaviour
         {
             tempButton = buttonObject.GetComponent<Button>();
 
-            // Si un bouton a déjà été sélectionné, on le réinitialise
             if (lastSelectedButton != null && lastSelectedButton != tempButton)
             {
-                // Réinitialiser le dernier bouton sélectionné à son état d'origine
                 SetButtonSprite(lastSelectedButton, lockedSprite, selectedSprite);
-                lastSelectedButton.interactable = true; // Rendre le dernier bouton interactif à nouveau
+                lastSelectedButton.interactable = true;
             }
 
-            // Appliquer le sprite "sélectionné" au nouveau bouton cliqué
             SetButtonSprite(tempButton, selectedSprite, selectedSprite);
-            tempButton.interactable = false; // Désactiver l'interaction sur ce bouton après sélection
+            tempButton.interactable = false;
 
-            // Mémoriser le dernier bouton sélectionné
             lastSelectedButton = tempButton;
         }
 
@@ -103,7 +95,7 @@ public class Unlock : MonoBehaviour
 
     public void ConfirmUnlock()
     {
-        // Vérifier si l'utilisateur a assez d'argent
+
         if (Materials.instance.price >= tempPrice)
         {
             foreach (Building building in buildings)
@@ -113,36 +105,32 @@ public class Unlock : MonoBehaviour
                     building.Unlock();
                     Materials.instance.price -= tempPrice;
 
-                    // Après confirmation, appliquer baseSprite (déverrouiller) et désactiver l'interaction
                     if (tempButton != null)
                     {
                         SetButtonSprite(tempButton, baseSprite, selectedSprite);
-                        tempButton.interactable = false; // Désactiver l'interaction après le déverrouillage
+                        tempButton.interactable = false;
                     }
                 }
             }
 
-            // Mettre à jour le sprite de confirmation (même si l'utilisateur a assez d'argent)
             SetConfirmButtonSprite(confirmNormalSprite);
         }
         else
         {
-            // Si l'utilisateur n'a pas assez d'argent, appliquer le sprite pour l'état non suffisant
             SetConfirmButtonSprite(confirmInsufficientSprite);
         }
 
         confirmButton.SetActive(false);
-        tempButton = null; // Réinitialisation
-        lastSelectedButton = null; // Réinitialisation du bouton sélectionné
+        tempButton = null;
+        lastSelectedButton = null;
     }
 
     public void CancelUnlock()
     {
-        // Réinitialiser le dernier bouton sélectionné s'il y en avait un
         if (lastSelectedButton != null)
         {
-            SetButtonSprite(lastSelectedButton, lockedSprite, selectedSprite); // Réinitialiser à lockedSprite
-            lastSelectedButton.interactable = true; // Rendre le bouton interactif à nouveau
+            SetButtonSprite(lastSelectedButton, lockedSprite, selectedSprite);
+            lastSelectedButton.interactable = true;
         }
 
         confirmButton.SetActive(false);
