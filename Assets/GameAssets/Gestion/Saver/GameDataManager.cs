@@ -59,17 +59,14 @@ public class GameDataManager : MonoBehaviour
             if (textComponent != null)
             {
                 string formattedDate = saveDate.Replace("-", "/").Replace("_", " - ");
-
-                // Récupérer la dernière partie après " - " pour isoler HHMM
                 int lastDashIndex = formattedDate.LastIndexOf('-');
-                if (lastDashIndex != -1 && lastDashIndex + 2 < formattedDate.Length) // Vérification de l'index
+                if (lastDashIndex != -1 && lastDashIndex + 2 < formattedDate.Length)
                 {
-                    // Extraire la partie HHMM en supprimant les éventuels "/"
                     string timePart = formattedDate.Substring(lastDashIndex + 2).Replace("/", "");
-                    if (timePart.Length >= 4) // Vérifier que l'heure est bien sous forme HHMM
+                    if (timePart.Length >= 4)
                     {
-                        timePart = timePart.Insert(2, "h"); // Ajoute "h" après HH
-                        formattedDate = formattedDate.Substring(0, lastDashIndex + 2) + timePart; // Remplace la partie de l'heure
+                        timePart = timePart.Insert(2, "h");
+                        formattedDate = formattedDate.Substring(0, lastDashIndex + 2) + timePart;
                     }
                 }
 
