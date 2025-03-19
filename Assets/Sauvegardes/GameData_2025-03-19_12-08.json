@@ -4,7 +4,16 @@
             "is_unlocked": false
         },
         {
-            "is_unlocked": true
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
         },
         {
             "is_unlocked": false
@@ -19,7 +28,10 @@
             "is_unlocked": false
         },
         {
-            "is_unlocked": true
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
         },
         {
             "is_unlocked": true
@@ -31,13 +43,10 @@
             "is_unlocked": false
         },
         {
-            "is_unlocked": true
+            "is_unlocked": false
         },
         {
-            "is_unlocked": true
-        },
-        {
-            "is_unlocked": true
+            "is_unlocked": false
         },
         {
             "is_unlocked": false
@@ -46,22 +55,13 @@
             "is_unlocked": false
         },
         {
-            "is_unlocked": true
+            "is_unlocked": false
         },
         {
-            "is_unlocked": true
+            "is_unlocked": false
         },
         {
-            "is_unlocked": true
-        },
-        {
-            "is_unlocked": true
-        },
-        {
-            "is_unlocked": true
-        },
-        {
-            "is_unlocked": true
+            "is_unlocked": false
         },
         {
             "is_unlocked": false
@@ -75,25 +75,25 @@
             "unlocked": false
         },
         {
-            "unlocked": true
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
         },
         {
             "unlocked": false
         },
         {
             "unlocked": true
-        },
-        {
-            "unlocked": false
-        },
-        {
-            "unlocked": true
-        },
-        {
-            "unlocked": false
-        },
-        {
-            "unlocked": false
         },
         {
             "unlocked": false
@@ -108,10 +108,10 @@
     "builderDataList": [
         {
             "level0": 0,
-            "level1": 0,
-            "level2": 0,
-            "running": false,
-            "buildState": 0,
+            "level1": 1,
+            "level2": 2,
+            "running": true,
+            "buildState": 50,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
             "cons_mat_2": 0,
@@ -317,13 +317,9 @@
             "price_cycle": 0
         }
     ],
-    "mat_0": 0,
-    "mat_1": 0,
-    "mat_2": 0,
-    "price": 500,
-<<<<<<<< HEAD:Assets/Sauvegardes/GameData_2025-03-17_15-35.json
-    "townName": "joji"
-========
-    "townName": "Borddeleau"
->>>>>>>> 048808a119049d7c962c21c402cd73c18bf9f246:Assets/Sauvegardes/GameData_2025-03-17_14-20.json
+    "mat_0": 4970,
+    "mat_1": 4970,
+    "mat_2": 4970,
+    "price": 1050,
+    "townName": "iugiugi"
 }
