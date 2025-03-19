@@ -12,7 +12,17 @@ public class SondScene : MonoBehaviour
     public AudioClip Gestion3;
     public AudioClip Exploration;
     public AudioClip Menue;
+
     private string currentScene = "";
+    private List<AudioClip> gestionMusics = new List<AudioClip>();
+    private List<AudioClip> remainingGestionMusics = new List<AudioClip>();
+
+    void Start()
+    {
+        gestionMusics.Add(Gestion1);
+        gestionMusics.Add(Gestion2);
+        gestionMusics.Add(Gestion3);
+    }
 
     void Update()
     {
@@ -37,9 +47,7 @@ public class SondScene : MonoBehaviour
 
         if (sceneName == "SampleScene")
         {
-            musiqueList.Add(Gestion1);
-            musiqueList.Add(Gestion2);
-            musiqueList.Add(Gestion3);
+            musiqueList = GetRandomGestionMusics();
         }
         else if (sceneName == "Exploration_main")
         {
@@ -58,5 +66,20 @@ public class SondScene : MonoBehaviour
         {
             Debug.LogWarning("Un ou plusieurs clips audio sont null !");
         }
+    }
+
+    private List<AudioClip> GetRandomGestionMusics()
+    {
+        if (remainingGestionMusics.Count == 0)
+        {
+            remainingGestionMusics = new List<AudioClip>(gestionMusics);
+        }
+
+        int randomIndex = Random.Range(0, remainingGestionMusics.Count);
+        AudioClip selectedClip = remainingGestionMusics[randomIndex];
+
+        remainingGestionMusics.RemoveAt(randomIndex);
+
+        return new List<AudioClip> { selectedClip };
     }
 }

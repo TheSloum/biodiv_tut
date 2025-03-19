@@ -6365,6 +6365,9 @@ MonoBehaviour:
   spawnInterval: 3
   spawnRangeY: 3
   spawnXOffset: 10
+  minSpawnInterval: 4
+  maxSpawnInterval: 8
+  maxIntervalLimit: 20
 --- !u!1 &930168858
 GameObject:
   m_ObjectHideFlags: 0
@@ -14790,6 +14793,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8242268465902228249, guid: 135bce3c9e04fa34eacf1428b64c698b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6becc3aba102c3049b4ee2e6750b3101, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

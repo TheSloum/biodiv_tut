@@ -29,7 +29,6 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-
     private void Start()
     {
         globalVolume = PlayerPrefs.GetFloat("GlobalVolume", 1f);
@@ -37,7 +36,14 @@ public class SoundManager : MonoBehaviour
         sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
 
         ApplyVolumes();
+
+        // Lancer la première musique immédiatement
+        if (musicSource != null && !musicSource.isPlaying)
+        {
+            musicSource.Play();
+        }
     }
+
     public void PlayMusicSequence(List<AudioClip> clips, float silenceDuration = 2f)
     {
         if (clips == null || clips.Count == 0)
@@ -56,28 +62,31 @@ public class SoundManager : MonoBehaviour
             StopCoroutine(musicSequenceCoroutine);
         }
 
-        musicSequenceCoroutine = StartCoroutine(PlayMusicWithSilence(silenceDuration));
+        // Démarre la lecture des musiques avec délai entre chaque morceau
+        musicSequenceCoroutine = StartCoroutine(PlayMusicWithDelay(silenceDuration));
     }
 
-    private IEnumerator PlayMusicWithSilence(float silenceDuration)
+    private IEnumerator PlayMusicWithDelay(float silenceDuration)
     {
+        // Démarre la première musique sans délai
+        if (musicQueue.Count > 0)
+        {
+            AudioClip firstClip = musicQueue.Dequeue();
+            musicSource.clip = firstClip;
+            musicSource.Play();
+            yield return new WaitForSeconds(firstClip.length);  // Attendre la fin du premier morceau
+        }
+
+        // Joue les morceaux suivants avec un délai entre chaque
         while (musicQueue.Count > 0)
         {
             AudioClip nextClip = musicQueue.Dequeue();
+            yield return new WaitForSeconds(silenceDuration); // Délai entre chaque morceau
 
             yield return StartCoroutine(FadeOutAndChangeMusic(nextClip));
-
             yield return new WaitForSeconds(nextClip.length);
-
             musicSource.Stop();
-            yield return new WaitForSeconds(silenceDuration);
         }
-    }
-    private void OnApplicationQuit()
-    {
-        PlayerPrefs.SetFloat("GlobalVolume", globalVolume);
-        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
-        PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
     }
 
     public void PlaySFX(AudioClip clip)
@@ -188,5 +197,4 @@ public class SoundManager : MonoBehaviour
             musicSource.volume = musicVolume * globalVolume;
         }
     }
-
 }
