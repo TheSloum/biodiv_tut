@@ -38,6 +38,13 @@ public class GameDataSaver : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+
+        if (!Directory.Exists(saveFolderPath))
+        {
+            Directory.CreateDirectory(saveFolderPath);
+        }
     }
 
 
@@ -321,10 +328,11 @@ public class GameDataSaver : MonoBehaviour
             for (int i = 0; i < fishUnlockData.Count && i < gameData.fishDataList.Count; i++)
             {
                 fishUnlockData[i].is_unlocked = gameData.fishDataList[i].is_unlocked;
-                if(E_GameManager.instance.fishUnlockData[i] == true){
+                if (E_GameManager.instance.fishUnlockData[i] == true)
+                {
                     fishUnlockData[i].is_unlocked = true;
                 }
-            Debug.Log(fishUnlockData[i].is_unlocked);
+                Debug.Log(fishUnlockData[i].is_unlocked);
             }
 
             for (int i = 0; i < buildUnlockData.Count && i < gameData.buildingDataList.Count; i++)
@@ -400,11 +408,12 @@ public class GameDataSaver : MonoBehaviour
                 }
             }
             Debug.Log(gameData.mat_0);
-            if(!Materials.instance.explored){
-            Materials.instance.mat_0 = gameData.mat_0;
-            Materials.instance.mat_1 = gameData.mat_1;
-            Materials.instance.mat_2 = gameData.mat_2;
-            Materials.instance.price = gameData.price;
+            if (!Materials.instance.explored)
+            {
+                Materials.instance.mat_0 = gameData.mat_0;
+                Materials.instance.mat_1 = gameData.mat_1;
+                Materials.instance.mat_2 = gameData.mat_2;
+                Materials.instance.price = gameData.price;
             }
             Materials.instance.townName = gameData.townName;
             Materials.instance.isLoad = true;

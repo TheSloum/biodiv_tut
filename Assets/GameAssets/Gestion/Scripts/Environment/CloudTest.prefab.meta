@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/GameAssets/Gestion/Scripts/Environment/CloudTest.prefab.meta
 guid: ea328f3df43515447ab8f6cadebe82e6
 PrefabImporter:
+========
+guid: 8fd4565ba6fa3434ab07bc94a0f3888e
+TextScriptImporter:
+>>>>>>>> 1c6d514ca35038668dbd004bbd2ad0551fdf0742:Assets/Sauvegardes/GameData_2025-03-18_14-46.json.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

@@ -16,5 +16,5 @@ MonoBehaviour:
   - "Parfait ! Il vous faut encore r\xE9cup\xE9rez en encore <b>4</b> avant que votre
     <b>jauge d\u2019air</b> ne soit vide."
   position: {x: -6.46, y: -1, z: 0}
-  size: {x: 350, y: 40, z: 0}
+  size: {x: 0.2, y: 0.2, z: 0}
   character: {fileID: 0}

@@ -10,6 +10,7 @@ public class Materials : MonoBehaviour
     public bool tutorialStep = false;
     public bool researchCentr = false;
     public bool explored = false;
+    public bool event3Active = false;
 
     public string townName;
     public int mat_0 = 0;

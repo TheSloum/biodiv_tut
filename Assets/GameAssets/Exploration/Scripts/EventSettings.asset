@@ -28,19 +28,29 @@ MonoBehaviour:
     eventID: 0
     prefabs:
     - {fileID: 2388417884662715918, guid: 4ccbce4a3b515774e84564a86111583d, type: 3}
+    durationInMonths: 2
+    dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
   - name: LionFish
     eventID: 1
     prefabs:
     - {fileID: 2388417884662715918, guid: 983c3013fa391524da8b2104f6687579, type: 3}
+    durationInMonths: 2
+    dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
   - name: Barracuda
     eventID: 2
     prefabs:
     - {fileID: 2388417884662715918, guid: 2c68ddac4e9444d4aa4802156815cda5, type: 3}
+    durationInMonths: 2
+    dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
   normalEvents:
   - name: VagueDechets
     eventID: 0
+    durationInMonths: 2
+    dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
   - name: MareeNoire
     eventID: 1
+    durationInMonths: 2
+    dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
   invasionCooldownYears: 1
   normalEventCooldownYears: 3
   festivalSpawnMultiplier: 1.5

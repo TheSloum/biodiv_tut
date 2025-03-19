@@ -25,11 +25,7 @@ public class E_EventSettings : ScriptableObject
     public List<InvasionType> invasionTypes = new List<InvasionType>();
 
     [Header("Normal Events")]
-    public List<NormalEventType> normalEvents = new List<NormalEventType>()
-    {
-        new NormalEventType { name = "Pêche illégale", eventID = 4, durationInMonths = 2 },
-        new NormalEventType { name = "Vague de déchets", eventID = 5, durationInMonths = 3 }
-    };
+    public List<NormalEventType> normalEvents = new List<NormalEventType>();
 
     [Header("Cooldown & Festival Settings")]
     public int invasionCooldownYears = 3; // Exemple : 3 ans de cooldown pour les invasions
@@ -57,7 +53,8 @@ public class InvasionType
     public int eventID;
     public GameObject[] prefabs;
     // Durée spécifique (en mois) pour cet événement d'invasion
-    public int durationInMonths = 2; // valeur par défaut, modifiable dans l'Inspector
+    public int durationInMonths = 2; 
+    public Speech dialogue; 
 }
 
 [System.Serializable]
@@ -66,5 +63,6 @@ public class NormalEventType
     public string name;
     public int eventID;
     // Durée spécifique (en mois) pour cet événement normal
-    public int durationInMonths = 2; // valeur par défaut, modifiable dans l'Inspector
+    public int durationInMonths = 2; 
+    public Speech dialogue; 
 }

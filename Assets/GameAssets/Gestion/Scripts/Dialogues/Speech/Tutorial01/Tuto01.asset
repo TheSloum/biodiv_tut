@@ -22,7 +22,7 @@ MonoBehaviour:
 '
   - "Heureusement, il reste un espoir. <u>{Materials.instance.townName}</u>  a d\xE9cid\xE9
     de se RESSAISIR."
-  - "Votre arriv\xE9e en tant que <b>nomRoleInvent\xE9</b> et la future cr\xE9ation
+  - "Votre arriv\xE9e en tant que <b>\xC9cogestionnaire</b> et la future cr\xE9ation
     du <b>centre de recherche</b> sonnent le nouveau d\xE9part de <u>{Materials.instance.townName}</u>
     .\r\n"
   - "Alors, ne perdons pas plus de temps. Suivez-moi, je vais vous faire d\xE9couvrir

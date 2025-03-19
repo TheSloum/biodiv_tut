@@ -16,5 +16,5 @@ MonoBehaviour:
   - "Oh non, un <b>d\xE9chet</b> ! Ne le laissez pas passer ! Si vous le laissez
     dans la mer, votre jauge d\u2019air <b>chutera</b> d\u2019un coup !"
   position: {x: -6.46, y: -1, z: 0}
-  size: {x: 350, y: 40, z: 0}
+  size: {x: 0.2, y: 0.2, z: 0}
   character: {fileID: 0}

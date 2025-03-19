@@ -29,9 +29,9 @@ MonoBehaviour:
   unlocked: 1
   buildSprite: {fileID: 21300000, guid: 64334a22ab1697840bab4ba09af78224, type: 3}
   price: -100
-  mat_0: -50
-  mat_1: -10
-  mat_2: -5
+  mat_0: -100
+  mat_1: -50
+  mat_2: -50
   bar_0: 0
   bar_1: 0
   bar_2: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
   cons_mat_0: 0
   cons_mat_1: 0
   cons_mat_2: 0
-  bar_0_cycle: -0.025
+  bar_0_cycle: -0.0275
   bar_1_cycle: 0.0375
   bar_2_cycle: 0.035
   price_cycle: -300

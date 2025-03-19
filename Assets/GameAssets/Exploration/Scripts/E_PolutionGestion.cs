@@ -7,7 +7,7 @@ public class E_PolutionGestion : MonoBehaviour
     [SerializeField] private SpriteRenderer PoluImg;
     [SerializeField] private List<Sprite> PolustepImg;
 
-    void start()
+    void Awake()
     {
         if (Materials.instance != null)
         {
