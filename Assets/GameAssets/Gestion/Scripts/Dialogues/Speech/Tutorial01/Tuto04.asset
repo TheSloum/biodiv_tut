@@ -15,16 +15,18 @@ MonoBehaviour:
   textList:
   - "Voici les <b>indicateurs</b> de l\u2019\xE9tat de <u>{Materials.instance.townName}</u>.
     Ils sont ESSENTIELS pour g\xE9rer la ville."
-  - "Cette premi\xE8re jauge montre le niveau de <b>qualit\xE9 de vie</b> et la satisfaction
-    des habitants.\r"
-  - "La seconde indique <b>l\u2019\xE9nergie</b> disponible.\r"
-  - "Enfin, la derni\xE8re repr\xE9sente le niveau de pollution actuel."
+  - "Cette premi\xE8re jauge montre le niveau de <b>pollution</b> \r"
+  - "La seconde indique <b>la qualit\xE9 de vie</b> et la satisfaction des habitants.\r"
+  - "Enfin, l'<b>\xE9nergie</b> disponible."
   - "Gardez-les TOUJOURS \xE0 l'\u0153il pour comprendre la situation en ville !\r\n"
   - "Dans cet espace, vous pouvez consulter votre <b>r\xE9serve</b> et v\xE9rifier
     les ressources disponibles.\r"
   - "Enfin, ici se trouvent les outils pour aider <u>{Materials.instance.townName}</u>
-    \xE0 se renouveler. Ces outils vous permettent de prendre des d\xE9cisions sur
-    les <b>constructions</b> \xE0 venir.\r\n"
+    \xE0 se renouveler. \xC0 cet endroit, vous pourrez d\xE9bloquer de nouveaux b\xE2timents."
+  - "Une fois le centre de recherche construit, vous pourrez observer ici la faune
+    et la flore photographi\xE9es.\r\n"
+  - "Enfin, cet endroit vous permet d\u2019enfiler votre combinaison et de partir
+    en exploration."
   - "Commen\xE7ons tout de suite ! Il est temps de construire notre centre de recherche."
   position: {x: -335.4, y: 43.02, z: 0}
   size: {x: 125, y: 0, z: 0}

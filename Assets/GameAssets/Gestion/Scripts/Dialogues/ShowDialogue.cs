@@ -12,7 +12,7 @@ public class ShowDialogue : MonoBehaviour
     [SerializeField] GameObject box;
     [SerializeField] RectTransform nextIco;
     
-    private int currentDialogueIndex = 0;
+    public int currentDialogueIndex = 0;
     private bool isTextAnimating = false;
     private Coroutine typingCoroutine;
     private Vector2 startSize;

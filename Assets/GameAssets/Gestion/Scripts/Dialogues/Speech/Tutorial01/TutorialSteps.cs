@@ -23,6 +23,7 @@ private void OnEnable()
         Materials.instance.tutorial = false;
             if (!GameDataSaver.instance.reseachHere){
                         Materials.instance.researchCentr = true;
+                        Materials.instance.ReseachButton(false);
             }
                     if (Materials.instance.researchCentr){
             yield return new WaitForSecondsRealtime(0.2f);

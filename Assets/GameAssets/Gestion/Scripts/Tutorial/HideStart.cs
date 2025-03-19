@@ -63,6 +63,12 @@ public class HideStart : MonoBehaviour
 public SpriteRenderer bar0Hide;
 public SpriteRenderer bar1Hide;
 
+    public GameObject Blink1;
+    public GameObject Blink2;
+    public GameObject Blink3;
+    public GameObject Blink4;
+    public GameObject Blink5;
+
     void Start()
     {
         if (!Materials.instance.isLoad)
@@ -143,6 +149,7 @@ public SpriteRenderer bar1Hide;
         {
             button.interactable = true;
         }
+        Materials.instance.ReseachButton(false);
     }
 
 
@@ -372,7 +379,6 @@ public SpriteRenderer bar1Hide;
         }
         Materials.instance.textDone = false;
         ShowDialogue.Instance.DialogueBox(speech[4]);
-        step = 3;
         StartCoroutine(WaitForTextEnd(4));
     }
 
@@ -399,6 +405,7 @@ public SpriteRenderer bar1Hide;
             Materials.instance.textDone = false;
             ShowDialogue.Instance.DialogueBox(speech[3]);
             StartCoroutine(WaitForTextEnd(3));
+            StartCoroutine(BlinkGUI());
         }
 
     }
@@ -408,6 +415,58 @@ public SpriteRenderer bar1Hide;
 
     }
 
+    private IEnumerator BlinkGUI(){
+        while (ShowDialogue.Instance.currentDialogueIndex <= 4)  
+        {
+            Blink1.SetActive(!Blink1.activeSelf);
+            
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
+        
+        Blink1.SetActive(false);
+
+        while (ShowDialogue.Instance.currentDialogueIndex == 5)  
+        {
+            Blink2.SetActive(!Blink2.activeSelf);
+            
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
+        
+        Blink2.SetActive(false);
+        
+
+        while (ShowDialogue.Instance.currentDialogueIndex == 6)  
+        {
+            Blink3.SetActive(!Blink3.activeSelf);
+            
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
+        
+        Blink3.SetActive(false);
+
+
+        while (ShowDialogue.Instance.currentDialogueIndex == 7)  
+        {
+            Blink4.SetActive(!Blink4.activeSelf);
+            
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
+        
+        Blink4.SetActive(false);
+        
+        
+
+        while (ShowDialogue.Instance.currentDialogueIndex == 8)  
+        {
+            Blink5.SetActive(!Blink5.activeSelf);
+            
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
+        
+        Blink5.SetActive(false);
+        
+
+    }
     private IEnumerator WaitForTextEnd(int index)
     {
         yield return new WaitUntil(() => Materials.instance.textDone == true);

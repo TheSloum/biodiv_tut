@@ -161,6 +161,7 @@ public class Builder : MonoBehaviour
         if (buildState == 50)
         {
             Materials.instance.researchCentr = false;
+                        Materials.instance.ReseachButton(true);
         }
     }
 
@@ -170,6 +171,7 @@ public class Builder : MonoBehaviour
         if (buildState == 50)
         {
             Materials.instance.researchCentr = false;
+                        Materials.instance.ReseachButton(true);
         }
         foreach (Building building in buildings)
         {
@@ -251,6 +253,7 @@ public class Builder : MonoBehaviour
             if (buildState == 50)
             {
                 Materials.instance.researchCentr = true;
+                        Materials.instance.ReseachButton(false);
             }
             cycleBar.transform.localPosition = new Vector3(0, 0, 0);
             buildState = 0;
@@ -717,6 +720,7 @@ public class Builder : MonoBehaviour
         if (building.buildClass == 0)
         {
             Materials.instance.researchCentr = false;
+                        Materials.instance.ReseachButton(true);
         }
         if (building.buildID != 50)
         {

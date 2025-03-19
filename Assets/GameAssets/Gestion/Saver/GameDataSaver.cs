@@ -250,6 +250,7 @@ public class GameDataSaver : MonoBehaviour
                         builderComponent.running = true;
 
                         Materials.instance.researchCentr = false;
+                        Materials.instance.ReseachButton(true);
 
                         spriterenderer.sprite = researchSprite;
                     }
@@ -363,6 +364,7 @@ public class GameDataSaver : MonoBehaviour
                         spriterenderer.sprite = researchSprite;
 
                         Materials.instance.researchCentr = false;
+                        Materials.instance.ReseachButton(true);
                     }
                     else if (buildState >= 0 && buildState < buildUnlockData.Count)
                     {

@@ -34,6 +34,7 @@ public class Materials : MonoBehaviour
 
     public GameObject errorIndicator;
     public Text errorText;
+    public Button ResBut;
 
 
     public bool menuFirst = true;
@@ -86,7 +87,7 @@ public class Materials : MonoBehaviour
             SceneManager.LoadScene("Menue");
             menuFirst = false;
         }
-
+ResBut.interactable = false;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -104,7 +105,13 @@ public class Materials : MonoBehaviour
         }
     }
 
+    public void ReseachButton(bool act){
+        if(ResBut == null){
+        ResBut = GameObject.FindGameObjectWithTag("FishGallery").GetComponent<Button>();
+        }
+        ResBut.interactable = act;
 
+    }
 
     void Start()
     {
