@@ -74,6 +74,7 @@ public class Unlock : MonoBehaviour
         string buttonName = "UnlockBuild_" + tempUnlockID.ToString();
         GameObject buttonObject = GameObject.Find(buttonName);
 
+
         if (buttonObject != null)
         {
             tempButton = buttonObject.GetComponent<Button>();
