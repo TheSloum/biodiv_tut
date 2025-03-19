@@ -75,7 +75,7 @@
             "unlocked": false
         },
         {
-            "unlocked": false
+            "unlocked": true
         },
         {
             "unlocked": false
@@ -87,7 +87,7 @@
             "unlocked": false
         },
         {
-            "unlocked": false
+            "unlocked": true
         },
         {
             "unlocked": false
@@ -307,5 +307,5 @@
     "mat_1": 0,
     "mat_2": 0,
     "price": 500,
-    "townName": "opjpo"
+    "townName": "Test"
 }

@@ -1,5 +1,4 @@
 using System.IO;
-
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,17 +11,15 @@ public class GameDataManager : MonoBehaviour
     public Transform saveListParent;
     public GameDataSaver gameDataSaver;
 
-
     private void Awake()
     {
         LoadSaveFiles();
     }
+
     void OnEnable()
     {
-
         LoadSaveFiles();
-    
-    gameDataSaver = Materials.instance.GetComponent<GameDataSaver>();
+        gameDataSaver = Materials.instance.GetComponent<GameDataSaver>();
     }
 
     public void LoadSaveFiles()
@@ -52,43 +49,74 @@ public class GameDataManager : MonoBehaviour
             string fileName = Path.GetFileNameWithoutExtension(saveFile);
             string saveDate = fileName.Replace("GameData_", "");
 
-            // Instantiate a new button
-            GameObject saveButton = Instantiate(saveButtonPrefab, saveListParent);
-            saveButton.transform.localPosition -= new Vector3(0, index * 100, 0); // Offset each button vertically
-            index++;
+            string townName = GetTownNameFromJson(saveFile);
 
+            GameObject saveButton = Instantiate(saveButtonPrefab, saveListParent);
+            saveButton.transform.localPosition -= new Vector3(0, index * 100, 0);
+            index++;
 
             TMP_Text textComponent = saveButton.transform.Find("Text (TMP)")?.GetComponent<TMP_Text>();
             if (textComponent != null)
             {
-                textComponent.text = $"Sauvegarde du {saveDate}";
-            }
-            else { Debug.Log("pq"); }
+                string formattedDate = saveDate.Replace("-", "/").Replace("_", " - ");
 
-            // Configure the buttons
-            var buttons = saveButton.GetComponentsInChildren<UnityEngine.UI.Button>();
+                // Récupérer la dernière partie après " - " pour isoler HHMM
+                int lastDashIndex = formattedDate.LastIndexOf('-');
+                if (lastDashIndex != -1 && lastDashIndex + 2 < formattedDate.Length) // Vérification de l'index
+                {
+                    // Extraire la partie HHMM en supprimant les éventuels "/"
+                    string timePart = formattedDate.Substring(lastDashIndex + 2).Replace("/", "");
+                    if (timePart.Length >= 4) // Vérifier que l'heure est bien sous forme HHMM
+                    {
+                        timePart = timePart.Insert(2, "h"); // Ajoute "h" après HH
+                        formattedDate = formattedDate.Substring(0, lastDashIndex + 2) + timePart; // Remplace la partie de l'heure
+                    }
+                }
+
+                textComponent.text = $"{townName} - {formattedDate}";
+            }
+
+
+            var buttons = saveButton.GetComponentsInChildren<Button>();
             if (buttons.Length >= 2)
             {
-                
-        if (SceneManager.GetActiveScene().name == "Menue"){ 
-            
-                buttons[0].onClick.AddListener(() => {
-        Materials.instance.isLoad = true;
-        Materials.instance.tutorial = false;
-        LoadManager.instance.saveDate = saveDate;
-    LoadManager.instance.resumeLoad = true;
-    SceneManager.LoadScene("SampleScene");
-});
-
-        }
-        else
-        {
-                buttons[0].onClick.AddListener(() => gameDataSaver.LoadData(saveDate));
+                if (SceneManager.GetActiveScene().name == "Menue")
+                {
+                    buttons[0].onClick.AddListener(() =>
+                    {
+                        Materials.instance.isLoad = true;
+                        Materials.instance.tutorial = false;
+                        LoadManager.instance.saveDate = saveDate;
+                        LoadManager.instance.resumeLoad = true;
+                        SceneManager.LoadScene("SampleScene");
+                    });
                 }
-                buttons[1].onClick.AddListener(() => DeleteSave(saveFile, saveButton)); // Delete button
+                else
+                {
+                    buttons[0].onClick.AddListener(() => gameDataSaver.LoadData(saveDate));
+                }
+
+                buttons[1].onClick.AddListener(() => DeleteSave(saveFile, saveButton));
             }
         }
     }
+
+    private string GetTownNameFromJson(string filePath)
+    {
+        if (!File.Exists(filePath)) return "Ville inconnue";
+
+        try
+        {
+            string jsonContent = File.ReadAllText(filePath);
+            GameData data = JsonUtility.FromJson<GameData>(jsonContent);
+            return !string.IsNullOrEmpty(data.townName) ? data.townName : "Ville inconnue";
+        }
+        catch
+        {
+            return "Ville inconnue";
+        }
+    }
+
 
     private void DeleteSave(string filePath, GameObject saveButton)
     {
@@ -99,8 +127,7 @@ public class GameDataManager : MonoBehaviour
 
         Destroy(saveButton);
         Invoke(nameof(LoadSaveFiles), 0.1f);
-
     }
-
 }
+
 
