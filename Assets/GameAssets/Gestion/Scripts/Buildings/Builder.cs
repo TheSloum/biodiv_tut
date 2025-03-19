@@ -650,7 +650,6 @@ public class Builder : MonoBehaviour
 
                 if (building.buildID == 50)
                 {
-
                     Transform explanationText = newButton.transform.Find("ExpliationText");
                     if (explanationText != null)
                     {
@@ -721,7 +720,6 @@ public class Builder : MonoBehaviour
         }
         if (building.buildID != 50)
         {
-            Debug.Log(buildState + "DDD");
             cycleBar.transform.localPosition = new Vector3(0, 83, 0);
         }
 

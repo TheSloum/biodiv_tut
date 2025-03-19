@@ -2550,14 +2550,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4b6e3471f4ae20478ada2bed4801a5c, type: 2}
   - {fileID: 11400000, guid: a1c025660e4410042a24dc9a5757f9ea, type: 2}
   buildings:
-  - {fileID: 11400000, guid: 144347227ff809b4cbc18f23825a695a, type: 2}
   - {fileID: 11400000, guid: 0fd4ee9c97091cc479fe827ca1dad336, type: 2}
   - {fileID: 11400000, guid: 7256de8bacd7a81409f00b58e62ef615, type: 2}
   - {fileID: 11400000, guid: a35a053c34d7787459512b236e604724, type: 2}
   - {fileID: 11400000, guid: 2fb56aabfd5a74a4bb6d720016524535, type: 2}
   - {fileID: 11400000, guid: 0d674fa35fc91504a82650ea1055adc0, type: 2}
   - {fileID: 11400000, guid: 37b426e7ecd10a049a003c6734620ff4, type: 2}
-  - {fileID: 11400000, guid: f5bc72733382111498d09d0557f04c79, type: 2}
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   - {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
 --- !u!4 &621189660

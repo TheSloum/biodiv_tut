@@ -12,9 +12,7 @@ public class PolluBar : MonoBehaviour
     [SerializeField] private List<Sprite> fishPol;
     [SerializeField] private GameObject fishBar;
     private SpriteRenderer fishSprite;
-    [SerializeField] private List<Sprite> PolustepImg;
 
-    public SpriteRenderer PoluImg;
     void Awake()
     {
         mat = barFill.GetComponent<Renderer>().material;
@@ -33,22 +31,18 @@ public class PolluBar : MonoBehaviour
 
         if (Materials.instance.bar_2 <= 0.25)
         {
-            PoluImg.sprite = PolustepImg[0];
             fishSprite.sprite = fishPol[0];
         }
         else if (Materials.instance.bar_2 <= 0.5)
         {
-            PoluImg.sprite = PolustepImg[1];
             fishSprite.sprite = fishPol[1];
         }
         else if (Materials.instance.bar_2 <= 0.75)
         {
-            PoluImg.sprite = PolustepImg[2];
             fishSprite.sprite = fishPol[2];
         }
         else
         {
-            PoluImg.sprite = PolustepImg[3];
             fishSprite.sprite = fishPol[3];
         }
     }
