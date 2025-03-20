@@ -127,6 +127,9 @@ public class Builder : MonoBehaviour
     public Sprite lockedDestroySprite;
 
     public SpriteRenderer spriteRendererDelete;
+    public GameObject NoBuildingText;
+
+    public Button closeButton;
 
     private void Awake()
     {
@@ -146,7 +149,13 @@ public class Builder : MonoBehaviour
 
 
         cycleAnim.speed = 0f;
-
+        if (closeButton != null)
+        {
+            closeButton.onClick.AddListener(() =>
+            {
+                HideBuildingMenu();
+            });
+        }
         if (Materials.instance.isLoad)
         {
             Prebuild = 0;
@@ -675,6 +684,7 @@ public class Builder : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+
         int counter = 0;
 
         foreach (Building building in buildings)
@@ -767,7 +777,36 @@ public class Builder : MonoBehaviour
                 button.onClick.AddListener(() => SelectBuild(building, button.gameObject));
             }
         }
+
+        Transform cardSlider = buildingMenu.transform.Find("CardSlider");
+        if (cardSlider != null)
+        {
+            Transform movingScroll = cardSlider.Find("MovingScroll");
+            if (movingScroll != null)
+            {
+                bool foundButton = false;
+
+                foreach (Transform child in movingScroll)
+                {
+                    if (child.name == "Button(Clone)")
+                    {
+                        foundButton = true;
+                        break;
+                    }
+                }
+
+                if (!foundButton)
+                {
+                    NoBuildingText.SetActive(true);
+                }
+                else
+                {
+                    NoBuildingText.SetActive(false);
+                }
+            }
+        }
     }
+
 
 
     public void SelectBuild(Building building, GameObject buttonObject)
