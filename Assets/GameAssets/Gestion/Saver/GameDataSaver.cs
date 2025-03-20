@@ -276,7 +276,7 @@ public class GameDataSaver : MonoBehaviour
 
                         if (builderComponent.buildState == 0)
                         {
-                            spriterenderer.sprite = baseSprite;
+                            spriterenderer.sprite = builderComponent.baseSprite;
                         }
                         else
                         {
@@ -391,7 +391,7 @@ public class GameDataSaver : MonoBehaviour
 
                         if (builderComponent.buildState == 0)
                         {
-                            spriterenderer.sprite = baseSprite;
+                            spriterenderer.sprite = builderComponent.baseSprite;
                         }
                         else
                         {

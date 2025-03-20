@@ -87,7 +87,7 @@ public class Materials : MonoBehaviour
             SceneManager.LoadScene("Menue");
             menuFirst = false;
         }
-ResBut.interactable = false;
+        ResBut.interactable = false;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -105,9 +105,11 @@ ResBut.interactable = false;
         }
     }
 
-    public void ReseachButton(bool act){
-        if(ResBut == null){
-        ResBut = GameObject.FindGameObjectWithTag("FishGallery").GetComponent<Button>();
+    public void ReseachButton(bool act)
+    {
+        if (ResBut == null)
+        {
+            ResBut = GameObject.FindGameObjectWithTag("FishGallery").GetComponent<Button>();
         }
         ResBut.interactable = act;
 
