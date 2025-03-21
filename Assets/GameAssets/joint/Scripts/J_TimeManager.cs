@@ -42,7 +42,6 @@ public class J_TimeManager : MonoBehaviour
             transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
-            Debug.Log("J_TimeManager initialized and set to DontDestroyOnLoad.");
         }
         else
         {
@@ -54,12 +53,11 @@ public class J_TimeManager : MonoBehaviour
     void Start()
     {
         initialized = true;
-        Debug.Log("J_TimeManager started.");
     }
 
     void Update()
     {
-        HandleDebugTimeInput(); 
+        HandleDebugTimeInput();
         if (!initialized) return;
 
         dayTimer += Time.deltaTime;
@@ -73,19 +71,19 @@ public class J_TimeManager : MonoBehaviour
 
     private void HandleDebugTimeInput()
     {
-        if(!enableTimeAcceleration) return;
+        if (!enableTimeAcceleration) return;
 
-        if(Input.GetKey(KeyCode.T))
+        if (Input.GetKey(KeyCode.T))
         {
             debugTimeMultiplier = Mathf.Clamp(
                 debugTimeMultiplier + debugTimeAcceleration * Time.unscaledDeltaTime,
-                1f, 
+                1f,
                 maxTimeMultiplier
             );
-            
+
             Time.timeScale = debugTimeMultiplier;
         }
-        else if(Input.GetKeyUp(KeyCode.T))
+        else if (Input.GetKeyUp(KeyCode.T))
         {
             debugTimeMultiplier = 1f;
             Time.timeScale = 1f;
@@ -95,19 +93,19 @@ public class J_TimeManager : MonoBehaviour
     private void IncrementDay()
     {
         currentDay++;
-        
+
         if (currentDay > daysPerMonth)
         {
             currentDay = 1;
             currentMonth++;
-            
+
             if (currentMonth > 12)
             {
                 currentMonth = 1;
                 currentYear++;
                 OnYearChanged?.Invoke(currentYear);
             }
-            
+
             OnMonthChanged?.Invoke(currentMonth);
         }
         OnDayChanged?.Invoke(currentDay, currentMonth);
@@ -132,7 +130,6 @@ public class J_TimeManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log($"Scene loaded: {scene.name}");
     }
 
     private void OnDestroy()
@@ -140,7 +137,6 @@ public class J_TimeManager : MonoBehaviour
         if (Instance == this)
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
-            Debug.Log("J_TimeManager destroyed.");
         }
     }
 

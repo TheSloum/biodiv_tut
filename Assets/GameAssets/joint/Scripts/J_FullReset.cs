@@ -6,22 +6,20 @@ public class J_FullReset : MonoBehaviour
 {
     public List<Fishes> fishes;
 
-    
-    public List<Building> buildings;
-    void Awake() 
-    {
-        
-        foreach (Building building in buildings)
-{
-    building.Relock();
-    Debug.Log("ZRQEPOKJRPOJZORFJQFPOJPOEJPOTEGSJ");
-}
 
-foreach (Fishes fish in fishes)
-{
-    fish.RelockFish();
-    Debug.Log("ZRQEPOKJRPOJZORFJQFPOJPOEJPOTEGSJ");
-}
+    public List<Building> buildings;
+    void Awake()
+    {
+
+        foreach (Building building in buildings)
+        {
+            building.Relock();
+        }
+
+        foreach (Fishes fish in fishes)
+        {
+            fish.RelockFish();
+        }
     }
 
 }

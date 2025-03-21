@@ -194,7 +194,6 @@ public class Builder : MonoBehaviour
 
                 if (Materials.instance.price < (int)destroyCost)
                 {
-                    Debug.Log("Pas assez d'argent pour supprimer ce bâtiment !");
                     UpdateDestroyButtonSprite(false);
                 }
                 else
@@ -294,7 +293,6 @@ public class Builder : MonoBehaviour
 
                 if (Materials.instance.price < (int)destroyCost)
                 {
-                    Debug.Log("Pas assez d'argent pour supprimer ce bâtiment !");
                     UpdateDestroyButtonSprite(false);
                     return;
                 }
@@ -305,8 +303,6 @@ public class Builder : MonoBehaviour
                 Materials.instance.mat_1 -= (int)(buildingToDestroy.mat_1 / 2f);
                 Materials.instance.mat_2 -= (int)(buildingToDestroy.mat_2 / 2f);
 
-
-                Debug.Log(Materials.instance.mat_2 + " dddd " + buildingToDestroy.mat_2 / 2f);
 
                 if (buildState == 50)
                 {

@@ -47,7 +47,6 @@ public class FishSpawner : MonoBehaviour
         float randomX = Random.Range(spawnRangeX.x, spawnRangeX.y);
         Vector3 spawnPosition = new Vector3(randomX, spawnHeight, -1f);
         currentFish = Instantiate(selectedFish, spawnPosition, Quaternion.identity);
-        Debug.Log(Quaternion.identity);
         currentFish.transform.SetParent(fishContainer, false);
         currentFish.SetActive(true);
     }
