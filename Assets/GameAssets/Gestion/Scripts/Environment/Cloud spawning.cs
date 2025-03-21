@@ -14,6 +14,10 @@ public class Cloudspawning : MonoBehaviour
     private float spawnInterval;
     private float nextSpawnTime;
 
+    void Awake(){
+        
+    }
+
     void Update()
     {
         // Get the current value of bar_2 from Materials.instance
@@ -23,7 +27,7 @@ public class Cloudspawning : MonoBehaviour
         if (barValue >= 0.25f)
         {
             // Interpolate between 1.2 seconds and 12 seconds based on the bar value
-            spawnInterval = Mathf.Lerp(8.2f, 35f, (1 - barValue) / (1 - 0.25f));
+            spawnInterval = Mathf.Lerp(20.5f, 40f, (1 - barValue) / (1 - 0.25f));
             
             // Randomize the spawn interval within a range (±0.6 seconds)
             spawnInterval += Random.Range(-1.6f, 1.6f);
