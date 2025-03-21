@@ -93,15 +93,15 @@ public class Builder : MonoBehaviour
 
 
 
-    public GameObject prefabToSpawn;           // The prefab to spawn
-    public Vector3 spawnPosition;              // The base position to spawn prefabs at
-    public float positionOffset = 40f;          // The offset position for each new spawn
-    public float timeOffset = 0.2f;            // Delay between each spawn
-    public float fadeDuration = 1f;            // Duration for fading out
-    public float moveSpeed = 1f;               // Speed at which the object moves upward
+    public GameObject prefabToSpawn;
+    public Vector3 spawnPosition;
+    public float positionOffset = 40f;
+    public float timeOffset = 0.2f;
+    public float fadeDuration = 1f;
+    public float moveSpeed = 1f;
 
 
-    private float[] numbers = new float[4];    // Array to store numbers to display
+    private float[] numbers = new float[4];
     public Sprite[] sprites = new Sprite[4];
     public TMP_Text buildingEtatMoney;
     public TMP_Text buildingNameText;
@@ -118,8 +118,18 @@ public class Builder : MonoBehaviour
     public GameObject PauseInfo;
     public GameObject notEnothRessourse;
     [SerializeField] private bool tutorialBuild;
+    public TMP_Text mat0Text;
+    public TMP_Text mat1Text;
+    public TMP_Text mat2Text;
+    public TMP_Text priceText;
 
+    public Sprite normalDestroySprite;
+    public Sprite lockedDestroySprite;
 
+    public SpriteRenderer spriteRendererDelete;
+    public GameObject NoBuildingText;
+
+    public Button closeButton;
 
     private void Awake()
     {
@@ -139,7 +149,13 @@ public class Builder : MonoBehaviour
 
 
         cycleAnim.speed = 0f;
-
+        if (closeButton != null)
+        {
+            closeButton.onClick.AddListener(() =>
+            {
+                HideBuildingMenu();
+            });
+        }
         if (Materials.instance.isLoad)
         {
             Prebuild = 0;
@@ -161,17 +177,37 @@ public class Builder : MonoBehaviour
         if (buildState == 50)
         {
             Materials.instance.researchCentr = false;
-                        Materials.instance.ReseachButton(true);
+            Materials.instance.ReseachButton(true);
         }
     }
 
     void Update()
     {
 
+        if (editing)
+        {
+            Building buildingToDestroy = GetBuildingByID(buildState);
+
+            if (buildingToDestroy != null)
+            {
+                float destroyCost = buildingToDestroy.price * -10f;
+
+                if (Materials.instance.price < (int)destroyCost)
+                {
+                    Debug.Log("Pas assez d'argent pour supprimer ce bâtiment !");
+                    UpdateDestroyButtonSprite(false);
+                }
+                else
+                {
+                    UpdateDestroyButtonSprite(true);
+                }
+            }
+        }
+
         if (buildState == 50)
         {
             Materials.instance.researchCentr = false;
-                        Materials.instance.ReseachButton(true);
+            Materials.instance.ReseachButton(true);
         }
         foreach (Building building in buildings)
         {
@@ -248,36 +284,80 @@ public class Builder : MonoBehaviour
 
     public void OnDestroyClicked()
     {
-        if (editing == true)
+        if (editing)
         {
-            if (buildState == 50)
-            {
-                Materials.instance.researchCentr = true;
-                        Materials.instance.ReseachButton(false);
-            }
-            cycleBar.transform.localPosition = new Vector3(0, 0, 0);
-            buildState = 0;
-            buildID = 0;
-            level0 = 0;
-            level1 = 1;
-            level2 = 2;
-            if (Materials.instance.explored == false)
-            {
-                spriteRenderer.sprite = baseSprite;
-            }
-            running = false;
-            progress = 0f;
-            float timePassed = 0f;
+            Building buildingToDestroy = GetBuildingByID(buildState);
 
-            HideManageMenu();
+            if (buildingToDestroy != null)
+            {
+                float destroyCost = buildingToDestroy.price * -10f;
 
-            editing = false;
-            Materials.instance.canMove = true;
+                if (Materials.instance.price < (int)destroyCost)
+                {
+                    Debug.Log("Pas assez d'argent pour supprimer ce bâtiment !");
+                    UpdateDestroyButtonSprite(false);
+                    return;
+                }
+
+                Materials.instance.price -= (int)destroyCost;
+
+                Materials.instance.mat_0 -= (int)(buildingToDestroy.mat_0 / 2f);
+                Materials.instance.mat_1 -= (int)(buildingToDestroy.mat_1 / 2f);
+                Materials.instance.mat_2 -= (int)(buildingToDestroy.mat_2 / 2f);
+
+
+                Debug.Log(Materials.instance.mat_2 + " dddd " + buildingToDestroy.mat_2 / 2f);
+
+                if (buildState == 50)
+                {
+                    Materials.instance.researchCentr = true;
+                    Materials.instance.ReseachButton(false);
+                }
+
+                cycleBar.transform.localPosition = Vector3.zero;
+                buildState = 0;
+                buildID = 0;
+                level0 = 0;
+                level1 = 1;
+                level2 = 2;
+
+                if (!Materials.instance.explored)
+                {
+                    spriteRenderer.sprite = baseSprite;
+                }
+
+                running = false;
+                progress = 0f;
+
+                HideManageMenu();
+                editing = false;
+                Materials.instance.canMove = true;
+            }
         }
     }
 
 
+    private void UpdateDestroyButtonSprite(bool canDestroy)
+    {
+        if (canDestroy)
+        {
+            spriteRendererDelete.sprite = normalDestroySprite;
+        }
+        else
+        {
+            spriteRendererDelete.sprite = lockedDestroySprite;
+        }
+    }
 
+    private Building GetBuildingByID(int id)
+    {
+        foreach (Building building in buildings)
+        {
+            if (building.buildID == id)
+                return building;
+        }
+        return null;
+    }
 
 
     private bool resourceCheckUpgrade(int level, Building building)
@@ -443,6 +523,7 @@ public class Builder : MonoBehaviour
                 menuRecherche.SetActive(true);
                 return;
             }
+
             Materials.instance.canMove = false;
             manageMenu.SetActive(true);
 
@@ -456,6 +537,7 @@ public class Builder : MonoBehaviour
                 {
                     pauseImage.sprite = pauseSprite;
                 }
+
                 if (building.unlocked && building.buildID == buildState)
                 {
                     destroyB.onClick.RemoveAllListeners();
@@ -474,9 +556,7 @@ public class Builder : MonoBehaviour
 
                     if (running == false)
                     {
-
                         pauseImage.sprite = playSprite;
-
                         pause.onClick.AddListener(() => ContinueCycle());
                     }
                     else
@@ -493,10 +573,28 @@ public class Builder : MonoBehaviour
                     UpdateTextColor(buildingEtatElec, building.ElecEtat, false);
                     UpdateTextColor(buildingEtatMoney, building.MoneyMake, false);
 
+
+                    Building buildingToDestroy = GetBuildingByID(buildState);
+
+                    if (mat0Text != null)
+                        mat0Text.text = (buildingToDestroy.mat_0 / 2f * -1).ToString("F0");
+
+                    if (mat1Text != null)
+                        mat1Text.text = (buildingToDestroy.mat_1 / 2f * -1).ToString("F0");
+
+                    if (mat2Text != null)
+                        mat2Text.text = (buildingToDestroy.mat_2 / 2f * -1).ToString("F0");
+
+                    if (priceText != null)
+                        priceText.text = (building.price * 10f).ToString("F0");
+
+
+
                 }
             }
         }
     }
+
 
     private IEnumerator MoveCameraToBuilding(Vector3 targetPosition)
     {
@@ -586,6 +684,7 @@ public class Builder : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+
         int counter = 0;
 
         foreach (Building building in buildings)
@@ -678,7 +777,36 @@ public class Builder : MonoBehaviour
                 button.onClick.AddListener(() => SelectBuild(building, button.gameObject));
             }
         }
+
+        Transform cardSlider = buildingMenu.transform.Find("CardSlider");
+        if (cardSlider != null)
+        {
+            Transform movingScroll = cardSlider.Find("MovingScroll");
+            if (movingScroll != null)
+            {
+                bool foundButton = false;
+
+                foreach (Transform child in movingScroll)
+                {
+                    if (child.name == "Button(Clone)")
+                    {
+                        foundButton = true;
+                        break;
+                    }
+                }
+
+                if (!foundButton)
+                {
+                    NoBuildingText.SetActive(true);
+                }
+                else
+                {
+                    NoBuildingText.SetActive(false);
+                }
+            }
+        }
     }
+
 
 
     public void SelectBuild(Building building, GameObject buttonObject)
@@ -720,7 +848,7 @@ public class Builder : MonoBehaviour
         if (building.buildClass == 0)
         {
             Materials.instance.researchCentr = false;
-                        Materials.instance.ReseachButton(true);
+            Materials.instance.ReseachButton(true);
         }
         if (building.buildID != 50)
         {
