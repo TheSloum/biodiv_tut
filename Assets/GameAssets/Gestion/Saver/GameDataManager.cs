@@ -34,7 +34,11 @@ public class GameDataManager : MonoBehaviour
         }
 
         // Get all save files
-        string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+        #if UNITY_WEBGL && !UNITY_EDITOR
+    string saveFolderPath = Path.Combine(Application.persistentDataPath, "Sauvegardes");
+#else
+    string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+#endif
         if (!Directory.Exists(saveFolderPath))
         {
             Debug.LogWarning("Save folder does not exist. Creating a new one.");

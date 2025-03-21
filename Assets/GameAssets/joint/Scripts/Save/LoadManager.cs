@@ -16,8 +16,14 @@ public GameObject resumeButtonDis;
     public string saveDate = null;
 
 
-    
+    #if UNITY_WEBGL && !UNITY_EDITOR
+public string folderPath = Path.Combine(Application.persistentDataPath, "Sauvegardes");
+#else
 public string folderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+#endif
+
+
+
 
 
     private void Awake()

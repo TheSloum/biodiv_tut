@@ -37,7 +37,7 @@ public class Builder : MonoBehaviour
     [SerializeField] private GameObject upgradeButton2;
     [SerializeField] private GameObject upgradeButton3;
     [SerializeField] private GameObject pauseButton;
-    [SerializeField] private Sprite baseSprite;
+    [SerializeField] public Sprite baseSprite;
 
     private SpriteRenderer spriteRenderer;
     public AudioClip sfxClip;

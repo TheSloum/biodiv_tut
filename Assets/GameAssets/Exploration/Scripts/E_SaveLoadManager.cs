@@ -21,7 +21,11 @@ public class E_SaveLoadManager : MonoBehaviour
         }
 
         // Définir le chemin du fichier de sauvegarde
-        saveFilePath = Path.Combine(Application.persistentDataPath, "savefile.json");
+        #if UNITY_WEBGL && !UNITY_EDITOR
+    string saveFolderPath = Path.Combine(Application.persistentDataPath, "Sauvegardes");
+#else
+    string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+#endif
     }
 
     // Méthode pour sauvegarder le jeu

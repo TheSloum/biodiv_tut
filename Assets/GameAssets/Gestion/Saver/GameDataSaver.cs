@@ -38,8 +38,11 @@ public class GameDataSaver : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+#if UNITY_WEBGL && !UNITY_EDITOR
+    string saveFolderPath = Path.Combine(Application.persistentDataPath, "Sauvegardes");
+#else
+    string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+#endif
 
         if (!Directory.Exists(saveFolderPath))
         {
@@ -93,7 +96,11 @@ public class GameDataSaver : MonoBehaviour
 
     public void LoadLatestSaveData()
     {
-        string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+        #if UNITY_WEBGL && !UNITY_EDITOR
+    string saveFolderPath = Path.Combine(Application.persistentDataPath, "Sauvegardes");
+#else
+    string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+#endif
 
         if (!Directory.Exists(saveFolderPath))
         {
@@ -191,7 +198,12 @@ public class GameDataSaver : MonoBehaviour
 
         fileName = $"GameData_{DateTime.Now:yyyy-MM-dd_HH-mm}.json";
 
+        
+#if UNITY_WEBGL && !UNITY_EDITOR
+        string path = Path.Combine(Application.persistentDataPath, "Sauvegardes", fileName);
+#else
         string path = Path.Combine(Application.dataPath, "Sauvegardes", fileName);
+#endif
         string json = JsonUtility.ToJson(gameData, true);
         File.WriteAllText(path, json);
         SaveAndLoadScene = true;
@@ -207,7 +219,12 @@ public class GameDataSaver : MonoBehaviour
             SceneManager.LoadScene("SampleScene");
         }
         Materials.instance.isLoad = true;
+        
+#if UNITY_WEBGL && !UNITY_EDITOR
+        string path = Path.Combine(Application.persistentDataPath, $"Sauvegardes/GameData_{dataDate}.json");
+#else
         string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
+#endif
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
@@ -276,7 +293,7 @@ public class GameDataSaver : MonoBehaviour
 
                         if (builderComponent.buildState == 0)
                         {
-                            spriterenderer.sprite = baseSprite;
+                            spriterenderer.sprite = builderComponent.baseSprite;
                         }
                         else
                         {
@@ -318,7 +335,12 @@ public class GameDataSaver : MonoBehaviour
             LoadManager.instance.saveDate = null;
         }
         Materials.instance.isLoad = true;
+        
+#if UNITY_WEBGL && !UNITY_EDITOR
+        string path = Path.Combine(Application.persistentDataPath, $"Sauvegardes/GameData_{dataDate}.json");
+#else
         string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
+#endif
 
 
         if (File.Exists(path))
@@ -391,7 +413,7 @@ public class GameDataSaver : MonoBehaviour
 
                         if (builderComponent.buildState == 0)
                         {
-                            spriterenderer.sprite = baseSprite;
+                            spriterenderer.sprite = builderComponent.baseSprite;
                         }
                         else
                         {
@@ -440,7 +462,13 @@ public class GameDataSaver : MonoBehaviour
 
     public void DelData(string dataDate)
     {
+
+        
+#if UNITY_WEBGL && !UNITY_EDITOR
+        string path = Path.Combine(Application.persistentDataPath, $"Sauvegardes/GameData_{dataDate}.json");
+#else
         string path = Path.Combine(Application.dataPath, $"Sauvegardes/GameData_{dataDate}.json");
+#endif
         if (File.Exists(path))
         {
             File.Delete(path);
