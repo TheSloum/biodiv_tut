@@ -92,5 +92,40 @@ public class PrefabMover : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        float barValue = Materials.instance.bar_2;
+    float alpha;
+
+if (barValue >= 0.5f)
+    {
+        alpha = 1f;
     }
+    else if (barValue <= 0.25f)
+    {
+        alpha = 0f; // Fully transparent at 0.25 or below
+    }
+    else
+    {
+        // Linearly interpolate between 1 and 0 when bar_2 is between 0.5 and 0.25
+        alpha = (barValue - 0.25f) / (0.5f - 0.25f);
+    }
+
+    SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+    if (spriteRenderer != null)
+    {
+        SetAlpha(spriteRenderer, alpha);
+    }
+
+    foreach (SpriteRenderer childSprite in GetComponentsInChildren<SpriteRenderer>())
+    {
+        SetAlpha(childSprite, alpha);
+    }
+    }
+
+    void SetAlpha(SpriteRenderer renderer, float alpha)
+{
+    Color newColor = renderer.color;
+    newColor.a = alpha * 0.7f;
+    renderer.color = newColor;
+}
 }

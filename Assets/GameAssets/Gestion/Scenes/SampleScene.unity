@@ -513,6 +513,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &13028094
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6487,6 +6489,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &338367190
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9973,6 +9977,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &506363328
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11821,6 +11827,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &643212988
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15800,6 +15808,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &861647728
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20008,6 +20018,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &1020965242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23534,6 +23546,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &1173804924
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24432,6 +24446,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &1199599271
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30153,6 +30169,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &1474758151
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33919,6 +33937,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &1652384093
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36423,6 +36443,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &1768279021
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -38834,6 +38856,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &1861847500
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -42543,6 +42567,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &2047675823
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -43840,6 +43866,8 @@ MonoBehaviour:
   spriteRendererDelete: {fileID: 247770252}
   NoBuildingText: {fileID: 1148235542}
   closeButton: {fileID: 1793123381}
+  barFs: {fileID: 0}
+  barBs: {fileID: 0}
 --- !u!212 &2114838284
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -51416,7 +51444,7 @@ Transform:
   m_GameObject: {fileID: 2746322023975197270}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.14, y: 0.0038, z: 0}
+  m_LocalPosition: {x: -1.03, y: -0.003, z: 0}
   m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -51449,7 +51477,7 @@ Transform:
   m_GameObject: {fileID: 2746322024185167285}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.924, y: 0.085, z: 0}
+  m_LocalPosition: {x: -0.918, y: 0.123, z: 0}
   m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -67653,7 +67681,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 118c34b811beed346bf962d464ccc49b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

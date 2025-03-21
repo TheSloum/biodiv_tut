@@ -110,8 +110,8 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": true,
-            "buildState": 50,
+            "running": false,
+            "buildState": 0,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
             "cons_mat_2": 0,
@@ -166,8 +166,8 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": true,
-            "buildState": 5,
+            "running": false,
+            "buildState": 0,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
             "cons_mat_2": 0,
@@ -180,8 +180,8 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": true,
-            "buildState": 1,
+            "running": false,
+            "buildState": 0,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
             "cons_mat_2": 0,
@@ -303,9 +303,9 @@
             "price_cycle": 0
         }
     ],
-    "mat_0": 781,
-    "mat_1": 9684,
-    "mat_2": 8368,
-    "price": 89385,
-    "townName": "pojoip"
+    "mat_0": 0,
+    "mat_1": 0,
+    "mat_2": 0,
+    "price": 650,
+    "townName": "dffd"
 }

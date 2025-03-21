@@ -11,7 +11,7 @@ public class Speech : ScriptableObject
     public Vector3 position;
 
     public Vector3 size;
-    public Sprite character;
+    public List<Sprite> spriteList = new List<Sprite>();
 
     public Rect GetRect()
     {

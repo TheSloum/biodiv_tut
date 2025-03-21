@@ -196,7 +196,7 @@ public class GameDataSaver : MonoBehaviour
 
         string fileName;
 
-        fileName = $"GameData_{DateTime.Now:yyyy-MM-dd_HH-mm}.json";
+        fileName = $"GameData_{DateTime.Now:dd-MM-yyyy_HH-mm-ss}.json";
 
         
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -298,6 +298,8 @@ public class GameDataSaver : MonoBehaviour
                         else
                         {
                             builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
+                            builderComponent.barFs.sortingOrder = -2;
+                builderComponent.barBs.sortingOrder = -3;
                             spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
                         }
 
@@ -420,6 +422,8 @@ public class GameDataSaver : MonoBehaviour
                         else
                         {
                             builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
+                            builderComponent.barFs.sortingOrder = -2;
+                builderComponent.barBs.sortingOrder = -3;
                             spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
                         }
 

@@ -112,7 +112,7 @@ public class E_FishController : MonoBehaviour
     {
         if (hasInteracted || fishData == null) return;
 
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player")  && !Materials.instance.researchCentr)
         {
             // Tenter de déverrouiller le poisson
             bool justUnlocked = false;
@@ -125,7 +125,7 @@ public class E_FishController : MonoBehaviour
                 Debug.LogError("FishUnlock Instance n'est pas initialisée. Veuillez vous assurer que FishUnlock est correctement configuré.");
             }
 
-            if (justUnlocked && Materials.instance.researchCentr)
+            if (justUnlocked && !Materials.instance.researchCentr)
             {
                 // Déclencher le flash seulement si le poisson vient d'être déverrouillé OU si le centre de recherche est construit
                 E_FlashEffect.Instance.TriggerFlash();

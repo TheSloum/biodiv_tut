@@ -56,7 +56,8 @@ public class GameDataManager : MonoBehaviour
             string townName = GetTownNameFromJson(saveFile);
 
             GameObject saveButton = Instantiate(saveButtonPrefab, saveListParent);
-            saveButton.transform.localPosition -= new Vector3(0, index * 100, 0);
+            saveButton.transform.SetAsFirstSibling();
+            saveButton.transform.localPosition -= new Vector3(0,(saveFiles.Length -1 ) * 100 - index * 100, 0);
             index++;
 
             TMP_Text textComponent = saveButton.transform.Find("Text (TMP)")?.GetComponent<TMP_Text>();
@@ -70,6 +71,7 @@ public class GameDataManager : MonoBehaviour
                     if (timePart.Length >= 4)
                     {
                         timePart = timePart.Insert(2, "h");
+                        timePart = timePart.Insert(5, "m");
                         formattedDate = formattedDate.Substring(0, lastDashIndex + 2) + timePart;
                     }
                 }

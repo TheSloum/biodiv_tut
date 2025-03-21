@@ -18,6 +18,8 @@ public class ShowDialogue : MonoBehaviour
     private Vector2 startSize;
     private Vector3 startScale;
 
+    private Sprite currentSprite;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -44,7 +46,7 @@ public class ShowDialogue : MonoBehaviour
         {
             yield return null;
         }
-        StartDialogue(dialogue);
+        StartDialogue(dialogue); 
     }
 
 
