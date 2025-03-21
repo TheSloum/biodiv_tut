@@ -350,9 +350,11 @@ public class GameDataSaver : MonoBehaviour
             for (int i = 0; i < fishUnlockData.Count && i < gameData.fishDataList.Count; i++)
             {
                 fishUnlockData[i].is_unlocked = gameData.fishDataList[i].is_unlocked;
+                if(E_GameManager.instance != null){
                 if (E_GameManager.instance.fishUnlockData[i] == true)
                 {
                     fishUnlockData[i].is_unlocked = true;
+                }
                 }
                 Debug.Log(fishUnlockData[i].is_unlocked);
             }

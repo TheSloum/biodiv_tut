@@ -77,7 +77,6 @@ public string folderPath = Path.Combine(Application.dataPath, "Sauvegardes");
         saveDate = null;
         Materials.instance.isLoad = true;
         Materials.instance.tutorial = false;
-        Debug.Log("CHIBRE");
         SceneManager.LoadScene("SampleScene");
     }
 }
