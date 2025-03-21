@@ -6419,7 +6419,6 @@ MonoBehaviour:
   buildings:
   - {fileID: 11400000, guid: 144347227ff809b4cbc18f23825a695a, type: 2}
   - {fileID: 11400000, guid: 2fb56aabfd5a74a4bb6d720016524535, type: 2}
-  - {fileID: 11400000, guid: 0fd4ee9c97091cc479fe827ca1dad336, type: 2}
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 1302981288}
@@ -19948,7 +19947,6 @@ MonoBehaviour:
   buildings:
   - {fileID: 11400000, guid: 144347227ff809b4cbc18f23825a695a, type: 2}
   - {fileID: 11400000, guid: 2fb56aabfd5a74a4bb6d720016524535, type: 2}
-  - {fileID: 11400000, guid: 0fd4ee9c97091cc479fe827ca1dad336, type: 2}
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 1302981288}
@@ -28112,7 +28110,7 @@ MonoBehaviour:
   price: 500
   bar_0: 0.5
   bar_1: 0.5
-  bar_2: 1
+  bar_2: 0.95
   isLoad: 0
   sessionWood: 0
   sessionStone: 0
@@ -38860,7 +38858,6 @@ MonoBehaviour:
   buildings:
   - {fileID: 11400000, guid: 144347227ff809b4cbc18f23825a695a, type: 2}
   - {fileID: 11400000, guid: 2fb56aabfd5a74a4bb6d720016524535, type: 2}
-  - {fileID: 11400000, guid: 0fd4ee9c97091cc479fe827ca1dad336, type: 2}
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 1302981288}
@@ -42571,7 +42568,6 @@ MonoBehaviour:
   buildings:
   - {fileID: 11400000, guid: 144347227ff809b4cbc18f23825a695a, type: 2}
   - {fileID: 11400000, guid: 2fb56aabfd5a74a4bb6d720016524535, type: 2}
-  - {fileID: 11400000, guid: 0fd4ee9c97091cc479fe827ca1dad336, type: 2}
   - {fileID: 11400000, guid: 55c753048bc1163488bd7000f6ed1ff8, type: 2}
   buttonPrefab: {fileID: 8434416103688831248, guid: eba07a02c731f474cb35ad9f1fc8c1b4, type: 3}
   buttonPanel: {fileID: 1302981288}
