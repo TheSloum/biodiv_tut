@@ -20477,6 +20477,8 @@ MonoBehaviour:
   startYMax: 3600
   minSpeed: 8
   maxSpeed: 25
+  startXMin: -1911
+  startXMax: 1847
 --- !u!1 &1051846981
 GameObject:
   m_ObjectHideFlags: 0
@@ -40153,7 +40155,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 398f4ef53f493be468f1153ba03494cd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d0f59b1138186a46a556a4fdc1ed2b0, type: 3}
   m_MaskAlphaCutoff: 1
   m_FrontSortingLayerID: -88700547
   m_BackSortingLayerID: -88700547

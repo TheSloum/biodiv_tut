@@ -10,12 +10,29 @@ public class Cloudspawning : MonoBehaviour
     public float startYMax = 3600f;
     public float minSpeed = 0.5f;
     public float maxSpeed = 2f;
+    
+    public float startXMin = -1911f, startXMax = 1847f;
 
     private float spawnInterval;
     private float nextSpawnTime;
 
     void Awake(){
 
+        float barValue = Materials.instance.bar_2;
+
+    if (barValue > 0.25f) 
+    {
+        int spawnCount = Mathf.RoundToInt(10 * ((barValue - 0.25f) / 0.75f));
+
+        for (int i = 0; i < spawnCount; i++)
+        {
+            float randomX = Random.Range(-1911f, 1847f);
+            float randomY = Random.Range(startYMin, startYMax);
+
+            GameObject spawnedPrefab = Instantiate(prefab, new Vector3(randomX, randomY, 0), Quaternion.identity);
+            spawnedPrefab.AddComponent<PrefabMover>().SetMoveParameters(endX, Random.Range(minSpeed, maxSpeed));
+        }
+    }
     }
 
     void Update()
