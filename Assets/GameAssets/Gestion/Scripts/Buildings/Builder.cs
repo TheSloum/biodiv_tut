@@ -328,7 +328,8 @@ public class Builder : MonoBehaviour
                 {
                     spriteRenderer.sprite = baseSprite;
                 }
-
+                PauseInfo.SetActive(false);
+                notEnothRessourse.SetActive(false);
                 running = false;
                 progress = 0f;
 

@@ -22,4 +22,4 @@ MonoBehaviour:
   - Je reviendrai vers vous en cas de besoin. Bonne chance !
   position: {x: -256, y: -93, z: 0}
   size: {x: 316, y: 0, z: 0}
-  character: {fileID: 0}
+  spriteList: []

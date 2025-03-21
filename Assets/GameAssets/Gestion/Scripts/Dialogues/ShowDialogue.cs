@@ -11,14 +11,24 @@ public class ShowDialogue : MonoBehaviour
     [SerializeField] TextMeshPro textMeshPro;
     [SerializeField] GameObject box;
     [SerializeField] RectTransform nextIco;
-    
+     
     public int currentDialogueIndex = 0;
     private bool isTextAnimating = false;
     private Coroutine typingCoroutine;
     private Vector2 startSize;
     private Vector3 startScale;
 
-    private Sprite currentSprite;
+
+    public SpriteRenderer currentSprite;
+    
+    public GameObject character;
+
+
+
+    public float bobHeight = 1f;
+    public float bobSpeed = 3f; 
+
+    private Vector3 originalPosition;
 
     private void Awake()
     {
@@ -36,6 +46,8 @@ public class ShowDialogue : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         startSize = rectTransform.sizeDelta;
+
+        originalPosition = character.transform.localPosition;
     }
 
     
@@ -49,6 +61,31 @@ public class ShowDialogue : MonoBehaviour
         StartDialogue(dialogue); 
     }
 
+     IEnumerator BobUpAndDown()
+    {
+        float elapsedTime = 0f;
+        Vector3 targetPosition = originalPosition + Vector3.up * bobHeight;
+
+        while (elapsedTime < 1f / bobSpeed)
+        {
+            character.transform.localPosition  = Vector3.Lerp(originalPosition, targetPosition, elapsedTime * bobSpeed);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        character.transform.localPosition  = targetPosition;
+
+        elapsedTime = 0f;
+        while (elapsedTime < 1f / bobSpeed)
+        {
+            character.transform.localPosition  = Vector3.Lerp(targetPosition, originalPosition, elapsedTime * bobSpeed);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        character.transform.localPosition  = originalPosition;
+    }
+
 
     public void DialogueBox(Speech dialogue)
     {        Materials.instance.canMove = false;
@@ -59,6 +96,7 @@ public class ShowDialogue : MonoBehaviour
         RectTransform currentrectTransform = GetComponent<RectTransform>();
         currentrectTransform.anchoredPosition = dialogue.position;
           currentDialogueIndex = 0;
+
         RectTransform rectTransform = textMeshPro.GetComponent<RectTransform>();
         Vector2 vector2Size = new Vector2(dialogue.size.x * 0.3f, dialogue.size.y * 0.3f);
         rectTransform.pivot = new Vector2(0, 1);
@@ -80,6 +118,9 @@ public class ShowDialogue : MonoBehaviour
     private void StartDialogue(Speech dialogue)
     {
         currentDialogueIndex = 0;
+        
+        StartCoroutine(BobUpAndDown());
+                        currentSprite.sprite = dialogue.spriteList[currentDialogueIndex];
         typingCoroutine = StartCoroutine(TypeText(dialogue.textList[currentDialogueIndex]));
         StartCoroutine(WaitForInput(dialogue));
     }
@@ -135,6 +176,8 @@ public class ShowDialogue : MonoBehaviour
                     currentDialogueIndex++;
                     if (currentDialogueIndex < dialogue.textList.Count)
                     {
+        StartCoroutine(BobUpAndDown());
+                        currentSprite.sprite = dialogue.spriteList[currentDialogueIndex];
                         typingCoroutine = StartCoroutine(TypeText(dialogue.textList[currentDialogueIndex]));
                     }
                     else
@@ -147,6 +190,8 @@ public class ShowDialogue : MonoBehaviour
             yield return null;
         }
     }
+
+
 
     private void CloseDialogueBox()
     {

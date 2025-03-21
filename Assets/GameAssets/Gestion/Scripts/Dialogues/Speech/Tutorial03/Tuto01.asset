@@ -17,4 +17,5 @@ MonoBehaviour:
     le <b>centre de recherche</b>.
   position: {x: -256, y: -93, z: 0}
   size: {x: 316, y: 0, z: 0}
-  character: {fileID: 0}
+  spriteList:
+  - {fileID: 21300000, guid: 4f480d13c687bab43a1188eae2fa6c21, type: 3}
