@@ -20448,7 +20448,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 897527901}
-  - {fileID: 1197460119}
   - {fileID: 662529431}
   - {fileID: 355404254}
   - {fileID: 489442237}
@@ -67480,11 +67479,11 @@ MonoBehaviour:
   dialogueMasking: {fileID: 1016531428}
   bar0Hide: {fileID: 1451703633}
   bar1Hide: {fileID: 1391366529}
-  Blink1: {fileID: 0}
-  Blink2: {fileID: 0}
-  Blink3: {fileID: 0}
-  Blink4: {fileID: 0}
-  Blink5: {fileID: 0}
+  Blink1: {fileID: 1209256567}
+  Blink2: {fileID: 1881279172}
+  Blink3: {fileID: 786353739}
+  Blink4: {fileID: 116566085}
+  Blink5: {fileID: 699641728}
 --- !u!1 &7633687358449335658
 GameObject:
   m_ObjectHideFlags: 0
