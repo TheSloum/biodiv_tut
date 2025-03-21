@@ -460,7 +460,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -6434,7 +6434,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -9920,7 +9920,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -11768,7 +11768,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -15747,7 +15747,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -18311,7 +18311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &963464542
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18372,7 +18372,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 963464544}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -19955,7 +19955,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -23481,7 +23481,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -24379,7 +24379,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -29437,7 +29437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1454677914
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33866,7 +33866,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -36370,7 +36370,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -38781,7 +38781,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -42490,7 +42490,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -43787,7 +43787,7 @@ MonoBehaviour:
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -67587,7 +67587,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7633687358449335659
 RectTransform:
   m_ObjectHideFlags: 0
