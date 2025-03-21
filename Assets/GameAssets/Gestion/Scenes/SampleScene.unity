@@ -20477,6 +20477,8 @@ MonoBehaviour:
   startYMax: 3600
   minSpeed: 8
   maxSpeed: 25
+  startXMin: -1911
+  startXMax: 1847
 --- !u!1 &1051846981
 GameObject:
   m_ObjectHideFlags: 0
