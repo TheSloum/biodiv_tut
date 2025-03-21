@@ -11,7 +11,7 @@ public class Unlock : MonoBehaviour
     public Sprite lockedSprite;
     public Sprite confirmNormalSprite;
     public Sprite confirmInsufficientSprite;
-
+    public List<Button> otherButtons;
     [System.Serializable]
     public class ButtonBuildingPair
     {
@@ -46,7 +46,24 @@ public class Unlock : MonoBehaviour
                 pair.button.interactable = true;
             }
         }
+
+        foreach (Button btn in otherButtons)
+        {
+            btn.onClick.AddListener(ResetSelection);
+        }
     }
+    private void ResetSelection()
+    {
+        if (lastSelectedButton != null)
+        {
+            SetButtonSprite(lastSelectedButton, lockedSprite, selectedSprite);
+            lastSelectedButton.interactable = true;
+            lastSelectedButton = null;
+        }
+
+        confirmButton.SetActive(false);
+    }
+
 
     void Update()
     {
@@ -170,5 +187,26 @@ public class Unlock : MonoBehaviour
     {
         Image confirmButtonImage = confirmButton.GetComponent<Image>();
         confirmButtonImage.sprite = sprite;
+
+        if (!confirmButton.activeSelf)
+        {
+            confirmButtonImage.sprite = confirmNormalSprite;
+        }
     }
+    void OnDisable()
+    {
+        if (lastSelectedButton != null)
+        {
+            SetButtonSprite(lastSelectedButton, lockedSprite, selectedSprite);
+            lastSelectedButton.interactable = true;
+            lastSelectedButton = null;
+        }
+
+        if (confirmButton != null)
+        {
+            SetConfirmButtonSprite(confirmNormalSprite);
+            confirmButton.SetActive(false);
+        }
+    }
+
 }

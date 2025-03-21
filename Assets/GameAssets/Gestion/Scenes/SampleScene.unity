@@ -29607,6 +29607,11 @@ MonoBehaviour:
   lockedSprite: {fileID: 21300000, guid: c5d1bfee204c27e498a9e71ef1ebfc73, type: 3}
   confirmNormalSprite: {fileID: 21300000, guid: a28541afa3904e446b27f1b6055c6b2e, type: 3}
   confirmInsufficientSprite: {fileID: 21300000, guid: e7d12fbc8c0a7e64fb2b0f61146cbd58, type: 3}
+  otherButtons:
+  - {fileID: 1615011938}
+  - {fileID: 1476129013}
+  - {fileID: 126388841}
+  - {fileID: 1837322576}
   buttonBuildingPairs:
   - button: {fileID: 7432377385701401925}
     building: {fileID: 11400000, guid: ad26be01618016a4596db49c4914fc68, type: 2}
@@ -43054,8 +43059,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Ach\xE8te un plan de construction"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4f5540ef2fb9dee4b8c664eaf39edadb, type: 2}
-  m_sharedMaterial: {fileID: 2060749522083482201, guid: 4f5540ef2fb9dee4b8c664eaf39edadb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
