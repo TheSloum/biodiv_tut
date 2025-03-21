@@ -9,17 +9,17 @@ public class LoadManager : MonoBehaviour
 {
     public static LoadManager instance;
 
-public GameObject resumeButton;
-public GameObject resumeButtonDis;
+    public GameObject resumeButton;
+    public GameObject resumeButtonDis;
 
     public bool resumeLoad;
     public string saveDate = null;
 
 
-    #if UNITY_WEBGL && !UNITY_EDITOR
+#if UNITY_WEBGL && !UNITY_EDITOR
 public string folderPath = Path.Combine(Application.persistentDataPath, "Sauvegardes");
 #else
-public string folderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+    public string folderPath = Path.Combine(Application.dataPath, "Sauvegardes");
 #endif
 
 
@@ -60,15 +60,12 @@ public string folderPath = Path.Combine(Application.dataPath, "Sauvegardes");
 
     bool IsFolderEmpty(string path)
     {
-        Debug.Log("1");
         if (!Directory.Exists(path))
         {
-        Debug.Log("2");
             Debug.LogWarning("The folder does not exist.");
             return true; // Consider nonexistent folders as empty
         }
 
-        Debug.Log(Directory.GetFiles(path).Length == 0 && Directory.GetDirectories(path).Length == 0);
         return Directory.GetFiles(path).Length == 0 && Directory.GetDirectories(path).Length == 0;
     }
     public void Resume()

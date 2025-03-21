@@ -53,7 +53,6 @@ public class Materials : MonoBehaviour
     {
         if (type == LogType.Error || type == LogType.Exception)
         {
-            Debug.Log("Error Detected: " + logString);
             if (errorIndicator != null)
             {
                 errorIndicator.SetActive(true);
@@ -72,7 +71,6 @@ public class Materials : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
-            Debug.Log("Materials.instance initialisé.");
         }
         else
         {
@@ -83,7 +81,6 @@ public class Materials : MonoBehaviour
 
         if (menuFirst == true && LoadManager.instance == null && SceneManager.GetActiveScene().name != "Exploration_main")
         {
-            Debug.Log("loool");
             SceneManager.LoadScene("Menue");
             menuFirst = false;
         }
@@ -92,14 +89,11 @@ public class Materials : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("🔄 Scène chargée : " + scene.name);
-
         foreach (GameObject obj in Resources.FindObjectsOfTypeAll<GameObject>())
         {
             if (obj.CompareTag("Victory"))
             {
                 victoryScreen = obj;
-                Debug.Log("✅ VictoryScreen trouvé même s'il est désactivé !");
                 break;
             }
         }
@@ -123,7 +117,6 @@ public class Materials : MonoBehaviour
             mat_1 = GameDataSaver.instance.mat_1;
             mat_2 = GameDataSaver.instance.mat_2;
             price = GameDataSaver.instance.price;
-            Debug.Log($"Materials chargés: Bois = {mat_0}, Pierre = {mat_1}, Fer = {mat_2}, Price = {price}");
 
             ResetSessionCounts();
         }
@@ -153,7 +146,6 @@ public class Materials : MonoBehaviour
             {
                 victoryScreen.SetActive(true);
                 victory = true;
-                Debug.Log("🎉 Victoire !");
             }
             else
             {
@@ -182,9 +174,6 @@ public class Materials : MonoBehaviour
         {
             GameDataSaver.instance.mat_0 = mat_0;
         }
-        Debug.Log(sessionStone + "sessionStone");
-        Debug.Log(amount + " Pierres amount");
-        Debug.Log(mat_0 + " Pierres");
     }
 
     public void AddIron(int amount)
@@ -203,6 +192,5 @@ public class Materials : MonoBehaviour
         sessionWood = 0;
         sessionStone = 0;
         sessionIron = 0;
-        Debug.Log("🔄 Compteurs session reset.");
     }
 }

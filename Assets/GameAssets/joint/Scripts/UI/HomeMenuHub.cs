@@ -10,10 +10,10 @@ public class HomeMenuHub : MonoBehaviour
     public Button button1;
     public Button button2;
     public Button button3;
-    public Button button4; // Option
+    public Button button4;
     public Button button5;
     public Button button6;
-    public Button returnToMenuButton; // 📌 Bouton pour fermer ParametreMenu
+    public Button returnToMenuButton;
 
     public Color normalTextColor = Color.black;
     public Color hoverTextColor = Color.blue;
@@ -64,7 +64,6 @@ public class HomeMenuHub : MonoBehaviour
         if (parametreMenu != null)
         {
             parametreMenu.SetActive(false);
-            Debug.Log("[HomeMenuHub] ParametreMenu désactivé au démarrage.");
         }
         else
         {
@@ -90,7 +89,6 @@ public class HomeMenuHub : MonoBehaviour
 
     void Button1Clicked()
     {
-        Debug.Log("Button 1 clicked!");
     }
 
     void Button2Clicked()
@@ -100,17 +98,14 @@ public class HomeMenuHub : MonoBehaviour
 
     void Button3Clicked()
     {
-        Debug.Log("Button 3 clicked!");
     }
 
     void Button4Clicked()
     {
-        Debug.Log("[HomeMenuHub] Bouton 4 (Option) cliqué.");
 
         if (parametreMenu != null)
         {
             parametreMenu.SetActive(true);
-            Debug.Log("[HomeMenuHub] ParametreMenu est maintenant visible !");
         }
         else
         {
@@ -120,12 +115,10 @@ public class HomeMenuHub : MonoBehaviour
 
     void ReturnToMenuClicked()
     {
-        Debug.Log("[HomeMenuHub] Bouton ReturnToMenu cliqué, fermeture de ParametreMenu.");
 
         if (parametreMenu != null)
         {
             parametreMenu.SetActive(false);
-            Debug.Log("[HomeMenuHub] ParametreMenu est maintenant invisible !");
         }
         else
         {

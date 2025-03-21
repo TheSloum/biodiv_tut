@@ -60,8 +60,8 @@ public class HideStart : MonoBehaviour
     [SerializeField] private GameObject dialogueMasking;
 
 
-public SpriteRenderer bar0Hide;
-public SpriteRenderer bar1Hide;
+    public SpriteRenderer bar0Hide;
+    public SpriteRenderer bar1Hide;
 
     public GameObject Blink1;
     public GameObject Blink2;
@@ -188,10 +188,9 @@ public SpriteRenderer bar1Hide;
     private IEnumerator MoveToTarget(Transform target, float moveSpeed)
     {
         Materials.instance.canMove = false;
-                Debug.Log("11111111111111");
+
         while (Vector3.Distance(cameraObject.transform.position, target.position) > 0.05f)
         {
-                Debug.Log("2222222222");
             cameraObject.transform.position = Vector3.Lerp(cameraObject.transform.position, target.position, Time.unscaledDeltaTime * moveSpeed);
             yield return null;
         }
@@ -255,15 +254,14 @@ public SpriteRenderer bar1Hide;
         {
             Materials.instance.textDone = false;
             ShowDialogue.Instance.DialogueBox(speech[1]);
-            
-        Color colorBar0 = bar0Hide.color;
-        Color colorBar1 = bar1Hide.color;
+
+            Color colorBar0 = bar0Hide.color;
+            Color colorBar1 = bar1Hide.color;
             colorBar0.a = 0f;
             colorBar1.a = 0f;
-            
+
             bar0Hide.color = colorBar0;
             bar1Hide.color = colorBar1;
-            Debug.Log(colorBar0.a);
             dialogueMasking.SetActive(true);
             StartCoroutine(WaitForTextEnd(1));
             step = 1;
@@ -415,56 +413,57 @@ public SpriteRenderer bar1Hide;
 
     }
 
-    private IEnumerator BlinkGUI(){
-        while (ShowDialogue.Instance.currentDialogueIndex <= 4)  
+    private IEnumerator BlinkGUI()
+    {
+        while (ShowDialogue.Instance.currentDialogueIndex <= 4)
         {
             Blink1.SetActive(!Blink1.activeSelf);
-            
+
             yield return new WaitForSecondsRealtime(0.5f);
         }
-        
+
         Blink1.SetActive(false);
 
-        while (ShowDialogue.Instance.currentDialogueIndex == 5)  
+        while (ShowDialogue.Instance.currentDialogueIndex == 5)
         {
             Blink2.SetActive(!Blink2.activeSelf);
-            
+
             yield return new WaitForSecondsRealtime(0.5f);
         }
-        
-        Blink2.SetActive(false);
-        
 
-        while (ShowDialogue.Instance.currentDialogueIndex == 6)  
+        Blink2.SetActive(false);
+
+
+        while (ShowDialogue.Instance.currentDialogueIndex == 6)
         {
             Blink3.SetActive(!Blink3.activeSelf);
-            
+
             yield return new WaitForSecondsRealtime(0.5f);
         }
-        
+
         Blink3.SetActive(false);
 
 
-        while (ShowDialogue.Instance.currentDialogueIndex == 7)  
+        while (ShowDialogue.Instance.currentDialogueIndex == 7)
         {
             Blink4.SetActive(!Blink4.activeSelf);
-            
+
             yield return new WaitForSecondsRealtime(0.5f);
         }
-        
-        Blink4.SetActive(false);
-        
-        
 
-        while (ShowDialogue.Instance.currentDialogueIndex == 8)  
+        Blink4.SetActive(false);
+
+
+
+        while (ShowDialogue.Instance.currentDialogueIndex == 8)
         {
             Blink5.SetActive(!Blink5.activeSelf);
-            
+
             yield return new WaitForSecondsRealtime(0.5f);
         }
-        
+
         Blink5.SetActive(false);
-        
+
 
     }
     private IEnumerator WaitForTextEnd(int index)
@@ -472,15 +471,14 @@ public SpriteRenderer bar1Hide;
         yield return new WaitUntil(() => Materials.instance.textDone == true);
         if (index == 1)
         {
-        Color colorBar0 = bar0Hide.color;
-        Color colorBar1 = bar1Hide.color;
-            
+            Color colorBar0 = bar0Hide.color;
+            Color colorBar1 = bar1Hide.color;
+
             colorBar0.a = 1f;
             colorBar1.a = 1f;
 
             bar0Hide.color = colorBar0;
             bar1Hide.color = colorBar1;
-            Debug.Log(colorBar0);
 
             dialogueMasking.SetActive(false);
         }
@@ -526,7 +524,7 @@ public SpriteRenderer bar1Hide;
             step = 3;
             unlock3.onClick.AddListener(OnButtonCloseClicked);
         }
-        
+
     }
 
 
