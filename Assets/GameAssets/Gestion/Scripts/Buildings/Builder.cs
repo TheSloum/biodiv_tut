@@ -143,9 +143,11 @@ public class Builder : MonoBehaviour
         closeMenuButton = closeMenu.GetComponent<Button>();
         closeMenuButton2 = closeMenu2.GetComponent<Button>();
 
+        closeMenuButton.onClick.RemoveAllListeners();
         closeMenuButton.onClick.AddListener(OnCloseMenuClicked);
-        closeMenuButton2.onClick.AddListener(OnCloseMenuClicked);
 
+        closeMenuButton2.onClick.RemoveAllListeners();
+        closeMenuButton2.onClick.AddListener(OnCloseMenuClicked);
         destroyB = destroyButton.GetComponent<Button>();
         upgrade1 = upgradeButton1.GetComponent<Button>();
         upgrade2 = upgradeButton2.GetComponent<Button>();
