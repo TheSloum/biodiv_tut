@@ -158,7 +158,7 @@ public class CamMov : MonoBehaviour
     public void FastForward()
     {
         SoundManager.instance.PlaySFX(sfxClip);
-        Time.timeScale = 4;
+        Time.timeScale = 5;
         UpdateButtonSprites();
     }
 
