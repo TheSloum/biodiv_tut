@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class HomeMenuHub : MonoBehaviour
 {
+    public AudioClip sfxClip;
     public Button button1;
     public Button button2;
     public Button button3;
@@ -89,20 +90,23 @@ public class HomeMenuHub : MonoBehaviour
 
     void Button1Clicked()
     {
+        SoundManager.instance.PlaySFX(sfxClip);
     }
 
     void Button2Clicked()
     {
+        SoundManager.instance.PlaySFX(sfxClip);
         SceneManager.LoadScene("SampleScene");
     }
 
     void Button3Clicked()
     {
+        SoundManager.instance.PlaySFX(sfxClip);
     }
 
     void Button4Clicked()
     {
-
+        SoundManager.instance.PlaySFX(sfxClip);
         if (parametreMenu != null)
         {
             parametreMenu.SetActive(true);
@@ -115,7 +119,7 @@ public class HomeMenuHub : MonoBehaviour
 
     void ReturnToMenuClicked()
     {
-
+        SoundManager.instance.PlaySFX(sfxClip);
         if (parametreMenu != null)
         {
             parametreMenu.SetActive(false);
@@ -128,6 +132,7 @@ public class HomeMenuHub : MonoBehaviour
 
     void Button5Clicked()
     {
+        SoundManager.instance.PlaySFX(sfxClip);
         if (canvas != null && canvasCredit != null)
         {
             canvas.SetActive(false);
@@ -138,6 +143,7 @@ public class HomeMenuHub : MonoBehaviour
 
     void Button6Clicked()
     {
+        SoundManager.instance.PlaySFX(sfxClip);
         Application.Quit();
     }
 

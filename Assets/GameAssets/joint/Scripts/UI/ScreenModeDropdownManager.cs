@@ -1,40 +1,110 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.EventSystems; // NÃ©cessaire pour gÃ©rer les Ã©vÃ©nements UI
 
 public class ScreenModeDropdownManager : MonoBehaviour
 {
-    [Header("Dropdown pour le mode d'écran")]
-    public Dropdown screenModeDropdown; 
+    [Header("Boutons pour changer le mode d'Ã©cran")]
+    public Button fullScreenButton;
+    public Button windowedButton;
+
+    [Header("Textes des boutons")]
+    public TextMeshProUGUI fullScreenText;
+    public TextMeshProUGUI windowedText;
+
+    [Header("Sprites pour l'Ã©tat des boutons")]
+    public Sprite fullScreenActiveSprite;
+    public Sprite fullScreenInactiveSprite;
+    public Sprite windowedActiveSprite;
+    public Sprite windowedInactiveSprite;
+
+    [Header("Couleurs du texte")]
+    public Color activeTextColor = Color.white;
+    public Color inactiveTextColor = Color.gray;
+    public Color hoverTextColor = Color.white; // Couleur au survol
+
+    private bool isFullScreen;
 
     private void Start()
     {
+        // Ajouter des listeners aux boutons
+        fullScreenButton.onClick.AddListener(SetFullScreen);
+        windowedButton.onClick.AddListener(SetWindowed);
 
-        if (screenModeDropdown != null)
-        {
-            screenModeDropdown.ClearOptions();
-            screenModeDropdown.AddOptions(new System.Collections.Generic.List<string> { "Plein Écran", "Fenêtré" });
+        // Ajouter les Ã©vÃ©nements de survol
+        AddHoverEffects(fullScreenButton, true);
+        AddHoverEffects(windowedButton, false);
 
-            screenModeDropdown.value = Screen.fullScreen ? 0 : 1;
-
-
-            screenModeDropdown.onValueChanged.AddListener(OnScreenModeChanged);
-        }
+        // Initialiser l'Ã©tat des boutons et textes
+        isFullScreen = Screen.fullScreen;
+        UpdateButtonUI(isFullScreen);
     }
 
-    private void OnScreenModeChanged(int index)
+    private void SetFullScreen()
     {
-        if (index == 0) // Plein Écran
-        {
-            Screen.fullScreenMode = FullScreenMode.FullScreenWindow; 
-            Screen.fullScreen = true;
-            Debug.Log("Mode activé : Plein Écran");
-        }
-        else if (index == 1) // Fenêtré
-        {
-            Screen.fullScreenMode = FullScreenMode.Windowed; 
-            Screen.fullScreen = false;
-            Debug.Log("Mode activé : Fenêtré");
-        }
+        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        Screen.fullScreen = true;
+        isFullScreen = true;
+        UpdateButtonUI(true);
+        Debug.Log("Mode activÃ© : Plein Ã©cran");
+    }
+
+    private void SetWindowed()
+    {
+        Screen.fullScreenMode = FullScreenMode.Windowed;
+        Screen.fullScreen = false;
+        isFullScreen = false;
+        UpdateButtonUI(false);
+        Debug.Log("Mode activÃ© : FenÃªtrÃ©");
+    }
+
+    private void UpdateButtonUI(bool isFullScreen)
+    {
+        Image fullScreenImage = fullScreenButton.GetComponent<Image>();
+        Image windowedImage = windowedButton.GetComponent<Image>();
+
+        // Changer les sprites
+        fullScreenImage.sprite = isFullScreen ? fullScreenActiveSprite : fullScreenInactiveSprite;
+        windowedImage.sprite = isFullScreen ? windowedInactiveSprite : windowedActiveSprite;
+
+        // Changer la couleur du texte
+        fullScreenText.color = isFullScreen ? activeTextColor : inactiveTextColor;
+        windowedText.color = isFullScreen ? inactiveTextColor : activeTextColor;
+    }
+
+    private void AddHoverEffects(Button button, bool isFullScreenButton)
+    {
+        EventTrigger trigger = button.gameObject.AddComponent<EventTrigger>();
+
+        // Survol (PointerEnter)
+        EventTrigger.Entry entryEnter = new EventTrigger.Entry();
+        entryEnter.eventID = EventTriggerType.PointerEnter;
+        entryEnter.callback.AddListener((data) => { OnHoverEnter(isFullScreenButton); });
+        trigger.triggers.Add(entryEnter);
+
+        // Sortie de survol (PointerExit)
+        EventTrigger.Entry entryExit = new EventTrigger.Entry();
+        entryExit.eventID = EventTriggerType.PointerExit;
+        entryExit.callback.AddListener((data) => { OnHoverExit(); });
+        trigger.triggers.Add(entryExit);
+    }
+
+    private void OnHoverEnter(bool isFullScreenButton)
+    {
+        if ((isFullScreenButton && isFullScreen) || (!isFullScreenButton && !isFullScreen))
+            return; // Ne rien faire si le bouton est dÃ©jÃ  actif
+
+        // Appliquer l'effet hover
+        Image buttonImage = isFullScreenButton ? fullScreenButton.GetComponent<Image>() : windowedButton.GetComponent<Image>();
+        TextMeshProUGUI buttonText = isFullScreenButton ? fullScreenText : windowedText;
+
+        buttonImage.sprite = isFullScreenButton ? fullScreenActiveSprite : windowedActiveSprite;
+        buttonText.color = hoverTextColor;
+    }
+
+    private void OnHoverExit()
+    {
+        UpdateButtonUI(isFullScreen);
     }
 }
-

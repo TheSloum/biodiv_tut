@@ -35,6 +35,7 @@ public class CamMov : MonoBehaviour
     // UI et Sprites
     [Header("UI Buttons")]
     public Button pauseButton;
+    public AudioClip sfxClip;
     public Button playButton;
     public Button speedUpButton;
 
@@ -142,6 +143,7 @@ public class CamMov : MonoBehaviour
 
     public void TogglePause()
     {
+        SoundManager.instance.PlaySFX(sfxClip);
         if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
@@ -155,12 +157,14 @@ public class CamMov : MonoBehaviour
 
     public void FastForward()
     {
+        SoundManager.instance.PlaySFX(sfxClip);
         Time.timeScale = 4;
         UpdateButtonSprites();
     }
 
     public void ResetSpeed()
     {
+        SoundManager.instance.PlaySFX(sfxClip);
         Time.timeScale = 1;
         UpdateButtonSprites();
     }

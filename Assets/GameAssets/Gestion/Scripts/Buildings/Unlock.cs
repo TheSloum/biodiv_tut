@@ -12,6 +12,7 @@ public class Unlock : MonoBehaviour
     public Sprite confirmNormalSprite;
     public Sprite confirmInsufficientSprite;
     public List<Button> otherButtons;
+    public AudioClip sfxClip;
     [System.Serializable]
     public class ButtonBuildingPair
     {
@@ -122,7 +123,7 @@ public class Unlock : MonoBehaviour
                 {
                     building.Unlock();
                     Materials.instance.price -= tempPrice;
-
+                    SoundManager.instance.PlaySFX(sfxClip);
                     if (tempButton != null)
                     {
                         SetButtonSprite(tempButton, baseSprite, selectedSprite);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIbuttons : MonoBehaviour
 {
     public AudioClip sfxClip;
-    public AudioClip musicClip;
+
     [SerializeField] private GameObject unlockMenu;
     void Start()
     {
@@ -15,6 +15,6 @@ public class UIbuttons : MonoBehaviour
     {
         unlockMenu.SetActive(true);
         Materials.instance.canMove = false;
-
+        SoundManager.instance.PlaySFX(sfxClip);
     }
 }

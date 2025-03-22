@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class HideStart : MonoBehaviour
 {
 
@@ -13,6 +12,7 @@ public class HideStart : MonoBehaviour
 
     public GameObject pauser;
 
+    public AudioClip sfxClip;
 
     public TMP_InputField inputField;
     public Button submitButton;
@@ -93,7 +93,7 @@ public class HideStart : MonoBehaviour
 
     public void tutoChoose(bool tuto)
     {
-
+        SoundManager.instance.PlaySFX(sfxClip);
         hideInput.SetActive(false);
         HideGui.SetActive(true);
         if (tuto)
@@ -174,7 +174,7 @@ public class HideStart : MonoBehaviour
     private void OnSubmit()
     {
         string userInput = inputField.text;
-
+        SoundManager.instance.PlaySFX(sfxClip);
         if (!string.IsNullOrEmpty(userInput))
         {
             Materials.instance.townName = userInput;

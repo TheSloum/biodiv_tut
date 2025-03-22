@@ -9,7 +9,7 @@ public class GalleryPage : MonoBehaviour
     public GameObject infoCardPrefab;
     public List<Fishes> fishesList;
     public GameObject containerToMove;
-
+    public AudioClip sfxClip;
     public Button btnLeft;
     public Button btnRight;
 
@@ -89,7 +89,7 @@ public class GalleryPage : MonoBehaviour
 
             fishPixelImage.sprite = fish.fishSpritePixel;
             fishPixelImage.gameObject.SetActive(fish.fishSpritePixel != null);
-
+            SoundManager.instance.PlaySFX(sfxClip);
             infoCardPrefab.SetActive(true);
         }
     }
@@ -108,12 +108,15 @@ public class GalleryPage : MonoBehaviour
     public void GalleryClose()
     {
         gameObject.SetActive(false);
+        SoundManager.instance.PlaySFX(sfxClip);
     }
 
     public void MoveLeft()
     {
         if (currentIndex < maxIndex && !isMoving)
         {
+            SoundManager.instance.PlaySFX(sfxClip);
+
             currentIndex++;
             float newXPosition = containerToMove.transform.localPosition.x - moveDistance;
             StartCoroutine(AnimateMove(newXPosition));
@@ -124,6 +127,7 @@ public class GalleryPage : MonoBehaviour
     {
         if (currentIndex > 0 && !isMoving)
         {
+            SoundManager.instance.PlaySFX(sfxClip);
             currentIndex--;
             float newXPosition = containerToMove.transform.localPosition.x + moveDistance;
             StartCoroutine(AnimateMove(newXPosition));

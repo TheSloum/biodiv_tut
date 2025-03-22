@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class PageManagement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public AudioClip sfxClip;
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     public void ClosePage(GameObject Page)
     {
+        SoundManager.instance.PlaySFX(sfxClip);
         Page.SetActive(false);
     }
-    public void OpenPage(GameObject Page){
+    public void OpenPage(GameObject Page)
+    {
+        SoundManager.instance.PlaySFX(sfxClip);
         Page.SetActive(true);
-}
+    }
 }

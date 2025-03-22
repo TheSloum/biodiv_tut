@@ -41,6 +41,8 @@ public class Builder : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     public AudioClip sfxClip;
+    public AudioClip destroy;
+    public AudioClip clic;
     public int buildState = 0;
     private int buildID = 0;
 
@@ -135,8 +137,8 @@ public class Builder : MonoBehaviour
 
     private void Awake()
     {
-        
-         barFs = cycleBar.transform.Find("CycleBarP").GetComponent<SpriteRenderer>();
+
+        barFs = cycleBar.transform.Find("CycleBarP").GetComponent<SpriteRenderer>();
         barBs = cycleBar.transform.Find("CycleBarP (1)").GetComponent<SpriteRenderer>();
         closeMenuButton = closeMenu.GetComponent<Button>();
         closeMenuButton2 = closeMenu2.GetComponent<Button>();
@@ -277,11 +279,13 @@ public class Builder : MonoBehaviour
 
     public void OnMoreInfoClicked()
     {
+        SoundManager.instance.PlaySFX(clic);
         MoreInfoClose.onClick.AddListener(() => OnMoreInfoCloseClicked());
         moreInfoPanel.SetActive(true);
     }
     public void OnMoreInfoCloseClicked()
     {
+        SoundManager.instance.PlaySFX(clic);
         moreInfoPanel.SetActive(false);
     }
 
@@ -303,7 +307,7 @@ public class Builder : MonoBehaviour
                 }
 
                 Materials.instance.price -= (int)destroyCost;
-
+                SoundManager.instance.PlaySFX(destroy);
                 Materials.instance.mat_0 -= (int)(buildingToDestroy.mat_0 / 2f);
                 Materials.instance.mat_1 -= (int)(buildingToDestroy.mat_1 / 2f);
                 Materials.instance.mat_2 -= (int)(buildingToDestroy.mat_2 / 2f);
@@ -522,6 +526,7 @@ public class Builder : MonoBehaviour
     {
         if (editing)
         {
+            SoundManager.instance.PlaySFX(clic);
             if (buildState == 50)
             {
                 menuRecherche.SetActive(true);
@@ -669,12 +674,14 @@ public class Builder : MonoBehaviour
 
     public void HideManageMenu()
     {
+        SoundManager.instance.PlaySFX(clic);
         manageMenu.SetActive(false);
     }
 
 
     private void ShowBuildingMenu()
     {
+        SoundManager.instance.PlaySFX(clic);
         validation.SetActive(false);
         buildingMenu.SetActive(true);
         closeMenu.SetActive(true);
@@ -858,7 +865,7 @@ public class Builder : MonoBehaviour
         {
             cycleBar.transform.localPosition = new Vector3(0, 83, 0);
             barFs.sortingOrder = -2;
-                barBs.sortingOrder = -3;
+            barBs.sortingOrder = -3;
         }
 
         if (editing == true && (Materials.instance.mat_0 >= (-1 * building.mat_0) &&
@@ -918,6 +925,7 @@ public class Builder : MonoBehaviour
 
     private void OnCloseMenuClicked()
     {
+        SoundManager.instance.PlaySFX(clic);
         HideBuildingMenu();
         HideManageMenu();
         editing = false;
@@ -928,6 +936,7 @@ public class Builder : MonoBehaviour
 
     public void HideBuildingMenu()
     {
+        SoundManager.instance.PlaySFX(clic);
         foreach (Transform child in buttonPanel)
         {
             if (!child.CompareTag("ButtonPriority"))
@@ -1008,6 +1017,7 @@ public class Builder : MonoBehaviour
 
     public void StopCycle()
     {
+        SoundManager.instance.PlaySFX(clic);
         running = false;
         if (buildState != 0)
         {
@@ -1025,7 +1035,7 @@ public class Builder : MonoBehaviour
 
     public void ContinueCycle()
     {
-
+        SoundManager.instance.PlaySFX(sfxClip);
         running = true;
         if (buildState != 0)
         {
