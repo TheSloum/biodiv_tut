@@ -674,7 +674,6 @@ public class Builder : MonoBehaviour
 
     public void HideManageMenu()
     {
-        SoundManager.instance.PlaySFX(clic);
         manageMenu.SetActive(false);
     }
 
@@ -936,7 +935,6 @@ public class Builder : MonoBehaviour
 
     public void HideBuildingMenu()
     {
-        SoundManager.instance.PlaySFX(clic);
         foreach (Transform child in buttonPanel)
         {
             if (!child.CompareTag("ButtonPriority"))
@@ -1035,7 +1033,7 @@ public class Builder : MonoBehaviour
 
     public void ContinueCycle()
     {
-        SoundManager.instance.PlaySFX(sfxClip);
+        SoundManager.instance.PlaySFX(clic);
         running = true;
         if (buildState != 0)
         {
