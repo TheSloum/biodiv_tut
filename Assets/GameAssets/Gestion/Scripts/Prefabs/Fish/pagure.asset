@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 2-100m
   eat: "d\xE9tritivore \xE0 tendance carnivore"
   lifeTime: 10 ans
-  is_unlocked: 0
+  is_unlocked: 1
   fishDes: "\"Le grand pagure\" ou bernard- l'ermite, est un crustac\xE9 qui \xE0
     besoin de trouver une coquille vide de gast\xE9ropode pour prot\xE9ger son abdomen
     mou et tr\xE8s vuln\xE9rable. Comme la plupart des membres de la famille des

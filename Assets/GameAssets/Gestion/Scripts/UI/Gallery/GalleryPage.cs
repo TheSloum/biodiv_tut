@@ -13,6 +13,7 @@ public class GalleryPage : MonoBehaviour
     public Button btnLeft;
     public Button btnRight;
     public Slider progressBar;
+    public GameObject completionReward;
     private int totalFishes;
     private TMP_Text fishNameText;
     private TMP_Text fishSizeText;
@@ -32,10 +33,15 @@ public class GalleryPage : MonoBehaviour
     private int maxIndex = 3;
     private float moveDistance = 800f;
     private float animationDuration = 0.2f;
-    private bool isMoving = false; // Empêche plusieurs animations en même temps
-
+    private bool isMoving = false;
+    private bool completionRewardDO = false;
     public void Start()
     {
+        if (completionReward != null)
+        {
+            completionReward.SetActive(false);
+        }
+
         totalFishes = fishesList.Count;
         progressBar.maxValue = 1;
         UpdateProgressBar();
@@ -59,13 +65,25 @@ public class GalleryPage : MonoBehaviour
     }
     private void UpdateProgressBar()
     {
-
-
-        if (progressBar == null) return;
+        if (progressBar == null || totalFishes == 0) return;
 
         int unlockedFishes = fishesList.FindAll(f => f.is_unlocked).Count;
-        progressBar.value = Mathf.Lerp(progressBar.value, (float)unlockedFishes / totalFishes, 0.1f);
+        float progress = (float)unlockedFishes / totalFishes;
+
+        progressBar.value = progress;
+
+        if (progress >= 1f && !completionRewardDO)
+        {
+            completionReward.SetActive(true);
+            completionRewardDO = true;
+        }
+        else if (progress < 1f)
+        {
+            completionReward.SetActive(false);
+        }
     }
+
+
 
     public static Transform FindDeepChild(Transform parent, string childName)
     {

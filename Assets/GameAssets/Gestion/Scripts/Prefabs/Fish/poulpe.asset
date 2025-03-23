@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 0-100 m
   eat: Carnivore
   lifeTime: 
-  is_unlocked: 0
+  is_unlocked: 1
   fishDes: "Le poulpe commun ou pieuvre commune vit cach\xE9  dans des cavit\xE9s
     naturelles ou artificielles. Il est capabe de mim\xE9tisme pour se cacher et
     peut projeter un jet d\u2019encre noir pour couvrir sa fuite.  Ils poss\xE8dent

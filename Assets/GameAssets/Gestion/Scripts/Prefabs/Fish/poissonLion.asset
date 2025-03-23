@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 0-85m
   eat: Carnivore
   lifeTime: 30 ans
-  is_unlocked: 0
+  is_unlocked: 1
   fishDes: "Le poisson-lion, esp\xE8ce invasive en M\xE9diterran\xE9e orientale,
     est un pr\xE9dateur nocturne qui chasse \xE0 l\u2019aff\xFBt. Il peut vivre seul
     ou en groupe et se reproduit en pondant ses \u0153ufs en eau libre. Dot\xE9 d\u2019\xE9pines

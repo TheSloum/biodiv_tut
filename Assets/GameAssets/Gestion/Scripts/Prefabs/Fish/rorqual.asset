@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: ' 0-2000m'
   eat: "Carnivore(krill, petits poissons p\xE9lagiques)"
   lifeTime: "80 \xE0 100 ans"
-  is_unlocked: 0
+  is_unlocked: 1
   fishDes: "Le rorqual commun (Balaenoptera physalus) est une esp\xE8ce de c\xE9tac\xE9
     de la famille des Balaenopteridae. Apr\xE8s la baleine bleue, et avec une longueur
     d'environ 20 m\xE8tres, c'est le deuxi\xE8me plus grand mammif\xE8re vivant sur

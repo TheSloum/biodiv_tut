@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 1-100m
   eat: Omnivore
   lifeTime: 5-10 ans
-  is_unlocked: 0
+  is_unlocked: 1
   fishDes: "Lorsqu\u2019elle se sent menac\xE9e,  elle expulse par son orifice anal
     de long filaments blanch\xE2tres collants (les tubes de Cuvier), une originalit\xE9
     qu\u2019elle partage avec sa cousine Holothuria sanctori. L'endosquelette d'Holothuria

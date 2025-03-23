@@ -193,7 +193,7 @@ public class CamMov : MonoBehaviour
             playButton.image.sprite = playSpriteInactive;
         }
 
-        if (Time.timeScale == 4)
+        if (Time.timeScale == 5)
         {
             speedUpButton.image.sprite = speedUpSpriteActive;
         }

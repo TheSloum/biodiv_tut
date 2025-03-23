@@ -25,7 +25,7 @@ MonoBehaviour:
   eat: "autotrophe, utilise la lumi\xE8re comme source d'\xE9nergie et les nutriments
     pr\xE9sents dans l\u2019eau"
   lifeTime: 
-  is_unlocked: 0
+  is_unlocked: 1
   fishDes: "La posidonie est une plante \xE0 fleurs, fix\xE9e sur des substrats durs
     ou meubles dans des eaux peu profondes. Elle forme d\u2019importants herbiers
     qui jouent un r\xF4le crucial dans l\u2019\xE9cosyst\xE8me marin, tels que l'oxyg\xE9nation

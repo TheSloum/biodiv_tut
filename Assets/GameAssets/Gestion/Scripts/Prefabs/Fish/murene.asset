@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 5-50 m
   eat: Carnivore
   lifeTime: "10 \xE0 15 ans"
-  is_unlocked: 0
+  is_unlocked: 1
   fishDes: "La mur\xE8ne est un pr\xE9dateur nocturne et territorial qui reste cach\xE9
     durant le jour. Mauvaise nageuse, elle chasse en g\xE9n\xE9ral \xE0 l\u2019aff\xFBt
     dans son repaire en attendant qu\u2019une proie passe \xE0 proximit\xE9. Ses

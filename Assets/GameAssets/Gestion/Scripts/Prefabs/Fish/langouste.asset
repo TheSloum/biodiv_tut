@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 10-150m
   eat: Omnivore
   lifeTime: 10ans
-  is_unlocked: 0
+  is_unlocked: 1
   fishDes: "Avec sa\_taille \_et ses\_antennes plus longues encore, il devrait \xEAtre
     ais\xE9 de reconna\xEEtre la langouste rouge.\_ La\_cinqui\xE8me\_paire de pattes
     locomotrices est bien plus courte que les autres.\LChez la femelle, cette paire
