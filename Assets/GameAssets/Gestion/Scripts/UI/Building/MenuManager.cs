@@ -20,27 +20,31 @@ public class MenuManager : MonoBehaviour
     public float lerpSpeed = 5f;
 
     private Vector2 currentPosition;
-
+    private Vector2 initialPosition;
 
     void Start()
     {
         minX = 0;
         maxX = moveAmount * maxSteps * -1;
 
+        initialPosition = objectToMove.anchoredPosition;
+
         leftButton.onClick.AddListener(MoveLeft);
         rightButton.onClick.AddListener(MoveRight);
 
+        ResetPosition();
+        UpdateButtonStates();
     }
+
     void Update()
     {
         if (isMoving)
         {
             currentPosition = objectToMove.anchoredPosition;
-
             float newX = Mathf.Lerp(currentPosition.x, targetX, Time.deltaTime * lerpSpeed);
-
             objectToMove.anchoredPosition = new Vector2(newX, currentPosition.y);
         }
+
         float dif = Mathf.Abs(objectToMove.anchoredPosition.x - targetX);
 
         if (dif <= 0.2f)
@@ -49,11 +53,8 @@ public class MenuManager : MonoBehaviour
             isMoving = false;
         }
 
-
-
-
+        UpdateButtonStates();
     }
-
 
     void MoveRight()
     {
@@ -74,5 +75,20 @@ public class MenuManager : MonoBehaviour
             isMoving = true;
         }
     }
+
+    void UpdateButtonStates()
+    {
+        bool hasEnoughChildren = objectToMove.childCount > 3;
+        leftButton.gameObject.SetActive(hasEnoughChildren && targetX < 0);
+        rightButton.gameObject.SetActive(hasEnoughChildren && targetX > maxX);
+    }
+
+    public void ResetPosition()
+    {
+        objectToMove.anchoredPosition = initialPosition;
+        targetX = initialPosition.x;
+        UpdateButtonStates();
+    }
+
 
 }
