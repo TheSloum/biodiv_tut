@@ -110,7 +110,7 @@ MonoBehaviour:
   rotationDownAngle: 15
   rotationSpeed: 5
   rotationThreshold: 0.00001
-  fishData: {fileID: 11400000, guid: 9dbbdba85ca3c0e47b49c6d866a4050d, type: 2}
+  fishData: {fileID: 11400000, guid: 6217e54abaa559244af15e935b08bcd1, type: 2}
 --- !u!95 &2388417884662715917
 Animator:
   serializedVersion: 5

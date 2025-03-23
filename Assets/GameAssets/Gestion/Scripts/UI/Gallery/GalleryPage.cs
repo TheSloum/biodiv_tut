@@ -12,7 +12,8 @@ public class GalleryPage : MonoBehaviour
     public AudioClip sfxClip;
     public Button btnLeft;
     public Button btnRight;
-
+    public Slider progressBar;
+    private int totalFishes;
     private TMP_Text fishNameText;
     private TMP_Text fishSizeText;
     private TMP_Text fishClassText;
@@ -35,6 +36,10 @@ public class GalleryPage : MonoBehaviour
 
     public void Start()
     {
+        totalFishes = fishesList.Count;
+        progressBar.maxValue = 1;
+        UpdateProgressBar();
+
         fishNameText = FindDeepChild(infoCardPrefab.transform, "fishNameText").GetComponent<TMP_Text>();
         fishSizeText = FindDeepChild(infoCardPrefab.transform, "fishSizeText").GetComponent<TMP_Text>();
         fishClassText = FindDeepChild(infoCardPrefab.transform, "fishClassText").GetComponent<TMP_Text>();
@@ -52,6 +57,15 @@ public class GalleryPage : MonoBehaviour
         infoCardPrefab.SetActive(false);
         UpdateButtons();
     }
+    private void UpdateProgressBar()
+    {
+
+
+        if (progressBar == null) return;
+
+        int unlockedFishes = fishesList.FindAll(f => f.is_unlocked).Count;
+        progressBar.value = Mathf.Lerp(progressBar.value, (float)unlockedFishes / totalFishes, 0.1f);
+    }
 
     public static Transform FindDeepChild(Transform parent, string childName)
     {
@@ -68,6 +82,7 @@ public class GalleryPage : MonoBehaviour
 
     public void ShowFishInfo(int fishID)
     {
+        UpdateProgressBar();
         Fishes fish = fishesList.Find(f => f.fishID == fishID);
 
         if (fish != null && fish.is_unlocked)
