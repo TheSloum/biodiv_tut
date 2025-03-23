@@ -5137,6 +5137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a206b59fcf191f548887a1a2e02fcc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0.2
 --- !u!1 &1401201397
 GameObject:
   m_ObjectHideFlags: 0
@@ -11996,6 +11998,7 @@ GameObject:
   - component: {fileID: 4923907708700712279}
   - component: {fileID: 2943909951363284958}
   - component: {fileID: 5318662616223630259}
+  - component: {fileID: 6602710133015726872}
   m_Layer: 5
   m_Name: ReturnToMenu
   m_TagString: Untagged
@@ -12003,6 +12006,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6602710133015726872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6602710133015726871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a206b59fcf191f548887a1a2e02fcc59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0.2
 --- !u!1 &6638186602100717417
 GameObject:
   m_ObjectHideFlags: 0
