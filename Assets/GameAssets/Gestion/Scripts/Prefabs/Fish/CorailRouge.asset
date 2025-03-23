@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 5-10000m
   eat: Carnivore (proies planctoniques)
   lifeTime: 
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "Le corail rouge forme des colonies arborescentes fix\xE9es sur des substrats
     rocheux peu \xE9clair\xE9s mais travers\xE9s par des courants. Sa croissance
     est lente, entre 0,1 et 0,4 mm par an. Le corail rouge utilise ses tentacules

@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 1-40m
   eat: "omnivore \xE0 tendance carnivore "
   lifeTime: 12 ans
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "La girelle paon est aussi appel\xE9e, selon la zone g\xE9ographique,
     girelle turque. Il s'agit en fait de Thalassoma pavo, un poisson de la famille
     des Labrid\xE9s.  La girelle paon est un poisson color\xE9 avec des nuances de

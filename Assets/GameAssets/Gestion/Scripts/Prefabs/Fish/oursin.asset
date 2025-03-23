@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: ' 0-20 m'
   eat: Omnivore
   lifeTime: 7-10 ans
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "L\u2019absence de ventouses sur les pieds ambulacraires de la face sup\xE9rieure
     l\u2019emp\xEAche de se couvrir de d\xE9bris et de progresser dans l\u2019herbier.
     L\u2019oursin noir aime les surfaces verticales et r\xE9siste parfaitement aux

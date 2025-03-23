@@ -84,7 +84,11 @@ public class Materials : MonoBehaviour
             SceneManager.LoadScene("Menue");
             menuFirst = false;
         }
-        ResBut.interactable = false;
+        if (SceneManager.GetActiveScene().name == "SampleScene")
+        {
+            ResBut.interactable = false;
+        }
+
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -103,11 +107,29 @@ public class Materials : MonoBehaviour
     {
         if (ResBut == null)
         {
-            ResBut = GameObject.FindGameObjectWithTag("FishGallery").GetComponent<Button>();
-        }
-        ResBut.interactable = act;
+            // Cherche le GameObject avec le tag "FishGallery"
+            GameObject fishGalleryObject = GameObject.FindGameObjectWithTag("FishGallery");
 
+            if (fishGalleryObject != null)
+            {
+                // Récupère le bouton s'il existe
+                ResBut = fishGalleryObject.GetComponent<Button>();
+            }
+            else
+            {
+                // Affiche un message d'erreur si l'objet n'a pas été trouvé
+                Debug.LogError("FishGallery GameObject not found in the scene.");
+                return;
+            }
+        }
+
+        // Si ResBut est trouvé, met à jour l'état interactable du bouton
+        if (ResBut != null)
+        {
+            ResBut.interactable = act;
+        }
     }
+
 
     void Start()
     {

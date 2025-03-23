@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 1-1000m
   eat: Carnivore
   lifeTime: 15 ans
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "Le grand barracuda (Sphyraena barracuda), pr\xE9dateur embl\xE9matique
     se distingue par son corps \xE9lanc\xE9, sa m\xE2choire prognathe et ses dents
     ac\xE9r\xE9es. Il est souvent observ\xE9 en plong\xE9e. Territorial et curieux,

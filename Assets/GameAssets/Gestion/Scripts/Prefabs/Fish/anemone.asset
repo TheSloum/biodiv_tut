@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 0-25 m
   eat: "Carnivore (petits poissons, crustac\xE9s et autres invert\xE9br\xE9s)"
   lifeTime: 
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "L'an\xE9mone de mer verte vit fix\xE9e sur des substrats durs \xE0 faible
     profondeur, souvent sur des fonds rocheux ou des algues. Sa souplesse lui permet
     de r\xE9sister aux mouvements des vagues. Cette esp\xE8ce, pourvue de tentacules

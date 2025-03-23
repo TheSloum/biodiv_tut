@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 10-30m
   eat: Planctophage
   lifeTime: 2-4 ans
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "Le nom \"hippocampe\" vient du grec \u1F35\u03C0\u03C0\u03BF\u03C2, h\xEDppos,
     \xAB cheval \xBB et de \u03BA\u03AC\u03BC\u03C0\u03BF\u03C2, k\xE1mpos, \xAB
     poisson marin \xBB. Ils font famili\xE8rement appel\xE9s chevaux de mer. Ils

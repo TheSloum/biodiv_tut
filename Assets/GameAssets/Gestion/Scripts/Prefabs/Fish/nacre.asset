@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 2-40 m
   eat: filtration de particules vivantes ou morte
   lifeTime: 40ans
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "C'est\_le plus grand mollusque bivalve de M\xE9diterran\xE9e\_(et l'un
     des plus grands du monde avec les b\xE9nitiers tropicaux) : il peut d\xE9passer
     1 m\xE8tre et vivre 40 ans. Autrefois commune, la grande nacre est devenue rare

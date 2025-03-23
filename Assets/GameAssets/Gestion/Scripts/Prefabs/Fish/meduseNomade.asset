@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 0-3m
   eat: Planctonophage
   lifeTime: 
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "La m\xE9duse nomade est arriv\xE9e en M\xE9diterran\xE9e par le canal
     de Suez (esp\xE8ce lessepsienne) et a \xE9t\xE9 observ\xE9e en Isra\xEBl pour
     la premi\xE8re fois en 1976. Sa propagation, est probablement li\xE9e \xE0 l\u2019augmentation

@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: "20-30m juqu\u2019\xE0 400 m"
   eat: Carnivore
   lifeTime: 12 ans
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "Il est commun\xE9ment appel\xE9 Saint-pierre (m\xEAme si ce terme d\xE9signe
     aussi, mais de fa\xE7on moins courante, deux autres esp\xE8ces de poissons) ou
     encore Poule de mer, Dor\xE9e ou Z\xE9e. Le Zeus faber se nourrit de poissons

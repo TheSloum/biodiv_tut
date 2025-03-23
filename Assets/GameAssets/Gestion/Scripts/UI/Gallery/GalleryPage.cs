@@ -82,6 +82,26 @@ public class GalleryPage : MonoBehaviour
             completionReward.SetActive(false);
         }
     }
+    public void GainMaterial()
+    {
+        if (Materials.instance != null)
+        {
+            if (Materials.instance.bar_2 >= 1f)
+                return;
+
+            int unlockedFishes = fishesList.FindAll(f => f.is_unlocked).Count;
+
+            float progress = (totalFishes > 0) ? (float)unlockedFishes / totalFishes : 0f;
+
+            float gain = 0.1f * (1f - progress);
+
+            Debug.Log($"Gain réel : {gain}, Progress : {progress}, Total Fishes : {totalFishes}");
+
+            Materials.instance.bar_2 = Mathf.Min(Materials.instance.bar_2 + gain, 1f);
+        }
+    }
+
+
 
 
 

@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 1-30 m
   eat: "petits invert\xE9br\xE9s (vers, crustac\xE9s, oursins, bivalves \u2026)"
   lifeTime: 15 ans
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "Le cr\xE9nilabre paon m\xE2le est assez color\xE9 : vert jaune marqu\xE9
     de lignes horizontales tachet\xE9es, rouges et bleues. La femelle est brun gris\xE2tre
     et de plus petite taille. Les deux ont une bande fonc\xE9e reliant les yeux ainsi

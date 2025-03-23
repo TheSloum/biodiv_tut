@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 5-40 m
   eat: "filtration de micro-organismes, bact\xE9ries et algues uni-cellulaires"
   lifeTime: 
-  is_unlocked: 1
+  is_unlocked: 0
   fishDes: "L'\xE9ponge encro\xFBtante orange, forme une plaque lisse et minuscule
     sur des substrats durs, souvent bien expos\xE9s \xE0 la lumi\xE8re. Sa surface
     est perfor\xE9e de nombreux orifices ronds. Cette esp\xE8ce sessile se reproduit
