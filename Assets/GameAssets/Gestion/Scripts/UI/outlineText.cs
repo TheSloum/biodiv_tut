@@ -5,6 +5,10 @@ public class OutlineText : MonoBehaviour
 {
     private TextMeshProUGUI textMeshPro;
 
+    [Header("Outline Settings")]
+    public Color outlineColor = Color.white;
+    public float outlineWidth = 0.2f;
+
     void Start()
     {
         textMeshPro = GetComponent<TextMeshProUGUI>();
@@ -14,7 +18,8 @@ public class OutlineText : MonoBehaviour
             return;
         }
 
-        textMeshPro.outlineWidth = 0.2f;
-        textMeshPro.outlineColor = Color.white;
+
+        textMeshPro.outlineWidth = outlineWidth;
+        textMeshPro.outlineColor = outlineColor;
     }
 }

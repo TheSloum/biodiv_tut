@@ -4321,6 +4321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a206b59fcf191f548887a1a2e02fcc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0.2
 --- !u!1 &246917646
 GameObject:
   m_ObjectHideFlags: 0
@@ -10293,6 +10295,7 @@ GameObject:
   - component: {fileID: 564172551}
   - component: {fileID: 564172553}
   - component: {fileID: 564172552}
+  - component: {fileID: 564172554}
   m_Layer: 5
   m_Name: WinTextTitle
   m_TagString: Untagged
@@ -10348,8 +10351,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4284579064
+  m_fontColor: {r: 0.9725491, g: 0.48627454, b: 0.3803922, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10416,6 +10419,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564172550}
   m_CullTransparentMesh: 1
+--- !u!114 &564172554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564172550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a206b59fcf191f548887a1a2e02fcc59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0.2
 --- !u!1 &571080056
 GameObject:
   m_ObjectHideFlags: 0
@@ -27050,6 +27067,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a206b59fcf191f548887a1a2e02fcc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0.2
 --- !u!23 &1436010637
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33546,6 +33565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a206b59fcf191f548887a1a2e02fcc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0.2
 --- !u!23 &1720594978
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36833,6 +36854,7 @@ GameObject:
   - component: {fileID: 1866721699}
   - component: {fileID: 1866721701}
   - component: {fileID: 1866721700}
+  - component: {fileID: 1866721702}
   m_Layer: 5
   m_Name: WinTextTitle
   m_TagString: Untagged
@@ -36956,6 +36978,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866721698}
   m_CullTransparentMesh: 1
+--- !u!114 &1866721702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866721698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a206b59fcf191f548887a1a2e02fcc59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0.2
 --- !u!1 &1871147501
 GameObject:
   m_ObjectHideFlags: 0
