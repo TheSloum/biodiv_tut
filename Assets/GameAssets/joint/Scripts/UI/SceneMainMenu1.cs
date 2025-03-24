@@ -5,17 +5,32 @@ using System.Collections;
 
 public class SceneMainMenu1 : MonoBehaviour
 {
-    public AudioClip sfxClip;
 
     public GameDataSaver savescript;
 
-
-
-    public void LoadScene(string Menue)
+    public void ResetGame()
     {
-        SceneManager.LoadScene("Menue");
-        SoundManager.instance.PlaySFX(sfxClip);
+        if (Materials.instance != null)
+        {
+            Materials.instance.ResetState();
+        }
+
+        if (J_TimeManager.Instance != null)
+        {
+            J_TimeManager.Instance.ResetState();
+        }
+
+        if (E_GameManager.instance != null)
+        {
+            E_GameManager.instance.ResetState();
+        }
+
         Time.timeScale = 1f;
+
+        PlayerPrefs.DeleteAll();
+
+        SceneManager.LoadScene("Menue");
     }
+
 
 }

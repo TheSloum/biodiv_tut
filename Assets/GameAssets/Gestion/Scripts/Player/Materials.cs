@@ -63,6 +63,52 @@ public class Materials : MonoBehaviour
             }
         }
     }
+    public void ResetState()
+    {
+        tutorial = true;
+        tutorialStep = false;
+        researchCentr = false;
+        explored = false;
+        event3Active = false;
+
+        townName = "";
+        mat_0 = 0;
+        mat_1 = 0;
+        mat_2 = 0;
+        price = 500;
+        bar_0 = 0.5f;
+        bar_1 = 0.5f;
+        bar_2 = 0.95f;
+        isLoad = false;
+
+        sessionWood = 0;
+        sessionStone = 0;
+        sessionIron = 0;
+
+        canMove = true;
+        textDone = false;
+        tutoToggle = false;
+        victory = false;
+
+        if (victoryScreen != null)
+        {
+            victoryScreen.SetActive(false);
+        }
+
+        if (errorIndicator != null)
+        {
+            errorIndicator.SetActive(false);
+        }
+
+        if (errorText != null)
+        {
+            errorText.text = "";
+        }
+
+        menuFirst = true;
+
+        Debug.Log("✅ Game Reset Done !");
+    }
 
     private void Awake()
     {

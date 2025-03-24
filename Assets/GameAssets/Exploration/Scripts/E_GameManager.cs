@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class E_GameManager : MonoBehaviour
 {
@@ -13,6 +14,29 @@ public class E_GameManager : MonoBehaviour
 
     public List<bool> fishUnlockData = new List<bool>(new bool[23]);
 
+    public void ResetState()
+    {
+        if (gameObject.scene.rootCount == 0) // Vérifie si c'est un prefab (non dans la scène)
+        {
+            Debug.Log("❌ E_GameManager n'est pas dans la scène, pas de reset.");
+            return;
+        }
+
+        Debug.Log("🔄 Réinitialisation de E_GameManager...");
+
+        // Réinitialiser les données du gestionnaire d'oxygène
+        if (oxygenManager != null)
+        {
+            oxygenManager.currentOxygen = oxygenManager.maxOxygen; // Remet l'oxygène au max
+            oxygenManager.trashCollected = 0;
+            oxygenManager.UpdateTrashCounterUI();
+        }
+
+        // Réinitialiser les données des poissons
+        fishUnlockData = new List<bool>(new bool[23]);
+
+        Debug.Log("✅ E_GameManager réinitialisé !");
+    }
 
     void Awake()
     {
@@ -109,7 +133,8 @@ public class E_GameManager : MonoBehaviour
         }
     }
 
-    public void UnlockFishData(int index){ //Rajout d'une fonction pour s'assurer que les poissons s'unlockent (la sauvegarde de retour à la gestion s'effectue avant l'exploration, donc on revient à l'état avant les unlocks de poisson)
+    public void UnlockFishData(int index)
+    { //Rajout d'une fonction pour s'assurer que les poissons s'unlockent (la sauvegarde de retour à la gestion s'effectue avant l'exploration, donc on revient à l'état avant les unlocks de poisson)
         fishUnlockData[index] = true;
     }
 

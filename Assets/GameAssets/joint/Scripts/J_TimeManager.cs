@@ -49,6 +49,26 @@ public class J_TimeManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void ResetState()
+    {
+        // Réinitialiser les paramètres de temps
+        currentDay = 1;
+        currentMonth = 1;
+        currentYear = 1;
+        dayTimer = 0f;
+        initialized = false;
+
+        // Réinitialiser les paramètres de débogage
+        debugTimeMultiplier = 1f;
+        Time.timeScale = 1f;
+
+        // Déclencher les événements pour mettre à jour l'UI si nécessaire
+        OnDayChanged?.Invoke(currentDay, currentMonth);
+        OnMonthChanged?.Invoke(currentMonth);
+        OnYearChanged?.Invoke(currentYear);
+
+        Debug.Log("✅ J_TimeManager a été réinitialisé !");
+    }
 
     void Start()
     {
