@@ -69,6 +69,8 @@ public class HideStart : MonoBehaviour
     public GameObject Blink4;
     public GameObject Blink5;
 
+    private bool speech3AlreadyDone = false;
+
     void Start()
     {
         if (!Materials.instance.isLoad)
@@ -396,7 +398,7 @@ public class HideStart : MonoBehaviour
 
             StartCoroutine(WaitForTextEnd(5));
         }
-        else
+        else if (speech3AlreadyDone == false)
         {
             StartCoroutine(FadeInSprites(fadeObject2, fadeDuration));
             Materials.instance.canMove = false;
@@ -404,6 +406,7 @@ public class HideStart : MonoBehaviour
             ShowDialogue.Instance.DialogueBox(speech[3]);
             StartCoroutine(WaitForTextEnd(3));
             StartCoroutine(BlinkGUI());
+            speech3AlreadyDone = true;
         }
 
     }

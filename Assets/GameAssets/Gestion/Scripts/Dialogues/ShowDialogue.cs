@@ -11,7 +11,7 @@ public class ShowDialogue : MonoBehaviour
     [SerializeField] TextMeshPro textMeshPro;
     [SerializeField] GameObject box;
     [SerializeField] RectTransform nextIco;
-     
+
     public int currentDialogueIndex = 0;
     private bool isTextAnimating = false;
     private Coroutine typingCoroutine;
@@ -20,13 +20,13 @@ public class ShowDialogue : MonoBehaviour
 
 
     public SpriteRenderer currentSprite;
-    
+
     public GameObject character;
 
 
 
     public float bobHeight = 1f;
-    public float bobSpeed = 3f; 
+    public float bobSpeed = 3f;
 
     private Vector3 originalPosition;
 
@@ -41,8 +41,8 @@ public class ShowDialogue : MonoBehaviour
         Materials.instance.textDone = true;
         RectTransform rectTransform = textMeshPro.GetComponent<RectTransform>();
         RectTransform boxRT = box.GetComponent<RectTransform>();
-        startSize =  rectTransform.sizeDelta;
-        startScale =  boxRT.sizeDelta;
+        startSize = rectTransform.sizeDelta;
+        startScale = boxRT.sizeDelta;
         DontDestroyOnLoad(gameObject);
 
         startSize = rectTransform.sizeDelta;
@@ -50,7 +50,7 @@ public class ShowDialogue : MonoBehaviour
         originalPosition = character.transform.localPosition;
     }
 
-    
+
 
     private IEnumerator WaitForFrames(int frameCount, Speech dialogue)
     {
@@ -58,69 +58,70 @@ public class ShowDialogue : MonoBehaviour
         {
             yield return null;
         }
-        StartDialogue(dialogue); 
+        StartDialogue(dialogue);
     }
 
-     IEnumerator BobUpAndDown()
+    IEnumerator BobUpAndDown()
     {
         float elapsedTime = 0f;
         Vector3 targetPosition = originalPosition + Vector3.up * bobHeight;
 
         while (elapsedTime < 1f / bobSpeed)
         {
-            character.transform.localPosition  = Vector3.Lerp(originalPosition, targetPosition, elapsedTime * bobSpeed);
+            character.transform.localPosition = Vector3.Lerp(originalPosition, targetPosition, elapsedTime * bobSpeed);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        character.transform.localPosition  = targetPosition;
+        character.transform.localPosition = targetPosition;
 
         elapsedTime = 0f;
         while (elapsedTime < 1f / bobSpeed)
         {
-            character.transform.localPosition  = Vector3.Lerp(targetPosition, originalPosition, elapsedTime * bobSpeed);
+            character.transform.localPosition = Vector3.Lerp(targetPosition, originalPosition, elapsedTime * bobSpeed);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        character.transform.localPosition  = originalPosition;
+        character.transform.localPosition = originalPosition;
     }
 
 
     public void DialogueBox(Speech dialogue)
-    {        Materials.instance.canMove = false;
+    {
+        Materials.instance.canMove = false;
         RectTransform boxRT = box.GetComponent<RectTransform>();
         Time.timeScale = 0f;
-        
+
 
         RectTransform currentrectTransform = GetComponent<RectTransform>();
         currentrectTransform.anchoredPosition = dialogue.position;
-          currentDialogueIndex = 0;
+        currentDialogueIndex = 0;
 
         RectTransform rectTransform = textMeshPro.GetComponent<RectTransform>();
         Vector2 vector2Size = new Vector2(dialogue.size.x * 0.3f, dialogue.size.y * 0.3f);
         rectTransform.pivot = new Vector2(0, 1);
         boxRT.pivot = new Vector2(0, 1);
-        
+
         boxRT.sizeDelta = startScale;
-        rectTransform.sizeDelta =  startSize;
+        rectTransform.sizeDelta = startSize;
 
         rectTransform.sizeDelta += vector2Size;
-         Vector3 currentScale = boxRT.sizeDelta;
+        Vector3 currentScale = boxRT.sizeDelta;
 
-            boxRT.sizeDelta = currentScale + dialogue.size;
+        boxRT.sizeDelta = currentScale + dialogue.size;
 
-            nextIco.anchoredPosition = new Vector2(nextIco.anchoredPosition.x, nextIco.anchoredPosition.y);
+        nextIco.anchoredPosition = new Vector2(nextIco.anchoredPosition.x, nextIco.anchoredPosition.y);
 
-        StartCoroutine(WaitForFrames(5 , dialogue));
+        StartCoroutine(WaitForFrames(5, dialogue));
     }
 
     private void StartDialogue(Speech dialogue)
     {
         currentDialogueIndex = 0;
-        
+
         StartCoroutine(BobUpAndDown());
-                        currentSprite.sprite = dialogue.spriteList[currentDialogueIndex];
+        currentSprite.sprite = dialogue.spriteList[currentDialogueIndex];
         typingCoroutine = StartCoroutine(TypeText(dialogue.textList[currentDialogueIndex]));
         StartCoroutine(WaitForInput(dialogue));
     }
@@ -176,7 +177,7 @@ public class ShowDialogue : MonoBehaviour
                     currentDialogueIndex++;
                     if (currentDialogueIndex < dialogue.textList.Count)
                     {
-        StartCoroutine(BobUpAndDown());
+                        StartCoroutine(BobUpAndDown());
                         currentSprite.sprite = dialogue.spriteList[currentDialogueIndex];
                         typingCoroutine = StartCoroutine(TypeText(dialogue.textList[currentDialogueIndex]));
                     }
