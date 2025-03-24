@@ -60280,7 +60280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf2115ae6c60124882d288da4bbebfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxClip: {fileID: 8300000, guid: 1b7c1bea919e6f347b345b51d269c6a5, type: 3}
   savescript: {fileID: 1383650388}
 --- !u!114 &5103656989027010049
 MonoBehaviour:
@@ -65654,8 +65653,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5103269645539698843}
         m_TargetAssemblyTypeName: SceneMainMenu1, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_MethodName: ResetGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
