@@ -12741,7 +12741,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 614347701
   m_SortingLayer: 3
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: ea0d0db6f68223542b015b19281df9a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -28206,7 +28206,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -63.892593}
+  m_AnchoredPosition: {x: 0, y: -63.89258}
   m_SizeDelta: {x: 0, y: -113.252}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1365708778
@@ -39995,7 +39995,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
-  baseSprite: {fileID: 21300000, guid: 40352d136a7341e4a93d4b430efe4edb, type: 3}
+  baseSprite: {fileID: 21300000, guid: 8cafb31e856b80d45b8a08aa1248003c, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
   clic: {fileID: 8300000, guid: 5aa43ceb96b72094eb0bafda677a0e8f, type: 3}
@@ -40152,7 +40152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1864930366
 Transform:
   m_ObjectHideFlags: 0
@@ -59036,63 +59036,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5995269819885350160}
   m_CullTransparentMesh: 1
---- !u!1001 &3816801723268541323
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2391.957
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 703.5536
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
-      propertyPath: m_Name
-      value: Life_full
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
 --- !u!222 &3817375308072870319
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -73077,7 +73020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7633687358449335659
 RectTransform:
   m_ObjectHideFlags: 0
@@ -78550,4 +78493,3 @@ SceneRoots:
   - {fileID: 1534114009}
   - {fileID: 1802284180}
   - {fileID: 246917647}
-  - {fileID: 3816801723268541323}
