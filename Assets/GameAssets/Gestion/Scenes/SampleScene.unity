@@ -11096,8 +11096,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0011292, y: -67.46765}
-  m_SizeDelta: {x: 86.3652, y: 65.2972}
+  m_AnchoredPosition: {x: -0.0011292, y: -81.30696}
+  m_SizeDelta: {x: 86.3652, y: 76.5176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &629095110
 MonoBehaviour:
@@ -18310,7 +18310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1009813247
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25299,6 +25299,7 @@ GameObject:
   - component: {fileID: 1353150669}
   - component: {fileID: 1353150671}
   - component: {fileID: 1353150670}
+  - component: {fileID: 1353150672}
   m_Layer: 5
   m_Name: WinText
   m_TagString: Untagged
@@ -25322,8 +25323,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 9.2}
-  m_SizeDelta: {x: 350.01297, y: 58.5846}
+  m_AnchoredPosition: {x: 0, y: 0.35967}
+  m_SizeDelta: {x: 526.14966, y: 129.0392}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1353150670
 MonoBehaviour:
@@ -25345,8 +25346,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nVous avez atteint le niveau de pollution minimum!\nVous pouvez continuer
-    \xE0 construire votre ville si vous le souhaitez"
+  m_text: "Bravo ! {Materials.instance.townName} a enfin atteint un niveau minimal
+    de pollution. Vous pouvez essayer de le maintenir en continuant \xE0 jouer.\r\n\r\nCependant,
+    n'oubliez pas que la solution ne consiste pas toujours \xE0 chercher de nouvelles
+    ressources, mais aussi \xE0 r\xE9utiliser celles que nous poss\xE9dons d\xE9j\xE0.\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
   m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
@@ -25373,8 +25376,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -25423,6 +25426,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353150668}
   m_CullTransparentMesh: 1
+--- !u!114 &1353150672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353150668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71db8f5500f096643b528a86d555b40c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
 --- !u!1 &1356748108
 GameObject:
   m_ObjectHideFlags: 0
@@ -30999,8 +31015,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 9.2}
-  m_SizeDelta: {x: 350.01297, y: 58.5846}
+  m_AnchoredPosition: {x: 0, y: 1.4}
+  m_SizeDelta: {x: 378.53024, y: 58.5846}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1615782640
 MonoBehaviour:
@@ -31022,8 +31038,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nVous avez d\xE9bloqu\xE9 toute la faune et la flore du jeu !\nVous pouvez
-    continuer \xE0 construire votre ville si vous le souhaitez"
+  m_text: "Bravo ! Vous avez photographi\xE9 toutes les esp\xE8ces de faune et de
+    flore de la mer de {Materials.instance.townName}. D\xE9sormais, vos explorations
+    ne provoqueront plus de pollution.\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
   m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
@@ -32340,8 +32357,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0011292, y: -67.46765}
-  m_SizeDelta: {x: 86.3652, y: 65.2972}
+  m_AnchoredPosition: {x: -0.0011292, y: -87.597534}
+  m_SizeDelta: {x: 120.2196, y: 81.6178}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1665757180
 MonoBehaviour:
@@ -69163,7 +69180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7633687358449335659
 RectTransform:
   m_ObjectHideFlags: 0
