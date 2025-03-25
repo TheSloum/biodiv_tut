@@ -6110,7 +6110,7 @@ GameObject:
   - component: {fileID: 1760291557}
   m_Layer: 0
   m_Name: loadingScreen
-  m_TagString: Untagged
+  m_TagString: loadingScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

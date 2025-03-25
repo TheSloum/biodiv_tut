@@ -19,6 +19,7 @@ TagManager:
   - FlashIMG
   - FishGallery
   - reviveend
+  - loadingScreen
   layers:
   - Default
   - TransparentFX

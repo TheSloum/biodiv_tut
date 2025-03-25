@@ -48,11 +48,12 @@ public class E_OxygenManager : MonoBehaviour
         startTime = Time.time;
     }
 
-public GameObject loadingObject; 
-    void Awake(){
-        
-    loadingObject = GameObject.Find("loadingScreen");
-}
+    public GameObject loadingObject;
+    void Awake()
+    {
+
+        loadingObject = GameObject.Find("loadingScreen");
+    }
 
     void Update()
     {
@@ -128,31 +129,30 @@ public GameObject loadingObject;
         if (timeText != null)
         {
             timeText.text = "0:00";
-            yield return StartCoroutine(AnimateText(timeText, "", formattedTime, 2f));
+            yield return StartCoroutine(AnimateText(timeText, "", formattedTime, 1f));
         }
 
         if (woodText != null)
         {
             woodText.text = "0";
-            StartCoroutine(AnimateNumberText(woodText, "", Materials.instance != null ? Materials.instance.sessionWood : 0, 5f));
+            StartCoroutine(AnimateNumberText(woodText, "", Materials.instance != null ? Materials.instance.sessionWood : 0, 2f)); // 2s au lieu de 5s
         }
         if (stoneText != null)
         {
             stoneText.text = "0";
-            StartCoroutine(AnimateNumberText(stoneText, "", Materials.instance != null ? Materials.instance.sessionStone : 0, 5f));
+            StartCoroutine(AnimateNumberText(stoneText, "", Materials.instance != null ? Materials.instance.sessionStone : 0, 2f)); // 2s
         }
         if (ironText != null)
         {
             ironText.text = "0";
-            StartCoroutine(AnimateNumberText(ironText, "", Materials.instance != null ? Materials.instance.sessionIron : 0, 5f));
+            StartCoroutine(AnimateNumberText(ironText, "", Materials.instance != null ? Materials.instance.sessionIron : 0, 2f)); // 2s
         }
-
-        yield return new WaitForSecondsRealtime(5f);
 
         yield return new WaitForSecondsRealtime(2f);
     }
 
-private IEnumerator LoadSceneAsync(string sceneName)
+
+    private IEnumerator LoadSceneAsync(string sceneName)
     {
         loadingObject.SetActive(true);
 
@@ -162,7 +162,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
         {
             float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
 
-            yield return null; 
+            yield return null;
         }
 
     }
@@ -189,23 +189,11 @@ private IEnumerator LoadSceneAsync(string sceneName)
 
         while (elapsed < duration)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                currentMinutes = targetMinutes;
-                currentSeconds = targetSeconds;
-                textComponent.text = prefix + targetTime;
-                yield break;
-            }
-
             elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
 
             currentMinutes = Mathf.FloorToInt(Mathf.Lerp(0, targetMinutes, t));
             currentSeconds = Mathf.FloorToInt(Mathf.Lerp(0, targetSeconds, t));
-            if (currentSeconds > 59)
-            {
-                currentSeconds = 59;
-            }
 
             textComponent.text = prefix + currentMinutes.ToString("0") + ":" + currentSeconds.ToString("00");
             yield return null;
@@ -222,12 +210,6 @@ private IEnumerator LoadSceneAsync(string sceneName)
 
         while (elapsed < duration)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                textComponent.text = prefix + targetNumber.ToString();
-                yield break;
-            }
-
             elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
 
