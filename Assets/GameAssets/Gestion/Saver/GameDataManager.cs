@@ -10,6 +10,7 @@ public class GameDataManager : MonoBehaviour
     public GameObject saveButtonPrefab;
     public Transform saveListParent;
     public GameDataSaver gameDataSaver;
+    public Scroll scroll;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class GameDataManager : MonoBehaviour
     void OnEnable()
     {
         LoadSaveFiles();
+        scroll.objectHeight = scroll.GetObjectHeight();
         gameDataSaver = Materials.instance.GetComponent<GameDataSaver>();
     }
 
