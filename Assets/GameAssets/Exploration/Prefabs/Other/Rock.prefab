@@ -175,3 +175,7 @@ MonoBehaviour:
   oxygenPenalty: 10
   collectParticlesPrefab: {fileID: 0}
   materialType: 1
+  sfxClips:
+  - {fileID: 8300000, guid: b11c5f7069bb82341a90e8ae2df121c0, type: 3}
+  - {fileID: 8300000, guid: 96c23671f2e756241955365dcdc77caf, type: 3}
+  - {fileID: 8300000, guid: e9e65757f4df3004fad5762e0e3a4004, type: 3}

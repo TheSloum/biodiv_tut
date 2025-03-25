@@ -61,8 +61,8 @@ public class Materials : MonoBehaviour
         mat_1 = 99999;
         mat_2 = 99999;
         price = 99999;
-        bar_0 = 1f;
-        bar_1 = 1f;
+        bar_0 = 0.5f;
+        bar_1 = 0.5f;
     }
 
     void HandleLog(string logString, string stackTrace, LogType type)
