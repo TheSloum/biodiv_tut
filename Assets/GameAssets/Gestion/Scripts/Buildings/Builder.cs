@@ -135,12 +135,14 @@ public class Builder : MonoBehaviour
     public Button closeButton;
     public SpriteRenderer barFs;
     public SpriteRenderer barBs;
+    public SpriteRenderer Barfond;
 
     private void Awake()
     {
 
         barFs = cycleBar.transform.Find("CycleBarP").GetComponent<SpriteRenderer>();
         barBs = cycleBar.transform.Find("CycleBarP (1)").GetComponent<SpriteRenderer>();
+        Barfond = cycleBar.transform.Find("Static Sprite").GetComponent<SpriteRenderer>();
         closeMenuButton = closeMenu.GetComponent<Button>();
         closeMenuButton2 = closeMenu2.GetComponent<Button>();
 
@@ -326,6 +328,7 @@ public class Builder : MonoBehaviour
                 cycleBar.transform.localPosition = Vector3.zero;
                 barFs.sortingOrder = -10;
                 barBs.sortingOrder = -11;
+                Barfond.sortingOrder = -12;
                 buildState = 0;
                 buildID = 0;
                 level0 = 0;
@@ -864,6 +867,7 @@ public class Builder : MonoBehaviour
             cycleBar.transform.localPosition = new Vector3(0, 83, 0);
             barFs.sortingOrder = -2;
             barBs.sortingOrder = -3;
+            Barfond.sortingOrder = -4;
         }
 
         if (editing == true && (Materials.instance.mat_0 >= (-1 * building.mat_0) &&
