@@ -505,6 +505,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1039845543}
   notEnothRessourse: {fileID: 1658671133}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 0
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -6725,6 +6728,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1795207192}
   notEnothRessourse: {fileID: 1501919979}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 0
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -7924,7 +7930,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7932,7 +7938,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &382199640
@@ -9191,7 +9197,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9199,7 +9205,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &468209684
@@ -10522,6 +10528,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 447649424}
   notEnothRessourse: {fileID: 849170610}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 1
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -11197,7 +11206,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11205,7 +11214,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &564172550
@@ -11548,7 +11557,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11556,7 +11565,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &595034492
@@ -12501,6 +12510,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1877213717}
   notEnothRessourse: {fileID: 1519166799}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 0
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -13526,7 +13538,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13534,7 +13546,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &711524183
@@ -15967,7 +15979,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15975,7 +15987,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &861647724
@@ -16151,6 +16163,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 813097974}
   notEnothRessourse: {fileID: 584462203}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 0
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -16393,7 +16408,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16401,7 +16416,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &871607283
@@ -20445,6 +20460,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 414012183}
   notEnothRessourse: {fileID: 705347763}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 0
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -23572,6 +23590,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 726443788}
   notEnothRessourse: {fileID: 865630727}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 0
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -24546,6 +24567,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1672679110}
   notEnothRessourse: {fileID: 1460796313}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 0
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -30322,7 +30346,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -30330,7 +30354,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1468668025
@@ -30659,7 +30683,7 @@ MonoBehaviour:
   clic: {fileID: 8300000, guid: 5aa43ceb96b72094eb0bafda677a0e8f, type: 3}
   buildState: 0
   MoreInfo: {fileID: 339965921}
-  MoreInfoClose: {fileID: 0}
+  MoreInfoClose: {fileID: 963464543}
   pauseImage: {fileID: 980427099}
   playSprite: {fileID: 21300000, guid: 69b48f5b969dad94bab439386ab6b566, type: 3}
   pauseSprite: {fileID: 21300000, guid: 10c909c4c9f54c240b0935078730b8ac, type: 3}
@@ -30702,6 +30726,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 440564029}
   notEnothRessourse: {fileID: 461171603}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 1
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -30715,11 +30742,11 @@ MonoBehaviour:
   barFs: {fileID: 0}
   barBs: {fileID: 0}
   Barfond: {fileID: 0}
-  sizeIcon1: {fileID: 0}
-  sizeIcon2: {fileID: 0}
-  big: {fileID: 0}
-  water: {fileID: 0}
-  norm: {fileID: 0}
+  sizeIcon1: {fileID: 1517184661}
+  sizeIcon2: {fileID: 1410221991}
+  big: {fileID: 21300000, guid: 679cb594afa505b4dac4a03c63a02f23, type: 3}
+  water: {fileID: 21300000, guid: c5e1c169075695a45aad7870f1897e3e, type: 3}
+  norm: {fileID: 21300000, guid: f7afbbf03141f86419270ff69f3732e7, type: 3}
 --- !u!212 &1474758151
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31402,7 +31429,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -31410,7 +31437,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1502038974
@@ -31720,7 +31747,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -31728,7 +31755,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1525453462
@@ -32251,7 +32278,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -32259,7 +32286,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1558535466
@@ -34998,6 +35025,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1007160864}
   notEnothRessourse: {fileID: 381278653}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 0
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -35141,7 +35171,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -35149,7 +35179,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1665052995
@@ -35225,7 +35255,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -35233,7 +35263,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1665757178
@@ -36316,7 +36346,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: b82a8c09ce3c84a49ba1bccf9eb93ded, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -36324,7 +36354,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1715359022
@@ -37585,6 +37615,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1786752776}
   notEnothRessourse: {fileID: 538100183}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 0
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -39964,6 +39997,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1587774054}
   notEnothRessourse: {fileID: 1556991691}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 1
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -43876,6 +43912,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 340523384}
   notEnothRessourse: {fileID: 1665052995}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 0
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -45482,6 +45521,9 @@ MonoBehaviour:
   menuRecherche: {fileID: 6869755171727376997}
   PauseInfo: {fileID: 1209454334}
   notEnothRessourse: {fileID: 1710698587}
+  moneyPrefab: {fileID: 3724629575455484603, guid: 68bf0fadad110de4bb7099509048bb8e, type: 3}
+  bar0Prefab: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+  bar1Prefab: {fileID: 3724629575455484603, guid: a67614a7bf2b6cb418af04f524e0bbfe, type: 3}
   tutorialBuild: 0
   mat0Text: {fileID: 382199642}
   mat1Text: {fileID: 47296841}
@@ -55687,7 +55729,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.041, y: -0.051}
+  m_AnchoredPosition: {x: 1.0186, y: -0.0727}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2746322025525984823
@@ -58840,6 +58882,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5995269819885350160}
   m_CullTransparentMesh: 1
+--- !u!1001 &3816801723268541323
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2391.957
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 703.5536
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764092038810630571, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724629575455484603, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
+      propertyPath: m_Name
+      value: Life_full
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0f68585ebf4b6c14eadf6197ced42888, type: 3}
 --- !u!222 &3817375308072870319
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -78296,3 +78395,4 @@ SceneRoots:
   - {fileID: 1534114009}
   - {fileID: 1802284180}
   - {fileID: 246917647}
+  - {fileID: 3816801723268541323}
