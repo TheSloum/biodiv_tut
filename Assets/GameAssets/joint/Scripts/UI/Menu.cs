@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.EventSystems; // Nécessaire pour gérer les événements de la souris
+using UnityEngine.EventSystems;
 
 public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -14,7 +14,7 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public AudioClip sfxClip;
     public TMP_FontAsset disFont;
     public TMP_Text[] textsToChange;
-    public TMP_Text hoverText; // Texte qui aura un contour et changera de couleur au survol
+    public TMP_Text hoverText;
     private float IsInMenue = 0;
     private int fontSizeOffset = 2;
 
