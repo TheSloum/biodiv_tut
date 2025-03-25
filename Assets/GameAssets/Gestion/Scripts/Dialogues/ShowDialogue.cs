@@ -18,12 +18,9 @@ public class ShowDialogue : MonoBehaviour
     private Vector2 startSize;
     private Vector3 startScale;
 
-
     public SpriteRenderer currentSprite;
 
     public GameObject character;
-
-
 
     public float bobHeight = 1f;
     public float bobSpeed = 3f;
@@ -49,8 +46,6 @@ public class ShowDialogue : MonoBehaviour
 
         originalPosition = character.transform.localPosition;
     }
-
-
 
     private IEnumerator WaitForFrames(int frameCount, Speech dialogue)
     {
@@ -86,13 +81,11 @@ public class ShowDialogue : MonoBehaviour
         character.transform.localPosition = originalPosition;
     }
 
-
     public void DialogueBox(Speech dialogue)
     {
         Materials.instance.canMove = false;
         RectTransform boxRT = box.GetComponent<RectTransform>();
         Time.timeScale = 0f;
-
 
         RectTransform currentrectTransform = GetComponent<RectTransform>();
         currentrectTransform.anchoredPosition = dialogue.position;
@@ -121,7 +114,10 @@ public class ShowDialogue : MonoBehaviour
         currentDialogueIndex = 0;
 
         StartCoroutine(BobUpAndDown());
-        currentSprite.sprite = dialogue.spriteList[currentDialogueIndex];
+        if (dialogue.spriteList != null && dialogue.spriteList.Count > 0)
+        {
+            currentSprite.sprite = dialogue.spriteList[currentDialogueIndex];
+        }
         typingCoroutine = StartCoroutine(TypeText(dialogue.textList[currentDialogueIndex]));
         StartCoroutine(WaitForInput(dialogue));
     }
@@ -163,7 +159,7 @@ public class ShowDialogue : MonoBehaviour
     {
         while (true)
         {
-            if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Return))
+            if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.KeypadEnter))
             {
                 if (isTextAnimating)
                 {
@@ -178,7 +174,11 @@ public class ShowDialogue : MonoBehaviour
                     if (currentDialogueIndex < dialogue.textList.Count)
                     {
                         StartCoroutine(BobUpAndDown());
-                        currentSprite.sprite = dialogue.spriteList[currentDialogueIndex];
+                        // Vérifie que le sprite existe pour la prochaine ligne, sinon garde le sprite actuel
+                        if (dialogue.spriteList != null && dialogue.spriteList.Count > currentDialogueIndex)
+                        {
+                            currentSprite.sprite = dialogue.spriteList[currentDialogueIndex];
+                        }
                         typingCoroutine = StartCoroutine(TypeText(dialogue.textList[currentDialogueIndex]));
                     }
                     else
@@ -191,8 +191,6 @@ public class ShowDialogue : MonoBehaviour
             yield return null;
         }
     }
-
-
 
     private void CloseDialogueBox()
     {
