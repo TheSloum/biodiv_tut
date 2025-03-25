@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Generic; 
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -9,9 +9,9 @@ public class SoundManager : MonoBehaviour
     public AudioSource musicSource;
     public AudioSource sfxSource;
 
-    private float globalVolume = 1f;
-    private float musicVolume = 1f;
-    private float sfxVolume = 1f;
+    public float globalVolume = 1f;
+    public float musicVolume = 1f;
+    public float sfxVolume = 1f;
     private Queue<AudioClip> musicQueue = new Queue<AudioClip>();
     private Coroutine musicSequenceCoroutine;
     private Coroutine fadeCoroutine;
