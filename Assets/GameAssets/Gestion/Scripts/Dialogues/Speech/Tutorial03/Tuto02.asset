@@ -17,6 +17,8 @@ MonoBehaviour:
     centre de recherche. "
   - "D\xE9sormais, pendant votre <b>exploration</b>, vous pourrez <b>photographier</b>
     la faune et la flore."
+  - "Plus vous photographierez d\u2019esp\xE8ces, moins l\u2019exploration vous g\xE9n\xE9rera
+    de pollution."
   - "Ensemble, faisons de <u>{Materials.instance.townName}</u> une ville enti\xE8rement
     <b>d\xE9pollu\xE9e</b> !"
   - Je reviendrai vers vous en cas de besoin. Bonne chance !
@@ -26,4 +28,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4f480d13c687bab43a1188eae2fa6c21, type: 3}
   - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}
   - {fileID: 21300000, guid: 4f480d13c687bab43a1188eae2fa6c21, type: 3}
+  - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}
   - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}

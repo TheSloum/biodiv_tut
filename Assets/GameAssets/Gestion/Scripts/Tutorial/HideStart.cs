@@ -66,6 +66,9 @@ public class HideStart : MonoBehaviour
     public SpriteRenderer bar1Hide;
 
     public GameObject Blink1;
+    public GameObject Blink1a;
+    public GameObject Blink1b;
+    public GameObject Blink1c;
     public GameObject Blink2;
     public GameObject Blink3;
     public GameObject Blink4;
@@ -383,8 +386,8 @@ public class HideStart : MonoBehaviour
                 sr.color = color;
             }
         }
-        Materials.instance.textDone = false;
         builder.SelectBuild(buildRes, null);
+        Materials.instance.textDone = false;
         ShowDialogue.Instance.DialogueBox(speech[4]);
         StartCoroutine(WaitForTextEnd(4));
     }
@@ -425,11 +428,40 @@ public class HideStart : MonoBehaviour
 
     private IEnumerator BlinkGUI()
     {
-        while (ShowDialogue.Instance.currentDialogueIndex <= 4)
+        while (ShowDialogue.Instance.currentDialogueIndex == 0)
         {
             Blink1.SetActive(!Blink1.activeSelf);
 
             yield return new WaitForSecondsRealtime(0.5f);
+        }
+        while (ShowDialogue.Instance.currentDialogueIndex == 1)
+        {
+            Blink1.SetActive(true);
+            Blink1b.SetActive(false);
+            Blink1c.SetActive(false);
+            Blink1a.SetActive(!Blink1a.activeSelf);
+
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
+        while (ShowDialogue.Instance.currentDialogueIndex == 2)
+        {
+            Blink1a.SetActive(false);
+            Blink1c.SetActive(false);
+            Blink1b.SetActive(!Blink1b.activeSelf);
+
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
+        while (ShowDialogue.Instance.currentDialogueIndex == 3)
+        {
+            Blink1b.SetActive(false);
+            Blink1a.SetActive(false);
+            Blink1c.SetActive(!Blink1c.activeSelf);
+
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
+
+        while (ShowDialogue.Instance.currentDialogueIndex == 4){
+        yield return new WaitForSecondsRealtime(0.5f);
         }
 
         Blink1.SetActive(false);

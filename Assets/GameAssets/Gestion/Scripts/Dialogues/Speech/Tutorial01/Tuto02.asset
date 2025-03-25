@@ -16,7 +16,7 @@ MonoBehaviour:
   - "Nous voici sur la carte de <u>{Materials.instance.townName}</u>.\r"
   - "Vous pouvez apercevoir les b\xE2timents d\xE9j\xE0 construits comme la <b>centrale
     thermique</b>  qui alimente la ville en \xE9lectricit\xE9.\r"
-  - "Ou encore la <b>pizzeria</b> o\xF9 les habitants aiment se retrouver en fin
+  - "Ou encore le <b>restaurant</b> o\xF9 les habitants aiment se retrouver en fin
     de journ\xE9e.\r\n"
   - "Cliquez sur un b\xE2timent pour avoir plus d\u2019information."
   position: {x: -335.4, y: 144.4, z: 0}

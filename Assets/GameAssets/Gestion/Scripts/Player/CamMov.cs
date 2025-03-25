@@ -15,7 +15,13 @@ public class CamMov : MonoBehaviour
     [SerializeField] private float maxZoom = 30f;
 
     [SerializeField] private Vector2 minBounds = new Vector2(-10f, -10f);
+    private Vector2 minBoundsStart = new Vector2(10f, 10f);
     [SerializeField] private Vector2 maxBounds = new Vector2(10f, 10f);
+    private Vector2 maxBoundsStart = new Vector2(10f, 10f);
+    [SerializeField] private float difXmin = -1402f;
+    [SerializeField] private float difYmin = -688f;
+    [SerializeField] private float difXmax = 1348f;
+    [SerializeField] private float difYmax = 706f;
 
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float acceleration = 10f;
@@ -54,6 +60,8 @@ public class CamMov : MonoBehaviour
 
     void Awake()
     {
+        minBoundsStart = minBounds;
+        maxBoundsStart = maxBounds;
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
         UpdateButtonSprites();
@@ -117,9 +125,20 @@ public class CamMov : MonoBehaviour
         cam.orthographicSize -= scrollData * zoomSpeed;
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
 
+        float zoomFactor = 1 - (cam.orthographicSize / maxZoom);
+
+        float zoomMultiplierX = 3f;
+        float zoomMultiplierY = 0f;
+
+        float expandedMinX = minBounds.x * (1 + zoomFactor * zoomMultiplierX);
+        float expandedMaxX = maxBounds.x * (1 + zoomFactor * zoomMultiplierX);
+        float expandedMinY = minBounds.y * (1 + zoomFactor * zoomMultiplierY);
+        float expandedMaxY = maxBounds.y * (1 + zoomFactor * zoomMultiplierY);
+
         Vector3 cameraPos = Camera.main.transform.position;
-        float clampedX = Mathf.Clamp(cameraPos.x, minBounds.x, maxBounds.x);
-        float clampedY = Mathf.Clamp(cameraPos.y, minBounds.y, maxBounds.y);
+        float clampedX = Mathf.Clamp(cameraPos.x, expandedMinX, expandedMaxX);
+        float clampedY = Mathf.Clamp(cameraPos.y, expandedMinY, expandedMaxY);
+
         Camera.main.transform.position = new Vector3(clampedX, clampedY, cameraPos.z);
     }
 
@@ -205,6 +224,7 @@ public class CamMov : MonoBehaviour
 
     void Update()
     {
+
         if (IsAnyGameObjectActive(menus))
         {
             gui.SetActive(false);

@@ -15,11 +15,12 @@ MonoBehaviour:
   textList:
   - "Voici les informations du b\xE2timent. Vous pouvez y trouver son impact sur
     <u>{Materials.instance.townName}</u>."
-  - "En appuyant sur le bouton pause, vous pouvez d\xE9cider de mettre ce b\xE2timent
-    en pause. Il ne consommera ni ne produira de ressources tant que vous ne le relancerez
-    pas."
+  - "En appuyant ici, vous pouvez d\xE9cider de mettre ce b\xE2timent en pause. Il
+    ne consommera ni ne produira de ressources tant que vous ne le relancerez pas."
   - "Enfin, si ce b\xE2timent ne vous est plus utile, d\xE9truisez-le avec la corbeille.
-    Attention, cela vous co\xFBtera de l\u2019argent. \r\n"
+    Attention, cela vous co\xFBtera de l\u2019argent. \r\nEnfin, si ce b\xE2timent
+    ne vous est plus utile, d\xE9truisez-le ici.  Attention, cela vous co\xFBtera
+    de l\u2019argent. "
   - Cliquez sur "X" pour fermer la page.
   position: {x: -390, y: -60, z: 0}
   size: {x: 200, y: 0, z: 0}

@@ -15,19 +15,28 @@ MonoBehaviour:
   textList:
   - "Voici les <b>indicateurs</b> de l\u2019\xE9tat de <u>{Materials.instance.townName}</u>.
     Ils sont ESSENTIELS pour g\xE9rer la ville."
-  - "Cette premi\xE8re jauge montre le niveau de <b>pollution</b> \r"
-  - "La seconde indique <b>la qualit\xE9 de vie</b> et la satisfaction des habitants.\r"
-  - "Enfin, l'<b>\xE9nergie</b> disponible."
+  - "\nCette premi\xE8re jauge repr\xE9sente le niveau de  <b>pollution</b> actuel."
+  - "La seconde indique montre le niveau de <b>la qualit\xE9 de vie</b>  et la satisfaction
+    des habitants.\r"
+  - "Enfin, la derni\xE8re jauge pr\xE9sente l\u2019<b>\xE9nergie</b> disponible
+    dans les r\xE9serves de la ville."
   - "Gardez-les TOUJOURS \xE0 l'\u0153il pour comprendre la situation en ville !\r\n"
   - "Dans cet espace, vous pouvez consulter votre <b>r\xE9serve</b> et v\xE9rifier
     les ressources disponibles.\r"
-  - "Enfin, ici se trouvent les outils pour aider <u>{Materials.instance.townName}</u>
-    \xE0 se renouveler. \xC0 cet endroit, vous pourrez d\xE9bloquer de nouveaux b\xE2timents."
-  - "Une fois le centre de recherche construit, vous pourrez observer ici la faune
-    et la flore photographi\xE9es.\r\n"
+  - "Enfin, vous pouvez trouver ici les outils pour aider <u>{Materials.instance.townName}</u>
+    \xE0 se renouveler. \xC0 cet endroit, vous pourrez <b>d\xE9bloquer</b> de nouveaux
+    b\xE2timents."
+  - "Une fois le <b>centre de recherche</b> construit, vous pourrez observer ici
+    la faune et la flore photographi\xE9es.\r\n"
   - "Enfin, cet endroit vous permet d\u2019enfiler votre combinaison et de partir
-    en exploration."
-  - "Commen\xE7ons tout de suite ! Il est temps de construire notre centre de recherche."
+    en <b>exploration</b>."
+  - "Lan\xE7ons-nous maintenant dans la r\xE9novation de <u>{Materials.instance.townName}</u>
+    ! Pour cela, notre premi\xE8re \xE9tape sera de construire le <b>centre de recherche</b>."
+  - "Pour construire de nouveaux b\xE2timents, s\xE9lectionnez un emplacement vide
+    en construction."
+  - "Il existe diff\xE9rentes tailles d\u2019emplacement, chacun pouvant accueillir
+    des b\xE2timents sp\xE9cifiques."
+  - Allons construire le <b>centre de recherche</b>.
   position: {x: -335.4, y: 43.02, z: 0}
   size: {x: 125, y: 0, z: 0}
   spriteList:
@@ -40,4 +49,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}
   - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}
   - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}
+  - {fileID: 21300000, guid: 4f480d13c687bab43a1188eae2fa6c21, type: 3}
+  - {fileID: 21300000, guid: 4f480d13c687bab43a1188eae2fa6c21, type: 3}
+  - {fileID: 21300000, guid: 4f480d13c687bab43a1188eae2fa6c21, type: 3}
   - {fileID: 21300000, guid: 4f480d13c687bab43a1188eae2fa6c21, type: 3}
