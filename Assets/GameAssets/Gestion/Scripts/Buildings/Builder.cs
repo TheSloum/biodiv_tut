@@ -120,6 +120,9 @@ public class Builder : MonoBehaviour
     public GameObject menuRecherche;
     public GameObject PauseInfo;
     public GameObject notEnothRessourse;
+    [SerializeField] private GameObject moneyPrefab;
+    [SerializeField] private GameObject bar0Prefab;
+    [SerializeField] private GameObject bar1Prefab;
     [SerializeField] private bool tutorialBuild;
     public TMP_Text mat0Text;
     public TMP_Text mat1Text;
@@ -229,7 +232,7 @@ public class Builder : MonoBehaviour
         }
         foreach (Building building in buildings)
         {
-            PauseInfo.transform.localPosition = new Vector3(20, 100, 0);
+            PauseInfo.transform.localPosition = new Vector3(10, 100, 0);
             notEnothRessourse.transform.localPosition = new Vector3(40, 100, 0);
 
             if (buildState != 0)
@@ -244,26 +247,59 @@ public class Builder : MonoBehaviour
                     pauseImage.sprite = pauseSprite;
                     PauseInfo.SetActive(false);
                 }
-
-                if (Materials.instance.mat_0 < (-1 * mat_0_cycle) ||
-                    Materials.instance.mat_1 < (-1 * mat_1_cycle) ||
-                    Materials.instance.mat_2 < (-1 * mat_2_cycle) ||
-                    Materials.instance.price < (-1 * price_cycle) ||
-                    Materials.instance.bar_0 < (-1 * bar_0_cycle) ||
-                    Materials.instance.bar_1 < (-1 * bar_1_cycle))
-                {
-                    notEnothRessourse.SetActive(true);
-                }
-                else
-                {
-                    notEnothRessourse.SetActive(false);
-                    if (toFloat)
-                    {
-                        running = true;
-                    }
-                    toFloat = false;
-                }
+                CheckAndDisplayMissingResources();
             }
+        }
+    }
+    private bool wasMissingResources = false;
+    void CheckAndDisplayMissingResources()
+    {
+        if (notEnothRessourse == null)
+        {
+            Debug.LogError("notEnothRessourse n'est pas assigné dans l'Inspector !");
+            return;
+        }
+
+        bool isMissing = Materials.instance.price < (-1 * price_cycle) ||
+                         Materials.instance.bar_0 < (-1 * bar_0_cycle) ||
+                         Materials.instance.bar_1 < (-1 * bar_1_cycle);
+
+        if (isMissing == wasMissingResources)
+            return;
+
+        wasMissingResources = isMissing;
+
+        foreach (Transform child in notEnothRessourse.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        if (Materials.instance.price < (-1 * price_cycle))
+        {
+            GameObject obj = Instantiate(moneyPrefab, notEnothRessourse.transform);
+            obj.transform.localPosition = Vector3.zero;
+        }
+
+        if (Materials.instance.bar_0 < (-1 * bar_0_cycle))
+        {
+            GameObject obj = Instantiate(bar0Prefab, notEnothRessourse.transform);
+            obj.transform.localPosition = Vector3.zero;
+        }
+
+        if (Materials.instance.bar_1 < (-1 * bar_1_cycle))
+        {
+            GameObject obj = Instantiate(bar1Prefab, notEnothRessourse.transform);
+            obj.transform.localPosition = Vector3.zero;
+        }
+
+        if (isMissing)
+        {
+            notEnothRessourse.SetActive(true);
+            notEnothRessourse.transform.localPosition = Vector3.zero;
+        }
+        else
+        {
+            notEnothRessourse.SetActive(false);
         }
     }
 
@@ -688,18 +724,23 @@ public class Builder : MonoBehaviour
 
     private void ShowBuildingMenu()
     {
-        if(buildings[0].buildID == 1){
-        sizeIcon1.sprite = big;
-        sizeIcon2.sprite = big;
-        } else if(buildings[0].buildID == 3){
-        sizeIcon1.sprite = water;
-        sizeIcon2.sprite = water;
-        } else{
-        sizeIcon1.sprite = norm;
-        sizeIcon2.sprite = norm;
+        if (buildings[0].buildID == 1)
+        {
+            sizeIcon1.sprite = big;
+            sizeIcon2.sprite = big;
+        }
+        else if (buildings[0].buildID == 3)
+        {
+            sizeIcon1.sprite = water;
+            sizeIcon2.sprite = water;
+        }
+        else
+        {
+            sizeIcon1.sprite = norm;
+            sizeIcon2.sprite = norm;
 
         }
-        Debug.Log(buildings[0].buildID );
+        Debug.Log(buildings[0].buildID);
         SoundManager.instance.PlaySFX(clic);
         validation.SetActive(false);
         buildingMenu.SetActive(true);
@@ -864,12 +905,13 @@ public class Builder : MonoBehaviour
         price1.text = building.mat_1.ToString();
         price2.text = building.mat_2.ToString();
         price3.text = building.price.ToString();
-        if(buttonObject != null){
-        EventSystem.current.SetSelectedGameObject(buttonObject);
+        if (buttonObject != null)
+        {
+            EventSystem.current.SetSelectedGameObject(buttonObject);
 
-        validationButton.onClick.RemoveAllListeners();
+            validationButton.onClick.RemoveAllListeners();
 
-        validationButton.onClick.AddListener(() => OnBuildingButtonClick(building));
+            validationButton.onClick.AddListener(() => OnBuildingButtonClick(building));
         }
 
     }
