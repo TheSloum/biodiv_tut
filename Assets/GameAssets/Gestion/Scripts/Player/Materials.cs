@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
-
+using TMPro;
 
 public class Materials : MonoBehaviour
 {
@@ -235,9 +235,77 @@ public class Materials : MonoBehaviour
                 keySequence.Clear();
             }
         }
+
         bar_0 = Mathf.Clamp(bar_0, 0f, 0.99f);
         bar_1 = Mathf.Clamp(bar_1, 0f, 0.99f);
         bar_2 = Mathf.Clamp(bar_2, 0f, 0.99f);
+
+        string element1 = "";
+        string element2 = "";
+        bool shouldShowRevive = false;
+
+        if (bar_0 == 0.0f && bar_1 == 0.0f)
+        {
+            bar_0 = 0.3f;
+            bar_1 = 0.3f;
+            element1 = "de qualité de vie";
+            element2 = "d'energie";
+            shouldShowRevive = true;
+        }
+
+        if (bar_0 == 0.0f && price == 0)
+        {
+            bar_0 = 0.3f;
+            price = 500;
+            element1 = "de qualité de vie";
+            element2 = "d'argent";
+            shouldShowRevive = true;
+        }
+
+        if (bar_1 == 0.0f && price == 0)
+        {
+            bar_1 = 0.3f;
+            price = 500;
+            element1 = "d'energie";
+            element2 = "d'argent";
+            shouldShowRevive = true;
+        }
+
+        if (shouldShowRevive)
+        {
+            GameObject reviveEndObject = Resources.FindObjectsOfTypeAll<GameObject>()
+     .FirstOrDefault(obj => obj.CompareTag("reviveend"));
+
+            if (reviveEndObject != null)
+            {
+                reviveEndObject.SetActive(true); // 🔥 Active l'objet s'il est désactivé
+
+                Transform textTransform = reviveEndObject.transform.Find("SofLockText");
+
+                if (textTransform != null)
+                {
+                    TextMeshProUGUI childText = textTransform.GetComponent<TextMeshProUGUI>();
+
+                    if (childText != null)
+                    {
+                        childText.text = $"Mince, tu es bloqué ! <u>{townName}</u> est à court <b>{element1}</b> et <b>{element2}</b>. Impossible de faire redémarrer tes bâtiments. Tu peux <b>recommencer</b> une partie, <b>reprendre</b> ta dernière sauvegarde ou ajouter un peu de <b>ressources</b> manquantes.";
+                    }
+                    else
+                    {
+                        Debug.LogWarning("⚠️ Le GameObject 'SofLockText' existe mais ne contient pas de composant TextMeshProUGUI.");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("⚠️ Aucun GameObject nommé 'SofLockText' trouvé dans 'reviveend'.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("⚠️ Aucun objet avec le tag 'reviveend' trouvé dans la scène.");
+            }
+
+        }
 
         if (bar_2 == 0.0f && victory == false)
         {
