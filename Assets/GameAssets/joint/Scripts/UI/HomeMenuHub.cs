@@ -34,6 +34,29 @@ public class HomeMenuHub : MonoBehaviour
     private Coroutine scrollCoroutine;
     private bool isScrolling = false;
 
+
+    public GameObject loadingObject; 
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        loadingObject.SetActive(true);
+
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncOperation.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+
+            yield return null; 
+        }
+
+    }
+
+
+    private void Awake()
+    {
+    loadingObject = GameObject.Find("loadingScreen");
+    }
+
     void Start()
     {
         initialCameraPosition = mainCamera.transform.position;
@@ -96,7 +119,7 @@ public class HomeMenuHub : MonoBehaviour
     void Button2Clicked()
     {
         SoundManager.instance.PlaySFX(sfxClip);
-        SceneManager.LoadScene("SampleScene");
+        StartCoroutine(LoadSceneAsync("SampleScene"));
     }
 
     void Button3Clicked()

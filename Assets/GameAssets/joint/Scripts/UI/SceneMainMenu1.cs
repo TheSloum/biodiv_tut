@@ -8,6 +8,28 @@ public class SceneMainMenu1 : MonoBehaviour
 
     public GameDataSaver savescript;
 
+public GameObject loadingObject; 
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        loadingObject.SetActive(true);
+
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncOperation.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+
+            yield return null; 
+        }
+
+        
+    }
+
+
+    private void Awake()
+    {
+    loadingObject = GameObject.Find("loadingScreen");
+    }
     public void ResetGame()
     {
         if (Materials.instance != null)
@@ -29,7 +51,7 @@ public class SceneMainMenu1 : MonoBehaviour
 
         PlayerPrefs.DeleteAll();
 
-        SceneManager.LoadScene("Menue");
+        StartCoroutine(LoadSceneAsync("Menue"));
     }
 
 

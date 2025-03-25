@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using UnityEngine.UI; // Ajoute ceci en haut
 
+using System.Collections;
 
 
 public class GameDataSaver : MonoBehaviour
@@ -27,8 +28,12 @@ public class GameDataSaver : MonoBehaviour
     public int mat_1 = 0;
     public int mat_2 = 0;
     public int price = 0;
+
+    public GameObject loadingObject; 
     private void Awake()
     {
+
+        
         if (instance == null)
         {
             instance = this;
@@ -48,7 +53,10 @@ public class GameDataSaver : MonoBehaviour
         {
             Directory.CreateDirectory(saveFolderPath);
         }
+
+
     }
+
 
 
     private void OnEnable()
@@ -57,6 +65,20 @@ public class GameDataSaver : MonoBehaviour
     }
 
 
+private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        loadingObject.SetActive(true);
+
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncOperation.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+
+            yield return null; 
+        }
+
+    }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "SampleScene")
@@ -86,8 +108,10 @@ public class GameDataSaver : MonoBehaviour
                 LoadLatestSaveData();
                 Materials.instance.explored = false;
             }
-
+        
         }
+        
+    loadingObject = GameObject.Find("loadingScreen");
     }
 
 
@@ -216,7 +240,7 @@ public class GameDataSaver : MonoBehaviour
 
             Materials.instance.isLoad = true;
             Materials.instance.explored = false;
-            SceneManager.LoadScene("SampleScene");
+        StartCoroutine(LoadSceneAsync("SampleScene"));
         }
         Materials.instance.isLoad = true;
         

@@ -48,6 +48,12 @@ public class E_OxygenManager : MonoBehaviour
         startTime = Time.time;
     }
 
+public GameObject loadingObject; 
+    void Awake(){
+        
+    loadingObject = GameObject.Find("loadingScreen");
+}
+
     void Update()
     {
         if (currentOxygen > 0 && !isGameOver)
@@ -146,13 +152,29 @@ public class E_OxygenManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
     }
 
+private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        loadingObject.SetActive(true);
+
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncOperation.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+
+            yield return null; 
+        }
+
+    }
+
     public void OnRestartButtonPressed()
     {
         Time.timeScale = 1f;
         Materials.instance.explored = true;
         Materials.instance.isLoad = true;
-        SceneManager.LoadScene("SampleScene");
+        StartCoroutine(LoadSceneAsync("SampleScene"));
     }
+
 
 
     IEnumerator AnimateText(TextMeshProUGUI textComponent, string prefix, string targetTime, float duration)

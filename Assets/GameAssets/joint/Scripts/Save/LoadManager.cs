@@ -14,6 +14,7 @@ public class LoadManager : MonoBehaviour
 
     public bool resumeLoad;
     public string saveDate = null;
+    public GameObject loadingObject; 
 
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -25,9 +26,26 @@ public string folderPath = Path.Combine(Application.persistentDataPath, "Sauvega
 
 
 
+private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        loadingObject.SetActive(true);
+
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncOperation.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+
+            yield return null; 
+        }
+
+    }
+
 
     private void Awake()
     {
+    loadingObject = GameObject.Find("loadingScreen");
+    
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -76,6 +94,6 @@ public string folderPath = Path.Combine(Application.persistentDataPath, "Sauvega
         saveDate = null;
         Materials.instance.isLoad = true;
         Materials.instance.tutorial = false;
-        SceneManager.LoadScene("SampleScene");
+        StartCoroutine(LoadSceneAsync("SampleScene"));
     }
 }

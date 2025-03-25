@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 
+using System.Collections;
+
 public class Materials : MonoBehaviour
 {
     private Queue<KeyCode> keySequence = new Queue<KeyCode>();
@@ -44,6 +46,7 @@ public class Materials : MonoBehaviour
 
 
     public bool menuFirst = true;
+    public GameObject loadingObject; 
 
     void OnEnable()
     {
@@ -55,6 +58,20 @@ public class Materials : MonoBehaviour
         Application.logMessageReceived -= HandleLog;
     }
 
+private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        loadingObject.SetActive(true);
+
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncOperation.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+
+            yield return null; 
+        }
+
+    }
     private void ActivateCheat()
     {
         mat_0 = 99999;
@@ -128,6 +145,7 @@ public class Materials : MonoBehaviour
 
     private void Awake()
     {
+    loadingObject = GameObject.Find("loadingScreen");
         if (instance == null)
         {
             instance = this;
@@ -143,7 +161,7 @@ public class Materials : MonoBehaviour
 
         if (menuFirst == true && LoadManager.instance == null && SceneManager.GetActiveScene().name != "Exploration_main")
         {
-            SceneManager.LoadScene("Menue");
+        StartCoroutine(LoadSceneAsync("Menue"));
             menuFirst = false;
         }
         if (SceneManager.GetActiveScene().name == "SampleScene")
@@ -163,6 +181,8 @@ public class Materials : MonoBehaviour
                 break;
             }
         }
+        
+    loadingObject = GameObject.Find("loadingScreen");
     }
 
     public void ReseachButton(bool act)
@@ -214,6 +234,7 @@ public class Materials : MonoBehaviour
 
     void Update()
     {
+        
         if (Input.anyKeyDown)
         {
             foreach (KeyCode key in cheatCode)

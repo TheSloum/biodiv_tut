@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameDataManager : MonoBehaviour
 {
@@ -12,8 +13,11 @@ public class GameDataManager : MonoBehaviour
     public GameDataSaver gameDataSaver;
     public Scroll scroll;
 
+public GameObject loadingObject; 
     private void Awake()
     {
+        
+    loadingObject = GameObject.Find("loadingScreen");
         LoadSaveFiles();
     }
 
@@ -24,6 +28,21 @@ public class GameDataManager : MonoBehaviour
         gameDataSaver = Materials.instance.GetComponent<GameDataSaver>();
     }
 
+
+private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        loadingObject.SetActive(true);
+
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncOperation.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+
+            yield return null; 
+        }
+
+    }
     public void LoadSaveFiles()
     {
         // Clear existing save buttons
@@ -93,7 +112,7 @@ public class GameDataManager : MonoBehaviour
                         Materials.instance.tutorial = false;
                         LoadManager.instance.saveDate = saveDate;
                         LoadManager.instance.resumeLoad = true;
-                        SceneManager.LoadScene("SampleScene");
+        StartCoroutine(LoadSceneAsync("SampleScene"));
                     });
                 }
                 else
