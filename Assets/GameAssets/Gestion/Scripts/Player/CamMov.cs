@@ -117,11 +117,26 @@ public class CamMov : MonoBehaviour
         cam.orthographicSize -= scrollData * zoomSpeed;
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
 
+        float zoomFactor = 1 - (cam.orthographicSize / maxZoom);
+
+        float zoomMultiplierX = 3f;
+        float zoomMultiplierY = 0f;
+
+        float expandedMinX = minBounds.x * (1 + zoomFactor * zoomMultiplierX);
+        float expandedMaxX = maxBounds.x * (1 + zoomFactor * zoomMultiplierX);
+        float expandedMinY = minBounds.y * (1 + zoomFactor * zoomMultiplierY);
+        float expandedMaxY = maxBounds.y * (1 + zoomFactor * zoomMultiplierY);
+
         Vector3 cameraPos = Camera.main.transform.position;
-        float clampedX = Mathf.Clamp(cameraPos.x, minBounds.x, maxBounds.x);
-        float clampedY = Mathf.Clamp(cameraPos.y, minBounds.y, maxBounds.y);
+        float clampedX = Mathf.Clamp(cameraPos.x, expandedMinX, expandedMaxX);
+        float clampedY = Mathf.Clamp(cameraPos.y, expandedMinY, expandedMaxY);
+
         Camera.main.transform.position = new Vector3(clampedX, clampedY, cameraPos.z);
     }
+
+
+
+
 
     private void HandleKeyboardInput()
     {
