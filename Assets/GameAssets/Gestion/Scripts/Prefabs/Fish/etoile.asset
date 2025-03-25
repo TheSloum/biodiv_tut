@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 1-250 m
   eat: "Omnivore, d\xE9tritivore"
   lifeTime: 5 ans
-  is_unlocked: 0
+  is_unlocked: 1
   fishDes: "Elle poss\xE8de en g\xE9n\xE9ral cinq bras, mais il arrive de rencontrer
     des individus avec quatre (rare) ou six \xE0 sept bras. Comme elle n\u2019a pas
     d\u2019yeux, elle rep\xE8re ses proies \xE0 l\u2019odeur."

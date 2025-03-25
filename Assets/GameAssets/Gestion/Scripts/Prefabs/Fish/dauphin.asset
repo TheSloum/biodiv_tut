@@ -24,7 +24,7 @@ MonoBehaviour:
   profondeur: 0-200m
   eat: piscivore
   lifeTime: 55-60 ans
-  is_unlocked: 0
+  is_unlocked: 1
   fishDes: "Mammif\xE8re marin appartenant \xE0 l'ordre des c\xE9tac\xE9s \xE0 dents,
     incluant deux familles : Delphinidae (dauphins oc\xE9aniques) et Platanistidae,
     (dauphins de rivi\xE8re).\LLes dauphins, gr\xE9gaires, sont bien connus pour

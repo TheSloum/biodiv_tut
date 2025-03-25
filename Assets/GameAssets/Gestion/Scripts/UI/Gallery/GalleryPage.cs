@@ -12,6 +12,7 @@ public class GalleryPage : MonoBehaviour
     public AudioClip sfxClip;
     public Button btnLeft;
     public Button btnRight;
+    public TMP_Text progressText;
     public Slider progressBar;
     public GameObject completionReward;
     private int totalFishes;
@@ -46,6 +47,7 @@ public class GalleryPage : MonoBehaviour
         progressBar.maxValue = 1;
         UpdateProgressBar();
 
+
         fishNameText = FindDeepChild(infoCardPrefab.transform, "fishNameText").GetComponent<TMP_Text>();
         fishSizeText = FindDeepChild(infoCardPrefab.transform, "fishSizeText").GetComponent<TMP_Text>();
         fishClassText = FindDeepChild(infoCardPrefab.transform, "fishClassText").GetComponent<TMP_Text>();
@@ -71,6 +73,7 @@ public class GalleryPage : MonoBehaviour
         float progress = (float)unlockedFishes / totalFishes;
 
         progressBar.value = progress;
+        progressText.text = Mathf.RoundToInt(progress * 100) + "%"; // Met à jour le texte du pourcentage
 
         if (progress >= 1f && !completionRewardDO)
         {
@@ -82,6 +85,7 @@ public class GalleryPage : MonoBehaviour
             completionReward.SetActive(false);
         }
     }
+
     public void GainMaterial()
     {
         if (Materials.instance != null)
@@ -90,13 +94,10 @@ public class GalleryPage : MonoBehaviour
                 return;
 
             int unlockedFishes = fishesList.FindAll(f => f.is_unlocked).Count;
-
             float progress = (totalFishes > 0) ? (float)unlockedFishes / totalFishes : 0f;
-
             float gain = 0.1f * (1f - progress);
 
             Debug.Log($"Gain réel : {gain}, Progress : {progress}, Total Fishes : {totalFishes}");
-
             Materials.instance.bar_2 = Mathf.Min(Materials.instance.bar_2 + gain, 1f);
         }
     }
