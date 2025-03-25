@@ -5223,7 +5223,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -49170,6 +49170,7 @@ MonoBehaviour:
   saveButtonPrefab: {fileID: 8979074330094549267, guid: 4adc335233250b640b16f657c5ff641a, type: 3}
   saveListParent: {fileID: 4476728223715960298}
   gameDataSaver: {fileID: 1383650388}
+  scroll: {fileID: 0}
 --- !u!114 &1059791912378169150
 MonoBehaviour:
   m_ObjectHideFlags: 0
