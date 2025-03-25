@@ -87,6 +87,7 @@ public class Builder : MonoBehaviour
 
     public float progress;
 
+    private bool isMenuOpen = false;
 
     public float outsideTime = 0;
 
@@ -134,12 +135,14 @@ public class Builder : MonoBehaviour
     public Button closeButton;
     public SpriteRenderer barFs;
     public SpriteRenderer barBs;
+    public SpriteRenderer Barfond;
 
     private void Awake()
     {
 
         barFs = cycleBar.transform.Find("CycleBarP").GetComponent<SpriteRenderer>();
         barBs = cycleBar.transform.Find("CycleBarP (1)").GetComponent<SpriteRenderer>();
+        Barfond = cycleBar.transform.Find("Static Sprite").GetComponent<SpriteRenderer>();
         closeMenuButton = closeMenu.GetComponent<Button>();
         closeMenuButton2 = closeMenu2.GetComponent<Button>();
 
@@ -192,6 +195,7 @@ public class Builder : MonoBehaviour
 
     void Update()
     {
+        isMenuOpen = manageMenu.activeSelf;
 
         if (editing)
         {
@@ -324,6 +328,7 @@ public class Builder : MonoBehaviour
                 cycleBar.transform.localPosition = Vector3.zero;
                 barFs.sortingOrder = -10;
                 barBs.sortingOrder = -11;
+                Barfond.sortingOrder = -12;
                 buildState = 0;
                 buildID = 0;
                 level0 = 0;
@@ -526,8 +531,11 @@ public class Builder : MonoBehaviour
 
     private void ShowManageMenu()
     {
-        if (editing)
+        Debug.Log(isMenuOpen);
+        if (editing && !isMenuOpen)
         {
+            isMenuOpen = true; // Empêche d’ouvrir le menu plusieurs fois
+
             SoundManager.instance.PlaySFX(clic);
             if (buildState == 50)
             {
@@ -540,15 +548,6 @@ public class Builder : MonoBehaviour
 
             foreach (Building building in buildings)
             {
-                if (running == false)
-                {
-                    pauseImage.sprite = playSprite;
-                }
-                else
-                {
-                    pauseImage.sprite = pauseSprite;
-                }
-
                 if (building.unlocked && building.buildID == buildState)
                 {
                     destroyB.onClick.RemoveAllListeners();
@@ -565,7 +564,7 @@ public class Builder : MonoBehaviour
                     upgrade2.onClick.AddListener(() => LevelUp2(building));
                     upgrade3.onClick.AddListener(() => LevelUp3(building));
 
-                    if (running == false)
+                    if (!running)
                     {
                         pauseImage.sprite = playSprite;
                         pause.onClick.AddListener(() => ContinueCycle());
@@ -584,7 +583,6 @@ public class Builder : MonoBehaviour
                     UpdateTextColor(buildingEtatElec, building.ElecEtat, false);
                     UpdateTextColor(buildingEtatMoney, building.MoneyMake, false);
 
-
                     Building buildingToDestroy = GetBuildingByID(buildState);
 
                     if (mat0Text != null)
@@ -599,18 +597,18 @@ public class Builder : MonoBehaviour
                     if (priceText != null)
                         priceText.text = (building.price * 10f).ToString("F0");
 
-
-
+                    StartCoroutine(MoveCameraToBuilding(transform.position));
                 }
             }
         }
     }
 
 
+
     private IEnumerator MoveCameraToBuilding(Vector3 targetPosition)
     {
         Vector3 startPosition = mainCamera.transform.position;
-        Vector3 targetPos = new Vector3(targetPosition.x + 200f, targetPosition.y + 0f, mainCamera.transform.position.z);
+        Vector3 targetPos = new Vector3(targetPosition.x + 200f, targetPosition.y, mainCamera.transform.position.z);
 
         float elapsedTime = 0;
         float duration = 1.5f;
@@ -618,12 +616,13 @@ public class Builder : MonoBehaviour
         while (elapsedTime < duration)
         {
             mainCamera.transform.position = Vector3.Lerp(startPosition, targetPos, elapsedTime / duration);
-            elapsedTime += Time.deltaTime * cameraMoveSpeed;
+            elapsedTime += Time.unscaledDeltaTime * cameraMoveSpeed;
             yield return null;
         }
 
         mainCamera.transform.position = targetPos;
     }
+
 
     private void UpdateTextColor(TMP_Text textElement, string value, bool invertColors)
     {
@@ -676,6 +675,7 @@ public class Builder : MonoBehaviour
 
     public void HideManageMenu()
     {
+        isMenuOpen = false;
         manageMenu.SetActive(false);
     }
 
@@ -869,6 +869,7 @@ public class Builder : MonoBehaviour
             cycleBar.transform.localPosition = new Vector3(0, 83, 0);
             barFs.sortingOrder = -2;
             barBs.sortingOrder = -3;
+            Barfond.sortingOrder = -4;
         }
 
         if (editing == true && (Materials.instance.mat_0 >= (-1 * building.mat_0) &&
@@ -932,7 +933,7 @@ public class Builder : MonoBehaviour
         HideBuildingMenu();
         HideManageMenu();
         editing = false;
-
+        isMenuOpen = false;
         Materials.instance.canMove = true;
 
     }

@@ -142,6 +142,10 @@ public class CamMov : MonoBehaviour
         Camera.main.transform.position = new Vector3(clampedX, clampedY, cameraPos.z);
     }
 
+
+
+
+
     private void HandleKeyboardInput()
     {
         if (Input.GetKeyDown(pauseKey))
