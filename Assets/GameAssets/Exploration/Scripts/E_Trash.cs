@@ -5,7 +5,7 @@ public class E_Trash : MonoBehaviour
     public float speed = 2f; // Vitesse de déplacement vers la gauche
     public float oxygenPenalty = 10f; // Oxygène perdu si le Trash est manqué
     public GameObject collectParticlesPrefab; // Prefab des particules lors de la collecte
-
+    public AudioClip sfxClip;
     private E_OxygenManager oxygenManager;
     private Camera mainCamera;
     private float screenLeftEdge;
@@ -61,7 +61,7 @@ public class E_Trash : MonoBehaviour
                 oxygenManager.IncrementTrashCollected();
             }
 
-            // Détruire le Trash après collecte
+            SoundManager.instance.PlaySFX(sfxClip);
             Destroy(gameObject);
         }
     }

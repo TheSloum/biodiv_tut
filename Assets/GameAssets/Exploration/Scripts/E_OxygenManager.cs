@@ -218,6 +218,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
     {
         float elapsed = 0f;
         int currentNumber = 0;
+        int step = 10;
 
         while (elapsed < duration)
         {
@@ -230,13 +231,15 @@ private IEnumerator LoadSceneAsync(string sceneName)
             elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
 
-            currentNumber = Mathf.FloorToInt(Mathf.Lerp(0, targetNumber, t));
+            currentNumber = Mathf.Min(targetNumber, Mathf.FloorToInt(Mathf.Lerp(0, targetNumber, t) / step) * step);
             textComponent.text = prefix + currentNumber.ToString();
+
             yield return null;
         }
 
         textComponent.text = prefix + targetNumber.ToString();
     }
+
 
     string FormatTime(float time)
     {

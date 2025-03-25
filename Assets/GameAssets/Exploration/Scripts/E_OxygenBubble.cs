@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class E_OxygenBubble : MonoBehaviour
 {
+    public AudioClip sfxClip;
     public float speed = 2f; // Vitesse horizontale
     public float verticalSpeed = 0.5f; // Vitesse verticale
     public float oxygenAmount = 20f;
@@ -29,7 +30,7 @@ public class E_OxygenBubble : MonoBehaviour
             {
                 oxygenManager.AddOxygen(oxygenAmount);
             }
-            // Détruire la bulle après collecte
+            SoundManager.instance.PlaySFX(sfxClip);
             Destroy(gameObject);
         }
     }

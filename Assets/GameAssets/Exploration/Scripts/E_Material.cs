@@ -6,6 +6,7 @@ public class E_Material : MonoBehaviour
     public float oxygenPenalty = 10f;
     public GameObject collectParticlesPrefab;
     public int materialType; // 0 = Bois, 1 = Pierre, 2 = Fer
+    public AudioClip[] sfxClips; // Tableau de sons aléatoires
 
     private E_OxygenManager oxygenManager;
     private Camera mainCamera;
@@ -43,10 +44,11 @@ public class E_Material : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-
-            if (E_AudioManager.instance != null)
+            if (sfxClips.Length > 0)
             {
-                E_AudioManager.instance.PlayPopSound();
+                // Choix d'un son aléatoire
+                AudioClip randomClip = sfxClips[Random.Range(0, sfxClips.Length)];
+                SoundManager.instance.PlaySFX(randomClip);
             }
 
             if (collectParticlesPrefab != null)
@@ -71,7 +73,6 @@ public class E_Material : MonoBehaviour
                         Debug.LogWarning("Type de matériau invalide !");
                         break;
                 }
-
             }
             else
             {
