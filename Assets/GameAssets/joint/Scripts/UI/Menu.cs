@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject MainMenu;
     public GameObject Parametre;
     public GameObject Loadeur;
+    public GameObject RetourLoadeur;
     public Toggle fontToggle;
     public TMP_FontAsset ClassicFont;
     public AudioClip sfxClip;
@@ -91,7 +92,11 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         ShowOrHideMainMenu();
         Loadeur.SetActive(true);
     }
-
+    public void OpenLoadeurUniq()
+    {
+        RetourLoadeur.SetActive(false);
+        Loadeur.SetActive(true);
+    }
     public void CloseParametreAndOpenMainMenu()
     {
         SoundManager.instance.PlaySFX(sfxClip);
