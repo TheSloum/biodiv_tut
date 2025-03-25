@@ -232,7 +232,7 @@ public class Builder : MonoBehaviour
         }
         foreach (Building building in buildings)
         {
-            PauseInfo.transform.localPosition = new Vector3(20, 100, 0);
+            PauseInfo.transform.localPosition = new Vector3(10, 100, 0);
             notEnothRessourse.transform.localPosition = new Vector3(40, 100, 0);
 
             if (buildState != 0)
