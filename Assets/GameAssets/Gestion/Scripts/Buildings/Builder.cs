@@ -136,6 +136,12 @@ public class Builder : MonoBehaviour
     public SpriteRenderer barFs;
     public SpriteRenderer barBs;
     public SpriteRenderer Barfond;
+    public SpriteRenderer sizeIcon1;
+    public SpriteRenderer sizeIcon2;
+
+    public Sprite big;
+    public Sprite water;
+    public Sprite norm;
 
     private void Awake()
     {
@@ -682,6 +688,18 @@ public class Builder : MonoBehaviour
 
     private void ShowBuildingMenu()
     {
+        if(buildings[0].buildID == 1){
+        sizeIcon1.sprite = big;
+        sizeIcon2.sprite = big;
+        } else if(buildings[0].buildID == 3){
+        sizeIcon1.sprite = water;
+        sizeIcon2.sprite = water;
+        } else{
+        sizeIcon1.sprite = norm;
+        sizeIcon2.sprite = norm;
+
+        }
+        Debug.Log(buildings[0].buildID );
         SoundManager.instance.PlaySFX(clic);
         validation.SetActive(false);
         buildingMenu.SetActive(true);
