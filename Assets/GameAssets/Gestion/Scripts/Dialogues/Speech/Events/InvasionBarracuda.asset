@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937f810c5dbd19e4eb2dafdaa88f35fa, type: 3}
+  m_Name: InvasionBarracuda
+  m_EditorClassIdentifier: 
+  textList:
+  - "Bonjour. La mer M\xE9diterran\xE9e fait face \xE0 une invasion de barracuda."
+  - "Cette esp\xE8ce envahissante a pris possession des c\xF4tes, ce qui emp\xEAche
+    la rencontre d\u2019autres esp\xE8ces lors de vos exp\xE9ditions.\n"
+  - "Avec nos plages envahies, ce ph\xE9nom\xE8ne impacte directement la qualit\xE9
+    de vie des habitants"
+  - "Nous estimons la dur\xE9e de cette invasion \xE0 3 mois."
+  position: {x: -6.46, y: -1, z: 0}
+  size: {x: 0.2, y: 0.2, z: 0}
+  spriteList: []

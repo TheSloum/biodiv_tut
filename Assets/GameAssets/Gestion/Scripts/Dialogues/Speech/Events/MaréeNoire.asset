@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937f810c5dbd19e4eb2dafdaa88f35fa, type: 3}
+  m_Name: "Mar\xE9eNoire"
+  m_EditorClassIdentifier: 
+  textList:
+  - "Bonjour, une fuite de p\xE9trole s'est propag\xE9e dans nos eaux, mena\xE7ant
+    la faune et les habitats marins. Cela va affecter la qualit\xE9 de vie des habitants
+    ainsi que l\u2019exploration. Une op\xE9ration de nettoyage est en cours."
+  position: {x: 0, y: 0, z: 0}
+  size: {x: 0, y: 0, z: 0}
+  spriteList: []

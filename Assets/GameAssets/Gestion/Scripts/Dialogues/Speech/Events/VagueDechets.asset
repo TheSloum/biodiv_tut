@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937f810c5dbd19e4eb2dafdaa88f35fa, type: 3}
+  m_Name: VagueDechets
+  m_EditorClassIdentifier: 
+  textList:
+  - "Bonjour. La mer M\xE9diterran\xE9e fait face \xE0 une importante vague de d\xE9chets."
+  - "Sa dur\xE9e est estim\xE9e \xE0 dur\xE9e \xE0 3 mois."
+  - "De nombreux d\xE9tritus sont ramen\xE9s sur nos c\xF4tes, ce qui impacte directement
+    la pollution marine et la qualit\xE9 de vie des habitants.\r"
+  - "Soyez vigilant durant vos explorations, vous risquez de rencontrer un nombre
+    accru de d\xE9chets.Soyez vigilant durant vos explorations, vous risquez de rencontrer
+    un nombre accru de d\xE9chets."
+  position: {x: 0, y: 0, z: 0}
+  size: {x: 0, y: 0, z: 0}
+  spriteList: []
