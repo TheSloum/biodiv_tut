@@ -1,9 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using System.Linq;
+
 
 public class Materials : MonoBehaviour
 {
+    private Queue<KeyCode> keySequence = new Queue<KeyCode>();
+    private KeyCode[] cheatCode = { KeyCode.G, KeyCode.U, KeyCode.C, KeyCode.C, KeyCode.I };
+
     public static Materials instance;
 
     public bool tutorial = true;
@@ -47,6 +53,16 @@ public class Materials : MonoBehaviour
     void OnDisable()
     {
         Application.logMessageReceived -= HandleLog;
+    }
+
+    private void ActivateCheat()
+    {
+        mat_0 = 99999;
+        mat_1 = 99999;
+        mat_2 = 99999;
+        price = 99999;
+        bar_0 = 1f;
+        bar_1 = 1f;
     }
 
     void HandleLog(string logString, string stackTrace, LogType type)
@@ -198,7 +214,27 @@ public class Materials : MonoBehaviour
 
     void Update()
     {
+        if (Input.anyKeyDown)
+        {
+            foreach (KeyCode key in cheatCode)
+            {
+                if (Input.GetKeyDown(key))
+                {
+                    keySequence.Enqueue(key);
+                    if (keySequence.Count > cheatCode.Length)
+                    {
+                        keySequence.Dequeue();
+                    }
+                    break;
+                }
+            }
 
+            if (keySequence.Count == cheatCode.Length && new List<KeyCode>(keySequence).ToArray().SequenceEqual(cheatCode))
+            {
+                ActivateCheat();
+                keySequence.Clear();
+            }
+        }
         bar_0 = Mathf.Clamp(bar_0, 0f, 0.99f);
         bar_1 = Mathf.Clamp(bar_1, 0f, 0.99f);
         bar_2 = Mathf.Clamp(bar_2, 0f, 0.99f);
@@ -256,4 +292,6 @@ public class Materials : MonoBehaviour
         sessionStone = 0;
         sessionIron = 0;
     }
+
+
 }
