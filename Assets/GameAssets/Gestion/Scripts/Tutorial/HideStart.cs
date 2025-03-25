@@ -53,6 +53,8 @@ public class HideStart : MonoBehaviour
     public Button exploration;
     public GameObject manageMenu;
 
+    public Building buildRes;
+
 
 
     public GameObject tutoChoosePage;
@@ -70,6 +72,10 @@ public class HideStart : MonoBehaviour
     public GameObject Blink5;
 
     private bool speech3AlreadyDone = false;
+
+
+
+    public Builder builder;
 
     void Start()
     {
@@ -378,6 +384,7 @@ public class HideStart : MonoBehaviour
             }
         }
         Materials.instance.textDone = false;
+        builder.SelectBuild(buildRes, null);
         ShowDialogue.Instance.DialogueBox(speech[4]);
         StartCoroutine(WaitForTextEnd(4));
     }

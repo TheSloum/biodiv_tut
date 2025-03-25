@@ -846,11 +846,13 @@ public class Builder : MonoBehaviour
         price1.text = building.mat_1.ToString();
         price2.text = building.mat_2.ToString();
         price3.text = building.price.ToString();
+        if(buttonObject != null){
         EventSystem.current.SetSelectedGameObject(buttonObject);
 
         validationButton.onClick.RemoveAllListeners();
 
         validationButton.onClick.AddListener(() => OnBuildingButtonClick(building));
+        }
 
     }
 

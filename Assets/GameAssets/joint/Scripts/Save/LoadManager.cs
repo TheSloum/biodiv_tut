@@ -70,6 +70,8 @@ public string folderPath = Path.Combine(Application.persistentDataPath, "Sauvega
     }
     public void Resume()
     {
+
+        Debug.Log("AEGPKJZORJGTPOJ");
         resumeLoad = true;
         saveDate = null;
         Materials.instance.isLoad = true;

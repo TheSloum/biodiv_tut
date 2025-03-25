@@ -19478,7 +19478,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: -10.000015}
   m_SizeDelta: {x: 148.1566, y: 96.3131}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1064269909
@@ -25772,7 +25772,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -63.89258}
+  m_AnchoredPosition: {x: 0, y: -63.892593}
   m_SizeDelta: {x: 0, y: -113.252}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1365708778
@@ -69136,6 +69136,7 @@ MonoBehaviour:
   step: 0
   exploration: {fileID: 920660841}
   manageMenu: {fileID: 1158501978}
+  buildRes: {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
   tutoChoosePage: {fileID: 2125982429}
   inputBack: {fileID: 7633687358561858558}
   dialogueMasking: {fileID: 1016531428}
@@ -69146,6 +69147,7 @@ MonoBehaviour:
   Blink3: {fileID: 786353739}
   Blink4: {fileID: 116566085}
   Blink5: {fileID: 699641728}
+  builder: {fileID: 1474758150}
 --- !u!1 &7633687358449335658
 GameObject:
   m_ObjectHideFlags: 0

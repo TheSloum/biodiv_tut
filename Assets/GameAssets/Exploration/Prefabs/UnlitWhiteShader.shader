@@ -2,6 +2,7 @@ Shader "Custom/UnlitWhiteShader"
 {
     Properties
     {
+        _MainTex ("Base (RGBA)", 2D) = "white" {}
         _Color ("Color", Color) = (1,1,1,1)
     }
     SubShader

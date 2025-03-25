@@ -46,9 +46,8 @@ public class E_Outline : MonoBehaviour
             sr.sortingLayerID = originalSprite.sortingLayerID;
             sr.sortingOrder = originalSprite.sortingOrder - 1; 
 
-            // Make the outline fully white (ignoring texture color)
             Material whiteMaterial = new Material(Shader.Find("Custom/UnlitWhiteShader"));
-sr.material = whiteMaterial; // Force solid white color
+sr.material = whiteMaterial; 
 
             outlineObjects[i] = outline;
             

@@ -461,6 +461,8 @@ public class GameDataSaver : MonoBehaviour
         {
             Debug.Log("ResumeDone");
             LoadManager.instance.resumeLoad = false;
+            
+            Destroy(LoadManager.instance.gameObject);
         }
 
     }
