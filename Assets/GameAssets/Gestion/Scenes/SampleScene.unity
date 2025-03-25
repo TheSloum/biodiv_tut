@@ -26324,6 +26324,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d674fa35fc91504a82650ea1055adc0, type: 2}
   - {fileID: 11400000, guid: a35a053c34d7787459512b236e604724, type: 2}
   - {fileID: 11400000, guid: 80d83c09653035243b34bab0abfd9a35, type: 2}
+  - {fileID: 11400000, guid: 7256de8bacd7a81409f00b58e62ef615, type: 2}
   builderData: []
   baseSprite: {fileID: 21300000, guid: ff46b096526b33943a039b1562c1887e, type: 3}
   researchSprite: {fileID: 21300000, guid: c6cd4d0301738ca4ab890b9abce0f6f2, type: 3}
