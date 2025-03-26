@@ -110,11 +110,14 @@ MonoBehaviour:
       marins et \xE9puisent les ressources marines. \nEFFET : \n- La qualit\xE9 de
       vie diminue. \n- Durant l'\xE9v\xE9nement, les esp\xE8ces apparaissent moins
       fr\xE9quemment lors de l\u2019exploration."
-  - name: Canicule marine
+  - name: "\xC9pisode de canicule marine"
     eventID: 10
-    durationInMonths: 1
+    durationInMonths: 3
     dialogue: {fileID: 11400000, guid: d57cdc3c688571f41ab1b9fd1d994d16, type: 2}
-    description: 
+    description: "Une \xE9l\xE9vation anormale de la temp\xE9rature de l\u2019eau
+      perturbe les organismes marins et fragilise leur survie. \nDUR\xC9E : entre
+      2 \xE0 4 mois \nEFFETS : \n- Durant l'\xE9v\xE9nement, les esp\xE8ces apparaissent
+      moins fr\xE9quemment lors de l\u2019exploration. \n"
   - name: "Journ\xE9e de ramassage"
     eventID: 14
     durationInMonths: 1
