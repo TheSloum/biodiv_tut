@@ -32,10 +32,16 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             fontToggle.onValueChanged.AddListener(OnFontToggleChanged);
         }
+
+    }
+
+    void Awake(){
+        fontToggle.isOn = Materials.instance.dys;
     }
 
     void Update()
     {
+        fontToggle.isOn = Materials.instance.dys;
         if (Parametre.activeSelf || MainMenu.activeSelf || Loadeur.activeSelf && IsInMenue == 0)
         {
             Materials.instance.canMove = false;
@@ -120,6 +126,7 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void ApplyFontChange(bool isChecked)
     {
+        Materials.instance.dys = isChecked;
         TMP_FontAsset targetFont = isChecked ? disFont : ClassicFont;
         TMP_FontAsset oldFont = isChecked ? ClassicFont : disFont;
 

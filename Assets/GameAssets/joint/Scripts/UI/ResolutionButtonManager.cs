@@ -20,7 +20,9 @@ public class ResolutionButtonManager : MonoBehaviour
     private void SetResolution(int width, int height)
     {
         Screen.SetResolution(width, height, Screen.fullScreenMode);
-        Debug.Log($"Résolution appliquée : {width}x{height}");
+        
+        Materials.instance.resX = width;
+        Debug.Log($"Rï¿½solution appliquï¿½e : {width}x{height}");
         UpdateButtonStates();
     }
 
@@ -32,5 +34,10 @@ public class ResolutionButtonManager : MonoBehaviour
         res1600x900Button.interactable = !(currentW == 1600 && currentH == 900);
         res1920x1080Button.interactable = !(currentW == 1920 && currentH == 1080);
         res2560x1440Button.interactable = !(currentW == 2560 && currentH == 1440);
+    }
+    void Update(){
+        
+        UpdateButtonStates();
+        Debug.Log(Screen.width);
     }
 }

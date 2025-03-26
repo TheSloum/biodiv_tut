@@ -11005,7 +11005,7 @@ MonoBehaviour:
   moveSpeed: 500
   acceleration: 500
   deceleration: 500
-  maxSpeed: 0
+  maxSpeed: 500
   stopDrag: 5
   pauseButton: {fileID: 1493725033}
   sfxClip: {fileID: 8300000, guid: 5aa43ceb96b72094eb0bafda677a0e8f, type: 3}
@@ -28486,7 +28486,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -63.89258}
+  m_AnchoredPosition: {x: 0, y: -63.892593}
   m_SizeDelta: {x: 0, y: -113.252}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1365708778
@@ -29042,6 +29042,9 @@ MonoBehaviour:
   errorIndicator: {fileID: 918086985}
   errorText: {fileID: 1701784955}
   ResBut: {fileID: 33603268}
+  dys: 0
+  fulls: 0
+  resX: 0
   menuFirst: 1
   loadingObject: {fileID: 0}
 --- !u!4 &1383650386
@@ -40571,7 +40574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1864930366
 Transform:
   m_ObjectHideFlags: 0
@@ -46987,8 +46990,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -48760,6 +48763,7 @@ MonoBehaviour:
   activeTextColor: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverTextColor: {r: 1, g: 1, b: 1, a: 1}
+  isFullScreen: 0
 --- !u!222 &691041552855565472
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -54350,8 +54354,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -64857,8 +64861,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -68024,8 +68028,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -78307,8 +78311,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

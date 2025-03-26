@@ -24,7 +24,7 @@ public class ScreenModeDropdownManager : MonoBehaviour
     public Color inactiveTextColor = Color.gray;
     public Color hoverTextColor = Color.white; // Couleur au survol
 
-    private bool isFullScreen;
+    public bool isFullScreen;
 
     private void Start()
     {
@@ -47,13 +47,19 @@ public class ScreenModeDropdownManager : MonoBehaviour
         Screen.fullScreen = true;
         isFullScreen = true;
         UpdateButtonUI(true);
+        Materials.instance.fulls = true;
         Debug.Log("Mode activé : Plein écran");
+    }
+
+    void Update(){
+        UpdateButtonUI(Materials.instance.fulls);
     }
 
     private void SetWindowed()
     {
         Screen.fullScreenMode = FullScreenMode.Windowed;
         Screen.fullScreen = false;
+        Materials.instance.fulls = false;
         isFullScreen = false;
         UpdateButtonUI(false);
         Debug.Log("Mode activé : Fenêtré");

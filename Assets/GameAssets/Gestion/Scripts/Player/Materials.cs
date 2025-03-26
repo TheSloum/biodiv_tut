@@ -45,6 +45,11 @@ public class Materials : MonoBehaviour
     public Button ResBut;
 
 
+public bool dys = false;
+public bool fulls = false;
+
+public int resX;
+
     public bool menuFirst = true;
     public GameObject loadingObject; 
 

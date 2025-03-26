@@ -21,6 +21,7 @@ public class ControlManager : MonoBehaviour
             bool isDyslexiaEnabled = PlayerPrefs.GetInt(DyslexiaPrefKey) == 1;
             dyslexiaToggle.isOn = isDyslexiaEnabled; // Appliquer l'état du Toggle
             ApplyDyslexiaMode(isDyslexiaEnabled); // Appliquer immédiatement le mode dyslexie
+            Materials.instance.dys = isDyslexiaEnabled;
         }
 
         // 📌 Ajouter un écouteur pour sauvegarder et appliquer les changements
@@ -39,6 +40,7 @@ public class ControlManager : MonoBehaviour
 
     void ApplyDyslexiaMode(bool isEnabled)
     {
+            Materials.instance.dys = isEnabled;
         foreach (TMP_Text txt in textsToChange)
         {
             if (txt != null)

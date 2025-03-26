@@ -48,8 +48,19 @@ public class ResolutionDropdownManager : MonoBehaviour
             SetResolution(2560, 1440, button2560x1440, text2560x1440);
     }
 
+    void Update(){
+        if (
+        Materials.instance.resX == 1600)
+            SetResolution(1600, 900, button1600x900, text1600x900);
+        else if (Materials.instance.resX == 1920)
+            SetResolution(1920, 1080, button1920x1080, text1920x1080);
+        else
+            SetResolution(2560, 1440, button2560x1440, text2560x1440);
+    }
+
     private void SetResolution(int width, int height, Button selectedButton, TextMeshProUGUI selectedText)
     {
+        Materials.instance.resX = width;
         Screen.SetResolution(width, height, Screen.fullScreenMode);
         Debug.Log($"Résolution appliquée : {width}x{height}");
 
