@@ -9,6 +9,9 @@ public class E_Event : MonoBehaviour
     // Référence à l'asset de configuration des événements
     public E_EventSettings eventSettings;
 
+    // Référence au bouton d'événement (à assigner dans l'inspecteur, sinon trouvé par son tag)
+    public GameObject eventButton;
+
     /// <summary>
     /// Déclenche l’événement avec l’ID spécifié et pour la durée donnée (en mois in game).
     /// </summary>
@@ -24,7 +27,41 @@ public class E_Event : MonoBehaviour
     IEnumerator RunEvent(int eventID, int durationInMonths)
     {
         isEventActive = true;
-        Debug.Log("Début de l'événement " + eventID + " pour " + durationInMonths + " mois.");
+
+        // Si le bouton n'est pas assigné (ex: changement de scène), le chercher grâce à son tag, même s'il est inactif
+        if (eventButton == null)
+        {
+            GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+            foreach (GameObject obj in allObjects)
+            {
+                if (obj.CompareTag("eventbutton"))
+                {
+                    eventButton = obj;
+                    break;
+                }
+            }
+            if (eventButton == null)
+            {
+                Debug.LogWarning("Aucun GameObject avec le tag 'eventbutton' n'a été trouvé !");
+            }
+            else
+            {
+                Debug.Log("Bouton d'événement trouvé via le tag 'eventbutton' (inclus les objets inactifs).");
+            }
+        }
+
+        // Activer le bouton d'événement au début de l'événement
+        if (eventButton != null)
+        {
+            eventButton.SetActive(true);
+            Debug.Log("Bouton d'événement activé.");
+        }
+        else
+        {
+            Debug.LogWarning("eventButton n'est pas assigné !");
+        }
+
+        Debug.Log("Début de l'événement " + eventID + " pour " + durationInMonths + " mois in game.");
 
         // --- Déclenchement du dialogue uniquement dans la scène de gestion ("SampleScene") ---
         if (SceneManager.GetActiveScene().name == "SampleScene")
@@ -35,6 +72,7 @@ public class E_Event : MonoBehaviour
             if (normalEvent != null && normalEvent.dialogue != null)
             {
                 dialogueToUse = normalEvent.dialogue;
+                Debug.Log("Dialogue trouvé dans NormalEvents pour l'event " + eventID + ".");
             }
             else
             {
@@ -43,6 +81,7 @@ public class E_Event : MonoBehaviour
                 if (invasionEvent != null && invasionEvent.dialogue != null)
                 {
                     dialogueToUse = invasionEvent.dialogue;
+                    Debug.Log("Dialogue trouvé dans InvasionTypes pour l'event " + eventID + ".");
                 }
             }
 
@@ -50,12 +89,17 @@ public class E_Event : MonoBehaviour
             {
                 if (ShowDialogue.Instance != null)
                 {
+                    Debug.Log("Lancement du dialogue pour l'événement " + eventID + ".");
                     ShowDialogue.Instance.DialogueBox(dialogueToUse);
                 }
                 else
                 {
                     Debug.LogWarning("ShowDialogue.Instance non trouvé dans la scène.");
                 }
+            }
+            else
+            {
+                Debug.LogWarning("Aucun dialogue configuré pour l'event " + eventID + ".");
             }
         }
         // --- Fin du déclenchement du dialogue ---
@@ -67,10 +111,12 @@ public class E_Event : MonoBehaviour
             if (E_FishSpawner.Instance != null)
             {
                 E_FishSpawner.Instance.ActivateTrashWaveEffect();
+                Debug.Log("TrashWaveEffect activé pour E_FishSpawner.");
             }
             if (E_TrashSpawner.Instance != null)
             {
                 E_TrashSpawner.Instance.ActivateTrashWaveEffect();
+                Debug.Log("TrashWaveEffect activé pour E_TrashSpawner.");
             }
         }
         else if (eventID == 1)
@@ -107,6 +153,7 @@ public class E_Event : MonoBehaviour
             if (E_FishSpawner.Instance != null)
             {
                 E_FishSpawner.Instance.ActivateTrashWaveEffect();
+                Debug.Log("TrashWaveEffect activé pour E_FishSpawner (eventID 2).");
             }
         }
         else if (eventID == 3)
@@ -128,10 +175,19 @@ public class E_Event : MonoBehaviour
             }
         }
 
-        // Calcul de la durée réelle en secondes
-        float secondsPerMonth = J_TimeManager.Instance.secondsPerDay * J_TimeManager.Instance.daysPerMonth;
-        float realDuration = durationInMonths * secondsPerMonth;
-        yield return new WaitForSeconds(realDuration);
+        // --- Attente basée sur le temps in game ---
+        int startYear = J_TimeManager.Instance.currentYear;
+        int startMonth = J_TimeManager.Instance.currentMonth;
+        int monthsPassed = 0;
+        Debug.Log("Event " + eventID + ": Attente de " + durationInMonths + " mois in game.");
+        while (monthsPassed < durationInMonths)
+        {
+            yield return null;
+            int currentYear = J_TimeManager.Instance.currentYear;
+            int currentMonth = J_TimeManager.Instance.currentMonth;
+            monthsPassed = (currentYear - startYear) * 12 + (currentMonth - startMonth);
+        }
+        // --- Fin de l'attente ---
 
         Debug.Log("Fin de l'événement " + eventID + ".");
 
@@ -141,10 +197,12 @@ public class E_Event : MonoBehaviour
             if (E_FishSpawner.Instance != null)
             {
                 E_FishSpawner.Instance.RestoreDefaultSpawnRate();
+                Debug.Log("SpawnRate restauré pour E_FishSpawner.");
             }
             if (E_TrashSpawner.Instance != null)
             {
                 E_TrashSpawner.Instance.RestoreDefaultTrashSpawnRate();
+                Debug.Log("TrashSpawnRate restauré pour E_TrashSpawner.");
             }
         }
         else if (eventID == 1)
@@ -152,7 +210,7 @@ public class E_Event : MonoBehaviour
             if (E_FishSpawner.Instance != null)
             {
                 E_FishSpawner.Instance.RestoreDefaultSpawnRate();
-                Debug.Log("MareeNoire terminé : Intervalle de spawn restauré.");
+                Debug.Log("MareeNoire terminé : Intervalle de spawn restauré pour E_FishSpawner.");
             }
             GameObject blackOverlay = GameObject.FindWithTag("BlackOverlay");
             if (blackOverlay != null)
@@ -167,12 +225,12 @@ public class E_Event : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("MareeNoire : Aucun SpriteRenderer trouvé sur BlackOverlay !");
+                    Debug.LogWarning("MareeNoire : Aucun SpriteRenderer trouvé sur BlackOverlay lors de la restauration !");
                 }
             }
             else
             {
-                Debug.LogWarning("MareeNoire : BlackOverlay non trouvé !");
+                Debug.LogWarning("MareeNoire : BlackOverlay non trouvé lors de la restauration !");
             }
         }
         else if (eventID == 2)
@@ -180,6 +238,7 @@ public class E_Event : MonoBehaviour
             if (E_FishSpawner.Instance != null)
             {
                 E_FishSpawner.Instance.RestoreDefaultSpawnRate();
+                Debug.Log("SpawnRate restauré pour E_FishSpawner (eventID 2).");
             }
         }
         else if (eventID == 3)
@@ -204,6 +263,14 @@ public class E_Event : MonoBehaviour
         if (E_FishSpawner.Instance != null && E_FishSpawner.Instance.invasionModeActive)
         {
             E_FishSpawner.Instance.DisableInvasionMode();
+            Debug.Log("Mode invasion désactivé.");
+        }
+
+        // Désactiver le bouton d'événement à la fin de l'événement
+        if (eventButton != null)
+        {
+            eventButton.SetActive(false);
+            Debug.Log("Bouton d'événement désactivé.");
         }
 
         isEventActive = false;
@@ -212,6 +279,11 @@ public class E_Event : MonoBehaviour
         if (cycleManager != null)
         {
             cycleManager.EndEvent();
+            Debug.Log("Cycle Event Manager notifié de la fin de l'événement.");
+        }
+        else
+        {
+            Debug.LogWarning("E_CycleEventManager non trouvé !");
         }
     }
 }

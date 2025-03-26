@@ -16,6 +16,7 @@ MonoBehaviour:
   - "Bonjour. J\u2019ai l\u2019honneur de vous annoncer que les habitants se sont
     r\xE9unis pour vous remercier de vos efforts pour le d\xE9veloppement de la ville."
   - "Ils ont offert \xE0 la ville une cagnotte de "
-  position: {x: 0, y: 0, z: 0}
-  size: {x: 0, y: 0, z: 0}
-  spriteList: []
+  position: {x: -256, y: -93, z: 0}
+  size: {x: 316, y: 0, z: 0}
+  spriteList:
+  - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}

@@ -16,6 +16,7 @@ MonoBehaviour:
   - "Bonjour, une fuite de p\xE9trole s'est propag\xE9e dans nos eaux, mena\xE7ant
     la faune et les habitats marins. Cela va affecter la qualit\xE9 de vie des habitants
     ainsi que l\u2019exploration. Une op\xE9ration de nettoyage est en cours."
-  position: {x: 0, y: 0, z: 0}
-  size: {x: 0, y: 0, z: 0}
-  spriteList: []
+  position: {x: -256, y: -93, z: 0}
+  size: {x: 316, y: 0, z: 0}
+  spriteList:
+  - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}

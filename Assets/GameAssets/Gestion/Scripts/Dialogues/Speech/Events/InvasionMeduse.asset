@@ -19,6 +19,7 @@ MonoBehaviour:
   - "Avec nos plages envahies, ce ph\xE9nom\xE8ne impacte directement la qualit\xE9
     de vie des habitants"
   - "Nous estimons la dur\xE9e de cette invasion \xE0 3 mois."
-  position: {x: -6.46, y: -1, z: 0}
-  size: {x: 0.2, y: 0.2, z: 0}
-  character: {fileID: 0}
+  position: {x: -256, y: -93, z: 0}
+  size: {x: 316, y: 0, z: 0}
+  spriteList:
+  - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}
