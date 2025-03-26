@@ -35,18 +35,18 @@ MonoBehaviour:
     prefabs:
     - {fileID: 2388417884662715918, guid: 983c3013fa391524da8b2104f6687579, type: 3}
     durationInMonths: 2
-    dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
+    dialogue: {fileID: 11400000, guid: b1dd5053fe13cf241aee36c66ae324b3, type: 2}
   - name: Barracuda
     eventID: 5
     prefabs:
     - {fileID: 2388417884662715918, guid: 2c68ddac4e9444d4aa4802156815cda5, type: 3}
     durationInMonths: 2
-    dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
+    dialogue: {fileID: 11400000, guid: d7669f10e42fc0642a70d1e8b6d527fd, type: 2}
   normalEvents:
   - name: VagueDechets
     eventID: 0
     durationInMonths: 2
-    dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
+    dialogue: {fileID: 11400000, guid: feaf7f2ae41394345bfaa79774b97df4, type: 2}
   - name: MareeNoire
     eventID: 1
     durationInMonths: 2
@@ -74,11 +74,15 @@ MonoBehaviour:
   - name: Collecte de fonds
     eventID: 16
     durationInMonths: 1
-    dialogue: {fileID: 11400000, guid: 0ca0ba38dd43e204db75a8ffdc86a6ee, type: 2}
+    dialogue: {fileID: 11400000, guid: df4e4d7b043debd408d944f068e66ef7, type: 2}
   - name: Remerciement
     eventID: 17
     durationInMonths: 1
-    dialogue: {fileID: 11400000, guid: 0ca0ba38dd43e204db75a8ffdc86a6ee, type: 2}
+    dialogue: {fileID: 11400000, guid: ebc75c932f642324e802620d74882d38, type: 2}
+  - name: "F\xEAte du corail"
+    eventID: 3
+    durationInMonths: 1
+    dialogue: {fileID: 11400000, guid: ebc75c932f642324e802620d74882d38, type: 2}
   invasionCooldownYears: 1
   normalEventCooldownYears: 3
   festivalSpawnMultiplier: 1.5

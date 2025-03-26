@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class E_Event : MonoBehaviour
 {
+    // Cette variable statique conserve l'ID de l'événement actif,
+    // afin que les autres scripts (ex. E_FishSpawner, E_TrashSpawner) puissent ajuster leur comportement en conséquence.
+    public static int activeEventID = -1; 
+
     private bool isEventActive = false;
 
     // Référence à l’asset de configuration des événements
@@ -15,6 +19,8 @@ public class E_Event : MonoBehaviour
     /// <summary>
     /// Déclenche l’événement avec l’ID spécifié et pour la durée donnée (en mois in game).
     /// </summary>
+    /// <param name="eventID">Identifiant de l’événement</param>
+    /// <param name="durationInMonths">Durée de l’événement en mois</param>
     public void TriggerEvent(int eventID, int durationInMonths)
     {
         if (isEventActive)
@@ -25,6 +31,7 @@ public class E_Event : MonoBehaviour
     IEnumerator RunEvent(int eventID, int durationInMonths)
     {
         isEventActive = true;
+        activeEventID = eventID;  // On enregistre l'ID de l'événement actif
 
         // Si le bouton n’est pas assigné, le chercher via son tag (même inactif)
         if (eventButton == null)
@@ -61,17 +68,13 @@ public class E_Event : MonoBehaviour
 
         Debug.Log("Début de l'événement " + eventID + " pour " + durationInMonths + " mois in game.");
 
-        // Déclenchement du dialogue dans la scène de gestion ("SampleScene")
+        // Déclenchement du dialogue uniquement dans la scène de gestion ("SampleScene")
         if (SceneManager.GetActiveScene().name == "SampleScene")
         {
             Speech dialogueToUse = null;
-            NormalEventType normalEvent = eventSettings.normalEvents.Find(e => e.eventID == eventID);
-            if (normalEvent != null && normalEvent.dialogue != null)
-            {
-                dialogueToUse = normalEvent.dialogue;
-                Debug.Log("Dialogue trouvé dans NormalEvents pour l'event " + eventID + ".");
-            }
-            else
+            // Séparation claire entre événement invasion et événement normal
+            bool isInvasion = eventSettings.invasionTypes.Exists(e => e.eventID == eventID);
+            if (isInvasion)
             {
                 InvasionType invasionEvent = eventSettings.invasionTypes.Find(e => e.eventID == eventID);
                 if (invasionEvent != null && invasionEvent.dialogue != null)
@@ -80,6 +83,16 @@ public class E_Event : MonoBehaviour
                     Debug.Log("Dialogue trouvé dans InvasionTypes pour l'event " + eventID + ".");
                 }
             }
+            else
+            {
+                NormalEventType normalEvent = eventSettings.normalEvents.Find(e => e.eventID == eventID);
+                if (normalEvent != null && normalEvent.dialogue != null)
+                {
+                    dialogueToUse = normalEvent.dialogue;
+                    Debug.Log("Dialogue trouvé dans NormalEvents pour l'event " + eventID + ".");
+                }
+            }
+
             if (dialogueToUse != null)
             {
                 if (ShowDialogue.Instance != null)
@@ -100,30 +113,30 @@ public class E_Event : MonoBehaviour
 
         // Gestion des effets propres à l’événement selon son ID
         // Répartition des IDs (exemple) :
-        // 0 : Vague de déchets (négatif – déjà existant)
-        // 1 : Marée noire (négatif – déjà existant)
-        // 2 : Invasion de méduses (négatif)
-        // 3 : Fête du corail (positif, déclenché par CycleEventManager)
-        // 4 : Invasion poisson-lion (négatif)
-        // 5 : Invasion de barracudas (négatif)
-        // 6 : Coupure de courant (négatif)
-        // 7 : Surconsommation énergie (négatif)
-        // 8 : Grève (négatif)
-        // 9 : Pêche illégale (négatif)
-        // 10 : Canicule marine (négatif)
-        // 11 : Fuite d’eau usée (négatif)
-        // 12 : Nouvelle espèce envahissante (négatif)
-        // 13 : Perte de rendement (négatif)
-        // 14 : Journée de ramassage (positif)
-        // 15 : Mois réduction consommation énergie (positif)
-        // 16 : Collecte de fonds (positif)
-        // 17 : Remerciement des habitants (positif)
-        // 18 : Don d’une société (positif)
-        // 19 : Retour des posidonies (positif)
-        // 20 : Programme de restauration écosystèmes (positif)
-        // 21 : Panne d’énergie (système)
-        // 22 : Feux de forêt (système)
-        // 23 : Marée rouge (système)
+        // 0 : Vague de déchets
+        // 1 : Marée noire
+        // 2 : Invasion de méduses
+        // 3 : Fête du corail
+        // 4 : Invasion poisson-lion
+        // 5 : Invasion de barracudas
+        // 6 : Coupure de courant
+        // 7 : Surconsommation d'énergie
+        // 8 : Grève
+        // 9 : Pêche illégale
+        // 10 : Canicule marine
+        // 11 : Fuite d’eau usée
+        // 12 : Nouvelle espèce envahissante
+        // 13 : Perte de rendement
+        // 14 : Journée de ramassage
+        // 15 : Mois réduction consommation énergie
+        // 16 : Collecte de fonds
+        // 17 : Remerciement des habitants
+        // 18 : Don d’une société
+        // 19 : Retour des posidonies
+        // 20 : Programme de restauration écosystèmes
+        // 21 : Panne d’énergie
+        // 22 : Feux de forêt
+        // 23 : Marée rouge
         switch (eventID)
         {
             case 0: // Vague de déchets
@@ -149,21 +162,21 @@ public class E_Event : MonoBehaviour
                             Color col = sr.color;
                             col.a = 0.4f;
                             sr.color = col;
-                            Debug.Log("MareeNoire : Opacité du BlackOverlay mise à 40%.");
+                            Debug.Log("Marée noire : Opacité du BlackOverlay mise à 40%.");
                         }
                         else
                         {
-                            Debug.LogWarning("MareeNoire : Aucun SpriteRenderer trouvé sur BlackOverlay !");
+                            Debug.LogWarning("Marée noire : Aucun SpriteRenderer trouvé sur BlackOverlay !");
                         }
                     }
                     else
                     {
-                        Debug.LogWarning("MareeNoire : BlackOverlay non trouvé !");
+                        Debug.LogWarning("Marée noire : BlackOverlay non trouvé !");
                     }
                     if (E_FishSpawner.Instance != null)
                     {
                         E_FishSpawner.Instance.IncreaseFishSpawnRate();
-                        Debug.Log("MareeNoire : Intervalle de spawn diminué.");
+                        Debug.Log("Marée noire : Intervalle de spawn diminué.");
                     }
                 }
                 break;
@@ -179,6 +192,19 @@ public class E_Event : MonoBehaviour
                     {
                         Debug.LogWarning("Prefab pour Invasion de méduses non trouvé !");
                     }
+                }
+                break;
+            case 3: // Fête du corail
+                {
+                    if (E_FishSpawner.Instance != null)
+                    {
+                        E_FishSpawner.Instance.IncreaseFishSpawnRate();
+                        Debug.Log("Fête du corail activée : spawn de poissons augmenté.");
+                    }
+                    // Augmente légèrement la qualité de vie et diminue l'argent
+                    Materials.instance.bar_0 = Mathf.Min(Materials.instance.bar_0 + 0.1f, 0.99f);
+                    Materials.instance.price = Mathf.Max(Materials.instance.price - 50, 0);
+                    Debug.Log("Fête du corail activée : qualité de vie augmentée et argent diminué.");
                 }
                 break;
             case 4: // Invasion poisson-lion
@@ -220,14 +246,14 @@ public class E_Event : MonoBehaviour
                     Debug.Log("Coupure de courant activée : bâtiments en pause, argent réduit.");
                 }
                 break;
-            case 7: // Surconsommation énergie
+            case 7: // Surconsommation d'énergie
                 {
                     Builder[] builders = FindObjectsOfType<Builder>();
                     foreach (var builder in builders)
                     {
                         builder.cycleDuration *= 1.5f;
                     }
-                    Debug.Log("Surconsommation énergie activée : consommation augmentée dans les bâtiments.");
+                    Debug.Log("Surconsommation d'énergie activée : consommation augmentée dans les bâtiments.");
                 }
                 break;
             case 8: // Grève
@@ -289,14 +315,14 @@ public class E_Event : MonoBehaviour
                     Debug.Log("Perte de rendement activée : revenu bloqué, qualité de vie diminuée.");
                 }
                 break;
-            case 14: // Journée de ramassage (positif)
+            case 14: // Journée de ramassage
                 {
                     Materials.instance.bar_2 = Mathf.Max(Materials.instance.bar_2 - 0.2f, 0f);
                     Materials.instance.bar_0 = Mathf.Min(Materials.instance.bar_0 + 0.1f, 0.99f);
                     Debug.Log("Journée de ramassage activée : pollution réduite, qualité de vie améliorée.");
                 }
                 break;
-            case 15: // Mois réduction consommation énergie (positif)
+            case 15: // Mois réduction consommation énergie
                 {
                     Builder[] builders = FindObjectsOfType<Builder>();
                     foreach (var builder in builders)
@@ -306,39 +332,39 @@ public class E_Event : MonoBehaviour
                     Debug.Log("Mois réduction consommation énergie activé : consommation réduite dans les bâtiments.");
                 }
                 break;
-            case 16: // Collecte de fonds (positif)
+            case 16: // Collecte de fonds
                 {
-                    Materials.instance.price += 700;
+                    Materials.instance.price += 200;
                     Debug.Log("Collecte de fonds activée : argent augmenté.");
                 }
                 break;
-            case 17: // Remerciement des habitants (positif)
+            case 17: // Remerciement des habitants
                 {
                     Materials.instance.price += 150;
                     Debug.Log("Remerciement des habitants activé : argent augmenté.");
                 }
                 break;
-            case 18: // Don d’une société (positif)
+            case 18: // Don d’une société
                 {
                     Materials.instance.price += 150;
                     Debug.Log("Don d’une société activé : argent augmenté.");
                 }
                 break;
-            case 19: // Retour des posidonies (positif)
+            case 19: // Retour des posidonies
                 {
                     Materials.instance.bar_0 = Mathf.Min(Materials.instance.bar_0 + 0.15f, 0.99f);
                     Materials.instance.price += 50;
                     Debug.Log("Retour des posidonies activé : biodiversité et qualité de vie améliorées, argent augmenté.");
                 }
                 break;
-            case 20: // Programme de restauration écosystèmes (positif)
+            case 20: // Programme de restauration écosystèmes
                 {
                     Materials.instance.bar_0 = Mathf.Min(Materials.instance.bar_0 + 0.1f, 0.99f);
                     Materials.instance.price = Mathf.Max(Materials.instance.price - 50, 0);
                     Debug.Log("Programme de restauration écosystèmes activé : biodiversité et qualité de vie améliorées, argent diminué.");
                 }
                 break;
-            case 21: // Panne d’énergie (système)
+            case 21: // Panne d’énergie
                 {
                     Builder[] builders = FindObjectsOfType<Builder>();
                     if (builders.Length > 0)
@@ -349,12 +375,12 @@ public class E_Event : MonoBehaviour
                     }
                 }
                 break;
-            case 22: // Feux de forêt (système)
+            case 22: // Feux de forêt
                 {
                     Debug.Log("Feux de forêt activés : impact potentiel sur le tourisme et la biodiversité.");
                 }
                 break;
-            case 23: // Marée rouge (système)
+            case 23: // Marée rouge
                 {
                     Materials.instance.bar_2 = Mathf.Min(Materials.instance.bar_2 + 0.3f, 1f);
                     Debug.Log("Marée rouge activée : biodiversité impactée par une faune toxique.");
@@ -411,6 +437,13 @@ public class E_Event : MonoBehaviour
                 if (E_FishSpawner.Instance != null && E_FishSpawner.Instance.invasionModeActive)
                     E_FishSpawner.Instance.DisableInvasionMode();
                 break;
+            case 3: // Restauration de la Fête du corail
+                if (E_FishSpawner.Instance != null)
+                    E_FishSpawner.Instance.RestoreDefaultSpawnRate();
+                // Rétablir les valeurs par défaut (à ajuster selon votre design)
+                Materials.instance.bar_0 = 0.5f;
+                Materials.instance.price += 50;
+                break;
             case 6:
             case 8:
             case 21:
@@ -443,6 +476,9 @@ public class E_Event : MonoBehaviour
             default:
                 break;
         }
+
+        // Réinitialiser la variable statique indiquant l'événement actif
+        activeEventID = -1;
 
         // Désactivation du bouton d’événement à la fin
         if (eventButton != null)
