@@ -16,6 +16,10 @@ public class E_Event : MonoBehaviour
     // Référence au bouton d’événement (assigné dans l’inspecteur ou recherché par tag)
     public GameObject eventButton;
 
+    // Pour la Fête du Corail : définir le mois et la périodicité (exemple : mai, tous les 4 ans)
+    public int coralFestivalMonth = 5; // Mai
+    public int coralFestivalCycle = 4; // Tous les 4 ans
+
     /// <summary>
     /// Déclenche l’événement avec l’ID spécifié et pour la durée donnée (en mois in game).
     /// </summary>
@@ -23,9 +27,34 @@ public class E_Event : MonoBehaviour
     /// <param name="durationInMonths">Durée de l’événement en mois</param>
     public void TriggerEvent(int eventID, int durationInMonths)
     {
+        // Pour la Fête du Corail (id 3), vérifier que c'est le bon moment (date précise et cycle de 4 ans)
+        if (eventID == 3 && !CanTriggerCoralFestival())
+        {
+            Debug.Log("La Fête du Corail ne peut être déclenchée qu'en " + coralFestivalMonth + " tous les " + coralFestivalCycle + " ans.");
+            return;
+        }
+
         if (isEventActive)
             return;
         StartCoroutine(RunEvent(eventID, durationInMonths));
+    }
+
+    /// <summary>
+    /// Vérifie si la Fête du Corail peut être déclenchée selon la date in game.
+    /// Exemple : déclenchée en mai tous les 4 ans.
+    /// </summary>
+    /// <returns>true si l'événement peut être déclenché, false sinon</returns>
+    private bool CanTriggerCoralFestival()
+    {
+        int currentYear = J_TimeManager.Instance.currentYear;
+        int currentMonth = J_TimeManager.Instance.currentMonth;
+        // Vérifier si c'est le mois défini pour la fête
+        if (currentMonth != coralFestivalMonth)
+            return false;
+        // Vérifier que l'année actuelle respecte le cycle (ex : un multiple de 4)
+        if (currentYear % coralFestivalCycle != 0)
+            return false;
+        return true;
     }
 
     IEnumerator RunEvent(int eventID, int durationInMonths)
@@ -112,31 +141,6 @@ public class E_Event : MonoBehaviour
         }
 
         // Gestion des effets propres à l’événement selon son ID
-        // Répartition des IDs (exemple) :
-        // 0 : Vague de déchets
-        // 1 : Marée noire
-        // 2 : Invasion de méduses
-        // 3 : Fête du corail
-        // 4 : Invasion poisson-lion
-        // 5 : Invasion de barracudas
-        // 6 : Coupure de courant
-        // 7 : Surconsommation d'énergie
-        // 8 : Grève
-        // 9 : Pêche illégale
-        // 10 : Canicule marine
-        // 11 : Fuite d’eau usée
-        // 12 : Nouvelle espèce envahissante
-        // 13 : Perte de rendement
-        // 14 : Journée de ramassage
-        // 15 : Mois réduction consommation énergie
-        // 16 : Collecte de fonds
-        // 17 : Remerciement des habitants
-        // 18 : Don d’une société
-        // 19 : Retour des posidonies
-        // 20 : Programme de restauration écosystèmes
-        // 21 : Panne d’énergie
-        // 22 : Feux de forêt
-        // 23 : Marée rouge
         switch (eventID)
         {
             case 0: // Vague de déchets

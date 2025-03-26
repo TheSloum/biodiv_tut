@@ -55,6 +55,9 @@ public class InvasionType
     // Durée spécifique (en mois) pour cet événement d'invasion
     public int durationInMonths = 2; 
     public Speech dialogue; 
+    // Description de l'événement d'invasion avec un TextArea pour les longs textes
+    [TextArea]
+    public string description;
 }
 
 [System.Serializable]
@@ -65,4 +68,7 @@ public class NormalEventType
     // Durée spécifique (en mois) pour cet événement normal
     public int durationInMonths = 2; 
     public Speech dialogue; 
+    // Description de l'événement normal avec un TextArea pour les longs textes
+    [TextArea]
+    public string description;
 }

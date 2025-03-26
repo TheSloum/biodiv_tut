@@ -24,65 +24,130 @@ MonoBehaviour:
   coralFestivalDuration: 1
   waitForExplorationIfCoralFestival: 1
   invasionTypes:
-  - name: Jellyfish
+  - name: "Invasion de m\xE9duses"
     eventID: 2
     prefabs:
     - {fileID: 2388417884662715918, guid: 4a52e342e6f39fb49b97fffe5bd509fe, type: 3}
     durationInMonths: 2
     dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
-  - name: LionFish
+    description: "Les m\xE9duses sont de plus en plus nombreuses dans la mer. Elles
+      se nourrissent en grande quantit\xE9 de plancton et de jeunes poissons, ce
+      qui emp\xEAche d'autres animaux marins de trouver de la nourriture. Cela perturbe
+      l'\xE9quilibre naturel et affecte \xE9galement les humains. En effet, une prolif\xE9ration
+      de m\xE9duses peut emp\xEAcher la baignade ou compliquer la p\xEAche.\nDUR\xC9E
+      : entre 2 \xE0 4 mois \nEFFETS : \n- Toutes les esp\xE8ces apparaissant lors
+      de l\u2019exploration sont remplac\xE9es par des m\xE9duses. \n- La qualit\xE9
+      de vie diminue. \n"
+  - name: Invasion de poissons-lions
     eventID: 4
     prefabs:
     - {fileID: 2388417884662715918, guid: 983c3013fa391524da8b2104f6687579, type: 3}
     durationInMonths: 2
     dialogue: {fileID: 11400000, guid: b1dd5053fe13cf241aee36c66ae324b3, type: 2}
-  - name: Barracuda
+    description: "Les poissons-lions sont des pr\xE9dateurs venimeux. Ils se nourrissent
+      de nombreux autres poissons et se reproduisent tr\xE8s rapidement, ce qui d\xE9s\xE9quilibre
+      la vie sous-marine et met en danger certaines esp\xE8ces.\nDUR\xC9E : entre
+      2 \xE0 4 mois \nEFFETS : \n- Toutes les esp\xE8ces apparaissant lors de l\u2019exploration
+      sont remplac\xE9es par des poissons-lions. \n- La qualit\xE9 de vie diminue.
+      \n"
+  - name: Invasion de barracudas
     eventID: 5
     prefabs:
     - {fileID: 2388417884662715918, guid: 2c68ddac4e9444d4aa4802156815cda5, type: 3}
     durationInMonths: 2
     dialogue: {fileID: 11400000, guid: d7669f10e42fc0642a70d1e8b6d527fd, type: 2}
+    description: "Les barracudas sont de grands pr\xE9dateurs carnivores. Ils chassent
+      d'autres animaux marins, notamment des poissons et des mollusques, ce qui perturbe
+      la cha\xEEne alimentaire et rend la vie plus difficile pour certaines esp\xE8ces.\nDUR\xC9E
+      : entre 2 \xE0 4 mois \nEFFETS : \n- Toutes les esp\xE8ces apparaissant lors
+      de l\u2019exploration sont remplac\xE9es par des barracudas. \n- La qualit\xE9
+      de vie diminue. "
   normalEvents:
-  - name: VagueDechets
+  - name: "Vague de d\xE9chets"
     eventID: 0
     durationInMonths: 2
     dialogue: {fileID: 11400000, guid: feaf7f2ae41394345bfaa79774b97df4, type: 2}
-  - name: MareeNoire
+    description: "Les d\xE9chets plastiques envahissent les plages et les fonds marins,
+      mettant en danger la faune marine qui les ing\xE8re. \nDUR\xC9E : entre 2 \xE0
+      4 mois \nEFFETS : \n- La qualit\xE9 de vie diminue. \n- Le niveau de pollution
+      augmente. \n- Durant l'\xE9v\xE9nement, les esp\xE8ces apparaissent moins fr\xE9quemment
+      lors de l\u2019exploration. \n- Durant l'\xE9v\xE9nement, les d\xE9chets apparaissent
+      plus fr\xE9quemment lors de l\u2019exploration. \n"
+  - name: "Mar\xE9e noir"
     eventID: 1
     durationInMonths: 2
     dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
-  - name: Surconsommation
+    description: "Une fuite de p\xE9trole pollue l\u2019eau, d\xE9truit les habitats
+      marins et menace la biodiversit\xE9. \nDUR\xC9E : entre 2 \xE0 4 mois \nEFFETS
+      : \n- La qualit\xE9 de vie diminue. \n- Durant l'\xE9v\xE9nement, l\u2019exploration
+      se d\xE9roule dans le noir. \n- Durant l'\xE9v\xE9nement, les esp\xE8ces apparaissent
+      moins fr\xE9quemment lors de l\u2019exploration. \n"
+  - name: "Surconsommation d'\xE9nergie"
     eventID: 7
     durationInMonths: 2
     dialogue: {fileID: 11400000, guid: 791e538844f616d488cb4e1859a2f55f, type: 2}
-  - name: Greve
+    description: "La ville consomme trop d\u2019\xE9lectricit\xE9 ! Les lumi\xE8res,
+      les machines et les appareils fonctionnent en permanence, ce qui met les infrastructures
+      sous pression. Si cela continue, des pannes risquent d\u2019arriver. Il faut
+      agir pour \xE9viter une crise \xE9nerg\xE9tique ! \nDUR\xC9E : entre 2 \xE0
+      4 mois \nEFFETS : \n- Durant l'\xE9v\xE9nement, les b\xE2timents consomment
+      beaucoup plus d\u2019\xE9nergie.\n"
+  - name: "Gr\xE8ve"
     eventID: 8
     durationInMonths: 3
     dialogue: {fileID: 11400000, guid: 2f31cf5b66cf36040b2f739a6a56c12b, type: 2}
+    description: "Les habitants cessent de travailler ! Ils estiment que leurs conditions
+      de vie ne sont pas suffisamment bonnes. La ville tourne au ralenti. Il faut
+      trouver une solution pour r\xE9tablir l\u2019\xE9quilibre !\nDUR\xC9E : entre
+      2 \xE0 4 mois \nEFFETS : \n- La qualit\xE9 de vie diminue. \n- Les b\xE2timents
+      de production d\u2019\xE9nergie et les b\xE2timents Tourisme & Loisirs sont
+      plus lents \n"
   - name: "P\xEAche ill\xE9gale"
     eventID: 9
     durationInMonths: 1
     dialogue: {fileID: 11400000, guid: bcd8483f7b7992e4ba1efb49ca7462f4, type: 2}
+    description: "Des pratiques de p\xEAche non r\xE9glement\xE9es menacent les \xE9cosyst\xE8mes
+      marins et \xE9puisent les ressources marines. \nEFFET : \n- La qualit\xE9 de
+      vie diminue. \n- Durant l'\xE9v\xE9nement, les esp\xE8ces apparaissent moins
+      fr\xE9quemment lors de l\u2019exploration."
   - name: Canicule marine
     eventID: 10
     durationInMonths: 1
     dialogue: {fileID: 11400000, guid: d57cdc3c688571f41ab1b9fd1d994d16, type: 2}
+    description: 
   - name: "Journ\xE9e de ramassage"
     eventID: 14
     durationInMonths: 1
     dialogue: {fileID: 11400000, guid: 0ca0ba38dd43e204db75a8ffdc86a6ee, type: 2}
+    description: "Les habitants se mobilisent pour nettoyer plages et fonds marins,
+      sensibilisant \xE0 la protection de la biodiversit\xE9. \nEFFETS : \n- La qualit\xE9
+      de vie augmente faiblement. \n- La pollution diminue. \n- L\u2019argent diminue. "
   - name: Collecte de fonds
     eventID: 16
     durationInMonths: 1
     dialogue: {fileID: 11400000, guid: df4e4d7b043debd408d944f068e66ef7, type: 2}
-  - name: Remerciement
+    description: "Une initiative locale l\xE8ve des fonds pour financer des projets
+      de protection de la biodiversit\xE9 marine. \nEFFETS : \n- L\u2019argent augmente. "
+  - name: Remerciement des habitants
     eventID: 17
     durationInMonths: 1
     dialogue: {fileID: 11400000, guid: ebc75c932f642324e802620d74882d38, type: 2}
+    description: "Les habitants sont heureux et reconnaissants ! Gr\xE2ce \xE0 vos
+      actions, leur ville devient plus agr\xE9able, plus propre et mieux prot\xE9g\xE9e.
+      Ils vous remercient de prendre soin de leur environnement. Continuez ainsi
+      !\nEFFETS : \n- L\u2019argent augmente grandement. \n"
   - name: "F\xEAte du corail"
     eventID: 3
     durationInMonths: 1
     dialogue: {fileID: 11400000, guid: ebc75c932f642324e802620d74882d38, type: 2}
+    description: "Pendant un mois, les oc\xE9ans sont en f\xEAte ! Les r\xE9cifs
+      coralliens, v\xE9ritables refuges pour de nombreux animaux marins, sont mis
+      \xE0 l'honneur. Ils abritent une incroyable diversit\xE9 d'esp\xE8ces et prot\xE8gent
+      les c\xF4tes des vagues puissantes. Mais ils sont aussi menac\xE9s ! Cette
+      c\xE9l\xE9bration permet aux habitants de mieux les conna\xEEtre et de comprendre
+      comment les pr\xE9server.\nDUR\xC9E : 1 mois \nEFFETS : \n- Durant l'\xE9v\xE9nement,
+      les esp\xE8ces apparaissent plus fr\xE9quemment lors de l\u2019exploration.
+      \n- La qualit\xE9 de vie augmente faiblement. \n- L\u2019argent diminue faiblement.\n"
   invasionCooldownYears: 1
   normalEventCooldownYears: 3
   festivalSpawnMultiplier: 1.5
