@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937f810c5dbd19e4eb2dafdaa88f35fa, type: 3}
+  m_Name: Surconsommation
+  m_EditorClassIdentifier: 
+  textList:
+  - "Bonjour. Malheureusement, les habitants et les touristes ne pr\xEAtent plus
+    attention \xE0 leur consommation d\u2019\xE9nergie.\r"
+  - "Cela va entra\xEEner des co\xFBts suppl\xE9mentaires en \xE9nergie durant les
+    3 prochains mois."
+  position: {x: 0, y: 0, z: 0}
+  size: {x: 0, y: 0, z: 0}
+  spriteList: []

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937f810c5dbd19e4eb2dafdaa88f35fa, type: 3}
+  m_Name: ManqueEnergie
+  m_EditorClassIdentifier: 
+  textList:
+  - "Bonjour. votre ville ne produit pas assez d\u2019\xE9nergie, ce qui a caus\xE9
+    une importante coupure d\u2019\xE9lectricit\xE9."
+  - "Tous nos b\xE2timents sont \xE0 l'arr\xEAt jusqu\u2019au mois prochain."
+  - "Augmentez rapidement nos r\xE9serves d\u2019\xE9lectricit\xE9 si vous voulez
+    qu\u2019ils reprennent leurs activit\xE9s plus t\xF4t.\r"
+  position: {x: 0, y: 0, z: 0}
+  size: {x: 0, y: 0, z: 0}
+  spriteList: []

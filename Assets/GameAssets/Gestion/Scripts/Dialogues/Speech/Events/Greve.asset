@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937f810c5dbd19e4eb2dafdaa88f35fa, type: 3}
+  m_Name: Greve
+  m_EditorClassIdentifier: 
+  textList:
+  - "Bonjour. Nos concitoyens ont d\xE9cid\xE9 d\u2019organiser une gr\xE8ve pour
+    protester contre leur qualit\xE9 de vie qu\u2019ils jugent trop basse.\r\n"
+  - "Cette gr\xE8ve durera un mois, et durant cette p\xE9riode, la production d\u2019\xE9nergie
+    sera grandement r\xE9duite.\r"
+  - "Faites en sorte d\u2019am\xE9liorer rapidement la qualit\xE9 de vie pour r\xE9tablir
+    la situation.\r"
+  position: {x: 0, y: 0, z: 0}
+  size: {x: 0, y: 0, z: 0}
+  spriteList: []

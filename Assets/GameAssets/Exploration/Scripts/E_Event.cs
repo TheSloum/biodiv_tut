@@ -85,7 +85,7 @@ public class E_Event : MonoBehaviour
                     Color col = sr.color;
                     col.a = 0.4f; // 40% d'opacité
                     sr.color = col;
-                    Debug.Log("MareeNoire : Opacité du BlackOverlay mise à 70%.");
+                    Debug.Log("MareeNoire : Opacité du BlackOverlay mise à 40%.");
                 }
                 else
                 {
