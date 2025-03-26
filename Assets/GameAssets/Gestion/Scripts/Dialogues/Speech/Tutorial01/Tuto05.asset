@@ -21,7 +21,7 @@ MonoBehaviour:
   - "On m\u2019a dit que l\u2019exploration marine n\u2019a aucun secret pour vous
     ; vous saurez y puiser les ressources n\xE9cessaires."
   - "Suivez-moi, je vais vous montrer o\xF9 retrouver votre <b>\xE9quipement</b>."
-  position: {x: -46, y: -80, z: 0}
+  position: {x: -54, y: 10, z: 0}
   size: {x: 200, y: 0, z: 0}
   spriteList:
   - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}
