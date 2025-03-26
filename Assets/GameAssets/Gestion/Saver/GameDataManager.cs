@@ -9,6 +9,7 @@ public class GameDataManager : MonoBehaviour
 {
     [Header("References")]
     public GameObject saveButtonPrefab;
+    public GameObject Loadeur;
     public Transform saveListParent;
     public GameDataSaver gameDataSaver;
     public Scroll scroll;
@@ -131,13 +132,24 @@ public class GameDataManager : MonoBehaviour
                 }
                 else
                 {
-                    buttons[0].onClick.AddListener(() => gameDataSaver.LoadData(saveDate));
+                    buttons[0].onClick.AddListener(() =>
+                    {
+                        Debug.Log($"Chargement de la sauvegarde : {saveDate}");
+                        gameDataSaver.LoadData(saveDate);
+                        LoadHiden();
+                    });
                 }
 
                 buttons[1].onClick.AddListener(() => DeleteSave(saveFile, saveButton));
             }
         }
     }
+
+    public void LoadHiden()
+    {
+        Loadeur.SetActive(false);
+    }
+
 
     private string GetTownNameFromJson(string filePath)
     {
