@@ -57,6 +57,7 @@ public class E_OxygenManager : MonoBehaviour
 
     void Update()
     {
+            Materials.instance.menuFirst = false;
         if (currentOxygen > 0 && !isGameOver)
         {
             currentOxygen -= depletionRate * Time.deltaTime;
@@ -161,6 +162,8 @@ public class E_OxygenManager : MonoBehaviour
         while (!asyncOperation.isDone)
         {
             float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+            
+            Materials.instance.menuFirst = false;
 
             yield return null;
         }
@@ -173,6 +176,7 @@ public class E_OxygenManager : MonoBehaviour
         Materials.instance.explored = true;
         Materials.instance.isLoad = true;
         StartCoroutine(LoadSceneAsync("SampleScene"));
+            Materials.instance.menuFirst = false;
     }
 
 

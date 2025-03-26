@@ -100,10 +100,8 @@ public class GameDataSaver : MonoBehaviour
                 builderData.Add(builder.gameObject);
             }
 
-            Debug.Log("ResumeB4");
             if ((Materials.instance.isLoad && Materials.instance.explored) || (LoadManager.instance != null && LoadManager.instance.resumeLoad))
             {
-                Debug.Log("ResumeStart");
                 Materials.instance.isLoad = true;
                 LoadLatestSaveData();
                 Materials.instance.explored = false;
@@ -241,6 +239,7 @@ public class GameDataSaver : MonoBehaviour
             Materials.instance.isLoad = true;
             Materials.instance.explored = false;
             StartCoroutine(LoadSceneAsync("SampleScene"));
+            Materials.instance.menuFirst = false;
         }
         Materials.instance.isLoad = true;
 
@@ -257,8 +256,6 @@ public class GameDataSaver : MonoBehaviour
             for (int i = 0; i < fishUnlockData.Count && i < gameData.fishDataList.Count; i++)
             {
                 fishUnlockData[i].is_unlocked = gameData.fishDataList[i].is_unlocked;
-                Debug.Log(fishUnlockData[i].is_unlocked);
-
                 if (fishUnlockData[i].is_unlocked)
                 {
                     fishUnlockData[i].UnlockFish();
@@ -383,7 +380,6 @@ public class GameDataSaver : MonoBehaviour
                         fishUnlockData[i].is_unlocked = true;
                     }
                 }
-                Debug.Log(fishUnlockData[i].is_unlocked);
             }
 
             for (int i = 0; i < buildUnlockData.Count && i < gameData.buildingDataList.Count; i++)

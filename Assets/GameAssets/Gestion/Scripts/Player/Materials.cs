@@ -151,22 +151,25 @@ private IEnumerator LoadSceneAsync(string sceneName)
     private void Awake()
     {
     loadingObject = GameObject.Find("loadingScreen");
-        if (instance == null)
+    if (E_GameManager.instance != null)  return;
+        if (instance == null )
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
-        else
+        else if(menuFirst == true)
         {
             Destroy(gameObject);
             Debug.LogWarning("Multiple instances de Materials détectées.");
         }
+    
 
 
-        if (menuFirst == true && LoadManager.instance == null && SceneManager.GetActiveScene().name != "Exploration_main")
+        if (menuFirst && LoadManager.instance == null && SceneManager.GetActiveScene().name != "Exploration_main" && isLoad == false)
         {
-        StartCoroutine(LoadSceneAsync("Menue"));
+            Debug.Log(E_GameManager.instance != null);
+            StartCoroutine(LoadSceneAsync("Menue"));
             menuFirst = false;
         }
         if (SceneManager.GetActiveScene().name == "SampleScene")
@@ -239,7 +242,6 @@ private IEnumerator LoadSceneAsync(string sceneName)
 
     void Update()
     {
-        
         if (Input.anyKeyDown)
         {
             foreach (KeyCode key in cheatCode)
