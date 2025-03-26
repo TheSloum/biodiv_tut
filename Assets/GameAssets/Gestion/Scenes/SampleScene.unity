@@ -10859,8 +10859,8 @@ MonoBehaviour:
   zoomSpeed: 150
   minZoom: 50
   maxZoom: 750
-  minBounds: {x: -390, y: -1235}
-  maxBounds: {x: 390, y: 3234}
+  minBounds: {x: -1144, y: -1235}
+  maxBounds: {x: 1196.5, y: 3234}
   difXmin: -1402
   difYmin: -688
   difXmax: 1348
@@ -20839,7 +20839,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -50
-  m_Sprite: {fileID: 21300000, guid: 70799a54443194144aa0c92f28da5658, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 12400b5d958c6634eafddb3a1379f9aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
