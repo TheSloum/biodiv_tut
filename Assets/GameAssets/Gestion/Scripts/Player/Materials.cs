@@ -45,13 +45,14 @@ public class Materials : MonoBehaviour
     public Button ResBut;
 
 
-public bool dys = false;
-public bool fulls = false;
+    public bool dys = false;
+    public bool fulls = false;
 
-public int resX;
+    public int resX;
 
     public bool menuFirst = true;
-    public GameObject loadingObject; 
+    public bool cinematique = true;
+    public GameObject loadingObject;
 
     void OnEnable()
     {
@@ -63,7 +64,7 @@ public int resX;
         Application.logMessageReceived -= HandleLog;
     }
 
-private IEnumerator LoadSceneAsync(string sceneName)
+    private IEnumerator LoadSceneAsync(string sceneName)
     {
         loadingObject.SetActive(true);
 
@@ -73,7 +74,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
         {
             float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
 
-            yield return null; 
+            yield return null;
         }
 
     }
@@ -150,20 +151,20 @@ private IEnumerator LoadSceneAsync(string sceneName)
 
     private void Awake()
     {
-    loadingObject = GameObject.Find("loadingScreen");
-    if (E_GameManager.instance != null)  return;
-        if (instance == null )
+        loadingObject = GameObject.Find("loadingScreen");
+        if (E_GameManager.instance != null) return;
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
-        else if(menuFirst == true)
+        else if (menuFirst == true)
         {
             Destroy(gameObject);
             Debug.LogWarning("Multiple instances de Materials détectées.");
         }
-    
+
 
 
         if (menuFirst && LoadManager.instance == null && SceneManager.GetActiveScene().name != "Exploration_main" && isLoad == false)
@@ -189,8 +190,8 @@ private IEnumerator LoadSceneAsync(string sceneName)
                 break;
             }
         }
-        
-    loadingObject = GameObject.Find("loadingScreen");
+
+        loadingObject = GameObject.Find("loadingScreen");
     }
 
     public void ReseachButton(bool act)

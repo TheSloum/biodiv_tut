@@ -35,7 +35,7 @@ public class HomeMenuHub : MonoBehaviour
     private bool isScrolling = false;
 
 
-    public GameObject loadingObject; 
+    public GameObject loadingObject;
     private IEnumerator LoadSceneAsync(string sceneName)
     {
         loadingObject.SetActive(true);
@@ -46,7 +46,7 @@ public class HomeMenuHub : MonoBehaviour
         {
             float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
 
-            yield return null; 
+            yield return null;
         }
 
     }
@@ -54,11 +54,13 @@ public class HomeMenuHub : MonoBehaviour
 
     private void Awake()
     {
-    loadingObject = GameObject.Find("loadingScreen");
+        loadingObject = GameObject.Find("loadingScreen");
     }
 
     void Start()
     {
+        mainCamera.transform.position = Vector3.zero;
+
         initialCameraPosition = mainCamera.transform.position;
 
         button1.onClick.AddListener(Button1Clicked);
@@ -84,7 +86,6 @@ public class HomeMenuHub : MonoBehaviour
         AddHoverEffects(button5, hoverTextColor);
         AddHoverEffects(button6, specialHoverTextColor);
 
-        // 📌 S'assurer que `parametreMenu` est désactivé au début
         if (parametreMenu != null)
         {
             parametreMenu.SetActive(false);
@@ -94,6 +95,7 @@ public class HomeMenuHub : MonoBehaviour
             Debug.LogError("[HomeMenuHub] ⚠ ERREUR: ParametreMenu n'est pas assigné dans l'Inspector !");
         }
     }
+
 
     void Update()
     {

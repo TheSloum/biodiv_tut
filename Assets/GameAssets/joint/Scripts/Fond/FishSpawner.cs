@@ -11,41 +11,41 @@ public class FishSpawner : MonoBehaviour
     private float timeToSpawn = 3f;
     private float spawnTimer = 0f;
 
-
-    void Awake()
-    {
-        SpawnNewFish();
-    }
-
     void Update()
     {
-        if (currentFish == null || IsFishOffScreen())
+        // ✅ Vérifie que cinematique est désactivé avant de continuer
+        if (!Materials.instance.cinematique)
         {
-            spawnTimer += Time.deltaTime;
-
-            if (spawnTimer >= timeToSpawn)
+            if (currentFish == null || IsFishOffScreen())
             {
-                SpawnNewFish();
-                spawnTimer = 0f;
+                spawnTimer += Time.deltaTime;
+
+                if (spawnTimer >= timeToSpawn)
+                {
+                    SpawnNewFish();
+                    spawnTimer = 0f;
+                }
             }
         }
     }
 
     void SpawnNewFish()
     {
+        if (fishPrefabs.Length == 0 || Materials.instance.cinematique)
+        {
+            return;
+        }
+
         if (currentFish != null)
         {
             Destroy(currentFish);
         }
 
-        if (fishPrefabs.Length == 0)
-        {
-            return;
-        }
         int randomIndex = Random.Range(0, fishPrefabs.Length);
         GameObject selectedFish = fishPrefabs[randomIndex];
         float randomX = Random.Range(spawnRangeX.x, spawnRangeX.y);
         Vector3 spawnPosition = new Vector3(randomX, spawnHeight, -1f);
+
         currentFish = Instantiate(selectedFish, spawnPosition, Quaternion.identity);
         currentFish.transform.SetParent(fishContainer, false);
         currentFish.SetActive(true);
@@ -55,6 +55,7 @@ public class FishSpawner : MonoBehaviour
     {
         if (currentFish == null)
             return true;
+
         Vector3 fishPos = Camera.main.WorldToViewportPoint(currentFish.transform.position);
         return fishPos.x < 0 || fishPos.x > 1 || fishPos.y < 0 || fishPos.y > 1;
     }
