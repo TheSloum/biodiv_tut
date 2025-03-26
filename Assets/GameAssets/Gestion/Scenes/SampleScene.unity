@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 13028094}
   - component: {fileID: 13028093}
   - component: {fileID: 13028092}
+  - component: {fileID: 13028095}
   m_Layer: 0
   m_Name: Building8
   m_TagString: Building
@@ -579,6 +580,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &13028095
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13028090}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &17414341
 GameObject:
   m_ObjectHideFlags: 0
@@ -6704,6 +6726,7 @@ GameObject:
   - component: {fileID: 338367190}
   - component: {fileID: 338367189}
   - component: {fileID: 338367188}
+  - component: {fileID: 338367191}
   m_Layer: 0
   m_Name: Building3
   m_TagString: Building
@@ -6937,6 +6960,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &338367191
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338367186}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &339965919
 GameObject:
   m_ObjectHideFlags: 0
@@ -10521,6 +10565,7 @@ GameObject:
   - component: {fileID: 506363328}
   - component: {fileID: 506363327}
   - component: {fileID: 506363326}
+  - component: {fileID: 506363330}
   m_Layer: 0
   m_Name: Building4
   m_TagString: Building
@@ -10756,6 +10801,27 @@ Transform:
   - {fileID: 571080057}
   m_Father: {fileID: 1534114009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &506363330
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506363325}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &512419867
 GameObject:
   m_ObjectHideFlags: 0
@@ -12500,6 +12566,7 @@ GameObject:
   - component: {fileID: 643212988}
   - component: {fileID: 643212987}
   - component: {fileID: 643212986}
+  - component: {fileID: 643212989}
   m_Layer: 0
   m_Name: Building11 (2)
   m_TagString: Building
@@ -12735,6 +12802,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &643212989
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643212984}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &646706324
 GameObject:
   m_ObjectHideFlags: 0
@@ -16205,6 +16293,7 @@ GameObject:
   - component: {fileID: 861647728}
   - component: {fileID: 861647727}
   - component: {fileID: 861647726}
+  - component: {fileID: 861647729}
   m_Layer: 0
   m_Name: Building12
   m_TagString: Building
@@ -16440,6 +16529,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &861647729
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861647724}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &862211293
 GameObject:
   m_ObjectHideFlags: 0
@@ -20507,6 +20617,7 @@ GameObject:
   - component: {fileID: 1020965242}
   - component: {fileID: 1020965241}
   - component: {fileID: 1020965240}
+  - component: {fileID: 1020965243}
   m_Layer: 0
   m_Name: Building1
   m_TagString: Building
@@ -20740,6 +20851,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1020965243
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020965238}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1039845543
 GameObject:
   m_ObjectHideFlags: 0
@@ -20982,6 +21114,7 @@ GameObject:
   - component: {fileID: 1041563230}
   - component: {fileID: 1041563233}
   - component: {fileID: 1041563234}
+  - component: {fileID: 1041563235}
   m_Layer: 0
   m_Name: MAP
   m_TagString: Untagged
@@ -21119,6 +21252,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c39e285b16d8f408d5239d0a779f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1041563235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041563229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9730b8eed52b5f744ba51abead000a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pizzeriaAnim: {fileID: 7400000, guid: 12d936132f3c9764fbceab02c09af44c, type: 2}
+  thermAnim: {fileID: 7400000, guid: 6cd4d39ea7926b149a886337d7f9ace6, type: 2}
+  HydrauAnim: {fileID: 7400000, guid: 6e10586362cb80b4e9ee0734964dfae9, type: 2}
+  jardinAnim: {fileID: 7400000, guid: 8ca66a5c9228cfe42be15d89d7f0c8d0, type: 2}
+  build1Anim: {fileID: 7400000, guid: 9796f13db8da64849bb4f5dad1a3f6e9, type: 2}
+  build2Anim: {fileID: 7400000, guid: 17e516a52f161a445946538470136a80, type: 2}
 --- !u!1 &1051846981
 GameObject:
   m_ObjectHideFlags: 0
@@ -21322,7 +21473,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: -10.000015}
   m_SizeDelta: {x: 148.1566, y: 96.3131}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1064269909
@@ -23737,6 +23888,7 @@ GameObject:
   - component: {fileID: 1173804924}
   - component: {fileID: 1173804923}
   - component: {fileID: 1173804922}
+  - component: {fileID: 1173804925}
   m_Layer: 0
   m_Name: Building11
   m_TagString: Building
@@ -23972,6 +24124,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1173804925
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173804920}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1176191465
 GameObject:
   m_ObjectHideFlags: 0
@@ -24715,6 +24888,7 @@ GameObject:
   - component: {fileID: 1199599271}
   - component: {fileID: 1199599270}
   - component: {fileID: 1199599269}
+  - component: {fileID: 1199599272}
   m_Layer: 0
   m_Name: Building6
   m_TagString: Building
@@ -24950,6 +25124,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1199599272
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199599267}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1200534374
 GameObject:
   m_ObjectHideFlags: 0
@@ -30893,6 +31088,7 @@ GameObject:
   - component: {fileID: 1474758151}
   - component: {fileID: 1474758150}
   - component: {fileID: 1474758149}
+  - component: {fileID: 1474758152}
   m_Layer: 0
   m_Name: Building0
   m_TagString: Building
@@ -30954,7 +31150,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 113, y: 88}
+    oldSize: {x: 256, y: 256}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -31117,7 +31313,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -6
-  m_Sprite: {fileID: 21300000, guid: b70b5042e6aea0144b48536109d5e9a2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b426eaae6ac9024cbf2abd0e4baa4de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -31128,6 +31324,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1474758152
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474758147}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1476129011
 GameObject:
   m_ObjectHideFlags: 0
@@ -35196,6 +35413,7 @@ GameObject:
   - component: {fileID: 1652384093}
   - component: {fileID: 1652384092}
   - component: {fileID: 1652384091}
+  - component: {fileID: 1652384094}
   m_Layer: 0
   m_Name: Building11 (1)
   m_TagString: Building
@@ -35431,6 +35649,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1652384094
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652384089}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1658671133
 GameObject:
   m_ObjectHideFlags: 0
@@ -38010,6 +38249,7 @@ GameObject:
   - component: {fileID: 1768279021}
   - component: {fileID: 1768279020}
   - component: {fileID: 1768279019}
+  - component: {fileID: 1768279022}
   m_Layer: 0
   m_Name: Building7
   m_TagString: Building
@@ -38245,6 +38485,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1768279022
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768279017}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1768594024
 GameObject:
   m_ObjectHideFlags: 0
@@ -40413,6 +40674,7 @@ GameObject:
   - component: {fileID: 1861847500}
   - component: {fileID: 1861847499}
   - component: {fileID: 1861847498}
+  - component: {fileID: 1861847502}
   m_Layer: 0
   m_Name: Building14
   m_TagString: Building
@@ -40646,6 +40908,27 @@ Transform:
   - {fileID: 1581899317}
   m_Father: {fileID: 1534114009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1861847502
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861847497}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1864930365
 GameObject:
   m_ObjectHideFlags: 0
@@ -44417,6 +44700,7 @@ GameObject:
   - component: {fileID: 2047675823}
   - component: {fileID: 2047675822}
   - component: {fileID: 2047675821}
+  - component: {fileID: 2047675824}
   m_Layer: 0
   m_Name: Building2
   m_TagString: Building
@@ -44650,6 +44934,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2047675824
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047675819}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2054943555
 GameObject:
   m_ObjectHideFlags: 0
@@ -46104,6 +46409,7 @@ GameObject:
   - component: {fileID: 2114838284}
   - component: {fileID: 2114838283}
   - component: {fileID: 2114838282}
+  - component: {fileID: 2114838285}
   m_Layer: 0
   m_Name: Building10
   m_TagString: Building
@@ -46335,6 +46641,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2114838285
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114838280}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2123602912
 GameObject:
   m_ObjectHideFlags: 0
