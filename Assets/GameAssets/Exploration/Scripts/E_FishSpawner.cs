@@ -58,6 +58,9 @@ public class E_FishSpawner : MonoBehaviour
         {
             sum += value;
         }
+
+        // Appliquer l'effet de l'événement actif (s'il y en a un) au démarrage de la scène Exploration.
+        ApplyActiveEventEffect();
     }
 
     void Update()
@@ -125,27 +128,64 @@ public class E_FishSpawner : MonoBehaviour
     {
         minSpawnInterval /= festivalSpawnMultiplier;
         maxSpawnInterval /= festivalSpawnMultiplier;
-        Debug.Log("Fête du Corail : Taux de spawn augmenté.");
+        Debug.Log("Effet événement : Taux de spawn de poissons augmenté.");
     }
 
     public void ReduceFishSpawnRate()
     {
         minSpawnInterval *= festivalSpawnMultiplier;
         maxSpawnInterval *= festivalSpawnMultiplier;
-        Debug.Log("Vague de déchets : Taux de spawn réduit.");
+        Debug.Log("Effet événement : Taux de spawn de poissons réduit.");
     }
 
     public void ActivateTrashWaveEffect()
     {
         minSpawnInterval *= 2f;
         maxSpawnInterval *= 2f;
-        Debug.Log("Intervalle de spawn des poissons réduit (spawn moins rapide).");
+        Debug.Log("Effet événement : Intervalle de spawn des poissons augmenté (spawn moins rapide).");
     }
 
     public void RestoreDefaultSpawnRate()
     {
         minSpawnInterval = 2f;
         maxSpawnInterval = 5f;
-        Debug.Log("Fête du Corail : Taux de spawn restauré.");
+        Debug.Log("Effet événement terminé : Taux de spawn restauré.");
+    }
+
+    void ApplyActiveEventEffect()
+    {
+        if (E_Event.activeEventID == -1)
+            return;
+
+        switch (E_Event.activeEventID)
+        {
+            case 0: // Vague de déchets
+                ActivateTrashWaveEffect();
+                break;
+            case 1: // Marée noire
+                IncreaseFishSpawnRate();
+                break;
+            case 2: // Invasion de méduses
+            case 4: // Invasion poisson-lion
+            case 5: // Invasion de barracudas
+            case 12: // Nouvelle espèce envahissante
+                // L'effet d'invasion devrait être déjà configuré via EnableInvasionMode.
+                break;
+            case 3: // Fête du corail
+                IncreaseFishSpawnRate();
+                break;
+            case 9: // Pêche illégale
+                minSpawnInterval *= 1.5f;
+                maxSpawnInterval *= 1.5f;
+                Debug.Log("Effet événement : Taux de spawn de poissons réduit (Pêche illégale).");
+                break;
+            case 10: // Canicule marine
+                minSpawnInterval *= 1.2f;
+                maxSpawnInterval *= 1.2f;
+                Debug.Log("Effet événement : Taux de spawn de poissons réduit (Canicule marine).");
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   textList:
   - "Bonjour. J\u2019ai l\u2019honneur de vous annoncer que les habitants se sont
     r\xE9unis pour vous remercier de vos efforts pour le d\xE9veloppement de la ville."
-  - "Ils ont offert \xE0 la ville une cagnotte de "
+  - "Ils ont offert \xE0 la ville une cagnotte de 400"
   position: {x: -256, y: -93, z: 0}
   size: {x: 316, y: 0, z: 0}
   spriteList:

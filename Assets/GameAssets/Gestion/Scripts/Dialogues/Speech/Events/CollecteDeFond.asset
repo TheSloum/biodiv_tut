@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: CollecteDeFond
   m_EditorClassIdentifier: 
   textList:
-  - "Bonjour. Je tiens \xE0 vous informer que nous entamons le mois d\xE9di\xE9 \xE0
-    la r\xE9duction de la consommation d\u2019\xE9nergie. "
-  - "Cette initiative nous permettra de r\xE9aliser des \xE9conomies d\u2019\xE9nergie
-    significatives. \r"
-  - "Cependant, la population pourrait temporairement ressentir une baisse de sa
-    qualit\xE9 de vie.\r\n"
+  - "Bonjour, une collecte de fonds a \xE9t\xE9 organis\xE9e pour financer les recherches
+    et la protection de la faune marine. "
+  - "Ils ont offert \xE0 la ville une cagnotte de 700\r"
   position: {x: -256, y: -93, z: 0}
   size: {x: 316, y: 0, z: 0}
   spriteList:

@@ -42,8 +42,10 @@ public class E_TrashSpawner : MonoBehaviour
             screenRightEdge = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, mainCamera.nearClipPlane)).x;
         }
 
-
         targetSpawnInterval = maxSpawnInterval;
+
+        // Appliquer l'effet de l'événement actif (s'il y a lieu) lors du démarrage.
+        ApplyActiveEventEffect();
     }
 
     void Update()
@@ -91,18 +93,34 @@ public class E_TrashSpawner : MonoBehaviour
     public void IncreaseTrashSpawnRate()
     {
         spawnInterval = Mathf.Max(minSpawnInterval, spawnInterval / 2f);
-        Debug.Log("Vague de déchets activée : spawn des Trash augmenté.");
+        Debug.Log("Effet événement : spawn des Trash augmenté.");
     }
 
     public void ActivateTrashWaveEffect()
     {
         spawnInterval = Mathf.Max(minSpawnInterval, spawnInterval * 0.5f);
-        Debug.Log("Vague de déchets activée : intervalle de spawn des trash diminué (spawn plus fréquent).");
+        Debug.Log("Effet événement : intervalle de spawn des Trash diminué (spawn plus fréquent).");
     }
 
     public void RestoreDefaultTrashSpawnRate()
     {
         spawnInterval = defaultSpawnInterval;
-        Debug.Log("Fin de la vague de déchets : spawn des Trash restauré.");
+        Debug.Log("Effet événement terminé : spawn des Trash restauré.");
+    }
+
+    void ApplyActiveEventEffect()
+    {
+        if (E_Event.activeEventID == -1)
+            return;
+
+        switch (E_Event.activeEventID)
+        {
+            case 0: // Vague de déchets
+                ActivateTrashWaveEffect();
+                break;
+            // Vous pouvez ajouter ici d'autres cas si d'autres événements affectent les TrashSpawner.
+            default:
+                break;
+        }
     }
 }
