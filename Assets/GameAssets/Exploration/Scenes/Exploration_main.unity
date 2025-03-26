@@ -4764,8 +4764,9 @@ MonoBehaviour:
   - {fileID: 2388417884662715918, guid: 8c34d253c3364de4088a202e030f5202, type: 3}
   - {fileID: 2388417884662715918, guid: b1515bdb768f690439e3614c90dbc205, type: 3}
   - {fileID: 2388417884662715918, guid: fedce4e188c8b2d41a99b8285685bca0, type: 3}
-  minSpawnInterval: 1
-  maxSpawnInterval: 2
+  - {fileID: 2388417884662715918, guid: 3132de290240b8d41be73bec4cc04f8d, type: 3}
+  minSpawnInterval: 15
+  maxSpawnInterval: 35
   spawnRangeY: 3
   spawnXOffset: 10
   festivalSpawnMultiplier: 1.5

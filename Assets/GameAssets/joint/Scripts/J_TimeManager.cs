@@ -28,6 +28,7 @@ public class J_TimeManager : MonoBehaviour
 
     private float dayTimer = 0f;
     private bool initialized = false;
+    private float defaultSecondsPerDay;
 
     public event Action<int, int> OnDayChanged;
     public event Action<int> OnMonthChanged;
@@ -42,6 +43,7 @@ public class J_TimeManager : MonoBehaviour
             transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
+            defaultSecondsPerDay = secondsPerDay;
         }
         else
         {
@@ -49,6 +51,7 @@ public class J_TimeManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void ResetState()
     {
         // Réinitialiser les paramètres de temps
@@ -100,7 +103,6 @@ public class J_TimeManager : MonoBehaviour
                 1f,
                 maxTimeMultiplier
             );
-
             Time.timeScale = debugTimeMultiplier;
         }
         else if (Input.GetKeyUp(KeyCode.T))
@@ -150,6 +152,16 @@ public class J_TimeManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (scene.name == "Exploration_main")
+        {
+            secondsPerDay = 30f;
+            Debug.Log("Scene exploration_main chargée, secondsPerDay est maintenant de 30s.");
+        }
+        else
+        {
+            secondsPerDay = defaultSecondsPerDay;
+            Debug.Log("Scene chargée: " + scene.name + ", secondsPerDay restauré à " + defaultSecondsPerDay + "s.");
+        }
     }
 
     private void OnDestroy()
