@@ -17,6 +17,7 @@ MonoBehaviour:
     attention \xE0 leur consommation d\u2019\xE9nergie.\r"
   - "Cela va entra\xEEner des co\xFBts suppl\xE9mentaires en \xE9nergie durant les
     3 prochains mois."
-  position: {x: 0, y: 0, z: 0}
-  size: {x: 0, y: 0, z: 0}
-  spriteList: []
+  position: {x: -256, y: -93, z: 0}
+  size: {x: 316, y: 0, z: 0}
+  spriteList:
+  - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}
