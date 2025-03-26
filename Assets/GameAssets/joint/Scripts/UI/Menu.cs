@@ -130,7 +130,7 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 txt.fontSize += isChecked ? -fontSizeOffset * 2 : fontSizeOffset * 2;
 
                 // Réduction de l'interligne
-                txt.lineSpacing = isChecked ? -2f : 0f;
+                txt.lineSpacing = isChecked ? -3f : 0f;
             }
         }
     }
