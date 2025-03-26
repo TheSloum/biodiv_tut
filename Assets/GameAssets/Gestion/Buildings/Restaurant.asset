@@ -18,9 +18,9 @@ MonoBehaviour:
     venir manger. Cela peut attirer des visiteurs mais aussi avoir un impact sur
     la qualit\xE9 de vie des habitants."
   PolutionEtat: +
-  PopulationEtat: ++
+  PopulationEtat: +
   ElecEtat: --
-  MoneyMake: +
+  MoneyMake: +++
   buildingObject: {fileID: 0}
   buildClass: 3
   unlocked: 1

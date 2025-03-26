@@ -7,9 +7,9 @@ public class ScreenNo : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
-    GameObject loadingObject = GameObject.Find("loadingScreen");
-    loadingObject.SetActive(false);
+
+        GameObject loadingObject = GameObject.Find("loadingScreen");
+        loadingObject.SetActive(false);
     }
 
 }
