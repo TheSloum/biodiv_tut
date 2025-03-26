@@ -28400,9 +28400,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Mince, tu es bloqu\xE9 ! {townName}n\u2019a plus ni {element1}, ni {element2}.
-    Impossible de faire red\xE9marrer tes b\xE2timents.\r\nTu peux recommencer une
-    partie, reprendre ta derni\xE8re sauvegarde ou ajouter un peu de ressources manquantes."
+  m_text: "Mince, tu es bloqu\xE9 !<u> {townName}</u> n\u2019a plus ni {element1},
+    ni {element2}. Impossible de faire red\xE9marrer tes b\xE2timents.\r\nTu peux
+    recommencer une partie, reprendre ta derni\xE8re sauvegarde ou ajouter un peu
+    de ressources manquantes."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
   m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
@@ -28671,10 +28672,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Bravo ! {Materials.instance.townName} a enfin atteint un niveau minimal
-    de pollution. Vous pouvez essayer de le maintenir en continuant \xE0 jouer.\r\n\r\nCependant,
-    n'oubliez pas que la solution ne consiste pas toujours \xE0 chercher de nouvelles
-    ressources, mais aussi \xE0 r\xE9utiliser celles que nous poss\xE9dons d\xE9j\xE0.\r\n"
+  m_text: "Bravo ! <u>{Materials.instance.townName}</u> a enfin atteint un niveau
+    minimal de pollution. Vous pouvez essayer de le maintenir en continuant \xE0
+    jouer.\r\n\r\nCependant, n'oubliez pas que la solution ne consiste pas toujours
+    \xE0 chercher de nouvelles ressources, mais aussi \xE0 r\xE9utiliser celles que
+    nous poss\xE9dons d\xE9j\xE0.\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
   m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
@@ -29673,6 +29675,7 @@ MonoBehaviour:
   fulls: 0
   resX: 0
   menuFirst: 1
+  cinematique: 1
   loadingObject: {fileID: 0}
 --- !u!4 &1383650386
 Transform:
@@ -34954,7 +34957,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Bravo ! Vous avez photographi\xE9 toutes les esp\xE8ces de faune et de
-    flore de la mer de {Materials.instance.townName}. D\xE9sormais, vos explorations
+    flore de la mer de <u>{Materials.instance.townName}</u>. D\xE9sormais, vos explorations
     ne provoqueront plus de pollution.\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
