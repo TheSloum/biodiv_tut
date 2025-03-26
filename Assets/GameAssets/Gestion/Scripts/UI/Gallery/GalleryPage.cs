@@ -197,7 +197,7 @@ public class GalleryPage : MonoBehaviour
 
         while (elapsedTime < animationDuration)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             float t = elapsedTime / animationDuration;
             containerToMove.transform.localPosition = Vector3.Lerp(startPosition, targetPosition, t);
             yield return null;
@@ -209,9 +209,13 @@ public class GalleryPage : MonoBehaviour
         UpdateButtons();
     }
 
+
     private void UpdateButtons()
     {
-        btnLeft.gameObject.SetActive(currentIndex < maxIndex);
-        btnRight.gameObject.SetActive(currentIndex > 0);
+        btnLeft.interactable = (currentIndex < maxIndex);
+        btnRight.interactable = (currentIndex > 0);
+
+        Canvas.ForceUpdateCanvases();
     }
+
 }

@@ -41,7 +41,7 @@ public class MenuManager : MonoBehaviour
         if (isMoving)
         {
             currentPosition = objectToMove.anchoredPosition;
-            float newX = Mathf.Lerp(currentPosition.x, targetX, Time.deltaTime * lerpSpeed);
+            float newX = Mathf.Lerp(currentPosition.x, targetX, Time.unscaledDeltaTime * lerpSpeed);
             objectToMove.anchoredPosition = new Vector2(newX, currentPosition.y);
         }
 
