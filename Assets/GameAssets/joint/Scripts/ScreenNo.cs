@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ScreenNo : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class ScreenNo : MonoBehaviour
     void Awake()
     {
 
-        GameObject loadingObject = GameObject.Find("loadingScreen");
+        GameObject loadingObject = Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(g => g.name == "loadingScreen");
+
         loadingObject.SetActive(false);
     }
 

@@ -462,13 +462,26 @@ public class HideStart : MonoBehaviour
         while (ShowDialogue.Instance.currentDialogueIndex == 6)
         {
             Blink3.SetActive(!Blink3.activeSelf);
+            Blink4.SetActive(!Blink4.activeSelf);
+            Blink5.SetActive(!Blink5.activeSelf);
+
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
+
+        Blink3.SetActive(false);
+        Blink4.SetActive(false);
+        Blink5.SetActive(false);
+
+        while (ShowDialogue.Instance.currentDialogueIndex == 7)
+        {
+            Blink3.SetActive(!Blink3.activeSelf);
 
             yield return new WaitForSecondsRealtime(0.5f);
         }
 
         Blink3.SetActive(false);
 
-        while (ShowDialogue.Instance.currentDialogueIndex == 7)
+        while (ShowDialogue.Instance.currentDialogueIndex == 8)
         {
             Blink4.SetActive(!Blink4.activeSelf);
 
@@ -477,7 +490,7 @@ public class HideStart : MonoBehaviour
 
         Blink4.SetActive(false);
 
-        while (ShowDialogue.Instance.currentDialogueIndex == 8)
+        while (ShowDialogue.Instance.currentDialogueIndex == 9)
         {
             Blink5.SetActive(!Blink5.activeSelf);
 

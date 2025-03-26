@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
-
+using System.Linq;
 public class SceneMainMenu1 : MonoBehaviour
 {
 
@@ -11,6 +11,7 @@ public class SceneMainMenu1 : MonoBehaviour
     public GameObject loadingObject;
     private IEnumerator LoadSceneAsync(string sceneName)
     {
+        GameObject loadingObject = Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(g => g.name == "loadingScreen");
         loadingObject.SetActive(true);
 
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
@@ -28,7 +29,7 @@ public class SceneMainMenu1 : MonoBehaviour
 
     private void Awake()
     {
-        loadingObject = GameObject.Find("loadingScreen");
+        GameObject loadingObject = Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(g => g.name == "loadingScreen");
         savescript = Materials.instance.GetComponent<GameDataSaver>();
     }
     public void ResetGame()
