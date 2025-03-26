@@ -8,6 +8,7 @@ public class Scroll : MonoBehaviour
     private Vector3 initialPosition;
     public float objectHeight;
     public float scrollSpeed = 50f;
+    public GameObject scrollBar;
 
     void Start()
     {
@@ -16,11 +17,17 @@ public class Scroll : MonoBehaviour
 
         // Calculate the max scroll height based on the number of children
         objectHeight = GetObjectHeight();
+        
+        if (SceneManager.GetActiveScene().name == "Menue"){scrollSpeed = 90f;}
     }
 
     void Update()
     {
-        // Get the scroll input from the mouse wheel
+        if (SceneManager.GetActiveScene().name == "SampleScene"){
+        scrollBar.transform.localPosition = new Vector3(scrollBar.transform.localPosition.x, 214f - 428f * transform.localPosition.y / (transform.childCount * 72f),scrollBar.transform.localPosition.z);
+        } else {
+        scrollBar.transform.localPosition = new Vector3(scrollBar.transform.localPosition.x, 200f - 400f * transform.localPosition.y / (transform.childCount * 72f),scrollBar.transform.localPosition.z);
+        }
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
 
         if (scrollInput != 0)
