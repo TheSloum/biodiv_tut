@@ -3,46 +3,33 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class HideStart : MonoBehaviour
 {
-
-    //code le plus brut et sale que j'ai fjamais fait mais j'en branle
     [SerializeField] private GameObject HideGui;
     [SerializeField] private GameObject cameraObject;
 
     public GameObject pauser;
-
     public AudioClip sfxClip;
-
     public TMP_InputField inputField;
     public Button submitButton;
 
-
     public List<Speech> speech;
-
     public List<Transform> target;
     public float moveSpeed = 5f;
 
     private bool isMoving = false;
-
     [SerializeField] private GameObject hideInput;
-
-
 
     public GameObject fadeObject;
     public GameObject fadeObject2;
     public GameObject fadeObject3;
-
-
     public float fadeDuration = 2.0f;
-
     public float disableDuration = 2f;
-
 
     public GameObject prebuild1;
     public GameObject prebuild2;
     public GameObject prebuild3;
-
 
     public Button unlock1;
     public Button unlock2;
@@ -54,13 +41,9 @@ public class HideStart : MonoBehaviour
     public GameObject manageMenu;
 
     public Building buildRes;
-
-
-
     public GameObject tutoChoosePage;
     public GameObject inputBack;
     [SerializeField] private GameObject dialogueMasking;
-
 
     public SpriteRenderer bar0Hide;
     public SpriteRenderer bar1Hide;
@@ -76,30 +59,26 @@ public class HideStart : MonoBehaviour
 
     private bool speech3AlreadyDone = false;
 
-
-
     public Builder builder;
+
+    private HashSet<int> shownDialogues = new HashSet<int>(); // To track which dialogues have been shown
 
     void Start()
     {
         if (!Materials.instance.isLoad)
         {
             StartCoroutine(DisableAllButtons());
-
             gameObject.SetActive(true);
             HideGui.SetActive(false);
             inputField.onValueChanged.AddListener(ValidateInput);
             submitButton.onClick.AddListener(OnSubmit);
             Materials.instance.canMove = false;
-
         }
         else
         {
-
             Materials.instance.canMove = true;
             gameObject.SetActive(false);
         }
-
     }
 
     public void tutoChoose(bool tuto)
@@ -109,7 +88,6 @@ public class HideStart : MonoBehaviour
         HideGui.SetActive(true);
         if (tuto)
         {
-
             Materials.instance.textDone = false;
             ShowDialogue.Instance.DialogueBox(speech[0]);
             StartCoroutine(WaitForTextEnd(0));
@@ -121,17 +99,13 @@ public class HideStart : MonoBehaviour
         }
         tutoChoosePage.SetActive(false);
         inputBack.SetActive(false);
-
-
     }
 
     public IEnumerator DisableAllButtons()
     {
-
         CamMov cammov = pauser.GetComponent<CamMov>();
         cammov.TogglePause();
         List<Button> allButtons = new List<Button>();
-
 
         foreach (Button button in Resources.FindObjectsOfTypeAll<Button>())
         {
@@ -163,7 +137,6 @@ public class HideStart : MonoBehaviour
         Materials.instance.ReseachButton(false);
     }
 
-
     private void ValidateInput(string input)
     {
         string filteredInput = "";
@@ -181,7 +154,6 @@ public class HideStart : MonoBehaviour
         }
     }
 
-
     private void OnSubmit()
     {
         string userInput = inputField.text;
@@ -190,7 +162,6 @@ public class HideStart : MonoBehaviour
         {
             Materials.instance.townName = userInput;
             Materials.instance.canMove = true;
-
         }
         tutoChoosePage.SetActive(true);
         hideInput.SetActive(false);
@@ -217,6 +188,7 @@ public class HideStart : MonoBehaviour
             StartCoroutine(FadeInSprites(fadeObject3, fadeDuration));
         }
     }
+
     private IEnumerator FadeInSprites(GameObject target, float duration)
     {
         if (target == null) yield break;
@@ -264,7 +236,11 @@ public class HideStart : MonoBehaviour
         if (step == 0)
         {
             Materials.instance.textDone = false;
-            ShowDialogue.Instance.DialogueBox(speech[1]);
+            if (!shownDialogues.Contains(1))
+            {
+                ShowDialogue.Instance.DialogueBox(speech[1]);
+                shownDialogues.Add(1);
+            }
 
             Color colorBar0 = bar0Hide.color;
             Color colorBar1 = bar1Hide.color;
@@ -282,7 +258,6 @@ public class HideStart : MonoBehaviour
             StartCoroutine(CheckForClicks());
         }
     }
-
 
     private IEnumerator FadeOutSprites(GameObject target, float duration)
     {
@@ -320,11 +295,8 @@ public class HideStart : MonoBehaviour
         }
     }
 
-
-
     private IEnumerator CheckForClicks()
     {
-
         while (true)
         {
             yield return null;
@@ -356,6 +328,7 @@ public class HideStart : MonoBehaviour
             }
         }
     }
+
     void OnObjectClick()
     {
         SpriteRenderer[] spriteRenderers = fadeObject.GetComponentsInChildren<SpriteRenderer>();
@@ -369,10 +342,13 @@ public class HideStart : MonoBehaviour
             }
         }
         Materials.instance.textDone = false;
-        ShowDialogue.Instance.DialogueBox(speech[2]);
+        if (!shownDialogues.Contains(2))
+        {
+            ShowDialogue.Instance.DialogueBox(speech[2]);
+            shownDialogues.Add(2);
+        }
         StartCoroutine(WaitForTextEnd(2));
     }
-
 
     void OnObjectClick2()
     {
@@ -388,21 +364,25 @@ public class HideStart : MonoBehaviour
         }
         builder.SelectBuild(buildRes, null);
         Materials.instance.textDone = false;
-        ShowDialogue.Instance.DialogueBox(speech[4]);
+        if (!shownDialogues.Contains(4))
+        {
+            ShowDialogue.Instance.DialogueBox(speech[4]);
+            shownDialogues.Add(4);
+        }
         StartCoroutine(WaitForTextEnd(4));
     }
-
-
-
 
     private void OnButtonCloseClicked()
     {
         if (step == 3)
         {
             exploration.interactable = true;
-
             Materials.instance.textDone = false;
-            ShowDialogue.Instance.DialogueBox(speech[5]);
+            if (!shownDialogues.Contains(5))
+            {
+                ShowDialogue.Instance.DialogueBox(speech[5]);
+                shownDialogues.Add(5);
+            }
             exploration.onClick.AddListener(TutoPart1End);
             Materials.instance.canMove = false;
 
@@ -413,17 +393,20 @@ public class HideStart : MonoBehaviour
             StartCoroutine(FadeInSprites(fadeObject2, fadeDuration));
             Materials.instance.canMove = false;
             Materials.instance.textDone = false;
-            ShowDialogue.Instance.DialogueBox(speech[3]);
+            if (!shownDialogues.Contains(3))
+            {
+                ShowDialogue.Instance.DialogueBox(speech[3]);
+                shownDialogues.Add(3);
+            }
             StartCoroutine(WaitForTextEnd(3));
             StartCoroutine(BlinkGUI());
             speech3AlreadyDone = true;
         }
-
     }
 
     private void TutoPart1End()
     {
-
+        // Finish the tutorial part 1 logic here if needed
     }
 
     private IEnumerator BlinkGUI()
@@ -460,8 +443,9 @@ public class HideStart : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.5f);
         }
 
-        while (ShowDialogue.Instance.currentDialogueIndex == 4){
-        yield return new WaitForSecondsRealtime(0.5f);
+        while (ShowDialogue.Instance.currentDialogueIndex == 4)
+        {
+            yield return new WaitForSecondsRealtime(0.5f);
         }
 
         Blink1.SetActive(false);
@@ -475,7 +459,6 @@ public class HideStart : MonoBehaviour
 
         Blink2.SetActive(false);
 
-
         while (ShowDialogue.Instance.currentDialogueIndex == 6)
         {
             Blink3.SetActive(!Blink3.activeSelf);
@@ -484,7 +467,6 @@ public class HideStart : MonoBehaviour
         }
 
         Blink3.SetActive(false);
-
 
         while (ShowDialogue.Instance.currentDialogueIndex == 7)
         {
@@ -495,8 +477,6 @@ public class HideStart : MonoBehaviour
 
         Blink4.SetActive(false);
 
-
-
         while (ShowDialogue.Instance.currentDialogueIndex == 8)
         {
             Blink5.SetActive(!Blink5.activeSelf);
@@ -505,9 +485,8 @@ public class HideStart : MonoBehaviour
         }
 
         Blink5.SetActive(false);
-
-
     }
+
     private IEnumerator WaitForTextEnd(int index)
     {
         yield return new WaitUntil(() => Materials.instance.textDone == true);
@@ -536,8 +515,6 @@ public class HideStart : MonoBehaviour
 
             Materials.instance.canMove = false;
 
-
-
             StartCoroutine(CheckForClicks());
         }
         else if (index == 2)
@@ -547,7 +524,6 @@ public class HideStart : MonoBehaviour
             Materials.instance.tutoToggle = false;
             unlock2.interactable = true;
             unlock2.onClick.AddListener(OnButtonCloseClicked);
-
         }
         else if (index == 3)
         {
@@ -566,10 +542,5 @@ public class HideStart : MonoBehaviour
             step = 3;
             unlock3.onClick.AddListener(OnButtonCloseClicked);
         }
-
     }
-
-
-
-
 }

@@ -128,6 +128,7 @@ public class Builder : MonoBehaviour
     public TMP_Text mat1Text;
     public TMP_Text mat2Text;
     public TMP_Text priceText;
+    public TMP_Text timeText;
 
     public Sprite normalDestroySprite;
     public Sprite lockedDestroySprite;
@@ -639,11 +640,17 @@ public class Builder : MonoBehaviour
                     if (priceText != null)
                         priceText.text = (building.price * 10f).ToString("F0");
 
+                    if (timeText != null)
+                    {
+                        timeText.text = building.time + "s";
+                    }
+
                     StartCoroutine(MoveCameraToBuilding(transform.position));
                 }
             }
         }
     }
+
 
 
 

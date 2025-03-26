@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937f810c5dbd19e4eb2dafdaa88f35fa, type: 3}
+  m_Name: "F\xEAteDuCorail"
+  m_EditorClassIdentifier: 
+  textList:
+  - "Bonjour. Comme tous les 2 ans, la f\xEAte du corail d\xE9bute pour le mois \xE0
+    venir."
+  - "Au programme: d\xE9coration, f\xEAte et bonne humeur !"
+  - "M\xEAme les esp\xE8ces marines semblent se joindre \xE0 la f\xEAte, vous rencontrerez
+    donc plus d\u2019esp\xE8ces marines lors de vos exp\xE9ditions."
+  position: {x: -256, y: -93, z: 0}
+  size: {x: 316, y: 0, z: 0}
+  spriteList:
+  - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}

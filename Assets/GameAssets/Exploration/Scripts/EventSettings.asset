@@ -25,32 +25,64 @@ MonoBehaviour:
   waitForExplorationIfCoralFestival: 1
   invasionTypes:
   - name: Jellyfish
-    eventID: 0
+    eventID: 2
     prefabs:
-    - {fileID: 2388417884662715918, guid: 4ccbce4a3b515774e84564a86111583d, type: 3}
+    - {fileID: 2388417884662715918, guid: 4a52e342e6f39fb49b97fffe5bd509fe, type: 3}
     durationInMonths: 2
     dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
   - name: LionFish
-    eventID: 1
+    eventID: 4
     prefabs:
     - {fileID: 2388417884662715918, guid: 983c3013fa391524da8b2104f6687579, type: 3}
     durationInMonths: 2
-    dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
+    dialogue: {fileID: 11400000, guid: b1dd5053fe13cf241aee36c66ae324b3, type: 2}
   - name: Barracuda
-    eventID: 2
+    eventID: 5
     prefabs:
     - {fileID: 2388417884662715918, guid: 2c68ddac4e9444d4aa4802156815cda5, type: 3}
     durationInMonths: 2
-    dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
+    dialogue: {fileID: 11400000, guid: d7669f10e42fc0642a70d1e8b6d527fd, type: 2}
   normalEvents:
   - name: VagueDechets
     eventID: 0
     durationInMonths: 2
-    dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
+    dialogue: {fileID: 11400000, guid: feaf7f2ae41394345bfaa79774b97df4, type: 2}
   - name: MareeNoire
     eventID: 1
     durationInMonths: 2
     dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
+  - name: Surconsommation
+    eventID: 7
+    durationInMonths: 2
+    dialogue: {fileID: 11400000, guid: 791e538844f616d488cb4e1859a2f55f, type: 2}
+  - name: Greve
+    eventID: 8
+    durationInMonths: 3
+    dialogue: {fileID: 11400000, guid: 2f31cf5b66cf36040b2f739a6a56c12b, type: 2}
+  - name: "P\xEAche ill\xE9gale"
+    eventID: 9
+    durationInMonths: 1
+    dialogue: {fileID: 11400000, guid: bcd8483f7b7992e4ba1efb49ca7462f4, type: 2}
+  - name: Canicule marine
+    eventID: 10
+    durationInMonths: 1
+    dialogue: {fileID: 11400000, guid: d57cdc3c688571f41ab1b9fd1d994d16, type: 2}
+  - name: "Journ\xE9e de ramassage"
+    eventID: 14
+    durationInMonths: 1
+    dialogue: {fileID: 11400000, guid: 0ca0ba38dd43e204db75a8ffdc86a6ee, type: 2}
+  - name: Collecte de fonds
+    eventID: 16
+    durationInMonths: 1
+    dialogue: {fileID: 11400000, guid: df4e4d7b043debd408d944f068e66ef7, type: 2}
+  - name: Remerciement
+    eventID: 17
+    durationInMonths: 1
+    dialogue: {fileID: 11400000, guid: ebc75c932f642324e802620d74882d38, type: 2}
+  - name: "F\xEAte du corail"
+    eventID: 3
+    durationInMonths: 1
+    dialogue: {fileID: 11400000, guid: ebc75c932f642324e802620d74882d38, type: 2}
   invasionCooldownYears: 1
   normalEventCooldownYears: 3
   festivalSpawnMultiplier: 1.5

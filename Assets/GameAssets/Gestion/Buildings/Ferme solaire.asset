@@ -21,11 +21,11 @@ MonoBehaviour:
     espaces d\xE9sertiques inutilis\xE9s, optimisant ainsi leur impact."
   PolutionEtat: ++
   PopulationEtat: '-'
-  ElecEtat: +
+  ElecEtat: ++
   MoneyMake: '-'
   buildingObject: {fileID: 0}
   buildClass: 1
-  unlocked: 1
+  unlocked: 0
   buildSprite: {fileID: 21300000, guid: 41d57bcc32eeed24cb2ea2edf14cedbb, type: 3}
   price: -100
   mat_0: -150
@@ -38,9 +38,9 @@ MonoBehaviour:
   cons_mat_0: 0
   cons_mat_1: 0
   cons_mat_2: 0
-  bar_0_cycle: -0.02
-  bar_1_cycle: 0.0225
-  bar_2_cycle: -0.01
+  bar_0_cycle: -0.01
+  bar_1_cycle: 0.02
+  bar_2_cycle: 0.01
   price_cycle: -75
   upgradeMult: 1
   up_mat_0: 800

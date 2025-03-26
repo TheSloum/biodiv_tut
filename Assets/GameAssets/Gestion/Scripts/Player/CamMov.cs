@@ -127,7 +127,7 @@ public class CamMov : MonoBehaviour
 
         float zoomFactor = 1 - (cam.orthographicSize / maxZoom);
 
-        float zoomMultiplierX = 3f;
+        float zoomMultiplierX = 1f;
         float zoomMultiplierY = 0f;
 
         float expandedMinX = minBounds.x * (1 + zoomFactor * zoomMultiplierX);

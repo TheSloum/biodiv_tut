@@ -19,13 +19,13 @@ MonoBehaviour:
     souvent \xE0 la pr\xE9servation de ces milieux, mais ils doivent aussi limiter
     leur impact sur la faune et la flore en mer. Certaines plong\xE9es incluent des
     actions de nettoyage des fonds marins pour prot\xE9ger les \xE9cosyst\xE8mes."
-  PolutionEtat: ++
+  PolutionEtat: +
   PopulationEtat: +
-  ElecEtat: --
-  MoneyMake: ++
+  ElecEtat: '-'
+  MoneyMake: +++
   buildingObject: {fileID: 0}
   buildClass: 3
-  unlocked: 1
+  unlocked: 0
   buildSprite: {fileID: 21300000, guid: e4394dc83e6531142b4f5b376b5684f8, type: 3}
   price: -100
   mat_0: -5

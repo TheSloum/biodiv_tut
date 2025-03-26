@@ -17,11 +17,13 @@ MonoBehaviour:
     centre de recherche. "
   - "D\xE9sormais, pendant votre <b>exploration</b>, vous pourrez <b>photographier</b>
     la faune et la flore."
-  - "Plus vous photographierez d\u2019esp\xE8ces, moins l\u2019exploration vous g\xE9n\xE9rera
+  - "Plus vous photographierez d\u2019esp\xE8ces, moins l\u2019exploration g\xE9n\xE9rera
     de pollution."
   - "Ensemble, faisons de <u>{Materials.instance.townName}</u> une ville enti\xE8rement
     <b>d\xE9pollu\xE9e</b> !"
   - Je reviendrai vers vous en cas de besoin. Bonne chance !
+  - "Oh, et avant que j\u2019oublie : n\u2019oubliez pas de <b>sauvegarder</b> votre
+    jeu dans les param\xE8tres avant de quitter !"
   position: {x: -256, y: -93, z: 0}
   size: {x: 316, y: 0, z: 0}
   spriteList:
@@ -30,3 +32,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4f480d13c687bab43a1188eae2fa6c21, type: 3}
   - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}
   - {fileID: 21300000, guid: e70145485020ba9418e7fd8ad809decc, type: 3}
+  - {fileID: 21300000, guid: 1ace90d08a98d914182d081f7ab0578a, type: 3}

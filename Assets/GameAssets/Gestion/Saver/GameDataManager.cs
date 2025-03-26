@@ -13,23 +13,37 @@ public class GameDataManager : MonoBehaviour
     public GameDataSaver gameDataSaver;
     public Scroll scroll;
 
-public GameObject loadingObject; 
+    public GameObject loadingObject;
     private void Awake()
     {
-        
-    loadingObject = GameObject.Find("loadingScreen");
+        loadingObject = FindInactiveObject("loadingScreen");
         LoadSaveFiles();
     }
+
+    private GameObject FindInactiveObject(string name)
+    {
+        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.name == name)
+            {
+                return obj;
+            }
+        }
+        return null;
+    }
+
 
     void OnEnable()
     {
         LoadSaveFiles();
-        scroll.objectHeight = scroll.GetObjectHeight();
         gameDataSaver = Materials.instance.GetComponent<GameDataSaver>();
+        scroll.objectHeight = scroll.GetObjectHeight();
+
     }
 
 
-private IEnumerator LoadSceneAsync(string sceneName)
+    private IEnumerator LoadSceneAsync(string sceneName)
     {
         loadingObject.SetActive(true);
 
@@ -39,7 +53,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
         {
             float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
 
-            yield return null; 
+            yield return null;
         }
 
     }
@@ -55,10 +69,10 @@ private IEnumerator LoadSceneAsync(string sceneName)
         }
 
         // Get all save files
-        #if UNITY_WEBGL && !UNITY_EDITOR
+#if UNITY_WEBGL && !UNITY_EDITOR
     string saveFolderPath = Path.Combine(Application.persistentDataPath, "Sauvegardes");
 #else
-    string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+        string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
 #endif
         if (!Directory.Exists(saveFolderPath))
         {
@@ -78,7 +92,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
 
             GameObject saveButton = Instantiate(saveButtonPrefab, saveListParent);
             saveButton.transform.SetAsFirstSibling();
-            saveButton.transform.localPosition -= new Vector3(0,(saveFiles.Length -1 ) * 100 - index * 100, 0);
+            saveButton.transform.localPosition -= new Vector3(0, (saveFiles.Length - 1) * 100 - index * 100, 0);
             index++;
 
             TMP_Text textComponent = saveButton.transform.Find("Text (TMP)")?.GetComponent<TMP_Text>();
@@ -112,7 +126,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
                         Materials.instance.tutorial = false;
                         LoadManager.instance.saveDate = saveDate;
                         LoadManager.instance.resumeLoad = true;
-        StartCoroutine(LoadSceneAsync("SampleScene"));
+                        StartCoroutine(LoadSceneAsync("SampleScene"));
                     });
                 }
                 else

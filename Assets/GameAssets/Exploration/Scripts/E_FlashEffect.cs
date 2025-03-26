@@ -7,6 +7,8 @@ public class E_FlashEffect : MonoBehaviour
     public static E_FlashEffect Instance;
 
     [Header("Flash Settings")]
+
+    public AudioClip sfxClip;
     public Image flashImage; // Assign FlashOverlay ici via l'Inspector
     public float flashDuration = 0.2f; // Durée totale du flash
     public float flashAlpha = 1f; // Opacité maximale du flash
@@ -28,7 +30,7 @@ public class E_FlashEffect : MonoBehaviour
     // Méthode publique pour déclencher le flash
     public void TriggerFlash()
     {
-        
+        SoundManager.instance.PlaySFX(sfxClip);
         GameObject flashObj = GameObject.FindGameObjectWithTag("FlashIMG");
         if (flashObj != null)
         {

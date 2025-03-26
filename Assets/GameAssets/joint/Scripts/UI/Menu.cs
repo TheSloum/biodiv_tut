@@ -115,23 +115,27 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void ApplyFontChange(bool isChecked)
     {
-        foreach (TMP_Text txt in textsToChange)
+        TMP_FontAsset targetFont = isChecked ? disFont : ClassicFont;
+        TMP_FontAsset oldFont = isChecked ? ClassicFont : disFont;
+
+        TMP_Text[] allTexts = FindObjectsOfType<TMP_Text>(true); // Récupère tous les TMP_Text, y compris ceux désactivés
+
+        foreach (TMP_Text txt in allTexts)
         {
-            if (txt != null)
+            if (txt != null && txt.font == oldFont) // Vérifie si le texte utilise l'ancienne police
             {
-                if (isChecked)
-                {
-                    txt.font = disFont;
-                    txt.fontSize -= fontSizeOffset;
-                }
-                else
-                {
-                    txt.font = ClassicFont;
-                    txt.fontSize += fontSizeOffset;
-                }
+                txt.font = targetFont;
+
+                // Réduction encore plus forte de la taille
+                txt.fontSize += isChecked ? -fontSizeOffset * 2 : fontSizeOffset * 2;
+
+                // Réduction de l'interligne
+                txt.lineSpacing = isChecked ? -2f : 0f;
             }
         }
     }
+
+
 
     // Gestion du survol pour ajouter un contour et changer la couleur du texte
     public void OnPointerEnter(PointerEventData eventData)

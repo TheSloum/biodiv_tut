@@ -507,7 +507,7 @@ Transform:
   m_GameObject: {fileID: 199723495}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7221999, y: -2933.4895, z: -6.46}
+  m_LocalPosition: {x: -14.168298, y: -3528.4895, z: -6.46}
   m_LocalScale: {x: 243.18779, y: 243.18779, z: 243.18779}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -591,7 +591,7 @@ Transform:
   m_GameObject: {fileID: 216936657}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7221999, y: -2933.4895, z: -4.044}
+  m_LocalPosition: {x: -14.168298, y: -3528.4895, z: -4.044}
   m_LocalScale: {x: 243.18779, y: 243.18779, z: 243.18779}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1563,7 +1563,7 @@ Transform:
   m_GameObject: {fileID: 637208800}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: -2934, z: -0.0083}
+  m_LocalPosition: {x: -16.446098, y: -3529, z: -0.0083}
   m_LocalScale: {x: 244.27032, y: 244.27032, z: 244.27032}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2443,7 +2443,7 @@ GameObject:
   - component: {fileID: 1074409345}
   m_Layer: 0
   m_Name: loadingScreen
-  m_TagString: Untagged
+  m_TagString: loadingScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2847,18 +2847,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "R\xE9alis\xE9 par les \xE9tudiants de 3e ann\xE9e de MMI en 2025 \xE0
+  m_text: "R\xE9alis\xE9 par les \xE9tudiants de 3e ann\xE9e de MMI en 2025\n\xE0
     l'IUT Bordeaux Montaigne :\r\n\nMartin ALIBERT\r\nPablo CASOLA\r\nAstrid CHAPRON\r\nChlo\xE9
-    FAYE\r\nHugo GUITTON\r\nK\xE9vin IMART\r\nElodie LAISNE\r\nMael LEDRIN\r\nNino
+    FAYE\r\nHugo GITTON\r\nK\xE9vin IMART\r\nElodie LAISNE\r\nMael LEDRIN\r\nNino
     LEFORT\r\nMathias PETIT\r\njulie RONDOF\r\nDiogo RIOS MINAYA\r\nClaire VITAL\r\nLamia
-    ZIACHI\n\n\n\nAccompagn\xE9s par l'association ADE M\xE9diterran\xE9e avec :\r\n\nBernard
-    PEYRANO\r\n\n\r\n\nAvec la participation des \xE9l\xE8ves du club AME de la Villa
-    Blanche, Menton.\r\n\r\n\n\nLes musiques ont \xE9t\xE9 enti\xE8rement r\xE9alis\xE9es
-    par :\r\n\nTheo Amar\r\n\n\n\r\nRemerciements \xE0 nos enseignants qui nous ont
-    accompagn\xE9s :\r\n\nMartine BORNERIE\r\nThomas BRUNEL DE MONTMEJAN\r\nCharles-Alexandre
-    DELESTAGE\r\nFlorian LAVILLE\r\nDelphine REYSS\r\n\n\n\r\nEt merci aux organismes
-    qui nous soutiennent :\r\n\nLaboratoire MICA\n\n\n\n\n\n\n\n\nMerci d'avoir jou\xE9
-    !"
+    ZIACHI\n\r\n\n\nLes musiques ont \xE9t\xE9 enti\xE8rement r\xE9alis\xE9es par
+    :\r\n\nTheo Amar\n\n\n\nAccompagn\xE9s par l'association ADE M\xE9diterran\xE9e
+    avec :\r\n\nBernard PEYRANO\r\n\n\r\n\nAvec la participation des \xE9l\xE8ves
+    du club AME \nde la Villa Blanche, Menton.\r\n\r\n\n\nRemerciements \xE0 nos
+    enseignants qui nous ont accompagn\xE9s :\r\n\nMartine BORNERIE\r\nThomas BRUNEL
+    DE MONTMEJAN\r\nCharles-Alexandre DELESTAGE\r\nFlorian LAVILLE\r\nDelphine REYSS\r\n\n\n\r\nAinsi
+    qu'au professionnel ayant valid\xE9 notre contenu :\r\nAnne REYSS, Biologiste
+    et professeur en CPGE\r\n\r\n\n\nEt un grand merci aux organismes \nqui nous
+    soutiennent :\r\n\nLaboratoire MICA\r\nAssociation Terre & Oc\xE9an\r\n\n\n\n\n\n\n\n\n\nMerci
+    d'avoir jou\xE9 !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
   m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
@@ -3067,7 +3069,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2924.54}
+  m_AnchoredPosition: {x: 0, y: -3518.96}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1358205436
@@ -3396,6 +3398,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1405581730}
   m_CullTransparentMesh: 1
+--- !u!1 &1414821964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1414821965}
+  - component: {fileID: 1414821966}
+  m_Layer: 0
+  m_Name: BackgroundWater (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1414821965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414821964}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.4, y: -3586.6, z: 0}
+  m_LocalScale: {x: 243.86453, y: 243.86453, z: 243.86453}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1764278468}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1414821966
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414821964}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 280e17eafaabc4545a9eeabdb4f2b52a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.76, y: 3.4}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1517041846
 GameObject:
   m_ObjectHideFlags: 0
@@ -4063,13 +4149,7 @@ MonoBehaviour:
   dyslexiaToggle: {fileID: 2445527158806805840}
   normalFont: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
   dyslexiaFont: {fileID: 11400000, guid: 709303012bac3734c8c9b836404cde07, type: 2}
-  textsToChange:
-  - {fileID: 173732820}
-  - {fileID: 1954195923}
-  - {fileID: 997768990}
-  - {fileID: 722585738}
-  - {fileID: 1924940516}
-  - {fileID: 3671910}
+  textsToChange: []
 --- !u!114 &1754454497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4120,6 +4200,7 @@ RectTransform:
   - {fileID: 578331593}
   - {fileID: 393323043}
   - {fileID: 1032616668}
+  - {fileID: 1414821965}
   - {fileID: 1286545544}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4154,7 +4235,7 @@ Transform:
   m_GameObject: {fileID: 1810868359}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -66.5, y: -2873.1003, z: -2.17}
+  m_LocalPosition: {x: -79.9461, y: -3468.1003, z: -2.17}
   m_LocalScale: {x: 243.18779, y: 243.18779, z: 243.18779}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4406,7 +4487,7 @@ Transform:
   m_GameObject: {fileID: 1905615909}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.4529, y: 0, z: -2.059}
+  m_LocalPosition: {x: 2.0067997, y: 91, z: -2.059}
   m_LocalScale: {x: 241.58037, y: 241.58037, z: 241.58037}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5101,7 +5182,7 @@ Transform:
   m_GameObject: {fileID: 2132141110}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5539, y: 0, z: 1.944}
+  m_LocalPosition: {x: -15, y: 69, z: 1.944}
   m_LocalScale: {x: 243.56734, y: 243.56734, z: 243.56734}
   m_ConstrainProportionsScale: 1
   m_Children: []

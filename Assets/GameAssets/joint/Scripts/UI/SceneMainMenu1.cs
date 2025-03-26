@@ -8,7 +8,7 @@ public class SceneMainMenu1 : MonoBehaviour
 
     public GameDataSaver savescript;
 
-public GameObject loadingObject; 
+    public GameObject loadingObject;
     private IEnumerator LoadSceneAsync(string sceneName)
     {
         loadingObject.SetActive(true);
@@ -19,16 +19,17 @@ public GameObject loadingObject;
         {
             float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
 
-            yield return null; 
+            yield return null;
         }
 
-        
+
     }
 
 
     private void Awake()
     {
-    loadingObject = GameObject.Find("loadingScreen");
+        loadingObject = GameObject.Find("loadingScreen");
+        savescript = Materials.instance.GetComponent<GameDataSaver>();
     }
     public void ResetGame()
     {

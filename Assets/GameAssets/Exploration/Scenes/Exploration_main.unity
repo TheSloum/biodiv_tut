@@ -206,6 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveForce: 50
   maxSpeed: 5
+  rotationSmoothness: 360
   rb: {fileID: 57760518}
 --- !u!212 &57760515
 SpriteRenderer:
@@ -3349,6 +3350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be553cd61f18d4e9f8b66a316aa8da26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxClip: {fileID: 8300000, guid: dbbd99c821d48e64b9458ab31d2f2c20, type: 3}
   flashImage: {fileID: 0}
   flashDuration: 0.2
   flashAlpha: 1
@@ -5228,6 +5230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventSettings: {fileID: 11400000, guid: 65ac918ee0245574c84a84c0da019715, type: 2}
+  eventButton: {fileID: 0}
 --- !u!1 &1425227646
 GameObject:
   m_ObjectHideFlags: 0
@@ -6110,7 +6113,7 @@ GameObject:
   - component: {fileID: 1760291557}
   m_Layer: 0
   m_Name: loadingScreen
-  m_TagString: Untagged
+  m_TagString: loadingScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

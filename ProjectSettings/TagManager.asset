@@ -19,6 +19,8 @@ TagManager:
   - FlashIMG
   - FishGallery
   - reviveend
+  - loadingScreen
+  - eventbutton
   layers:
   - Default
   - TransparentFX
