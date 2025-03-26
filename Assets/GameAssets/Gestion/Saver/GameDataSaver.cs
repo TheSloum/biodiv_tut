@@ -29,11 +29,11 @@ public class GameDataSaver : MonoBehaviour
     public int mat_2 = 0;
     public int price = 0;
 
-    public GameObject loadingObject; 
+    public GameObject loadingObject;
     private void Awake()
     {
 
-        
+
         if (instance == null)
         {
             instance = this;
@@ -46,7 +46,7 @@ public class GameDataSaver : MonoBehaviour
 #if UNITY_WEBGL && !UNITY_EDITOR
     string saveFolderPath = Path.Combine(Application.persistentDataPath, "Sauvegardes");
 #else
-    string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+        string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
 #endif
 
         if (!Directory.Exists(saveFolderPath))
@@ -65,7 +65,7 @@ public class GameDataSaver : MonoBehaviour
     }
 
 
-private IEnumerator LoadSceneAsync(string sceneName)
+    private IEnumerator LoadSceneAsync(string sceneName)
     {
         loadingObject.SetActive(true);
 
@@ -75,7 +75,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
         {
             float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
 
-            yield return null; 
+            yield return null;
         }
 
     }
@@ -108,10 +108,10 @@ private IEnumerator LoadSceneAsync(string sceneName)
                 LoadLatestSaveData();
                 Materials.instance.explored = false;
             }
-        
+
         }
-        
-    loadingObject = GameObject.Find("loadingScreen");
+
+        loadingObject = GameObject.Find("loadingScreen");
     }
 
 
@@ -120,10 +120,10 @@ private IEnumerator LoadSceneAsync(string sceneName)
 
     public void LoadLatestSaveData()
     {
-        #if UNITY_WEBGL && !UNITY_EDITOR
+#if UNITY_WEBGL && !UNITY_EDITOR
     string saveFolderPath = Path.Combine(Application.persistentDataPath, "Sauvegardes");
 #else
-    string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+        string saveFolderPath = Path.Combine(Application.dataPath, "Sauvegardes");
 #endif
 
         if (!Directory.Exists(saveFolderPath))
@@ -222,7 +222,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
 
         fileName = $"GameData_{DateTime.Now:dd-MM-yyyy_HH-mm-ss}.json";
 
-        
+
 #if UNITY_WEBGL && !UNITY_EDITOR
         string path = Path.Combine(Application.persistentDataPath, "Sauvegardes", fileName);
 #else
@@ -240,10 +240,10 @@ private IEnumerator LoadSceneAsync(string sceneName)
 
             Materials.instance.isLoad = true;
             Materials.instance.explored = false;
-        StartCoroutine(LoadSceneAsync("SampleScene"));
+            StartCoroutine(LoadSceneAsync("SampleScene"));
         }
         Materials.instance.isLoad = true;
-        
+
 #if UNITY_WEBGL && !UNITY_EDITOR
         string path = Path.Combine(Application.persistentDataPath, $"Sauvegardes/GameData_{dataDate}.json");
 #else
@@ -323,7 +323,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
                         {
                             builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
                             builderComponent.barFs.sortingOrder = -2;
-                builderComponent.barBs.sortingOrder = -3;
+                            builderComponent.barBs.sortingOrder = -3;
                             spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
                         }
 
@@ -361,7 +361,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
             LoadManager.instance.saveDate = null;
         }
         Materials.instance.isLoad = true;
-        
+
 #if UNITY_WEBGL && !UNITY_EDITOR
         string path = Path.Combine(Application.persistentDataPath, $"Sauvegardes/GameData_{dataDate}.json");
 #else
@@ -376,11 +376,12 @@ private IEnumerator LoadSceneAsync(string sceneName)
             for (int i = 0; i < fishUnlockData.Count && i < gameData.fishDataList.Count; i++)
             {
                 fishUnlockData[i].is_unlocked = gameData.fishDataList[i].is_unlocked;
-                if(E_GameManager.instance != null){
-                if (E_GameManager.instance.fishUnlockData[i] == true)
+                if (E_GameManager.instance != null)
                 {
-                    fishUnlockData[i].is_unlocked = true;
-                }
+                    if (E_GameManager.instance.fishUnlockData[i] == true)
+                    {
+                        fishUnlockData[i].is_unlocked = true;
+                    }
                 }
                 Debug.Log(fishUnlockData[i].is_unlocked);
             }
@@ -447,7 +448,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
                         {
                             builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
                             builderComponent.barFs.sortingOrder = -2;
-                builderComponent.barBs.sortingOrder = -3;
+                            builderComponent.barBs.sortingOrder = -3;
                             spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
                         }
 
@@ -485,7 +486,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
         {
             Debug.Log("ResumeDone");
             LoadManager.instance.resumeLoad = false;
-            
+
             Destroy(LoadManager.instance.gameObject);
         }
 
@@ -495,7 +496,7 @@ private IEnumerator LoadSceneAsync(string sceneName)
     public void DelData(string dataDate)
     {
 
-        
+
 #if UNITY_WEBGL && !UNITY_EDITOR
         string path = Path.Combine(Application.persistentDataPath, $"Sauvegardes/GameData_{dataDate}.json");
 #else
