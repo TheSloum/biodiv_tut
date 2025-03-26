@@ -21,6 +21,7 @@ TagManager:
   - reviveend
   - loadingScreen
   - eventbutton
+  - eventdesc
   layers:
   - Default
   - TransparentFX

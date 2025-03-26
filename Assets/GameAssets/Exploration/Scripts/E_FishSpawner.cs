@@ -156,36 +156,51 @@ public class E_FishSpawner : MonoBehaviour
     {
         if (E_Event.activeEventID == -1)
             return;
-
-        switch (E_Event.activeEventID)
+            
+        // Vérifier si l'événement actif est une invasion (IDs 2, 4, 5, 12)
+        if (E_Event.activeEventID == 2 || E_Event.activeEventID == 4 || E_Event.activeEventID == 5 || E_Event.activeEventID == 12)
         {
-            case 0: // Vague de déchets
-                ActivateTrashWaveEffect();
-                break;
-            case 1: // Marée noire
-                IncreaseFishSpawnRate();
-                break;
-            case 2: // Invasion de méduses
-            case 4: // Invasion poisson-lion
-            case 5: // Invasion de barracudas
-            case 12: // Nouvelle espèce envahissante
-                // L'effet d'invasion devrait être déjà configuré via EnableInvasionMode.
-                break;
-            case 3: // Fête du corail
-                IncreaseFishSpawnRate();
-                break;
-            case 9: // Pêche illégale
-                minSpawnInterval *= 1.5f;
-                maxSpawnInterval *= 1.5f;
-                Debug.Log("Effet événement : Taux de spawn de poissons réduit (Pêche illégale).");
-                break;
-            case 10: // Canicule marine
-                minSpawnInterval *= 1.2f;
-                maxSpawnInterval *= 1.2f;
-                Debug.Log("Effet événement : Taux de spawn de poissons réduit (Canicule marine).");
-                break;
-            default:
-                break;
+            E_Event eventScript = FindObjectOfType<E_Event>();
+            if (eventScript != null && eventScript.eventSettings != null)
+            {
+                InvasionType invasionEvent = eventScript.eventSettings.invasionTypes.Find(e => e.eventID == E_Event.activeEventID);
+                if (invasionEvent != null && invasionEvent.prefabs.Length > 0)
+                {
+                    EnableInvasionMode(invasionEvent.prefabs[0]);
+                    Debug.Log("Mode invasion rétabli sur E_FishSpawner pour l'événement : " + invasionEvent.name);
+                }
+                else
+                {
+                    Debug.LogWarning("Aucun prefab d'invasion trouvé pour l'événement actif (ID: " + E_Event.activeEventID + ").");
+                }
+            }
+        }
+        else
+        {
+            switch (E_Event.activeEventID)
+            {
+                case 0: // Vague de déchets
+                    ActivateTrashWaveEffect();
+                    break;
+                case 1: // Marée noire
+                    IncreaseFishSpawnRate();
+                    break;
+                case 3: // Fête du corail
+                    IncreaseFishSpawnRate();
+                    break;
+                case 9: // Pêche illégale
+                    minSpawnInterval *= 1.5f;
+                    maxSpawnInterval *= 1.5f;
+                    Debug.Log("Effet événement : Taux de spawn de poissons réduit (Pêche illégale).");
+                    break;
+                case 10: // Canicule marine
+                    minSpawnInterval *= 1.2f;
+                    maxSpawnInterval *= 1.2f;
+                    Debug.Log("Effet événement : Taux de spawn de poissons réduit (Canicule marine).");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

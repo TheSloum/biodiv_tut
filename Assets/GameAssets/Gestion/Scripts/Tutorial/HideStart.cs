@@ -79,6 +79,8 @@ public class HideStart : MonoBehaviour
             Materials.instance.canMove = true;
             gameObject.SetActive(false);
         }
+
+        inputField.onEndEdit.AddListener(OnEndEdit);
     }
 
     public void tutoChoose(bool tuto)
@@ -370,6 +372,13 @@ public class HideStart : MonoBehaviour
             shownDialogues.Add(4);
         }
         StartCoroutine(WaitForTextEnd(4));
+    }
+    private void OnEndEdit(string input)
+    {
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            OnSubmit();
+        }
     }
 
     private void OnButtonCloseClicked()

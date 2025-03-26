@@ -12,7 +12,7 @@ public class E_CycleEventManager : MonoBehaviour
     // Queue
     private Queue<ScheduledEvent> eventQueue = new Queue<ScheduledEvent>();
 
-    // Detecter changement date
+    // Détecter changement de date
     private int lastDay, lastMonth, lastYear;
 
     // Flags pour la gestion des états d'événement
@@ -101,8 +101,8 @@ public class E_CycleEventManager : MonoBehaviour
         }
     }
 
-
-    // Remplit la file avec 3 événements (1 invasion et 2 normaux) dans un ordre aléatoire prédéfini
+    // Remplit la file avec 3 événements (1 invasion et 2 normaux) dans un ordre aléatoire prédéfini.
+    // L'événement Fête du Corail (id 3) est exclu de cette file.
     void FillEventQueue(int year)
     {
         eventQueue.Clear();
@@ -114,13 +114,25 @@ public class E_CycleEventManager : MonoBehaviour
         {
             int randomIndex = Random.Range(0, eventSettings.invasionTypes.Count);
             var invasion = eventSettings.invasionTypes[randomIndex];
-            eventsList.Add(new ScheduledEvent(EventType.Invasion, invasion.eventID, invasion.name, invasion.durationInMonths));
+            // Par précaution, on exclut aussi l'id 3 si jamais il est présent dans invasionTypes
+            if(invasion.eventID != 3)
+            {
+                eventsList.Add(new ScheduledEvent(EventType.Invasion, invasion.eventID, invasion.name, invasion.durationInMonths));
+            }
         }
 
-        // Sélection aléatoire de 2 événements normaux
+        // Sélection aléatoire de 2 événements normaux en excluant la Fête du Corail (id 3)
         if (eventSettings.normalEvents.Count > 0)
         {
-            List<NormalEventType> normalPool = new List<NormalEventType>(eventSettings.normalEvents);
+            List<NormalEventType> normalPool = new List<NormalEventType>();
+            foreach (var normal in eventSettings.normalEvents)
+            {
+                if (normal.eventID != 3)
+                {
+                    normalPool.Add(normal);
+                }
+            }
+            
             int count = Mathf.Min(2, normalPool.Count);
             for (int i = 0; i < count; i++)
             {
@@ -137,7 +149,7 @@ public class E_CycleEventManager : MonoBehaviour
             return;
         }
 
-        // On récupère les événements par type pour le switch
+        // On récupère les événements par type pour l'ordonnancement
         List<ScheduledEvent> normalEvents = eventsList.FindAll(e => e.type == EventType.Normal);
         ScheduledEvent invasionEvent = eventsList.Find(e => e.type == EventType.Invasion);
         if(normalEvents.Count < 2 || invasionEvent == null)
@@ -146,7 +158,7 @@ public class E_CycleEventManager : MonoBehaviour
             return;
         }
 
-        // Application du switch pour déterminer l'ordre des types d'événements
+        // Application d'un ordre aléatoire pour déterminer la séquence des événements
         Queue<ScheduledEvent> orderedQueue = new Queue<ScheduledEvent>();
         int order = Random.Range(1, 4); // 1, 2 ou 3
 
@@ -173,10 +185,9 @@ public class E_CycleEventManager : MonoBehaviour
         }
 
         // Génération de trois dates chronologiques en respectant un intervalle d'au moins 1 mois entre chaque événement.
-        // Par exemple : premier événement entre mois 1 et 8, deuxième entre (premier + 2) et 10, troisième entre (deuxième + 2) et 12.
         int firstEventMonth = Random.Range(1, 9); // 1 inclus, 9 exclus => max 8
         int secondEventMonth = Random.Range(firstEventMonth + 2, 11); 
-        int thirdEventMonth = Random.Range(secondEventMonth + 2, 13); //
+        int thirdEventMonth = Random.Range(secondEventMonth + 2, 13);
         // Pour le jour, on choisit aléatoirement une valeur comprise entre noEventStartDays+1 et (daysPerMonth - noEventEndDays)
         int firstEventDay = Random.Range(eventSettings.noEventStartDays + 1, timeManager.daysPerMonth - eventSettings.noEventEndDays);
         int secondEventDay = Random.Range(eventSettings.noEventStartDays + 1, timeManager.daysPerMonth - eventSettings.noEventEndDays);
@@ -202,7 +213,6 @@ public class E_CycleEventManager : MonoBehaviour
             Debug.Log($"Événement '{scheduledEvent.name}' planifié le mois {scheduledEvent.scheduledMonth} jour {scheduledEvent.scheduledDay}");
         }
     }
-
 
     // Démarre l'événement suivant dans la file
     void StartNextEvent()
