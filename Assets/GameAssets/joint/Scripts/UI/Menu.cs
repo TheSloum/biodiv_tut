@@ -46,22 +46,27 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             Materials.instance.canMove = true;
             IsInMenue = 0;
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!Materials.instance.tutorial)
         {
-            if (Parametre.activeSelf)
+            KeyCode menuKey = (Application.platform == RuntimePlatform.WebGLPlayer) ? KeyCode.P : KeyCode.Escape;
+
+            if (Input.GetKeyDown(menuKey))
             {
-                CloseParametreAndOpenMainMenu();
-            }
-            else if (Loadeur.activeSelf)
-            {
-                CloseLoadeur();
-            }
-            else
-            {
-                ShowOrHideMainMenu();
+                if (Parametre.activeSelf)
+                {
+                    CloseParametreAndOpenMainMenu();
+                }
+                else if (Loadeur.activeSelf)
+                {
+                    CloseLoadeur();
+                }
+                else
+                {
+                    ShowOrHideMainMenu();
+                }
             }
         }
+
     }
 
     public void ShowOrHideMainMenu()
