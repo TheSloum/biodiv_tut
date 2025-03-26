@@ -103,6 +103,9 @@
         },
         {
             "unlocked": true
+        },
+        {
+            "unlocked": false
         }
     ],
     "builderDataList": [
@@ -110,8 +113,8 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": false,
-            "buildState": 0,
+            "running": true,
+            "buildState": 50,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
             "cons_mat_2": 0,
@@ -194,8 +197,8 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": false,
-            "buildState": 0,
+            "running": true,
+            "buildState": 5,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
             "cons_mat_2": 0,
@@ -303,9 +306,9 @@
             "price_cycle": 0
         }
     ],
-    "mat_0": 0,
-    "mat_1": 0,
-    "mat_2": 0,
-    "price": 500,
-    "townName": ""
+    "mat_0": 99929,
+    "mat_1": 99879,
+    "mat_2": 99929,
+    "price": 99849,
+    "townName": "dge"
 }
