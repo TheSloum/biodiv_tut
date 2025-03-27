@@ -1,75 +1,119 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BuilderAnimationController : MonoBehaviour
 {
-    // Reference animation state names (make sure these match the state names in your Animator Controller)
-    public string pizzeriaState = "pizzeriaAnim";
-    public string thermState = "thermAnim";
-    public string hydrauState = "hydrauAnim";
-    public string jardinState = "jardinAnim";
-    public string build1State = "build1Anim";
-    public string build2State = "build2Anim";
+    public AnimationClip pizzeriaAnim;
+    public AnimationClip thermAnim;
+    public AnimationClip hydrauAnim;
+    public AnimationClip jardinAnim;
+    public AnimationClip build1Anim;
+    public AnimationClip build2Anim;
 
-    // Cache all builder objects in the scene.
-    private Builder[] builders;
+    // Keep track of each builder's last sprite name
+    private Dictionary<Builder, string> builderSpriteMap = new Dictionary<Builder, string>();
 
-    void Start()
+    // Mapping from sprite names to their corresponding animation clips
+    private Dictionary<string, AnimationClip> spriteToAnim;
+
+    void Start() 
     {
-        // Find all gameobjects with the Builder script.
-        builders = GameObject.FindObjectsOfType<Builder>();
-    }
-
-    void Update()
-    {
-        foreach (Builder b in builders)
+        // Create the sprite to animation mapping
+        spriteToAnim = new Dictionary<string, AnimationClip>()
         {
-            // Get the SpriteRenderer to check the current sprite
-            SpriteRenderer sr = b.GetComponent<SpriteRenderer>();
-            if (sr != null && sr.sprite != null)
+            { "PIZZERIA", pizzeriaAnim },
+            { "centrale thermique", thermAnim },
+            { "HYDRAULIQUE_COMPLET", hydrauAnim },
+            { "JARDIN", jardinAnim },
+            { "construction V1 type 2", build1Anim },
+            { "grandeConstruction1", build2Anim }
+        };
+
+        // Find all builder objects and initialize their animation state
+        Builder[] builders = FindObjectsOfType<Builder>();
+        foreach (Builder builder in builders)
+        {
+            if (builder != null)
             {
-                string spriteName = sr.sprite.name;
-                string stateToPlay = "";
-
-                // Determine which state to play based on the sprite's name
-                switch (spriteName)
+                SpriteRenderer sr = builder.GetComponent<SpriteRenderer>();
+                if (sr != null && sr.sprite != null)
                 {
-                    case "PIZZERIA":
-                        stateToPlay = pizzeriaState;
-                        break;
-                    case "centrale thermique":
-                        stateToPlay = thermState;
-                        break;
-                    case "HYDRAULIQUE_COMPLET":
-                        stateToPlay = hydrauState;
-                        break;
-                    case "JARDIN":
-                        stateToPlay = jardinState;
-                        break;
-                    case "construction V1 type 2":
-                        stateToPlay = build1State;
-                        break;
-                    case "grandeConstruction1":
-                        stateToPlay = build2State;
-                        break;
-                    default:
-                        // No matching animation state, you can add additional logic if needed.
-                        break;
-                }
+                    // Store the initial sprite name
+                    builderSpriteMap[builder] = sr.sprite.name;
 
-                // If a matching state was found, play the animation using the Animator
-                if (!string.IsNullOrEmpty(stateToPlay))
-                {
-                    Animator animator = b.GetComponent<Animator>();
-                    if (animator != null)
+                    // If this sprite has an animation, ensure the Animation component exists and play it
+                    if (spriteToAnim.ContainsKey(sr.sprite.name))
                     {
-                        animator.Play(stateToPlay);
-                    }
-                    else
-                    {
-                        Debug.LogWarning("GameObject " + b.name + " is missing an Animator component!");
+                        EnsureAnimationComponent(builder.gameObject);
+                        PlayAnimation(builder.gameObject, spriteToAnim[sr.sprite.name]);
                     }
                 }
             }
+        }
+    }
+
+    void Update() 
+    {
+        // Check each builder to see if its sprite has changed
+        Builder[] builders = FindObjectsOfType<Builder>();
+        foreach (Builder builder in builders)
+        {
+            if (builder != null)
+            {
+                SpriteRenderer sr = builder.GetComponent<SpriteRenderer>();
+                if (sr == null) continue;
+
+                string currentSpriteName = (sr.sprite != null) ? sr.sprite.name : "";
+                string previousSpriteName;
+                builderSpriteMap.TryGetValue(builder, out previousSpriteName);
+
+                // If the sprite changed, update our record and adjust animations
+                if (currentSpriteName != previousSpriteName)
+                {
+                    Debug.Log("AAAAAAAA");
+                    builderSpriteMap[builder] = currentSpriteName;
+                    Animation anim = builder.GetComponent<Animation>();
+
+                    // Stop any current animation if present
+                    if (anim != null)
+                    {
+                        anim.Stop();
+                    }
+
+                    // If the new sprite corresponds to an animation, play it
+                    if (spriteToAnim.ContainsKey(currentSpriteName))
+                    {
+                        EnsureAnimationComponent(builder.gameObject);
+                        PlayAnimation(builder.gameObject, spriteToAnim[currentSpriteName]);
+                    }
+                }
+            }
+        }
+    }
+
+    // Adds an Animation component to the GameObject if it doesn't already have one
+    private void EnsureAnimationComponent(GameObject go)
+    {
+        if (go.GetComponent<Animation>() == null)
+        {
+            go.AddComponent<Animation>();
+        }
+    }
+
+    // Adds and plays the given animation clip on loop
+    private void PlayAnimation(GameObject go, AnimationClip clip)
+    {
+        Animation anim = go.GetComponent<Animation>();
+        if (anim != null && clip != null)
+        {
+            // Add the clip if it hasn't been added yet
+            if (anim.GetClip(clip.name) == null)
+            {
+                anim.AddClip(clip, clip.name);
+            }
+            anim.clip = clip;
+            anim.wrapMode = WrapMode.Loop;
+            anim.Play();
         }
     }
 }

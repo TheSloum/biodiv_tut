@@ -306,9 +306,9 @@
             "price_cycle": 0
         }
     ],
-    "mat_0": 0,
-    "mat_1": 0,
-    "mat_2": 0,
-    "price": 500,
-    "townName": ""
+    "mat_0": 99999,
+    "mat_1": 99999,
+    "mat_2": 99999,
+    "price": 99999,
+    "townName": "f"
 }

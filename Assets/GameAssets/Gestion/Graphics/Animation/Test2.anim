@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pizzariaAnim
+  m_Name: Test2
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -17,24 +17,7 @@ AnimationClip:
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves: []
-  m_PPtrCurves:
-  - serializedVersion: 2
-    curve:
-    - time: 0
-      value: {fileID: 21300000, guid: 665c457c9ccc58e4996c67c4c10562e9, type: 3}
-    - time: 0.23333333
-      value: {fileID: 21300000, guid: 3ccd1c317b95bd94d8359b08a9891596, type: 3}
-    - time: 0.51666665
-      value: {fileID: 21300000, guid: 6f97aaf624f5d97429b32b7e7d89f197, type: 3}
-    - time: 0.76666665
-      value: {fileID: 21300000, guid: 8992ce90849ba894989b8727f1676595, type: 3}
-    - time: 1
-      value: {fileID: 21300000, guid: b70b5042e6aea0144b48536109d5e9a2, type: 3}
-    attribute: m_Sprite
-    path: 
-    classID: 212
-    script: {fileID: 0}
-    flags: 2
+  m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -48,7 +31,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0166667
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
