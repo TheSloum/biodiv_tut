@@ -702,7 +702,7 @@ MonoBehaviour:
   resumeLoad: 0
   saveDate: 
   loadingObject: {fileID: 0}
-  folderPath: "C:/Users/maelv/OneDrive/Bureau/Cours 3A/Projet Tutor\xE9/POC/POC_Tut/Assets\\Sauvegardes"
+  folderPath: 
 --- !u!1 &386304954 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 624761769354932811, guid: f5e7534d27fbade4da4328eaec405b8a, type: 3}
