@@ -44,6 +44,19 @@ private IEnumerator LoadSceneAsync(string sceneName)
 
     private void Awake()
     {
+        
+#if UNITY_WEBGL && !UNITY_EDITOR
+folderPath = Path.Combine(Application.persistentDataPath, "Sauvegardes");
+#else
+folderPath = Path.Combine(Application.dataPath, "Sauvegardes");
+#endif
+//l
+        if (IsFolderEmpty(folderPath))
+        {
+            Debug.Log(folderPath);
+            resumeButton.SetActive(false);
+            resumeButtonDis.SetActive(true);
+        }
     loadingObject = GameObject.Find("loadingScreen");
     
         if (instance != null && instance != this)

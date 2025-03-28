@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 13028094}
   - component: {fileID: 13028093}
   - component: {fileID: 13028092}
+  - component: {fileID: 13028096}
   m_Layer: 0
   m_Name: Building8
   m_TagString: Building
@@ -479,6 +480,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 1356748110}
   progress: 0
   outsideTime: 0
@@ -579,6 +581,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &13028096
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13028090}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &17414341
 GameObject:
   m_ObjectHideFlags: 0
@@ -6873,6 +6896,7 @@ GameObject:
   - component: {fileID: 338367190}
   - component: {fileID: 338367189}
   - component: {fileID: 338367188}
+  - component: {fileID: 338367192}
   m_Layer: 0
   m_Name: Building3
   m_TagString: Building
@@ -7006,6 +7030,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 287772194}
   progress: 0
   outsideTime: 0
@@ -7106,6 +7131,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &338367192
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338367186}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &339965919
 GameObject:
   m_ObjectHideFlags: 0
@@ -10690,6 +10736,7 @@ GameObject:
   - component: {fileID: 506363328}
   - component: {fileID: 506363327}
   - component: {fileID: 506363326}
+  - component: {fileID: 506363331}
   m_Layer: 0
   m_Name: Building4
   m_TagString: Building
@@ -10807,6 +10854,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 1784632879}
   progress: 0
   outsideTime: 0
@@ -10925,6 +10973,27 @@ Transform:
   - {fileID: 571080057}
   m_Father: {fileID: 1534114009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &506363331
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506363325}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &512419867
 GameObject:
   m_ObjectHideFlags: 0
@@ -11538,6 +11607,112 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &550375145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 550375148}
+  - component: {fileID: 550375147}
+  - component: {fileID: 550375149}
+  m_Layer: 0
+  m_Name: Square
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &550375147
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550375145}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &550375148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550375145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4793, y: 3074, z: 0}
+  m_LocalScale: {x: 248.9, y: 248.9, z: 248.9}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &550375149
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550375145}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &564172550
 GameObject:
   m_ObjectHideFlags: 0
@@ -12670,6 +12845,7 @@ GameObject:
   - component: {fileID: 643212988}
   - component: {fileID: 643212987}
   - component: {fileID: 643212986}
+  - component: {fileID: 643212990}
   m_Layer: 0
   m_Name: Building11 (2)
   m_TagString: Building
@@ -12805,6 +12981,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 609362428}
   progress: 0
   outsideTime: 0
@@ -12905,6 +13082,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &643212990
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643212984}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &646706324
 GameObject:
   m_ObjectHideFlags: 0
@@ -16509,6 +16707,7 @@ GameObject:
   - component: {fileID: 861647728}
   - component: {fileID: 861647727}
   - component: {fileID: 861647726}
+  - component: {fileID: 861647730}
   m_Layer: 0
   m_Name: Building12
   m_TagString: Building
@@ -16644,6 +16843,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 1559754075}
   progress: 0
   outsideTime: 0
@@ -16744,6 +16944,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &861647730
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861647724}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &862211293
 GameObject:
   m_ObjectHideFlags: 0
@@ -21074,6 +21295,7 @@ GameObject:
   - component: {fileID: 1020965242}
   - component: {fileID: 1020965241}
   - component: {fileID: 1020965240}
+  - component: {fileID: 1020965244}
   m_Layer: 0
   m_Name: Building1
   m_TagString: Building
@@ -21207,6 +21429,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 1370268859}
   progress: 0
   outsideTime: 0
@@ -21307,6 +21530,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1020965244
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020965238}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1039845543
 GameObject:
   m_ObjectHideFlags: 0
@@ -21549,6 +21793,7 @@ GameObject:
   - component: {fileID: 1041563230}
   - component: {fileID: 1041563233}
   - component: {fileID: 1041563234}
+  - component: {fileID: 1041563235}
   m_Layer: 0
   m_Name: MAP
   m_TagString: Untagged
@@ -21686,6 +21931,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c39e285b16d8f408d5239d0a779f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1041563235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041563229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9730b8eed52b5f744ba51abead000a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pizzeriaAnim: {fileID: 7400000, guid: 12d936132f3c9764fbceab02c09af44c, type: 2}
+  thermAnim: {fileID: 7400000, guid: 6cd4d39ea7926b149a886337d7f9ace6, type: 2}
+  hydrauAnim: {fileID: 7400000, guid: 6e10586362cb80b4e9ee0734964dfae9, type: 2}
+  jardinAnim: {fileID: 7400000, guid: 8ca66a5c9228cfe42be15d89d7f0c8d0, type: 2}
+  build1Anim: {fileID: 7400000, guid: 9796f13db8da64849bb4f5dad1a3f6e9, type: 2}
+  build2Anim: {fileID: 7400000, guid: 17e516a52f161a445946538470136a80, type: 2}
+  baseAnimatorController: {fileID: 0}
+  anim: 1
 --- !u!1 &1051846981
 GameObject:
   m_ObjectHideFlags: 0
@@ -24363,6 +24628,7 @@ GameObject:
   - component: {fileID: 1173804924}
   - component: {fileID: 1173804923}
   - component: {fileID: 1173804922}
+  - component: {fileID: 1173804926}
   m_Layer: 0
   m_Name: Building11
   m_TagString: Building
@@ -24498,6 +24764,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 805905380}
   progress: 0
   outsideTime: 0
@@ -24598,6 +24865,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1173804926
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173804920}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1176191465
 GameObject:
   m_ObjectHideFlags: 0
@@ -25341,6 +25629,7 @@ GameObject:
   - component: {fileID: 1199599271}
   - component: {fileID: 1199599270}
   - component: {fileID: 1199599269}
+  - component: {fileID: 1199599273}
   m_Layer: 0
   m_Name: Building6
   m_TagString: Building
@@ -25476,6 +25765,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 1618354422}
   progress: 0
   outsideTime: 0
@@ -25576,6 +25866,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1199599273
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199599267}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1200534374
 GameObject:
   m_ObjectHideFlags: 0
@@ -29115,7 +29426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -63.89258}
+  m_AnchoredPosition: {x: 0, y: -63.892593}
   m_SizeDelta: {x: 0, y: -113.252}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1365708778
@@ -31522,6 +31833,7 @@ GameObject:
   - component: {fileID: 1474758151}
   - component: {fileID: 1474758150}
   - component: {fileID: 1474758149}
+  - component: {fileID: 1474758153}
   m_Layer: 0
   m_Name: Building0
   m_TagString: Building
@@ -31657,6 +31969,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 469730045}
   progress: 0
   outsideTime: 0
@@ -31746,7 +32059,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -6
-  m_Sprite: {fileID: 21300000, guid: b70b5042e6aea0144b48536109d5e9a2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eec31b3a31f0c094d80f3610d080c7b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -31757,6 +32070,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1474758153
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474758147}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1476129011
 GameObject:
   m_ObjectHideFlags: 0
@@ -35873,6 +36207,7 @@ GameObject:
   - component: {fileID: 1652384093}
   - component: {fileID: 1652384092}
   - component: {fileID: 1652384091}
+  - component: {fileID: 1652384095}
   m_Layer: 0
   m_Name: Building11 (1)
   m_TagString: Building
@@ -36008,6 +36343,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 1970011670}
   progress: 0
   outsideTime: 0
@@ -36108,6 +36444,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1652384095
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652384089}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1658671133
 GameObject:
   m_ObjectHideFlags: 0
@@ -38772,6 +39129,7 @@ GameObject:
   - component: {fileID: 1768279021}
   - component: {fileID: 1768279020}
   - component: {fileID: 1768279019}
+  - component: {fileID: 1768279023}
   m_Layer: 0
   m_Name: Building7
   m_TagString: Building
@@ -38907,6 +39265,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 413055800}
   progress: 0
   outsideTime: 0
@@ -39007,6 +39366,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1768279023
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768279017}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1768594024
 GameObject:
   m_ObjectHideFlags: 0
@@ -41175,6 +41555,7 @@ GameObject:
   - component: {fileID: 1861847500}
   - component: {fileID: 1861847499}
   - component: {fileID: 1861847498}
+  - component: {fileID: 1861847503}
   m_Layer: 0
   m_Name: Building14
   m_TagString: Building
@@ -41290,6 +41671,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 1775894600}
   progress: 0
   outsideTime: 0
@@ -41408,6 +41790,27 @@ Transform:
   - {fileID: 1581899317}
   m_Father: {fileID: 1534114009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1861847503
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861847497}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1864930365
 GameObject:
   m_ObjectHideFlags: 0
@@ -45179,6 +45582,7 @@ GameObject:
   - component: {fileID: 2047675823}
   - component: {fileID: 2047675822}
   - component: {fileID: 2047675821}
+  - component: {fileID: 2047675825}
   m_Layer: 0
   m_Name: Building2
   m_TagString: Building
@@ -45312,6 +45716,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 899051747}
   progress: 0
   outsideTime: 0
@@ -45412,6 +45817,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2047675825
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047675819}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2054943555
 GameObject:
   m_ObjectHideFlags: 0
@@ -47142,6 +47568,7 @@ GameObject:
   - component: {fileID: 2114838284}
   - component: {fileID: 2114838283}
   - component: {fileID: 2114838282}
+  - component: {fileID: 2114838286}
   m_Layer: 0
   m_Name: Building10
   m_TagString: Building
@@ -47273,6 +47700,7 @@ MonoBehaviour:
   level1: 0
   level2: 0
   buildClass: 0
+  toFloat: 0
   cycleAnim: {fileID: 902109914}
   progress: 0
   outsideTime: 0
@@ -47373,6 +47801,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2114838286
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114838280}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: fc8f575c21b9dd64ab928ddff22b8c47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2123602912
 GameObject:
   m_ObjectHideFlags: 0
@@ -54921,7 +55370,7 @@ Transform:
   m_GameObject: {fileID: 2249909681887561767}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 806, y: 787, z: -2}
+  m_LocalPosition: {x: 619, y: 809, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -57592,7 +58041,7 @@ Transform:
   m_GameObject: {fileID: 2746322025652553157}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0645, y: 0, z: 0}
   m_LocalScale: {x: 0.035694163, y: 0.035694163, z: 0.035694163}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -80130,3 +80579,4 @@ SceneRoots:
   - {fileID: 1802284180}
   - {fileID: 246917647}
   - {fileID: 972310641}
+  - {fileID: 550375148}

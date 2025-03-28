@@ -103,6 +103,9 @@
         },
         {
             "unlocked": true
+        },
+        {
+            "unlocked": false
         }
     ],
     "builderDataList": [
@@ -138,7 +141,7 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": true,
+            "running": false,
             "buildState": 5,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
@@ -264,7 +267,7 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": true,
+            "running": false,
             "buildState": 1,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
@@ -306,6 +309,6 @@
     "mat_0": 0,
     "mat_1": 0,
     "mat_2": 0,
-    "price": 13700,
-    "townName": "fff"
+    "price": 950,
+    "townName": "cv"
 }

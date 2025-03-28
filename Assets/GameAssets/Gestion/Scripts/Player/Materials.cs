@@ -273,7 +273,7 @@ public class Materials : MonoBehaviour
         string element2 = "";
         bool shouldShowRevive = false;
 
-        if (bar_0 == 0.0f && bar_1 == 0.0f)
+        if (bar_0 <= 0.01f && bar_1 <= 0.01f)
         {
             bar_0 = 0.3f;
             bar_1 = 0.3f;
@@ -282,7 +282,7 @@ public class Materials : MonoBehaviour
             shouldShowRevive = true;
         }
 
-        if (bar_0 == 0.0f && price == 0)
+        if (bar_0 <= 0.01f && price <= 50)
         {
             bar_0 = 0.3f;
             price = 500;
@@ -291,7 +291,7 @@ public class Materials : MonoBehaviour
             shouldShowRevive = true;
         }
 
-        if (bar_1 == 0.0f && price == 0)
+        if (bar_1 <= 0.01f && price == 0)
         {
             bar_1 = 0.3f;
             price = 500;

@@ -172,9 +172,10 @@ public class HideStart : MonoBehaviour
     private IEnumerator MoveToTarget(Transform target, float moveSpeed)
     {
         Materials.instance.canMove = false;
-
-        while (Vector3.Distance(cameraObject.transform.position, target.position) > 0.05f)
+        float unstuck = 0f;
+        while (Vector3.Distance(cameraObject.transform.position, target.position) > 0.05f && unstuck < 1.5f )
         {
+            unstuck += Time.unscaledDeltaTime;
             cameraObject.transform.position = Vector3.Lerp(cameraObject.transform.position, target.position, Time.unscaledDeltaTime * moveSpeed);
             yield return null;
         }
