@@ -204,9 +204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d6d7655c6594cdda6cc2328897b087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 50
+  moveForce: 1600
   maxSpeed: 5
   rotationSmoothness: 360
+  gameSpeed: 1
   rb: {fileID: 57760518}
 --- !u!212 &57760515
 SpriteRenderer:
@@ -3931,6 +3932,7 @@ MonoBehaviour:
   - {fileID: 2388417884662715918, guid: 096cf5d3f112be64bbd29a6f31377521, type: 3}
   - {fileID: 2388417884662715918, guid: 693bb23eedace1249882c7fc1acaa664, type: 3}
   - {fileID: 2388417884662715918, guid: 096cf5d3f112be64bbd29a6f31377521, type: 3}
+  - {fileID: 2388417884662715918, guid: 3132de290240b8d41be73bec4cc04f8d, type: 3}
   minSpawnInterval: 20
   maxSpawnInterval: 40
   spawnRangeY: 0.2
