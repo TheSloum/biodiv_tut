@@ -81,7 +81,7 @@ public class Builder : MonoBehaviour
     private float level3ScaleUp = 0.6f;
 
 
-    private bool toFloat = false;
+    public bool toFloat = false;
 
     public Animator cycleAnim;
 
@@ -1051,7 +1051,6 @@ public class Builder : MonoBehaviour
 
                 if (Materials.instance.mat_0 < (-1 * mat_0_cycle) || Materials.instance.mat_1 < (-1 * mat_1_cycle) || Materials.instance.mat_2 < (-1 * mat_2_cycle) || Materials.instance.price < (-1 * price_cycle) || Materials.instance.bar_0 < (-1 * bar_0_cycle) || Materials.instance.bar_1 < (-1 * bar_1_cycle))
                 {
-                    toFloat = true;
                     running = false;
                 }
                 yield return null;
@@ -1059,7 +1058,10 @@ public class Builder : MonoBehaviour
                 {
                     yield break;
                 }
-
+                if (toFloat){
+                    running = false;
+                    toFloat = false;
+                }
             }
 
             DoCycleAction();

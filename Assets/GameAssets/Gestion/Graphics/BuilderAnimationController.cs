@@ -10,18 +10,23 @@ public class BuilderAnimationController : MonoBehaviour
     public AnimationClip build1Anim;
     public AnimationClip build2Anim;
 
+    // Provide a base Animator Controller with a state named "Animation"
+    public RuntimeAnimatorController baseAnimatorController;
+
     // Keep track of each builder's last sprite name
     private Dictionary<Builder, string> builderSpriteMap = new Dictionary<Builder, string>();
 
     // Mapping from sprite names to their corresponding animation clips
     private Dictionary<string, AnimationClip> spriteToAnim;
+    public bool anim = true;
 
-    void Start() 
+    void Start()
     {
-        // Create the sprite to animation mapping
+        // Create the sprite-to-animation mapping
         spriteToAnim = new Dictionary<string, AnimationClip>()
         {
             { "PIZZERIA", pizzeriaAnim },
+            
             { "centrale thermique", thermAnim },
             { "HYDRAULIQUE_COMPLET", hydrauAnim },
             { "JARDIN", jardinAnim },
@@ -41,10 +46,10 @@ public class BuilderAnimationController : MonoBehaviour
                     // Store the initial sprite name
                     builderSpriteMap[builder] = sr.sprite.name;
 
-                    // If this sprite has an animation, ensure the Animation component exists and play it
+                    // If this sprite has an animation, ensure the Animator component exists and play it
                     if (spriteToAnim.ContainsKey(sr.sprite.name))
                     {
-                        EnsureAnimationComponent(builder.gameObject);
+                        EnsureAnimatorComponent(builder.gameObject);
                         PlayAnimation(builder.gameObject, spriteToAnim[sr.sprite.name]);
                     }
                 }
@@ -52,7 +57,7 @@ public class BuilderAnimationController : MonoBehaviour
         }
     }
 
-    void Update() 
+    void Update()
     {
         // Check each builder to see if its sprite has changed
         Builder[] builders = FindObjectsOfType<Builder>();
@@ -70,20 +75,14 @@ public class BuilderAnimationController : MonoBehaviour
                 // If the sprite changed, update our record and adjust animations
                 if (currentSpriteName != previousSpriteName)
                 {
-                    Debug.Log("AAAAAAAA");
+                    Debug.Log("Sprite changed: " + previousSpriteName + " -> " + currentSpriteName);
                     builderSpriteMap[builder] = currentSpriteName;
-                    Animation anim = builder.GetComponent<Animation>();
-
-                    // Stop any current animation if present
-                    if (anim != null)
-                    {
-                        anim.Stop();
-                    }
-
+                    
                     // If the new sprite corresponds to an animation, play it
-                    if (spriteToAnim.ContainsKey(currentSpriteName))
+                    if (spriteToAnim.ContainsKey(currentSpriteName) && anim == false)
                     {
-                        EnsureAnimationComponent(builder.gameObject);
+                        anim = false;
+                        EnsureAnimatorComponent(builder.gameObject);
                         PlayAnimation(builder.gameObject, spriteToAnim[currentSpriteName]);
                     }
                 }
@@ -91,29 +90,75 @@ public class BuilderAnimationController : MonoBehaviour
         }
     }
 
-    // Adds an Animation component to the GameObject if it doesn't already have one
-    private void EnsureAnimationComponent(GameObject go)
+    // Adds an Animator component to the GameObject if it doesn't already have one,
+    // and assigns a new AnimatorOverrideController based on the provided base controller.
+    private void EnsureAnimatorComponent(GameObject go)
     {
-        if (go.GetComponent<Animation>() == null)
+        Animator animator = go.GetComponent<Animator>();
+        if (animator == null)
         {
-            go.AddComponent<Animation>();
+            animator = go.AddComponent<Animator>();
+        }
+
+        // If the animator doesn't have a runtime controller or isn't already an override, create one.
+        if (animator.runtimeAnimatorController == null || !(animator.runtimeAnimatorController is AnimatorOverrideController))
+        {
+            if (baseAnimatorController != null)
+            {
+                AnimatorOverrideController overrideController = new AnimatorOverrideController(baseAnimatorController);
+                animator.runtimeAnimatorController = overrideController;
+            }
+            else
+            {
+                Debug.LogError("Base Animator Controller is not assigned on " + go.name);
+            }
         }
     }
 
-    // Adds and plays the given animation clip on loop
+    // Overrides the "Animation" clip in the AnimatorOverrideController and plays the state.
     private void PlayAnimation(GameObject go, AnimationClip clip)
+{
+    Animator animator = go.GetComponent<Animator>();
+    if (animator != null && clip != null)
     {
-        Animation anim = go.GetComponent<Animation>();
-        if (anim != null && clip != null)
+        // Ensure the animator has an override controller
+        if (!(animator.runtimeAnimatorController is AnimatorOverrideController))
         {
-            // Add the clip if it hasn't been added yet
-            if (anim.GetClip(clip.name) == null)
+            animator.runtimeAnimatorController = new AnimatorOverrideController(baseAnimatorController);
+        }
+
+        AnimatorOverrideController overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
+
+        if (overrideController != null)
+        {
+            // Print all available animation keys
+            Debug.Log("Available animation states:");
+            foreach (var originalClip in overrideController.runtimeAnimatorController.animationClips)
             {
-                anim.AddClip(clip, clip.name);
+                Debug.Log("Found clip: " + originalClip.name);
             }
-            anim.clip = clip;
-            anim.wrapMode = WrapMode.Loop;
-            anim.Play();
+
+            // Check if "Animation" exists
+            if (overrideController.runtimeAnimatorController.animationClips.Length > 0)
+            {
+                // Try assigning the new clip
+                overrideController["Animation"] = clip;
+                animator.Play("Animation", 0, 0f);
+                animator.Update(0); // Force refresh
+                Debug.Log("Playing animation: " + overrideController["Animation"] + " on " + go.name);
+            }
+            else
+            {
+                Debug.LogError("Error: 'Animation' state is missing from the Animator Controller!");
+            }
+        }
+        else
+        {
+            Debug.LogError("Error: Failed to get AnimatorOverrideController on " + go.name);
         }
     }
+}
+
+
+
 }

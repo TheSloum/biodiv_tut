@@ -2297,8 +2297,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Merlu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4f5540ef2fb9dee4b8c664eaf39edadb, type: 2}
-  m_sharedMaterial: {fileID: 2060749522083482201, guid: 4f5540ef2fb9dee4b8c664eaf39edadb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 679653cd1ae234845b8082c8e2ae82f3, type: 2}
+  m_sharedMaterial: {fileID: 7900542003532954329, guid: 679653cd1ae234845b8082c8e2ae82f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

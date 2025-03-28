@@ -161,6 +161,9 @@ public class GameDataSaver : MonoBehaviour
             mat_0 = Materials.instance.mat_0,
             mat_1 = Materials.instance.mat_1,
             mat_2 = Materials.instance.mat_2,
+            bar_0 = Materials.instance.bar_0,
+            bar_1 = Materials.instance.bar_1,
+            bar_2 = Materials.instance.bar_2,
             price = Materials.instance.price,
             townName = Materials.instance.townName
         };
@@ -301,7 +304,6 @@ public class GameDataSaver : MonoBehaviour
                         builderComponent.level0 = gameData.builderDataList[i].level0;
                         builderComponent.level1 = gameData.builderDataList[i].level1;
                         builderComponent.level2 = gameData.builderDataList[i].level2;
-                        builderComponent.running = gameData.builderDataList[i].running;
                         builderComponent.buildState = gameData.builderDataList[i].buildState;
                         builderComponent.price_cycle = buildUnlockData[gameData.builderDataList[i].buildState].price_cycle;
                         builderComponent.mat_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_0;
@@ -310,6 +312,11 @@ public class GameDataSaver : MonoBehaviour
                         builderComponent.bar_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_2_cycle;
                         builderComponent.bar_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_1_cycle;
                         builderComponent.bar_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_0_cycle;
+                        builderComponent.running = true;
+                        
+                        if(gameData.builderDataList[i].running == false){
+                            builderComponent.toFloat = true;
+                        }
 
 
                         if (builderComponent.buildState == 0)
@@ -328,7 +335,6 @@ public class GameDataSaver : MonoBehaviour
                         if (builderComponent.buildState > 0 && builderComponent.running)
                         {
                             builderComponent.StartCycle();
-                            builderComponent.running = gameData.builderDataList[i].running;
                         }
                     }
                 }
@@ -337,6 +343,9 @@ public class GameDataSaver : MonoBehaviour
             Materials.instance.mat_0 = gameData.mat_0;
             Materials.instance.mat_1 = gameData.mat_1;
             Materials.instance.mat_2 = gameData.mat_2;
+            Materials.instance.bar_0 = gameData.bar_0;
+            Materials.instance.bar_1 = gameData.bar_1;
+            Materials.instance.bar_2 = gameData.bar_2;
             Materials.instance.price = gameData.price;
             Materials.instance.townName = gameData.townName;
             Materials.instance.isLoad = true;
@@ -423,7 +432,6 @@ public class GameDataSaver : MonoBehaviour
                         builderComponent.level0 = gameData.builderDataList[i].level0;
                         builderComponent.level1 = gameData.builderDataList[i].level1;
                         builderComponent.level2 = gameData.builderDataList[i].level2;
-                        builderComponent.running = gameData.builderDataList[i].running;
                         builderComponent.buildState = gameData.builderDataList[i].buildState;
                         builderComponent.price_cycle = buildUnlockData[gameData.builderDataList[i].buildState].price_cycle;
                         builderComponent.mat_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].cons_mat_0;
@@ -432,6 +440,10 @@ public class GameDataSaver : MonoBehaviour
                         builderComponent.bar_2_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_2_cycle;
                         builderComponent.bar_1_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_1_cycle;
                         builderComponent.bar_0_cycle = buildUnlockData[gameData.builderDataList[i].buildState].bar_0_cycle;
+                            builderComponent.running = true;
+                        if(gameData.builderDataList[i].running == false){
+                            builderComponent.toFloat = true;
+                        }
 
 
 
@@ -452,7 +464,6 @@ public class GameDataSaver : MonoBehaviour
                         if (builderComponent.buildState > 0 && builderComponent.running)
                         {
                             builderComponent.StartCycle();
-                            builderComponent.running = gameData.builderDataList[i].running;
                         }
                     }
                 }
@@ -463,6 +474,9 @@ public class GameDataSaver : MonoBehaviour
                 Materials.instance.mat_0 = gameData.mat_0;
                 Materials.instance.mat_1 = gameData.mat_1;
                 Materials.instance.mat_2 = gameData.mat_2;
+            Materials.instance.bar_0 = gameData.bar_0;
+            Materials.instance.bar_1 = gameData.bar_1;
+            Materials.instance.bar_2 = gameData.bar_2;
                 Materials.instance.price = gameData.price;
             }
             Materials.instance.townName = gameData.townName;
@@ -549,6 +563,9 @@ public class GameData
     public int mat_0;
     public int mat_1;
     public int mat_2;
+    public float bar_0;
+    public float bar_1;
+    public float bar_2;
     public int price;
 
     public string townName;

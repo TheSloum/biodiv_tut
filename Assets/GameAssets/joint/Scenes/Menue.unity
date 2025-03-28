@@ -507,7 +507,7 @@ Transform:
   m_GameObject: {fileID: 199723495}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.168298, y: -3528.4895, z: -6.46}
+  m_LocalPosition: {x: 0.077801704, y: -3711.4895, z: -6.46}
   m_LocalScale: {x: 243.18779, y: 243.18779, z: 243.18779}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -591,7 +591,7 @@ Transform:
   m_GameObject: {fileID: 216936657}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.168298, y: -3528.4895, z: -4.044}
+  m_LocalPosition: {x: 0.077801704, y: -3711.4895, z: -4.044}
   m_LocalScale: {x: 243.18779, y: 243.18779, z: 243.18779}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1171,11 +1171,11 @@ Transform:
   m_GameObject: {fileID: 450125648}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 303, y: 121, z: -102.62871}
-  m_LocalScale: {x: 0.62, y: 0.62, z: 0.62}
+  m_LocalPosition: {x: 828.58075, y: 335.27344, z: -227.27696}
+  m_LocalScale: {x: 1.6991938, y: 1.6991938, z: 1.6991938}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1764278468}
+  m_Father: {fileID: 1633965650}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &450125650
 SpriteRenderer:
@@ -1556,7 +1556,7 @@ Transform:
   m_GameObject: {fileID: 637208800}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.446098, y: -3529, z: -0.0083}
+  m_LocalPosition: {x: -2.2, y: -3712, z: -0.0083}
   m_LocalScale: {x: 244.27032, y: 244.27032, z: 244.27032}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2862,20 +2862,26 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "R\xE9alis\xE9 par les \xE9tudiants de 3e ann\xE9e de MMI en 2025\n\xE0
-    l'IUT Bordeaux Montaigne :\r\n\nMartin ALIBERT\r\nPablo CASOLA\r\nAstrid CHAPRON\r\nChlo\xE9
-    FAYE\r\nHugo GITTON\r\nK\xE9vin IMART\r\nElodie LAISNE\r\nMael LEDRIN\r\nNino
-    LEFORT\r\nMathias PETIT\r\njulie RONDOF\r\nDiogo RIOS MINAYA\r\nClaire VITAL\r\nLamia
-    ZIACHI\n\r\n\n\nLes musiques ont \xE9t\xE9 enti\xE8rement r\xE9alis\xE9es par
-    :\r\n\nTheo Amar\n\n\n\nAccompagn\xE9s par l'association ADE M\xE9diterran\xE9e
-    avec :\r\n\nBernard PEYRANO\r\n\n\r\n\nAvec la participation des \xE9l\xE8ves
-    du club AME \nde la Villa Blanche, Menton.\r\n\r\n\n\nRemerciements \xE0 nos
-    enseignants qui nous ont accompagn\xE9s :\r\n\nMartine BORNERIE\r\nThomas BRUNEL
-    DE MONTMEJAN\r\nCharles-Alexandre DELESTAGE\r\nFlorian LAVILLE\r\nDelphine REYSS\r\n\n\n\r\nAinsi
-    qu'au professionnel ayant valid\xE9 notre contenu :\r\nAnne REYSS, Biologiste
-    et professeur en CPGE\r\n\r\n\n\nEt un grand merci aux organismes \nqui nous
-    soutiennent :\r\n\nLaboratoire MICA\r\nAssociation Terre & Oc\xE9an\r\n\n\n\n\n\n\n\n\n\nMerci
-    d'avoir jou\xE9 !"
+  m_text: "R\xE9alis\xE9 par les \xE9tudiants de 3\u1D49 ann\xE9e de MMI en 2025
+    \xE0 l'IUT Bordeaux Montaigne :\r\n\r\nP\xF4le Design\r\nElodie LAISNE - Gestion
+    du p\xF4le Design\r\nChlo\xE9 FAYE - Illustrations\r\nAstrid CHAPRON - R\xE9alisation
+    de pixel art\r\nHugo GITTON - R\xE9alisation de pixel art\r\nK\xE9vin IMART -
+    Vid\xE9o de trailer\r\nMartin ALIBERT - Vid\xE9o de trailer\r\n\r\nP\xF4le D\xE9veloppement\r\nNino
+    LEFORT - Gestion du p\xF4le D\xE9veloppement\r\nMael LEDRIN - D\xE9veloppement
+    de la phase Gestion\r\nPablo CASOLA - D\xE9veloppement de la phase Exploration\r\nMathias
+    PETIT - D\xE9veloppement des param\xE8tres\r\n\r\nP\xF4le Narration & communication\r\nJulie
+    RONDOF - Gestion du p\xF4le Narration & communication\r\nClaire VITAL - R\xE9alisation
+    de la narration et de l\u2019\xE9quilibrage\r\nLamia ZIACHI - Communication\r\n\r\nP\xF4le
+    Son & musique\r\nDiogo RIOS MINAYA - R\xE9alisation des sounds d\xE9signs\r\nAvec
+    la participation de Th\xE9o AMAR - R\xE9alisation des musiques\r\n\r\n\r\n\r\nAccompagn\xE9s
+    par l'association ADE M\xE9diterran\xE9e avec :\r\n\r\nBernard PEYRANO\r\n\r\n\r\n\r\nAvec
+    la participation des \xE9l\xE8ves du club AME de la Villa Blanche, Menton.\r\n\r\n\r\n\r\nRemerciements
+    \xE0 nos enseignants qui nous ont accompagn\xE9s :\r\n\r\nThomas BRUNEL DE MONTMEJAN\r\nFlorian
+    LAVILLE\r\nCharles-Alexandre DELESTAGE\r\nDelphine REYSS\r\nMartine BORNERIE\r\n\r\n\r\n\r\nAinsi
+    qu'au professionnel ayant valid\xE9 notre contenu :\r\n\r\nAnne REYSS, Biologiste
+    et professeur en CPGE\r\n\r\n\r\n\r\nEt un grand merci aux organismes qui nous
+    soutiennent :\r\n\r\nLaboratoire MICA\r\nAssociation Terre & Oc\xE9an\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nMerci
+    d\u2019avoir jou\xE9 !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
   m_sharedMaterial: {fileID: 3339244646703694368, guid: 711315064fc3d0444863e6bfec039c7c, type: 2}
@@ -3084,7 +3090,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -3518.96}
+  m_AnchoredPosition: {x: 0, y: -3620.33}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1358205436
@@ -3862,6 +3868,7 @@ RectTransform:
   m_LocalScale: {x: 0.39599264, y: 0.39599264, z: 0.39599264}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 450125649}
   - {fileID: 492173643}
   - {fileID: 2135757173}
   - {fileID: 2109259642}
@@ -4132,7 +4139,6 @@ RectTransform:
   - {fileID: 1032616668}
   - {fileID: 1414821965}
   - {fileID: 1286545544}
-  - {fileID: 450125649}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4166,7 +4172,7 @@ Transform:
   m_GameObject: {fileID: 1810868359}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -79.9461, y: -3468.1003, z: -2.17}
+  m_LocalPosition: {x: -65.7, y: -3651.1003, z: -2.17}
   m_LocalScale: {x: 243.18779, y: 243.18779, z: 243.18779}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4947,7 +4953,7 @@ Transform:
   m_GameObject: {fileID: 2132141110}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15, y: 69, z: 1.944}
+  m_LocalPosition: {x: -19, y: 15, z: 1.944}
   m_LocalScale: {x: 243.56734, y: 243.56734, z: 243.56734}
   m_ConstrainProportionsScale: 1
   m_Children: []
