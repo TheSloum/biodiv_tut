@@ -7,20 +7,33 @@ public class E_PlayerController : MonoBehaviour
     public float maxSpeed = 5f;
     public float rotationSmoothness = 360f; // Degrés par seconde pour la rotation
 
+    [Header("Gestion du Temps")]
+    public float gameSpeed = 1f; // Modifier dans l'Inspector pour ajuster le TimeScale
+
     public Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
     private bool isDirectionBack = false;
     private Vector2 movement;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+
         if (spriteRenderer == null)
             Debug.LogError("SpriteRenderer non trouvé !");
+        if (animator == null)
+            Debug.LogError("Animator non trouvé !");
+        else
+            animator.updateMode = AnimatorUpdateMode.UnscaledTime; // Empêche l'animation d'être ralentie
     }
 
     void Update()
     {
+        // Modifier le TimeScale sans affecter les cinématiques
+        Time.timeScale = gameSpeed;
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         AdjustSpriteOrientation();
@@ -28,9 +41,11 @@ public class E_PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 force = movement.normalized * moveForce;
-        rb.AddForce(force);
+        // Appliquer une force indépendamment du Time.timeScale
+        Vector2 force = movement.normalized * moveForce * Time.unscaledDeltaTime;
+        rb.AddForce(force, ForceMode2D.Force);
 
+        // Vérifier si la vitesse dépasse la limite max
         if (rb.velocity.magnitude > maxSpeed)
             rb.velocity = rb.velocity.normalized * maxSpeed;
     }
@@ -62,7 +77,7 @@ public class E_PlayerController : MonoBehaviour
 
         // Interpolation fluide
         Quaternion targetRotation = Quaternion.Euler(0, 0, targetZ);
-        float rotationStep = rotationSmoothness * Time.deltaTime;
+        float rotationStep = rotationSmoothness * Time.unscaledDeltaTime;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationStep);
     }
 }
