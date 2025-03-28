@@ -30,6 +30,8 @@ public class GameDataSaver : MonoBehaviour
     public int price = 0;
 
     public GameObject loadingObject;
+    public GameObject throbber;
+    public GameObject valid;
     private void Awake()
     {
 
@@ -145,6 +147,12 @@ public class GameDataSaver : MonoBehaviour
 
     public void SaveData()
     {
+        
+    GameObject saveButton = GameObject.Find("Save");
+
+        valid = saveButton.transform.Find("valid")?.gameObject;
+        throbber = saveButton.transform.Find("ThrobberS")?.gameObject;
+        throbber.SetActive(true);
         isSavingCompleted = false;
         SaveAndLoadScene = false;
         if (Materials.instance == null)
@@ -232,6 +240,12 @@ public class GameDataSaver : MonoBehaviour
         string json = JsonUtility.ToJson(gameData, true);
         File.WriteAllText(path, json);
         SaveAndLoadScene = true;
+
+        
+        throbber.SetActive(false);
+        valid.SetActive(true);
+        StartCoroutine(DeactivateCoroutine(valid, 1f));
+        Debug.Log("possum");
     }
 
     public void LoadData(string dataDate)
@@ -357,6 +371,14 @@ public class GameDataSaver : MonoBehaviour
         isSavingCompleted = true;
 
     }
+
+private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
+{
+    yield return new WaitForSecondsRealtime(delay);
+    
+        Debug.Log("assom");
+    obj.SetActive(false);
+}
 
 
     public void LoadDataAfterExplore(string dataDate)
