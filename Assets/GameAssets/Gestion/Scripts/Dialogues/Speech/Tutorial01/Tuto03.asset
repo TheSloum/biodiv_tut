@@ -19,7 +19,7 @@ MonoBehaviour:
     ne produira de ressources tant que vous ne le relancerez pas."
   - "Enfin, si ce b\xE2timent ne vous est plus utile, d\xE9truisez-le ici. Attention,
     cela vous co\xFBtera de l\u2019argent."
-  - Cliquez sur pla croix our fermer la page.
+  - Cliquez sur la croix our fermer la page.
   position: {x: -390, y: -60, z: 0}
   size: {x: 200, y: 0, z: 0}
   spriteList:
