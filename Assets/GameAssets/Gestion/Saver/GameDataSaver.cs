@@ -32,6 +32,7 @@ public class GameDataSaver : MonoBehaviour
     public GameObject loadingObject;
     public GameObject throbber;
     public GameObject valid;
+    private bool explo = false;
     private void Awake()
     {
 
@@ -88,7 +89,12 @@ public class GameDataSaver : MonoBehaviour
             trasiButton = GameObject.Find("Trasi")?.GetComponent<Button>();
             if (trasiButton != null)
             {
-                trasiButton.onClick.AddListener(() => SaveData());
+                
+    trasiButton.onClick.AddListener(() => 
+    {
+        explo = true;
+        SaveData();
+    });
             }
             else
             {
@@ -147,12 +153,14 @@ public class GameDataSaver : MonoBehaviour
 
     public void SaveData()
     {
-        
     GameObject saveButton = GameObject.Find("Save");
-
+        if(explo == false){
+        
         valid = saveButton.transform.Find("valid")?.gameObject;
         throbber = saveButton.transform.Find("ThrobberS")?.gameObject;
+        
         throbber.SetActive(true);
+        }
         isSavingCompleted = false;
         SaveAndLoadScene = false;
         if (Materials.instance == null)
@@ -217,6 +225,7 @@ public class GameDataSaver : MonoBehaviour
                     level2 = builderComponent.level2,
                     running = builderComponent.running,
                     buildState = builderComponent.buildState
+                    
                 };
 
                 gameData.builderDataList.Add(newBuilderData);
@@ -241,10 +250,13 @@ public class GameDataSaver : MonoBehaviour
         File.WriteAllText(path, json);
         SaveAndLoadScene = true;
 
-        
+        if(explo == false){
         throbber.SetActive(false);
         valid.SetActive(true);
+
         StartCoroutine(DeactivateCoroutine(valid, 1f));
+        }
+        explo = false;
         Debug.Log("possum");
     }
 
@@ -297,6 +309,7 @@ public class GameDataSaver : MonoBehaviour
                 {
                     if (buildState == 50)
                     {
+                    
                         builderComponent.editing = true;
                         builderComponent.OnDestroyClicked();
                         builderComponent.editing = false;
@@ -427,6 +440,7 @@ private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
                 SpriteRenderer spriterenderer = bObj.GetComponent<SpriteRenderer>();
 
                 int buildState = gameData.builderDataList[i].buildState;
+                        Debug.Log(buildState + "  LOL");
 
                 if (builderComponent != null && spriterenderer != null)
                 {
@@ -443,6 +457,7 @@ private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
 
                         Materials.instance.researchCentr = false;
                         Materials.instance.ReseachButton(true);
+                        Debug.Log("RESERCH");
                     }
                     else if (buildState >= 0 && buildState < buildUnlockData.Count)
                     {
@@ -511,8 +526,8 @@ private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
         isSavingCompleted = true;
 
         if (!LoadManager.instance.resumeLoad)
-        {
-            File.Delete(path);
+        { 
+        StartCoroutine(DeleteFileAfterDelay(path, 1f));
         }
         else
         {
@@ -522,6 +537,12 @@ private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
             Destroy(LoadManager.instance.gameObject);
         }
 
+    }
+
+     IEnumerator DeleteFileAfterDelay(string path, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+            File.Delete(path);
     }
 
 
