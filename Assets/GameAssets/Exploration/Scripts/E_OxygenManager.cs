@@ -122,6 +122,8 @@ public class E_OxygenManager : MonoBehaviour
             gameOverCanvas.SetActive(true);
         }
 
+        // Désactive tous les sons
+        AudioListener.pause = true;
         Time.timeScale = 0f;
     }
 
@@ -173,11 +175,15 @@ public class E_OxygenManager : MonoBehaviour
     public void OnRestartButtonPressed()
     {
         Time.timeScale = 1f;
+        // Réactive le son avant de redémarrer
+        AudioListener.pause = false;
+        
         Materials.instance.explored = true;
         Materials.instance.isLoad = true;
         StartCoroutine(LoadSceneAsync("SampleScene"));
-            Materials.instance.menuFirst = false;
+        Materials.instance.menuFirst = false;
     }
+
 
 
 
