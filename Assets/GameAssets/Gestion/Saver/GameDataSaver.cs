@@ -527,7 +527,8 @@ private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
 
         if (!LoadManager.instance.resumeLoad)
         { 
-        StartCoroutine(DeleteFileAfterDelay(path, 1f));
+            
+            File.Delete(path);
         }
         else
         {
@@ -536,15 +537,15 @@ private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
 
             Destroy(LoadManager.instance.gameObject);
         }
-
+        StartCoroutine(WaitBuffer(1f));
     }
 
-     IEnumerator DeleteFileAfterDelay(string path, float delay)
+IEnumerator WaitBuffer(float delay)
     {
         yield return new WaitForSeconds(delay);
-            File.Delete(path);
-    }
+        Materials.instance.loadingDuffer = false;
 
+    }
 
     public void DelData(string dataDate)
     {

@@ -172,11 +172,14 @@ public class E_OxygenManager : MonoBehaviour
 
     public void OnRestartButtonPressed()
     {
+        if(Materials.instance.loadingDuffer == false){ 
         Time.timeScale = 1f;
         Materials.instance.explored = true;
         Materials.instance.isLoad = true;
         StartCoroutine(LoadSceneAsync("SampleScene"));
             Materials.instance.menuFirst = false;
+            Materials.instance.loadingDuffer =true;
+        }
     }
 
 

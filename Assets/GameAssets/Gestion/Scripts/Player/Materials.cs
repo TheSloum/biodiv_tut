@@ -54,6 +54,7 @@ public class Materials : MonoBehaviour
     public bool cinematique = true;
     public GameObject loadingObject;
 
+public bool loadingDuffer = false;
     void OnEnable()
     {
         Application.logMessageReceived += HandleLog;
@@ -282,7 +283,7 @@ public class Materials : MonoBehaviour
             shouldShowRevive = true;
         }
 
-        if (bar_0 <= 0.01f && price <= 50)
+        if (bar_0 <= 0.01f && price <= 100)
         {
             bar_0 = 0.3f;
             price = 500;

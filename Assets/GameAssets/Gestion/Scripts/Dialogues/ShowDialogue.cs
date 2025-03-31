@@ -64,7 +64,7 @@ public class ShowDialogue : MonoBehaviour
         while (elapsedTime < 1f / bobSpeed)
         {
             character.transform.localPosition = Vector3.Lerp(originalPosition, targetPosition, elapsedTime * bobSpeed);
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             yield return null;
         }
 
@@ -74,7 +74,7 @@ public class ShowDialogue : MonoBehaviour
         while (elapsedTime < 1f / bobSpeed)
         {
             character.transform.localPosition = Vector3.Lerp(targetPosition, originalPosition, elapsedTime * bobSpeed);
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             yield return null;
         }
 

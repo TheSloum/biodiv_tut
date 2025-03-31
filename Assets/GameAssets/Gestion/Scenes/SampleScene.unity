@@ -30077,6 +30077,7 @@ MonoBehaviour:
   menuFirst: 1
   cinematique: 1
   loadingObject: {fileID: 0}
+  loadingDuffer: 0
 --- !u!4 &1383650386
 Transform:
   m_ObjectHideFlags: 0
@@ -58982,8 +58983,8 @@ MonoBehaviour:
   currentDialogueIndex: 0
   currentSprite: {fileID: 2963554119037222720}
   character: {fileID: 2963554119037222722}
-  bobHeight: 1
-  bobSpeed: 3
+  bobHeight: 5
+  bobSpeed: 25
 --- !u!1 &2963554119725910262
 GameObject:
   m_ObjectHideFlags: 0

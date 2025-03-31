@@ -32,7 +32,6 @@ public class E_PlayerController : MonoBehaviour
     void Update()
     {
         // Modifier le TimeScale sans affecter les cinématiques
-        Time.timeScale = gameSpeed;
 
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");

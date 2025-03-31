@@ -61,6 +61,8 @@ public class HideStart : MonoBehaviour
 
     public Builder builder;
 
+    public bool pos;
+
     private HashSet<int> shownDialogues = new HashSet<int>(); // To track which dialogues have been shown
 
     void Start()
@@ -171,6 +173,8 @@ public class HideStart : MonoBehaviour
 
     private IEnumerator MoveToTarget(Transform target, float moveSpeed)
     {
+        
+            pos = false;
         Materials.instance.canMove = false;
         float unstuck = 0f;
         while (Vector3.Distance(cameraObject.transform.position, target.position) > 0.05f && unstuck < 1.5f )
@@ -259,7 +263,9 @@ public class HideStart : MonoBehaviour
         else if (step == 1)
         {
             StartCoroutine(CheckForClicks());
+         Materials.instance.tutoToggle = true;
         }
+            pos = true;
     }
 
     private IEnumerator FadeOutSprites(GameObject target, float duration)
@@ -312,6 +318,7 @@ public class HideStart : MonoBehaviour
                 {
                     yield return new WaitForSecondsRealtime(0.2f);
                     OnObjectClick();
+                    
                     yield break;
                 }
 
@@ -322,7 +329,7 @@ public class HideStart : MonoBehaviour
                     yield break;
                 }
 
-                if (prebuild3.GetComponent<Collider2D>() == Physics2D.OverlapPoint(mousePos))
+                if (prebuild3.GetComponent<Collider2D>() == Physics2D.OverlapPoint(mousePos) && pos == true)
                 {
                     yield return new WaitForSecondsRealtime(0.2f);
                     OnObjectClick2();
@@ -384,6 +391,8 @@ public class HideStart : MonoBehaviour
 
     private void OnButtonCloseClicked()
     {
+        
+         Materials.instance.tutoToggle = false;
         if (step == 3)
         {
             exploration.interactable = true;
@@ -395,6 +404,7 @@ public class HideStart : MonoBehaviour
             }
             exploration.onClick.AddListener(TutoPart1End);
             Materials.instance.canMove = false;
+         Materials.instance.tutoToggle = true;
 
             StartCoroutine(WaitForTextEnd(5));
         }
@@ -410,6 +420,8 @@ public class HideStart : MonoBehaviour
             }
             StartCoroutine(WaitForTextEnd(3));
             StartCoroutine(BlinkGUI());
+            
+         Materials.instance.tutoToggle = false;
             speech3AlreadyDone = true;
         }
     }

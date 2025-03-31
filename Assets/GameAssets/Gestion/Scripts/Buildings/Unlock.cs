@@ -193,6 +193,14 @@ public class Unlock : MonoBehaviour
         {
             confirmButtonImage.sprite = confirmNormalSprite;
         }
+            confirmButton.GetComponent<Button>().interactable = true;
+        if (sprite == confirmInsufficientSprite){
+            confirmButton.GetComponent<Button>().interactable = false;
+        } else if(sprite == confirmNormalSprite){
+            
+            confirmButton.GetComponent<Button>().interactable = true;
+        }
+        Debug.Log(confirmButton.GetComponent<Button>().interactable);
     }
     void OnDisable()
     {

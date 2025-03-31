@@ -3890,7 +3890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &887335462
 Transform:
   m_ObjectHideFlags: 0
@@ -4537,6 +4537,7 @@ MonoBehaviour:
   menuFirst: 1
   cinematique: 1
   loadingObject: {fileID: 0}
+  loadingDuffer: 0
 --- !u!1 &1150818424
 GameObject:
   m_ObjectHideFlags: 0
