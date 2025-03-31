@@ -1228,7 +1228,7 @@ Transform:
   m_GameObject: {fileID: 450125648}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 828.58075, y: 335.27344, z: -227.27696}
+  m_LocalPosition: {x: 828.58075, y: 335.27344, z: 0}
   m_LocalScale: {x: 1.6991938, y: 1.6991938, z: 1.6991938}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1274,7 +1274,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 350882dba7d88324496bc6df4b8c3c21, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7620,7 +7620,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VOLUME PRINCIPALE
+  m_text: VOLUME PRINCIPAL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 679653cd1ae234845b8082c8e2ae82f3, type: 2}
   m_sharedMaterial: {fileID: 7900542003532954329, guid: 679653cd1ae234845b8082c8e2ae82f3, type: 2}

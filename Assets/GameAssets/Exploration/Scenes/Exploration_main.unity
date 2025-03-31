@@ -3251,6 +3251,8 @@ MonoBehaviour:
   textMeshPro: {fileID: 1564454112}
   box: {fileID: 678853256}
   nextIco: {fileID: 1850692102}
+  fondDialog: {fileID: 0}
+  gui: {fileID: 0}
   currentDialogueIndex: 0
   currentSprite: {fileID: 2080068059}
   character: {fileID: 2080068057}
@@ -8326,7 +8328,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VOLUME PRINCIPALE
+  m_text: VOLUME PRINCIPAL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 679653cd1ae234845b8082c8e2ae82f3, type: 2}
   m_sharedMaterial: {fileID: 7900542003532954329, guid: 679653cd1ae234845b8082c8e2ae82f3, type: 2}

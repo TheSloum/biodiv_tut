@@ -61943,7 +61943,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VOLUME PRINCIPALE
+  m_text: VOLUME PRINCIPAL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 679653cd1ae234845b8082c8e2ae82f3, type: 2}
   m_sharedMaterial: {fileID: 7900542003532954329, guid: 679653cd1ae234845b8082c8e2ae82f3, type: 2}
@@ -75392,6 +75392,7 @@ MonoBehaviour:
   Blink4: {fileID: 116566085}
   Blink5: {fileID: 699641728}
   builder: {fileID: 1474758150}
+  pos: 0
 --- !u!1 &7633687358449335658
 GameObject:
   m_ObjectHideFlags: 0

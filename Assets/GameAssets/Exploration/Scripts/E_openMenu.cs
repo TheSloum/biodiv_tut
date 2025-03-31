@@ -12,15 +12,31 @@ public class E_openMenu : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // Vérifier si on est sur WebGL
+        bool isWebGL = Application.platform == RuntimePlatform.WebGLPlayer;
+
+        // Définir la touche en fonction de la plateforme
+        KeyCode toggleKey = isWebGL ? KeyCode.P : KeyCode.Escape;
+
+        // Si la touche est pressée, toggle le menu
+        if (Input.GetKeyDown(toggleKey))
+        {
+            if (Materials.instance.tutorial == false)
+            {
+                ToggleMenu();
+            }
+        }
+    }
+
     public void ToggleMenu()
     {
         if (menuToShow != null)
         {
             bool isActive = menuToShow.activeSelf;
             menuToShow.SetActive(!isActive);
-
             Time.timeScale = menuToShow.activeSelf ? 0f : 1f;
-
         }
         else
         {
