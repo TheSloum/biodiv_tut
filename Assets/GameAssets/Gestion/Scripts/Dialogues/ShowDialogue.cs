@@ -11,6 +11,11 @@ public class ShowDialogue : MonoBehaviour
     [SerializeField] TextMeshPro textMeshPro;
     [SerializeField] GameObject box;
     [SerializeField] RectTransform nextIco;
+    
+    // Référence au fond de dialogue (à assigner dans l'inspecteur)
+    public GameObject fondDialog;
+    // Référence au GUI à désactiver pendant le dialogue (à assigner dans l'inspecteur)
+    public GameObject gui;
 
     public int currentDialogueIndex = 0;
     private bool isTextAnimating = false;
@@ -19,13 +24,13 @@ public class ShowDialogue : MonoBehaviour
     private Vector3 startScale;
 
     public SpriteRenderer currentSprite;
-
     public GameObject character;
-
     public float bobHeight = 1f;
     public float bobSpeed = 3f;
-
     private Vector3 originalPosition;
+
+    // Flag indiquant si le dialogue en cours est un dialogue d'event
+    private bool currentDialogueIsEvent = false;
 
     private void Awake()
     {
@@ -41,9 +46,6 @@ public class ShowDialogue : MonoBehaviour
         startSize = rectTransform.sizeDelta;
         startScale = boxRT.sizeDelta;
         DontDestroyOnLoad(gameObject);
-
-        startSize = rectTransform.sizeDelta;
-
         originalPosition = character.transform.localPosition;
     }
 
@@ -81,14 +83,28 @@ public class ShowDialogue : MonoBehaviour
         character.transform.localPosition = originalPosition;
     }
 
-    public void DialogueBox(Speech dialogue)
+    /// <summary>
+    /// Ouvre la boîte de dialogue.
+    /// Le paramètre isEventDialogue permet d'indiquer s'il s'agit d'un dialogue déclenché par un event.
+    /// </summary>
+    public void DialogueBox(Speech dialogue, bool isEventDialogue = false)
     {
+        currentDialogueIsEvent = isEventDialogue;
         Materials.instance.canMove = false;
+
+        // Si c'est un dialogue d'event, on affiche le fond en 100% et on désactive le GUI
+        if (currentDialogueIsEvent)
+        {
+            SetFondDialogOpacity(1f);
+            if (gui != null)
+                gui.SetActive(false);
+        }
+
         RectTransform boxRT = box.GetComponent<RectTransform>();
         Time.timeScale = 0f;
 
-        RectTransform currentrectTransform = GetComponent<RectTransform>();
-        currentrectTransform.anchoredPosition = dialogue.position;
+        RectTransform currentRectTransform = GetComponent<RectTransform>();
+        currentRectTransform.anchoredPosition = dialogue.position;
         currentDialogueIndex = 0;
 
         RectTransform rectTransform = textMeshPro.GetComponent<RectTransform>();
@@ -101,7 +117,6 @@ public class ShowDialogue : MonoBehaviour
 
         rectTransform.sizeDelta += vector2Size;
         Vector3 currentScale = boxRT.sizeDelta;
-
         boxRT.sizeDelta = currentScale + dialogue.size;
 
         nextIco.anchoredPosition = new Vector2(nextIco.anchoredPosition.x, nextIco.anchoredPosition.y);
@@ -112,7 +127,6 @@ public class ShowDialogue : MonoBehaviour
     private void StartDialogue(Speech dialogue)
     {
         currentDialogueIndex = 0;
-
         StartCoroutine(BobUpAndDown());
         if (dialogue.spriteList != null && dialogue.spriteList.Count > 0)
         {
@@ -130,7 +144,6 @@ public class ShowDialogue : MonoBehaviour
         nextIco.gameObject.SetActive(false);
 
         string currentText = "";
-
         int i = 0;
         while (i < textVar.Length)
         {
@@ -159,7 +172,8 @@ public class ShowDialogue : MonoBehaviour
     {
         while (true)
         {
-            if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.KeypadEnter))
+            if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space) || 
+                Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.KeypadEnter))
             {
                 if (isTextAnimating)
                 {
@@ -174,7 +188,6 @@ public class ShowDialogue : MonoBehaviour
                     if (currentDialogueIndex < dialogue.textList.Count)
                     {
                         StartCoroutine(BobUpAndDown());
-                        // Vérifie que le sprite existe pour la prochaine ligne, sinon garde le sprite actuel
                         if (dialogue.spriteList != null && dialogue.spriteList.Count > currentDialogueIndex)
                         {
                             currentSprite.sprite = dialogue.spriteList[currentDialogueIndex];
@@ -194,12 +207,36 @@ public class ShowDialogue : MonoBehaviour
 
     private void CloseDialogueBox()
     {
-        RectTransform currentrectTransform = GetComponent<RectTransform>();
-        currentrectTransform.anchoredPosition = new Vector3(3585, -670, 0);
+        RectTransform currentRectTransform = GetComponent<RectTransform>();
+        currentRectTransform.anchoredPosition = new Vector3(3585, -670, 0);
         textMeshPro.text = "";
         Time.timeScale = 1f;
         Materials.instance.canMove = true;
         Materials.instance.textDone = true;
+        
+        // Si c'était un dialogue d'event, on remet le fond à 0% et on réactive le GUI
+        if (currentDialogueIsEvent)
+        {
+            SetFondDialogOpacity(0f);
+            if (gui != null)
+                gui.SetActive(true);
+            currentDialogueIsEvent = false;
+        }
+    }
+
+    // Méthode qui change l'opacité du fond de dialogue (on suppose ici un SpriteRenderer)
+    private void SetFondDialogOpacity(float opacity)
+    {
+        if (fondDialog != null)
+        {
+            SpriteRenderer sr = fondDialog.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                Color c = sr.color;
+                c.a = opacity;
+                sr.color = c;
+            }
+        }
     }
 
     string ReplacePlaceholders(string text)

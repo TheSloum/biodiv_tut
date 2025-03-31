@@ -4,30 +4,27 @@ using UnityEngine.SceneManagement;
 
 public class E_Event : MonoBehaviour
 {
-    // Cette variable statique conserve l'ID de l'événement actif,
-    // afin que les autres scripts (ex. E_FishSpawner, E_TrashSpawner) puissent ajuster leur comportement en conséquence.
+    // Variable statique pour l'ID de l'événement actif
     public static int activeEventID = -1; 
 
     private bool isEventActive = false;
 
-    // Référence à l’asset de configuration des événements
+    // Référence à l'asset de configuration des événements
     public E_EventSettings eventSettings;
 
     // Référence au bouton d’événement (assigné dans l’inspecteur ou recherché par tag)
     public GameObject eventButton;
 
-    // Pour la Fête du Corail : définir le mois et la périodicité (exemple : mai, tous les 4 ans)
+    // Pour la Fête du Corail : définir le mois et la périodicité
     public int coralFestivalMonth = 5; // Mai
     public int coralFestivalCycle = 4; // Tous les 4 ans
 
     /// <summary>
     /// Déclenche l’événement avec l’ID spécifié et pour la durée donnée (en mois in game).
     /// </summary>
-    /// <param name="eventID">Identifiant de l’événement</param>
-    /// <param name="durationInMonths">Durée de l’événement en mois</param>
     public void TriggerEvent(int eventID, int durationInMonths)
     {
-        // Pour la Fête du Corail (id 3), vérifier que c'est le bon moment (date précise et cycle de 4 ans)
+        // Pour la Fête du Corail (id 3)
         if (eventID == 3 && !CanTriggerCoralFestival())
         {
             Debug.Log("La Fête du Corail ne peut être déclenchée qu'en " + coralFestivalMonth + " tous les " + coralFestivalCycle + " ans.");
@@ -41,17 +38,13 @@ public class E_Event : MonoBehaviour
 
     /// <summary>
     /// Vérifie si la Fête du Corail peut être déclenchée selon la date in game.
-    /// Exemple : déclenchée en mai tous les 4 ans.
     /// </summary>
-    /// <returns>true si l'événement peut être déclenché, false sinon</returns>
     private bool CanTriggerCoralFestival()
     {
         int currentYear = J_TimeManager.Instance.currentYear;
         int currentMonth = J_TimeManager.Instance.currentMonth;
-        // Vérifier si c'est le mois défini pour la fête
         if (currentMonth != coralFestivalMonth)
             return false;
-        // Vérifier que l'année actuelle respecte le cycle (ex : un multiple de 4)
         if (currentYear % coralFestivalCycle != 0)
             return false;
         return true;
@@ -60,9 +53,9 @@ public class E_Event : MonoBehaviour
     IEnumerator RunEvent(int eventID, int durationInMonths)
     {
         isEventActive = true;
-        activeEventID = eventID;  // On enregistre l'ID de l'événement actif
+        activeEventID = eventID;  // Enregistrer l'ID de l'événement actif
 
-        // Si le bouton n’est pas assigné, le chercher via son tag (même inactif)
+        // Si le bouton n’est pas assigné, le chercher via son tag
         if (eventButton == null)
         {
             GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
@@ -84,7 +77,6 @@ public class E_Event : MonoBehaviour
             }
         }
 
-        // Activation du bouton d’événement
         if (eventButton != null)
         {
             eventButton.SetActive(true);
@@ -97,11 +89,11 @@ public class E_Event : MonoBehaviour
 
         Debug.Log("Début de l'événement " + eventID + " pour " + durationInMonths + " mois in game.");
 
-        // Déclenchement du dialogue uniquement dans la scène de gestion ("SampleScene")
+        // Dans la scène de gestion ("SampleScene"), déclenche le dialogue de l'événement
         if (SceneManager.GetActiveScene().name == "SampleScene")
         {
             Speech dialogueToUse = null;
-            // Séparation claire entre événement invasion et événement normal
+            // Séparation entre événement invasion et événement normal
             bool isInvasion = eventSettings.invasionTypes.Exists(e => e.eventID == eventID);
             if (isInvasion)
             {
@@ -127,7 +119,8 @@ public class E_Event : MonoBehaviour
                 if (ShowDialogue.Instance != null)
                 {
                     Debug.Log("Lancement du dialogue pour l'événement " + eventID + ".");
-                    ShowDialogue.Instance.DialogueBox(dialogueToUse);
+                    // On passe true pour indiquer qu'il s'agit d'un dialogue d'event
+                    ShowDialogue.Instance.DialogueBox(dialogueToUse, true);
                 }
                 else
                 {
@@ -140,7 +133,7 @@ public class E_Event : MonoBehaviour
             }
         }
 
-        // Gestion des effets propres à l’événement selon son ID
+        // Gestion des effets propres à l’événement
         switch (eventID)
         {
             case 0: // Vague de déchets
@@ -205,7 +198,6 @@ public class E_Event : MonoBehaviour
                         E_FishSpawner.Instance.IncreaseFishSpawnRate();
                         Debug.Log("Fête du corail activée : spawn de poissons augmenté.");
                     }
-                    // Augmente légèrement la qualité de vie et diminue l'argent
                     Materials.instance.bar_0 = Mathf.Min(Materials.instance.bar_0 + 0.1f, 0.99f);
                     Materials.instance.price = Mathf.Max(Materials.instance.price - 50, 0);
                     Debug.Log("Fête du corail activée : qualité de vie augmentée et argent diminué.");
@@ -260,15 +252,23 @@ public class E_Event : MonoBehaviour
                     Debug.Log("Surconsommation d'énergie activée : consommation augmentée dans les bâtiments.");
                 }
                 break;
-            case 8: // Grève
+                case 8: // Grève
                 {
-                    Builder[] builders = FindObjectsOfType<Builder>();
-                    foreach (var builder in builders)
-                    {
-                        builder.enabled = false;
-                    }
+                    // Diminution de la qualité de vie
                     Materials.instance.bar_0 = Mathf.Max(Materials.instance.bar_0 - 0.2f, 0f);
-                    Debug.Log("Grève activée : bâtiments en panne, qualité de vie diminuée.");
+                    
+                    // Ralentissement des bâtiments spécifiques :
+                    // On charge tous les Building du dossier Resources (assurez-vous qu'ils s'y trouvent)
+                    Building[] buildings = Resources.LoadAll<Building>("Buildings");
+                    foreach (Building b in buildings)
+                    {
+                        if (b.name == "Station d'épuration" || b.name == "Restaurant")
+                        {
+                            b.time = 20;
+                            Debug.Log("Grève activée : Temps de cycle de " + b.name + " modifié à 20.");
+                        }
+                    }
+                    break;
                 }
                 break;
             case 9: // Pêche illégale
@@ -395,7 +395,7 @@ public class E_Event : MonoBehaviour
                 break;
         }
 
-        // Attente basée sur le temps in game (durée de l'événement)
+        // Attente pendant la durée de l'événement (en mois in game)
         int startYear = J_TimeManager.Instance.currentYear;
         int startMonth = J_TimeManager.Instance.currentMonth;
         int monthsPassed = 0;
@@ -408,7 +408,7 @@ public class E_Event : MonoBehaviour
         }
         Debug.Log("Fin de l'événement " + eventID + ".");
 
-        // Restauration (ou réversion) des effets appliqués
+        // Restauration des effets appliqués
         switch (eventID)
         {
             case 0:
@@ -441,22 +441,45 @@ public class E_Event : MonoBehaviour
                 if (E_FishSpawner.Instance != null && E_FishSpawner.Instance.invasionModeActive)
                     E_FishSpawner.Instance.DisableInvasionMode();
                 break;
-            case 3: // Restauration de la Fête du corail
+            case 3:
                 if (E_FishSpawner.Instance != null)
                     E_FishSpawner.Instance.RestoreDefaultSpawnRate();
-                // Rétablir les valeurs par défaut (à ajuster selon votre design)
                 Materials.instance.bar_0 = 0.5f;
                 Materials.instance.price += 50;
                 break;
             case 6:
+            {
+                // Restauration propre à l'événement 6
+                Builder[] builders = FindObjectsOfType<Builder>();
+                foreach (var builder in builders)
+                    builder.enabled = true;
+                break;
+            }
             case 8:
-            case 21:
+            {
+                // Pour la grève, on rétablit le temps de cycle à 10 pour Station d'épuration et Restaurant
+                Building[] buildings = Resources.LoadAll<Building>("Buildings");
+                foreach (Building b in buildings)
                 {
-                    Builder[] builders = FindObjectsOfType<Builder>();
-                    foreach (var builder in builders)
-                        builder.enabled = true;
+                    if (b.name == "Station d'épuration" || b.name == "Restaurant")
+                    {
+                        b.time = 10;
+                        Debug.Log("Fin de Grève : Temps de cycle de " + b.name + " rétabli à 10.");
+                    }
                 }
                 break;
+            }
+            case 21:
+            {
+                Builder[] builders = FindObjectsOfType<Builder>();
+                if (builders.Length > 0)
+                {
+                    int randIndex = Random.Range(0, builders.Length);
+                    builders[randIndex].enabled = true;
+                    Debug.Log("Panne d’énergie finie : bâtiment " + builders[randIndex].name + " réactivé.");
+                }
+                break;
+            }
             case 7:
                 {
                     Builder[] builders = FindObjectsOfType<Builder>();
@@ -470,7 +493,7 @@ public class E_Event : MonoBehaviour
                     E_FishSpawner.Instance.RestoreDefaultSpawnRate();
                 break;
             case 11:
-                Materials.instance.bar_2 = 0.6f; // valeur par défaut
+                Materials.instance.bar_2 = 0.6f;
                 break;
             case 22:
             case 23:
@@ -481,10 +504,8 @@ public class E_Event : MonoBehaviour
                 break;
         }
 
-        // Réinitialiser la variable statique indiquant l'événement actif
         activeEventID = -1;
 
-        // Désactivation du bouton d’événement à la fin
         if (eventButton != null)
         {
             eventButton.SetActive(false);
@@ -492,7 +513,6 @@ public class E_Event : MonoBehaviour
         }
 
         isEventActive = false;
-        // Notifier le Cycle Event Manager que l'événement est terminé (pour lancer le cooldown)
         E_CycleEventManager cycleManager = FindObjectOfType<E_CycleEventManager>();
         if (cycleManager != null)
         {

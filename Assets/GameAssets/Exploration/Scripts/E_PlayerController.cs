@@ -49,6 +49,30 @@ public class E_PlayerController : MonoBehaviour
             rb.velocity = rb.velocity.normalized * maxSpeed;
     }
 
+    void LateUpdate()
+    {
+        CheckOutOfBounds();
+    }
+
+    /// <summary>
+    /// Vérifie si le joueur est en dehors de la zone visible de la caméra.
+    /// Si c'est le cas, il est repositionné au centre de la vue.
+    /// </summary>
+    void CheckOutOfBounds()
+    {
+        // Convertir la position du joueur en coordonnées de la caméra (viewport)
+        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+
+        // La zone visible se trouve entre 0 et 1 sur les axes x et y
+        if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
+        {
+            // Repositionner le joueur au centre de la caméra
+            Vector3 newViewportPos = new Vector3(0.5f, 0.5f, Mathf.Abs(Camera.main.transform.position.z - transform.position.z));
+            Vector3 newWorldPos = Camera.main.ViewportToWorldPoint(newViewportPos);
+            transform.position = new Vector3(newWorldPos.x, newWorldPos.y, transform.position.z);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
@@ -58,6 +82,9 @@ public class E_PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Ajuste l'orientation du sprite en fonction des mouvements du joueur.
+    /// </summary>
     void AdjustSpriteOrientation()
     {
         if (Time.timeScale == 0) return;
@@ -67,14 +94,14 @@ public class E_PlayerController : MonoBehaviour
         else if (movement.x > 0) spriteRenderer.flipX = false;
         isDirectionBack = spriteRenderer.flipX;
 
-        // Calcul de la rotation cible
+        // Calcul de la rotation cible en fonction de la direction verticale
         float targetZ = 0f;
         if (movement.y > 0)
             targetZ = isDirectionBack ? -10f : 10f;
         else if (movement.y < 0)
             targetZ = isDirectionBack ? 10f : -10f;
 
-        // Interpolation fluide
+        // Interpolation fluide vers la rotation cible
         Quaternion targetRotation = Quaternion.Euler(0, 0, targetZ);
         float rotationStep = rotationSmoothness * Time.unscaledDeltaTime;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationStep);
