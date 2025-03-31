@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 2.8
   speedVariance: 1
-  amplitude: 2
+  amplitude: 0
   frequency: 1
   changeDirectionChance: 0.1
   rotationUpAngle: -15

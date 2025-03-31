@@ -20,7 +20,7 @@ MonoBehaviour:
   frequence: assez rare
   freqWeight: 40
   fishClass: "Z\xE9idae"
-  mediumWeight: 20kg
+  mediumWeight: 5kg
   profondeur: "20-30m juqu\u2019\xE0 400 m"
   eat: Carnivore
   lifeTime: 12 ans
