@@ -241,11 +241,9 @@ public class Builder : MonoBehaviour
                 if (running == false)
                 {
                     PauseInfo.SetActive(true);
-                    pauseImage.sprite = playSprite;
                 }
                 else
                 {
-                    pauseImage.sprite = pauseSprite;
                     PauseInfo.SetActive(false);
                 }
                 CheckAndDisplayMissingResources();
@@ -574,10 +572,9 @@ public class Builder : MonoBehaviour
 
     private void ShowManageMenu()
     {
-        Debug.Log(isMenuOpen);
         if (editing && !isMenuOpen)
         {
-            isMenuOpen = true; // Empêche d’ouvrir le menu plusieurs fois
+            isMenuOpen = true; 
 
             SoundManager.instance.PlaySFX(clic);
             if (buildState == 50)
