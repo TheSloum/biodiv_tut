@@ -980,11 +980,9 @@ public class Builder : MonoBehaviour
             bar_2_cycle = building.bar_2_cycle;
             price_cycle = building.price_cycle;
             cycleDuration = building.time;
-            running = !building.isPaused;
-            if (running)
-            {
+            running = true;
+
                 StartCycle();
-            }
 
             HideBuildingMenu();
             editing = false;
