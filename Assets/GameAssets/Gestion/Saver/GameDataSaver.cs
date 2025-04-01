@@ -27,6 +27,9 @@ public class GameDataSaver : MonoBehaviour
     public int mat_0 = 0;
     public int mat_1 = 0;
     public int mat_2 = 0;
+    public int date1 = 0;
+    public int date2 = 0;
+    public int date3 = 0;
     public int price = 0;
 
     public GameObject loadingObject;
@@ -181,6 +184,9 @@ public class GameDataSaver : MonoBehaviour
             bar_1 = Materials.instance.bar_1,
             bar_2 = Materials.instance.bar_2,
             price = Materials.instance.price,
+            date1 = J_TimeManager.Instance.currentDay,
+            date2 = J_TimeManager.Instance.currentMonth,
+            date3 = J_TimeManager.Instance.currentYear,
             townName = Materials.instance.townName
         };
 
@@ -374,6 +380,8 @@ public class GameDataSaver : MonoBehaviour
             Materials.instance.bar_1 = gameData.bar_1;
             Materials.instance.bar_2 = gameData.bar_2;
             Materials.instance.price = gameData.price;
+            
+    J_TimeManager.Instance.SetTime(gameData.date1, gameData.date2, gameData.date3);
             Materials.instance.townName = gameData.townName;
             Materials.instance.isLoad = true;
         }
@@ -382,7 +390,7 @@ public class GameDataSaver : MonoBehaviour
             Debug.LogWarning("Aucune sauvegarde trouvée à: " + path);
         }
         isSavingCompleted = true;
-
+        
     }
 
 private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
@@ -514,6 +522,9 @@ private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
             Materials.instance.bar_0 = gameData.bar_0;
             Materials.instance.bar_1 = gameData.bar_1;
             Materials.instance.bar_2 = gameData.bar_2;
+            
+            
+    J_TimeManager.Instance.SetTime(gameData.date1, gameData.date2, gameData.date3);
                 Materials.instance.price = gameData.price;
             }
             Materials.instance.townName = gameData.townName;
@@ -537,7 +548,9 @@ private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
 
             Destroy(LoadManager.instance.gameObject);
         }
+        
         StartCoroutine(WaitBuffer(1f));
+        
     }
 
 IEnumerator WaitBuffer(float delay)
@@ -610,6 +623,9 @@ public class GameData
     public float bar_0;
     public float bar_1;
     public float bar_2;
+    public int date1;
+    public int date2;
+    public int date3;
     public int price;
 
     public string townName;
