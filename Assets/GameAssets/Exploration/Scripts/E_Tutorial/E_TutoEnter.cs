@@ -94,6 +94,6 @@ private IEnumerator MaterialWait()
     {
         yield return new WaitUntil(() => Materials.instance.textDone == true);
         yield return new WaitForSecondsRealtime(0.2f);
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
     }
 }
