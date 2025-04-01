@@ -8,7 +8,9 @@ public class E_PlayerController : MonoBehaviour
     public float rotationSmoothness = 360f; // Degrés par seconde pour la rotation
 
     [Header("Gestion du Temps")]
-    public float gameSpeed = 1f; // Modifier dans l'Inspector pour ajuster le TimeScale
+    private float gameTimer = 0f; // Temps écoulé
+    public float maxTimeScale = 10f; // Vitesse max du jeu
+    public float accelerationRate = 0.5f; // Facteur d’accélération
 
     public Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -31,7 +33,11 @@ public class E_PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Modifier le TimeScale sans affecter les cinématiques
+        // Incrémenter le temps de jeu
+        gameTimer += Time.deltaTime;
+
+        // Appliquer la vitesse du jeu en fonction du temps écoulé
+        AdjustGameSpeed();
 
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
@@ -40,11 +46,9 @@ public class E_PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Appliquer une force indépendamment du Time.timeScale
         Vector2 force = movement.normalized * moveForce * Time.unscaledDeltaTime;
         rb.AddForce(force, ForceMode2D.Force);
 
-        // Vérifier si la vitesse dépasse la limite max
         if (rb.velocity.magnitude > maxSpeed)
             rb.velocity = rb.velocity.normalized * maxSpeed;
     }
@@ -55,18 +59,24 @@ public class E_PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Vérifie si le joueur est en dehors de la zone visible de la caméra.
-    /// Si c'est le cas, il est repositionné au centre de la vue.
+    /// Augmente progressivement la vitesse du jeu à partir de 2 minutes.
     /// </summary>
+    void AdjustGameSpeed()
+    {
+        if (gameTimer >= 90f) // Commence à accélérer après 2 minutes
+        {
+            float targetTimeScale = 1f + ((gameTimer - 90f) / 60f) * accelerationRate; // Augmente progressivement
+            Debug.Log(targetTimeScale);
+            // Limite la vitesse max
+            Time.timeScale = Mathf.Min(targetTimeScale, maxTimeScale);
+        }
+    }
+
     void CheckOutOfBounds()
     {
-        // Convertir la position du joueur en coordonnées de la caméra (viewport)
         Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
-
-        // La zone visible se trouve entre 0 et 1 sur les axes x et y
         if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
         {
-            // Repositionner le joueur au centre de la caméra
             Vector3 newViewportPos = new Vector3(0.5f, 0.5f, Mathf.Abs(Camera.main.transform.position.z - transform.position.z));
             Vector3 newWorldPos = Camera.main.ViewportToWorldPoint(newViewportPos);
             transform.position = new Vector3(newWorldPos.x, newWorldPos.y, transform.position.z);
@@ -82,26 +92,20 @@ public class E_PlayerController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Ajuste l'orientation du sprite en fonction des mouvements du joueur.
-    /// </summary>
     void AdjustSpriteOrientation()
     {
         if (Time.timeScale == 0) return;
 
-        // Gestion du flip horizontal
         if (movement.x < 0) spriteRenderer.flipX = true;
         else if (movement.x > 0) spriteRenderer.flipX = false;
         isDirectionBack = spriteRenderer.flipX;
 
-        // Calcul de la rotation cible en fonction de la direction verticale
         float targetZ = 0f;
         if (movement.y > 0)
             targetZ = isDirectionBack ? -10f : 10f;
         else if (movement.y < 0)
             targetZ = isDirectionBack ? 10f : -10f;
 
-        // Interpolation fluide vers la rotation cible
         Quaternion targetRotation = Quaternion.Euler(0, 0, targetZ);
         float rotationStep = rotationSmoothness * Time.unscaledDeltaTime;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationStep);

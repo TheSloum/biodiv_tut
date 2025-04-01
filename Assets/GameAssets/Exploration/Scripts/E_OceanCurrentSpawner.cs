@@ -26,14 +26,30 @@ public class E_OceanCurrentSpawner : MonoBehaviour
     public float maxPushForce = 1200f;
 
     private float spawnTimer = 0f;
+    private float gameTimer = 0f; // Nouveau timer pour suivre le temps écoulé
+    private bool canSpawn = false; // Indicateur pour autoriser le spawn
 
     void Update()
     {
-        spawnTimer += Time.deltaTime;
-        if (spawnTimer >= spawnInterval)
+        // Mettre à jour le temps de jeu
+        gameTimer += Time.deltaTime;
+
+        // Vérifier si les 10 secondes sont passées avant de permettre le spawn
+        if (!canSpawn && gameTimer >= 26f)
         {
-            SpawnOceanCurrent();
-            spawnTimer = 0f;
+            canSpawn = true; // Activer le spawn après 10 secondes
+            spawnTimer = 0f; // Réinitialiser le timer de spawn
+        }
+
+        // Si le spawn est activé, on lance le système de spawn
+        if (canSpawn)
+        {
+            spawnTimer += Time.deltaTime;
+            if (spawnTimer >= spawnInterval)
+            {
+                SpawnOceanCurrent();
+                spawnTimer = 0f;
+            }
         }
     }
 
@@ -53,7 +69,7 @@ public class E_OceanCurrentSpawner : MonoBehaviour
         // Instancier le courant marin
         GameObject current = Instantiate(oceanCurrentPrefab, spawnPosition, Quaternion.identity);
 
-        // Assurer que le courant est configuré correctement
+        // Vérifier si le script du courant marin est présent
         E_OceanCurrent currentScript = current.GetComponent<E_OceanCurrent>();
         if (currentScript != null)
         {

@@ -173,11 +173,11 @@ public class HideStart : MonoBehaviour
 
     private IEnumerator MoveToTarget(Transform target, float moveSpeed)
     {
-        
-            pos = false;
+
+        pos = false;
         Materials.instance.canMove = false;
         float unstuck = 0f;
-        while (Vector3.Distance(cameraObject.transform.position, target.position) > 0.05f && unstuck < 1.5f )
+        while (Vector3.Distance(cameraObject.transform.position, target.position) > 0.05f && unstuck < 1.5f)
         {
             unstuck += Time.unscaledDeltaTime;
             cameraObject.transform.position = Vector3.Lerp(cameraObject.transform.position, target.position, Time.unscaledDeltaTime * moveSpeed);
@@ -263,9 +263,9 @@ public class HideStart : MonoBehaviour
         else if (step == 1)
         {
             StartCoroutine(CheckForClicks());
-         Materials.instance.tutoToggle = true;
+            Materials.instance.tutoToggle = true;
         }
-            pos = true;
+        pos = true;
     }
 
     private IEnumerator FadeOutSprites(GameObject target, float duration)
@@ -318,7 +318,7 @@ public class HideStart : MonoBehaviour
                 {
                     yield return new WaitForSecondsRealtime(0.2f);
                     OnObjectClick();
-                    
+
                     yield break;
                 }
 
@@ -391,8 +391,8 @@ public class HideStart : MonoBehaviour
 
     private void OnButtonCloseClicked()
     {
-        
-         Materials.instance.tutoToggle = false;
+
+        Materials.instance.tutoToggle = false;
         if (step == 3)
         {
             exploration.interactable = true;
@@ -404,7 +404,7 @@ public class HideStart : MonoBehaviour
             }
             exploration.onClick.AddListener(TutoPart1End);
             Materials.instance.canMove = false;
-         Materials.instance.tutoToggle = true;
+            Materials.instance.tutoToggle = true;
 
             StartCoroutine(WaitForTextEnd(5));
         }
@@ -420,8 +420,8 @@ public class HideStart : MonoBehaviour
             }
             StartCoroutine(WaitForTextEnd(3));
             StartCoroutine(BlinkGUI());
-            
-         Materials.instance.tutoToggle = false;
+
+            Materials.instance.tutoToggle = false;
             speech3AlreadyDone = true;
         }
     }
@@ -520,6 +520,7 @@ public class HideStart : MonoBehaviour
         }
 
         Blink5.SetActive(false);
+        Materials.instance.tutoToggle = false;
     }
 
     private IEnumerator WaitForTextEnd(int index)
@@ -562,11 +563,11 @@ public class HideStart : MonoBehaviour
         }
         else if (index == 3)
         {
+            Materials.instance.tutoToggle = false;
             StartCoroutine(FadeOutSprites(fadeObject2, fadeDuration));
             fadeObject.SetActive(false);
             fadeObject3.SetActive(true);
             StartCoroutine(MoveToTarget(target[1], moveSpeed));
-            Materials.instance.tutoToggle = true;
             Materials.instance.canMove = false;
         }
         else if (index == 4)
