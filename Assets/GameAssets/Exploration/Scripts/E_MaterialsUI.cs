@@ -6,6 +6,7 @@ public class E_MaterialsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI woodText;
     [SerializeField] private TextMeshProUGUI stoneText;
     [SerializeField] private TextMeshProUGUI ironText;
+    [SerializeField] private TextMeshProUGUI trashText;
 
     void Update()
     {
@@ -18,6 +19,8 @@ public class E_MaterialsUI : MonoBehaviour
                 stoneText.text = $"{Materials.instance.sessionStone}";
             if (ironText != null)
                 ironText.text = $"{Materials.instance.sessionIron}";
+            if (trashText != null)
+                trashText.text = $"{Materials.instance.sessionTrash}";
         }
     }
 }
