@@ -77,4 +77,4 @@ public class NormalEventType
 
     [TextArea]
     public string description;
-}
+}   

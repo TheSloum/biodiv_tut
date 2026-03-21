@@ -937,7 +937,7 @@ CamMov.GetComponent<CamMov>().ResetSpeed();
             Materials.instance.researchCentr = false;
             Materials.instance.ReseachButton(true);
         }
-        if (building.buildID != 50)
+        if (building.buildID != 50 || building.buildID != 49)
         {
             cycleBar.transform.localPosition = new Vector3(0, 83, 0);
             barFs.sortingOrder = -2;
