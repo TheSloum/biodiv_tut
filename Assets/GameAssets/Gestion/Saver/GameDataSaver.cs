@@ -31,6 +31,7 @@ public class GameDataSaver : MonoBehaviour
     public int date2 = 0;
     public int date3 = 0;
     public int price = 0;
+    public int trash = 0;
 
     public GameObject loadingObject;
     public GameObject throbber;
@@ -184,6 +185,7 @@ public class GameDataSaver : MonoBehaviour
             bar_1 = Materials.instance.bar_1,
             bar_2 = Materials.instance.bar_2,
             price = Materials.instance.price,
+            trash = Materials.instance.trash,
             date1 = J_TimeManager.Instance.currentDay,
             date2 = J_TimeManager.Instance.currentMonth,
             date3 = J_TimeManager.Instance.currentYear,
@@ -522,6 +524,7 @@ private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
             Materials.instance.bar_0 = gameData.bar_0;
             Materials.instance.bar_1 = gameData.bar_1;
             Materials.instance.bar_2 = gameData.bar_2;
+            Materials.instance.trash = gameData.trash;
             
             
     J_TimeManager.Instance.SetTime(gameData.date1, gameData.date2, gameData.date3);
@@ -620,6 +623,7 @@ public class GameData
     public int mat_0;
     public int mat_1;
     public int mat_2;
+    public int trash;
     public float bar_0;
     public float bar_1;
     public float bar_2;
