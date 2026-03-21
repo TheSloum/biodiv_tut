@@ -28,8 +28,8 @@ public class E_EventSettings : ScriptableObject
     public List<NormalEventType> normalEvents = new List<NormalEventType>();
 
     [Header("Cooldown & Festival Settings")]
-    public int invasionCooldownYears = 3; // Exemple : 3 ans de cooldown pour les invasions
-    public int normalEventCooldownYears = 5; // Exemple : 5 ans de cooldown pour les événements normaux
+    public int invasionCooldownYears = 3; 
+    public int normalEventCooldownYears = 5; 
 
     [Header("Festival and Trash Wave Settings")]
     public float festivalSpawnMultiplier = 1.5f;
@@ -51,11 +51,14 @@ public class InvasionType
 {
     public string name;
     public int eventID;
+    
+    // --- AJOUT : L'image pour l'invasion ---
+    public Sprite eventIcon; 
+    
     public GameObject[] prefabs;
-    // Durée spécifique (en mois) pour cet événement d'invasion
     public int durationInMonths = 2; 
     public Speech dialogue; 
-    // Description de l'événement d'invasion avec un TextArea pour les longs textes
+
     [TextArea]
     public string description;
 }
@@ -65,10 +68,13 @@ public class NormalEventType
 {
     public string name;
     public int eventID;
-    // Durée spécifique (en mois) pour cet événement normal
+
+    // --- AJOUT : L'image pour l'événement normal ---
+    public Sprite eventIcon; 
+
     public int durationInMonths = 2; 
     public Speech dialogue; 
-    // Description de l'événement normal avec un TextArea pour les longs textes
+
     [TextArea]
     public string description;
-}
+}   

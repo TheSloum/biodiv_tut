@@ -26,6 +26,7 @@ MonoBehaviour:
   invasionTypes:
   - name: "Invasion de m\xE9duses"
     eventID: 2
+    eventIcon: {fileID: 0}
     prefabs:
     - {fileID: 2388417884662715918, guid: 4a52e342e6f39fb49b97fffe5bd509fe, type: 3}
     durationInMonths: 2
@@ -40,6 +41,7 @@ MonoBehaviour:
       de vie diminue. \n"
   - name: Invasion de poissons-lions
     eventID: 4
+    eventIcon: {fileID: 0}
     prefabs:
     - {fileID: 2388417884662715918, guid: 983c3013fa391524da8b2104f6687579, type: 3}
     durationInMonths: 2
@@ -52,6 +54,7 @@ MonoBehaviour:
       \n"
   - name: Invasion de barracudas
     eventID: 5
+    eventIcon: {fileID: 0}
     prefabs:
     - {fileID: 2388417884662715918, guid: 2c68ddac4e9444d4aa4802156815cda5, type: 3}
     durationInMonths: 2
@@ -65,6 +68,7 @@ MonoBehaviour:
   normalEvents:
   - name: "Vague de d\xE9chets"
     eventID: 0
+    eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
     durationInMonths: 2
     dialogue: {fileID: 11400000, guid: feaf7f2ae41394345bfaa79774b97df4, type: 2}
     description: "Les d\xE9chets plastiques envahissent les plages et les fonds marins,
@@ -75,6 +79,7 @@ MonoBehaviour:
       plus fr\xE9quemment lors de l\u2019exploration. \n"
   - name: "Mar\xE9e noir"
     eventID: 1
+    eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
     durationInMonths: 2
     dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
     description: "Une fuite de p\xE9trole pollue l\u2019eau, d\xE9truit les habitats
@@ -84,6 +89,7 @@ MonoBehaviour:
       moins fr\xE9quemment lors de l\u2019exploration. \n"
   - name: "Surconsommation d'\xE9nergie"
     eventID: 7
+    eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
     durationInMonths: 2
     dialogue: {fileID: 11400000, guid: 791e538844f616d488cb4e1859a2f55f, type: 2}
     description: "La ville consomme trop d\u2019\xE9lectricit\xE9 ! Les lumi\xE8res,
@@ -94,6 +100,7 @@ MonoBehaviour:
       beaucoup plus d\u2019\xE9nergie.\n"
   - name: "Gr\xE8ve"
     eventID: 8
+    eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
     durationInMonths: 3
     dialogue: {fileID: 11400000, guid: 2f31cf5b66cf36040b2f739a6a56c12b, type: 2}
     description: "Les habitants cessent de travailler ! Ils estiment que leurs conditions
@@ -104,6 +111,7 @@ MonoBehaviour:
       plus lents \n"
   - name: "P\xEAche ill\xE9gale"
     eventID: 9
+    eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
     durationInMonths: 1
     dialogue: {fileID: 11400000, guid: bcd8483f7b7992e4ba1efb49ca7462f4, type: 2}
     description: "Des pratiques de p\xEAche non r\xE9glement\xE9es menacent les \xE9cosyst\xE8mes
@@ -112,6 +120,7 @@ MonoBehaviour:
       fr\xE9quemment lors de l\u2019exploration."
   - name: "\xC9pisode de canicule marine"
     eventID: 10
+    eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
     durationInMonths: 3
     dialogue: {fileID: 11400000, guid: d57cdc3c688571f41ab1b9fd1d994d16, type: 2}
     description: "Une \xE9l\xE9vation anormale de la temp\xE9rature de l\u2019eau
@@ -120,6 +129,7 @@ MonoBehaviour:
       moins fr\xE9quemment lors de l\u2019exploration. \n"
   - name: "Journ\xE9e de ramassage"
     eventID: 14
+    eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
     durationInMonths: 1
     dialogue: {fileID: 11400000, guid: 0ca0ba38dd43e204db75a8ffdc86a6ee, type: 2}
     description: "Les habitants se mobilisent pour nettoyer plages et fonds marins,
@@ -127,12 +137,14 @@ MonoBehaviour:
       de vie augmente faiblement. \n- La pollution diminue. \n- L\u2019argent diminue. "
   - name: Collecte de fonds
     eventID: 16
+    eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
     durationInMonths: 1
     dialogue: {fileID: 11400000, guid: df4e4d7b043debd408d944f068e66ef7, type: 2}
     description: "Une initiative locale l\xE8ve des fonds pour financer des projets
       de protection de la biodiversit\xE9 marine. \nEFFETS : \n- L\u2019argent augmente. "
   - name: Remerciement des habitants
     eventID: 17
+    eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
     durationInMonths: 1
     dialogue: {fileID: 11400000, guid: ebc75c932f642324e802620d74882d38, type: 2}
     description: "Les habitants sont heureux et reconnaissants ! Gr\xE2ce \xE0 vos
@@ -141,6 +153,7 @@ MonoBehaviour:
       !\nEFFETS : \n- L\u2019argent augmente grandement. \n"
   - name: "F\xEAte du corail"
     eventID: 3
+    eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
     durationInMonths: 1
     dialogue: {fileID: 11400000, guid: ebc75c932f642324e802620d74882d38, type: 2}
     description: "Pendant un mois, les oc\xE9ans sont en f\xEAte ! Les r\xE9cifs

@@ -95,9 +95,7 @@ public class ShowDialogue : MonoBehaviour
         // Si c'est un dialogue d'event, on affiche le fond en 100% et on désactive le GUI
         if (currentDialogueIsEvent)
         {
-            SetFondDialogOpacity(1f);
-            if (gui != null)
-                gui.SetActive(false);
+            fondDialog.SetActive(true);
         }
 
         RectTransform boxRT = box.GetComponent<RectTransform>();
@@ -217,27 +215,11 @@ public class ShowDialogue : MonoBehaviour
         // Si c'était un dialogue d'event, on remet le fond à 0% et on réactive le GUI
         if (currentDialogueIsEvent)
         {
-            SetFondDialogOpacity(0f);
-            if (gui != null)
-                gui.SetActive(true);
-            currentDialogueIsEvent = false;
+            fondDialog.SetActive(false);
         }
     }
 
-    // Méthode qui change l'opacité du fond de dialogue (on suppose ici un SpriteRenderer)
-    private void SetFondDialogOpacity(float opacity)
-    {
-        if (fondDialog != null)
-        {
-            SpriteRenderer sr = fondDialog.GetComponent<SpriteRenderer>();
-            if (sr != null)
-            {
-                Color c = sr.color;
-                c.a = opacity;
-                sr.color = c;
-            }
-        }
-    }
+    
 
     string ReplacePlaceholders(string text)
     {
