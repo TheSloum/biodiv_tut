@@ -12,10 +12,12 @@ public class Pedestrian : MonoBehaviour
     private PedestrianZone zone;
 
     private Animator animator;
+    private SpriteRenderer sr;
 
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        sr = GetComponentInChildren<SpriteRenderer>();
 
         // 🔥 Randomize animation start offset
         if (animator != null)
@@ -23,6 +25,19 @@ public class Pedestrian : MonoBehaviour
             animator.Play(0, -10, Random.value); 
             animator.speed = Random.Range(0.8f, 1.2f);
             // Random.value = 0 → 1 (random point in animation)
+        }
+    }
+
+     void Update()
+    {
+        UpdateSortingOrder();
+    }
+
+    void UpdateSortingOrder()
+    {
+        if (sr != null)
+        {
+            sr.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
         }
     }
 
