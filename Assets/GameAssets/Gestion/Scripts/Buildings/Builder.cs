@@ -939,10 +939,16 @@ CamMov.GetComponent<CamMov>().ResetSpeed();
         }
         if (building.buildID != 50 || building.buildID != 49)
         {
+ 
             cycleBar.transform.localPosition = new Vector3(0, 83, 0);
             barFs.sortingOrder = -2;
             barBs.sortingOrder = -3;
             Barfond.sortingOrder = -4;
+        }
+                if (building.buildID == 50 || building.buildID == 49)
+        {
+            Debug.Log("dDDD");  
+            cycleBar.SetActive(false);
         }
 
         if (editing == true && (Materials.instance.mat_0 >= (-1 * building.mat_0) &&

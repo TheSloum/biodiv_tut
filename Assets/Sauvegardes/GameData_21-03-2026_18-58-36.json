@@ -1,0 +1,321 @@
+{
+    "fishDataList": [
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        },
+        {
+            "is_unlocked": false
+        }
+    ],
+    "buildingDataList": [
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": false
+        },
+        {
+            "unlocked": true
+        },
+        {
+            "unlocked": false
+        }
+    ],
+    "builderDataList": [
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": true,
+            "buildState": 50,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": true,
+            "buildState": 5,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": true,
+            "buildState": 49,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": true,
+            "buildState": 5,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 1,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        },
+        {
+            "level0": 0,
+            "level1": 0,
+            "level2": 0,
+            "running": false,
+            "buildState": 0,
+            "cons_mat_0": 0,
+            "cons_mat_1": 0,
+            "cons_mat_2": 0,
+            "bar_0_cycle": 0.0,
+            "bar_1_cycle": 0.0,
+            "bar_2_cycle": 0.0,
+            "price_cycle": 0
+        }
+    ],
+    "mat_0": 909,
+    "mat_1": 859,
+    "mat_2": 9909,
+    "trash": 9999,
+    "bar_0": 0.5099999904632568,
+    "bar_1": 0.48000001907348635,
+    "bar_2": 1.0,
+    "date1": 15,
+    "date2": 1,
+    "date3": 1,
+    "price": 10099,
+    "townName": ""
+}
