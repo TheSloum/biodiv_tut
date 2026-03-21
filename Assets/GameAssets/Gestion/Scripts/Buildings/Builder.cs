@@ -37,6 +37,7 @@ public class Builder : MonoBehaviour
     [SerializeField] private GameObject upgradeButton2;
     [SerializeField] private GameObject upgradeButton3;
     [SerializeField] private GameObject pauseButton;
+    [SerializeField] private GameObject CamMov;
     [SerializeField] public Sprite baseSprite;
 
     private SpriteRenderer spriteRenderer;
@@ -129,7 +130,6 @@ public class Builder : MonoBehaviour
     public TMP_Text mat2Text;
     public TMP_Text priceText;
     public TMP_Text timeText;
-
     public Sprite normalDestroySprite;
     public Sprite lockedDestroySprite;
 
@@ -575,7 +575,7 @@ public class Builder : MonoBehaviour
         if (editing && !isMenuOpen)
         {
             isMenuOpen = true; 
-
+            CamMov.GetComponent<CamMov>().Pause();
             SoundManager.instance.PlaySFX(clic);
             if (buildState == 50)
             {
@@ -722,6 +722,7 @@ public class Builder : MonoBehaviour
     public void HideManageMenu()
     {
         isMenuOpen = false;
+        CamMov.GetComponent<CamMov>().ResetSpeed();
         manageMenu.SetActive(false);
     }
 
@@ -745,6 +746,7 @@ public class Builder : MonoBehaviour
 
         }
         Debug.Log(buildings[0].buildID);
+        CamMov.GetComponent<CamMov>().Pause();
         SoundManager.instance.PlaySFX(clic);
         validation.SetActive(false);
         buildingMenu.SetActive(true);
@@ -756,6 +758,7 @@ public class Builder : MonoBehaviour
         {
             if (!child.CompareTag("ButtonPriority"))
             {
+                CamMov.GetComponent<CamMov>().ResetSpeed();
                 Destroy(child.gameObject);
             }
         }
@@ -914,7 +917,7 @@ public class Builder : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(buttonObject);
 
             validationButton.onClick.RemoveAllListeners();
-
+CamMov.GetComponent<CamMov>().ResetSpeed();
             validationButton.onClick.AddListener(() => OnBuildingButtonClick(building));
         }
 

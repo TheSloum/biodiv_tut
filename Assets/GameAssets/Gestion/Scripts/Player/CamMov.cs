@@ -164,6 +164,13 @@ public class CamMov : MonoBehaviour
         }
     }
 
+    public void Pause()
+    {
+        SoundManager.instance.PlaySFX(sfxClip);
+        Time.timeScale = 0;
+        UpdateButtonSprites();
+    }
+
     public void TogglePause()
     {
         SoundManager.instance.PlaySFX(sfxClip);
