@@ -1274,7 +1274,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 350882dba7d88324496bc6df4b8c3c21, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3931,11 +3931,11 @@ RectTransform:
   m_LocalScale: {x: 0.39599264, y: 0.39599264, z: 0.39599264}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 450125649}
   - {fileID: 492173643}
   - {fileID: 2135757173}
   - {fileID: 2109259642}
   - {fileID: 6734139740375112538}
+  - {fileID: 450125649}
   - {fileID: 2121948095}
   - {fileID: 835938170}
   m_Father: {fileID: 0}
@@ -11137,7 +11137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &8999637458010299558
 CanvasRenderer:
   m_ObjectHideFlags: 0

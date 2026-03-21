@@ -207,7 +207,8 @@ MonoBehaviour:
   moveForce: 1600
   maxSpeed: 5
   rotationSmoothness: 360
-  gameSpeed: 1
+  maxTimeScale: 10
+  accelerationRate: 0.5
   rb: {fileID: 57760518}
 --- !u!212 &57760515
 SpriteRenderer:
@@ -4519,6 +4520,7 @@ MonoBehaviour:
   mat_1: 500
   mat_2: 500
   price: 500
+  trash: 0
   bar_0: 0.5
   bar_1: 0.5
   bar_2: 0.5
@@ -12734,7 +12736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8228843676634867808
 MonoBehaviour:
   m_ObjectHideFlags: 0
