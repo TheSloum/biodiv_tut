@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c505cf12c64c04fbf956b540a788e6, type: 3}
   m_Name: Recyclage
   m_EditorClassIdentifier: 
-  buildID: 50
+  buildID: 49
   isPaused: 0
   buildDesc: 
   PolutionEtat: =
@@ -20,9 +20,9 @@ MonoBehaviour:
   ElecEtat: =
   MoneyMake: =
   buildingObject: {fileID: 0}
-  buildClass: 0
+  buildClass: 1
   unlocked: 1
-  buildSprite: {fileID: 21300000, guid: c6cd4d0301738ca4ab890b9abce0f6f2, type: 3}
+  buildSprite: {fileID: 21300000, guid: 70a8200ccfe6a1d408c50fea261fd150, type: 3}
   price: -50
   mat_0: -20
   mat_1: -20

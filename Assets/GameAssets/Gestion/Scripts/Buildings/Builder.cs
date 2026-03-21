@@ -119,6 +119,7 @@ public class Builder : MonoBehaviour
     public GameObject cycleBar;
 
     public GameObject menuRecherche;
+    public GameObject menuRecycle;
     public GameObject PauseInfo;
     public GameObject notEnothRessourse;
     [SerializeField] private GameObject moneyPrefab;
@@ -313,8 +314,8 @@ public class Builder : MonoBehaviour
             }
             if (buildState == 0)
             {
-                ShowBuildingMenu();
                 editing = true;
+                ShowBuildingMenu();
             }
             else
             {
@@ -580,6 +581,11 @@ public class Builder : MonoBehaviour
             if (buildState == 50)
             {
                 menuRecherche.SetActive(true);
+                return;
+            }
+            if (buildState == 49)
+            {
+                menuRecycle.SetActive(true);
                 return;
             }
 

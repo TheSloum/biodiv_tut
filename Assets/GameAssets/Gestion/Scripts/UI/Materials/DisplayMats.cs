@@ -19,6 +19,9 @@ public class DisplayMats : MonoBehaviour
             textFields[1].text = Materials.instance.mat_1.ToString();
             textFields[2].text = Materials.instance.mat_2.ToString();
             textFields[3].text = Materials.instance.price.ToString();
+            if(textFields[4] != null){
+            textFields[4].text = Materials.instance.trash.ToString();
+            }
         }
     }
 }
