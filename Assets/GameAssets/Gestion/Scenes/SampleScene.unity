@@ -19123,7 +19123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &944942043
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19141,6 +19141,7 @@ RectTransform:
   - {fileID: 2106864371}
   - {fileID: 970767076}
   - {fileID: 2075166859}
+  - {fileID: 2041426469}
   m_Father: {fileID: 1678534679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -19934,7 +19935,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.5008, y: -55.552}
+  m_AnchoredPosition: {x: 1.5008, y: -67}
   m_SizeDelta: {x: 325.5369, y: 225.674}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &970767077
@@ -23597,6 +23598,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1536261837}
         m_TargetAssemblyTypeName: E_EventDescManager, Assembly-CSharp
         m_MethodName: ShowEventDescription
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: CamMov, Assembly-CSharp
+        m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33810,6 +33823,7 @@ MonoBehaviour:
   eventDescContainer: {fileID: 944942042}
   titleText: {fileID: 2106864372}
   descriptionText: {fileID: 970767077}
+  eventImage: {fileID: 2041426470}
   eventSettings: {fileID: 11400000, guid: 65ac918ee0245574c84a84c0da019715, type: 2}
 --- !u!1 &1552415739
 GameObject:
@@ -45772,6 +45786,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -18.49}
   m_SizeDelta: {x: 80, y: 86.32}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2041426468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2041426469}
+  - component: {fileID: 2041426471}
+  - component: {fileID: 2041426470}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2041426469
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041426468}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 944942043}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -143.40997, y: 89.3}
+  m_SizeDelta: {x: 51.6441, y: 51.6441}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2041426470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041426468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2041426471
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041426468}
+  m_CullTransparentMesh: 1
 --- !u!1 &2043050374
 GameObject:
   m_ObjectHideFlags: 0
@@ -46878,6 +46967,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1536261837}
         m_TargetAssemblyTypeName: E_EventDescManager, Assembly-CSharp
         m_MethodName: HideEventDescription
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: CamMov, Assembly-CSharp
+        m_MethodName: ResetSpeed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
