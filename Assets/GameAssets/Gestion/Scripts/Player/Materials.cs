@@ -25,6 +25,7 @@ public class Materials : MonoBehaviour
     public int mat_1 = 0;
     public int mat_2 = 0;
     public int price = 0;
+    public int trash = 0;
     public float bar_0 = 0.5f;
     public float bar_1 = 0.5f;
     public float bar_2 = 0.5f;
@@ -226,6 +227,7 @@ public bool loadingDuffer = false;
             mat_1 = GameDataSaver.instance.mat_1;
             mat_2 = GameDataSaver.instance.mat_2;
             price = GameDataSaver.instance.price;
+            trash = GameDataSaver.instance.trash;
 
             ResetSessionCounts();
         }
