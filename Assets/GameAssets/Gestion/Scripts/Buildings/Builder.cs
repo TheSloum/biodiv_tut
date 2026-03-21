@@ -33,6 +33,7 @@ public class Builder : MonoBehaviour
     [SerializeField] private GameObject closeMenu;
     [SerializeField] private GameObject closeMenu2;
     [SerializeField] private GameObject destroyButton;
+    [SerializeField] private GameObject destroyButton2;
     [SerializeField] private GameObject upgradeButton1;
     [SerializeField] private GameObject upgradeButton2;
     [SerializeField] private GameObject upgradeButton3;
@@ -50,6 +51,7 @@ public class Builder : MonoBehaviour
     private Button closeMenuButton;
     private Button closeMenuButton2;
     private Button destroyB;
+    private Button destroyB2;
     public Button MoreInfo;
     public Button MoreInfoClose;
     private Button upgrade1;
@@ -163,6 +165,7 @@ public class Builder : MonoBehaviour
         closeMenuButton2.onClick.RemoveAllListeners();
         closeMenuButton2.onClick.AddListener(OnCloseMenuClicked);
         destroyB = destroyButton.GetComponent<Button>();
+        destroyB2 = destroyButton2.GetComponent<Button>();
         upgrade1 = upgradeButton1.GetComponent<Button>();
         upgrade2 = upgradeButton2.GetComponent<Button>();
         upgrade3 = upgradeButton3.GetComponent<Button>();
@@ -360,6 +363,50 @@ public class Builder : MonoBehaviour
                 Materials.instance.mat_1 -= (int)(buildingToDestroy.mat_1 / 2f);
                 Materials.instance.mat_2 -= (int)(buildingToDestroy.mat_2 / 2f);
 
+
+                if (buildState == 50)
+                {
+                    Materials.instance.researchCentr = true;
+                    Materials.instance.ReseachButton(false);
+                }
+
+                cycleBar.transform.localPosition = Vector3.zero;
+                barFs.sortingOrder = -10;
+                barBs.sortingOrder = -11;
+                Barfond.sortingOrder = -12;
+                buildState = 0;
+                buildID = 0;
+                level0 = 0;
+                level1 = 1;
+                level2 = 2;
+
+                if (!Materials.instance.explored)
+                {
+                    spriteRenderer.sprite = baseSprite;
+                }
+                PauseInfo.SetActive(false);
+                notEnothRessourse.SetActive(false);
+                running = false;
+                progress = 0f;
+
+                HideManageMenu();
+                editing = false;
+                Materials.instance.canMove = true;
+            }
+        }
+    }
+
+      public void OnDestroyClicked2()
+    {
+        Debug.Log("aaaa11");
+        if (editing)
+        {
+            Building buildingToDestroy = GetBuildingByID(buildState);
+Debug.Log("aaaa22");
+            if (buildingToDestroy != null)
+            {
+                Debug.Log("aaaa33");
+                float destroyCost = buildingToDestroy.price * -10f;
 
                 if (buildState == 50)
                 {
@@ -597,6 +644,7 @@ public class Builder : MonoBehaviour
                 if (building.unlocked && building.buildID == buildState)
                 {
                     destroyB.onClick.RemoveAllListeners();
+                    destroyB2.onClick.RemoveAllListeners();
                     MoreInfo.onClick.RemoveAllListeners();
                     upgrade1.onClick.RemoveAllListeners();
                     upgrade2.onClick.RemoveAllListeners();
@@ -604,6 +652,7 @@ public class Builder : MonoBehaviour
                     pause.onClick.RemoveAllListeners();
 
                     destroyB.onClick.AddListener(() => OnDestroyClicked());
+                    destroyB2.onClick.AddListener(() => OnDestroyClicked2());
                     MoreInfo.onClick.AddListener(() => OnMoreInfoClicked());
 
                     upgrade1.onClick.AddListener(() => LevelUp1(building));
