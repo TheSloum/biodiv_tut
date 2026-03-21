@@ -541,6 +541,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: 372abe4862ccf7041a5e14606c62a5b2, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -1194,6 +1195,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 6869755171727376997}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: CamMov, Assembly-CSharp
+        m_MethodName: ResetSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3291,6 +3304,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1454677918}
         m_TargetAssemblyTypeName: UnlockPages, Assembly-CSharp
         m_MethodName: ClosePage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: CamMov, Assembly-CSharp
+        m_MethodName: ResetSpeed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7638,6 +7663,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: d493327b0e98e154995751f2c3bf47f1, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -11998,6 +12024,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: b70b5042e6aea0144b48536109d5e9a2, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -12131,7 +12158,7 @@ Transform:
   m_GameObject: {fileID: 506363325}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -178.3, y: 2175.37, z: 0}
+  m_LocalPosition: {x: -178.29999, y: 2175.37, z: 0}
   m_LocalScale: {x: 1.5781102, y: 1.5781102, z: 1.5781102}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12704,6 +12731,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1678534680}
         m_TargetAssemblyTypeName: UIbuttons, Assembly-CSharp
         m_MethodName: UnlockMenuOpen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: CamMov, Assembly-CSharp
+        m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14475,6 +14514,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: 6b02119e7b11a1b46a156abc8fb3d7af, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -18936,6 +18976,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: 372abe4862ccf7041a5e14606c62a5b2, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -19407,7 +19448,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 871676519}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: CamMov, Assembly-CSharp
+        m_MethodName: ResetSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &871676519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23686,6 +23739,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: CamMov, Assembly-CSharp
+        m_MethodName: ResetSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1018987129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23931,6 +23996,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: 660e5d98e5eaf6c4b92d4fe4c2c756e1, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -27873,6 +27939,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: 6b02119e7b11a1b46a156abc8fb3d7af, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -28874,6 +28941,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: ff46b096526b33943a039b1562c1887e, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -31118,6 +31186,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1665300713591164241}
         m_TargetAssemblyTypeName: GalleryPage, Assembly-CSharp
         m_MethodName: GalleryClose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: CamMov, Assembly-CSharp
+        m_MethodName: ResetSpeed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -35463,6 +35543,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: b70b5042e6aea0144b48536109d5e9a2, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -36965,20 +37046,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1474758148}
-  - {fileID: 1020965239}
-  - {fileID: 2047675820}
-  - {fileID: 338367187}
-  - {fileID: 506363329}
-  - {fileID: 1199599268}
-  - {fileID: 1768279018}
-  - {fileID: 13028091}
-  - {fileID: 2114838281}
-  - {fileID: 1173804921}
-  - {fileID: 1652384090}
-  - {fileID: 643212985}
-  - {fileID: 861647725}
   - {fileID: 1861847501}
+  - {fileID: 861647725}
+  - {fileID: 643212985}
+  - {fileID: 1652384090}
+  - {fileID: 1173804921}
+  - {fileID: 2114838281}
+  - {fileID: 13028091}
+  - {fileID: 1768279018}
+  - {fileID: 1199599268}
+  - {fileID: 506363329}
+  - {fileID: 338367187}
+  - {fileID: 2047675820}
+  - {fileID: 1020965239}
+  - {fileID: 1474758148}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1536261835
@@ -39975,6 +40056,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: 6b02119e7b11a1b46a156abc8fb3d7af, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -42897,6 +42979,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: 6b02119e7b11a1b46a156abc8fb3d7af, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -45387,6 +45470,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: 8cafb31e856b80d45b8a08aa1248003c, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -46141,6 +46225,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1009813246}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1578037054}
+        m_TargetAssemblyTypeName: PageManagement, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -49574,6 +49670,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: 660e5d98e5eaf6c4b92d4fe4c2c756e1, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -51853,6 +51950,7 @@ MonoBehaviour:
   upgradeButton2: {fileID: 1821768611}
   upgradeButton3: {fileID: 1821768611}
   pauseButton: {fileID: 1117994524}
+  CamMov: {fileID: 519420028}
   baseSprite: {fileID: 21300000, guid: d941e2b0a3317504d877a9728338062c, type: 3}
   sfxClip: {fileID: 8300000, guid: fd00d50241efebb4f85f2e40e39e7311, type: 3}
   destroy: {fileID: 8300000, guid: b8fb3be6e5ac8384081da0e9f4929e51, type: 3}
@@ -65666,6 +65764,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8889344673845562893}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: CloseParametreAndOpenMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: CamMov, Assembly-CSharp
+        m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
