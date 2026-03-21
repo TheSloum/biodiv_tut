@@ -106,6 +106,9 @@
         },
         {
             "unlocked": false
+        },
+        {
+            "unlocked": true
         }
     ],
     "builderDataList": [
@@ -239,8 +242,8 @@
             "level0": 0,
             "level1": 0,
             "level2": 0,
-            "running": true,
-            "buildState": 5,
+            "running": false,
+            "buildState": 0,
             "cons_mat_0": 0,
             "cons_mat_1": 0,
             "cons_mat_2": 0,
@@ -306,16 +309,16 @@
             "price_cycle": 0
         }
     ],
-    "mat_0": 909,
-    "mat_1": 859,
-    "mat_2": 9909,
-    "trash": 9999,
-    "bar_0": 0.5099999904632568,
-    "bar_1": 0.48000001907348635,
-    "bar_2": 1.0,
-    "date1": 15,
-    "date2": 1,
+    "mat_0": 99959,
+    "mat_1": 99959,
+    "mat_2": 9959,
+    "trash": 99999,
+    "bar_0": 0.47499996423721316,
+    "bar_1": 0.5250000953674316,
+    "bar_2": 0.9900000095367432,
+    "date1": 5,
+    "date2": 2,
     "date3": 1,
-    "price": 10099,
+    "price": 99899,
     "townName": ""
 }
