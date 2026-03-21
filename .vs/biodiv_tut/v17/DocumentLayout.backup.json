@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Yulie\\Documents\\Perso\\SaveSeamulator\\biodiv_tut\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{249FABEA-1970-EBFD-AD46-4EF85246B1A0}|Assembly-CSharp.csproj|c:\\users\\yulie\\documents\\perso\\saveseamulator\\biodiv_tut\\assets\\gameassets\\gestion\\scripts\\player\\materials.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{249FABEA-1970-EBFD-AD46-4EF85246B1A0}|Assembly-CSharp.csproj|solutionrelative:assets\\gameassets\\gestion\\scripts\\player\\materials.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{249FABEA-1970-EBFD-AD46-4EF85246B1A0}|Assembly-CSharp.csproj|c:\\users\\yulie\\documents\\perso\\saveseamulator\\biodiv_tut\\assets\\gameassets\\exploration\\scripts\\e_materialsui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{249FABEA-1970-EBFD-AD46-4EF85246B1A0}|Assembly-CSharp.csproj|solutionrelative:assets\\gameassets\\exploration\\scripts\\e_materialsui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{249FABEA-1970-EBFD-AD46-4EF85246B1A0}|Assembly-CSharp.csproj|c:\\users\\yulie\\documents\\perso\\saveseamulator\\biodiv_tut\\assets\\gameassets\\gestion\\graphics\\environment\\mistmoveandshift.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{249FABEA-1970-EBFD-AD46-4EF85246B1A0}|Assembly-CSharp.csproj|solutionrelative:assets\\gameassets\\gestion\\graphics\\environment\\mistmoveandshift.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -19,6 +27,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Materials.cs",
+              "DocumentMoniker": "C:\\Users\\Yulie\\Documents\\Perso\\SaveSeamulator\\biodiv_tut\\Assets\\GameAssets\\Gestion\\Scripts\\Player\\Materials.cs",
+              "RelativeDocumentMoniker": "Assets\\GameAssets\\Gestion\\Scripts\\Player\\Materials.cs",
+              "ToolTip": "C:\\Users\\Yulie\\Documents\\Perso\\SaveSeamulator\\biodiv_tut\\Assets\\GameAssets\\Gestion\\Scripts\\Player\\Materials.cs",
+              "RelativeToolTip": "Assets\\GameAssets\\Gestion\\Scripts\\Player\\Materials.cs",
+              "ViewState": "AgIAAGIBAAAAAAAAAAAcwHkBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T21:52:01.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "E_MaterialsUI.cs",
+              "DocumentMoniker": "C:\\Users\\Yulie\\Documents\\Perso\\SaveSeamulator\\biodiv_tut\\Assets\\GameAssets\\Exploration\\Scripts\\E_MaterialsUI.cs",
+              "RelativeDocumentMoniker": "Assets\\GameAssets\\Exploration\\Scripts\\E_MaterialsUI.cs",
+              "ToolTip": "C:\\Users\\Yulie\\Documents\\Perso\\SaveSeamulator\\biodiv_tut\\Assets\\GameAssets\\Exploration\\Scripts\\E_MaterialsUI.cs",
+              "RelativeToolTip": "Assets\\GameAssets\\Exploration\\Scripts\\E_MaterialsUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T21:48:28.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "MistMoveandShift.cs",
               "DocumentMoniker": "C:\\Users\\Yulie\\Documents\\Perso\\SaveSeamulator\\biodiv_tut\\Assets\\GameAssets\\Gestion\\Graphics\\Environment\\MistMoveandShift.cs",
               "RelativeDocumentMoniker": "Assets\\GameAssets\\Gestion\\Graphics\\Environment\\MistMoveandShift.cs",

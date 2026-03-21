@@ -117,6 +117,7 @@ public bool loadingDuffer = false;
         mat_0 = 0;
         mat_1 = 0;
         mat_2 = 0;
+        trash = 0;
         price = 500;
         bar_0 = 0.5f;
         bar_1 = 0.5f;
@@ -126,6 +127,7 @@ public bool loadingDuffer = false;
         sessionWood = 0;
         sessionStone = 0;
         sessionIron = 0;
+        sessionTrash = 0;
 
         canMove = true;
         textDone = false;
@@ -367,12 +369,12 @@ public bool loadingDuffer = false;
 
     public void AddTrash(int amount)
     {
-        mat_0 += amount;
+        trash += amount;
         sessionTrash += amount;
 
         if (GameDataSaver.instance != null)
         {
-            GameDataSaver.instance.mat_0 = mat_0;
+            GameDataSaver.instance.trash = trash;
         }
     }
 

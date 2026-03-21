@@ -93,7 +93,7 @@ public class E_OxygenManager : MonoBehaviour
     public void IncrementTrashCollected()
     {
         trashCollected++;
-        Materials.instance.trash++;
+        Materials.instance.sessionTrash++;
         UpdateTrashCounterUI();
     }
 
