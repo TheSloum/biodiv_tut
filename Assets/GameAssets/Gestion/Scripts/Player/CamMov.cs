@@ -96,7 +96,7 @@ public class CamMov : MonoBehaviour
         }
     }
 
-    private void HandleCameraDrag()
+    public void HandleCameraDrag()
     {
         if (Input.GetMouseButton(0))
         {

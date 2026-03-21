@@ -947,7 +947,6 @@ CamMov.GetComponent<CamMov>().ResetSpeed();
         }
                 if (building.buildID == 50 || building.buildID == 49)
         {
-            Debug.Log("dDDD");  
             cycleBar.SetActive(false);
         }
 
