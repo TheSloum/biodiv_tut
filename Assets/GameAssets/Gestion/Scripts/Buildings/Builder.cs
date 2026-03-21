@@ -583,7 +583,7 @@ public class Builder : MonoBehaviour
                 menuRecherche.SetActive(true);
                 return;
             }
-            if (buildState == 49)
+            if (buildState == 12)
             {
                 menuRecycle.SetActive(true);
                 return;
@@ -937,7 +937,7 @@ CamMov.GetComponent<CamMov>().ResetSpeed();
             Materials.instance.researchCentr = false;
             Materials.instance.ReseachButton(true);
         }
-        if (building.buildID != 50 || building.buildID != 49)
+        if (building.buildID != 50 || building.buildID != 12)
         {
  
             cycleBar.transform.localPosition = new Vector3(0, 83, 0);
@@ -945,7 +945,7 @@ CamMov.GetComponent<CamMov>().ResetSpeed();
             barBs.sortingOrder = -3;
             Barfond.sortingOrder = -4;
         }
-                if (building.buildID == 50 || building.buildID == 49)
+                if (building.buildID == 50 || building.buildID == 12)
         {
             Debug.Log("dDDD");  
             cycleBar.SetActive(false);
