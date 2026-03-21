@@ -398,14 +398,12 @@ public class Builder : MonoBehaviour
 
       public void OnDestroyClicked2()
     {
-        Debug.Log("aaaa11");
         if (editing)
         {
             Building buildingToDestroy = GetBuildingByID(buildState);
-Debug.Log("aaaa22");
             if (buildingToDestroy != null)
             {
-                Debug.Log("aaaa33");
+
                 float destroyCost = buildingToDestroy.price * -10f;
 
                 if (buildState == 50)

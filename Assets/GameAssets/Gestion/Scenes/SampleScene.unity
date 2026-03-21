@@ -18888,6 +18888,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4164720338812286632, guid: 88c58f02400091845b20c4c506b54dc4, type: 3}
   m_PrefabInstance: {fileID: 3847138307335951504}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &938193179 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6553939480517193378, guid: 88c58f02400091845b20c4c506b54dc4, type: 3}
+  m_PrefabInstance: {fileID: 3847138307335951504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938193176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe125ffad364c8c4bbeaeb7a4923adc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &938478679
 GameObject:
   m_ObjectHideFlags: 0
@@ -39502,6 +39513,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1737283183}
   m_CullTransparentMesh: 1
+--- !u!114 &1740759963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8229536865260439155, guid: 88c58f02400091845b20c4c506b54dc4, type: 3}
+  m_PrefabInstance: {fileID: 3847138307335951504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1741420965
 GameObject:
   m_ObjectHideFlags: 0
@@ -47165,7 +47187,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.8862745, g: 0.68235296, b: 0.68235296, a: 1}
+    m_HighlightedColor: {r: 0.93333334, g: 0.8392157, b: 0.8235294, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -47183,10 +47205,34 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 2058775544}
+  m_TargetGraphic: {fileID: 1740759963}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: CamMov, Assembly-CSharp
+        m_MethodName: ResetSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 938193179}
+        m_TargetAssemblyTypeName: closemenu, Assembly-CSharp
+        m_MethodName: closer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &2058775547
 CanvasRenderer:
   m_ObjectHideFlags: 0
