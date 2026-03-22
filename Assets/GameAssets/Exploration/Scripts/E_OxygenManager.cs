@@ -17,6 +17,8 @@ public class E_OxygenManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI woodText;
     [SerializeField] private TextMeshProUGUI stoneText;
     [SerializeField] private TextMeshProUGUI ironText;
+        [SerializeField] private TextMeshProUGUI trashText;
+
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject Btnend;
 
@@ -150,6 +152,12 @@ public class E_OxygenManager : MonoBehaviour
         {
             ironText.text = "0";
             StartCoroutine(AnimateNumberText(ironText, "", Materials.instance != null ? Materials.instance.sessionIron : 0, 2f)); // 2s
+        }
+
+        if (trashText != null)
+        {
+            trashText.text = "0";
+            StartCoroutine(AnimateNumberText(trashText, "", Materials.instance != null ? Materials.instance.sessionIron : 0, 2f)); // 2s
         }
 
         yield return new WaitForSecondsRealtime(2f);

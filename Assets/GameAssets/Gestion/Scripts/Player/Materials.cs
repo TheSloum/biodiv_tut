@@ -370,7 +370,6 @@ public bool loadingDuffer = false;
     public void AddTrash(int amount)
     {
         trash += amount;
-        sessionTrash += amount;
 
         if (GameDataSaver.instance != null)
         {

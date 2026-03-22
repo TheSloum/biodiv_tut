@@ -58,6 +58,7 @@ public class E_Trash : MonoBehaviour
             // Incrémenter le compteur de Trash collectés
             if (oxygenManager != null)
             {
+                Materials.instance.AddTrash(1);
                 oxygenManager.IncrementTrashCollected();
             }
 
