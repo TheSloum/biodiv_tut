@@ -39,6 +39,7 @@ MonoBehaviour:
       : entre 2 \xE0 4 mois \nEFFETS : \n- Toutes les esp\xE8ces apparaissant lors
       de l\u2019exploration sont remplac\xE9es par des m\xE9duses. \n- La qualit\xE9
       de vie diminue. \n"
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   - name: Invasion de poissons-lions
     eventID: 4
     eventIcon: {fileID: 21300000, guid: baed4d157cfc27947a481f6c63ca5709, type: 3}
@@ -52,6 +53,7 @@ MonoBehaviour:
       2 \xE0 4 mois \nEFFETS : \n- Toutes les esp\xE8ces apparaissant lors de l\u2019exploration
       sont remplac\xE9es par des poissons-lions. \n- La qualit\xE9 de vie diminue.
       \n"
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   - name: Invasion de barracudas
     eventID: 5
     eventIcon: {fileID: 21300000, guid: 2454365b97c26ba459a8293b58b0ff3c, type: 3}
@@ -65,6 +67,7 @@ MonoBehaviour:
       : entre 2 \xE0 4 mois \nEFFETS : \n- Toutes les esp\xE8ces apparaissant lors
       de l\u2019exploration sont remplac\xE9es par des barracudas. \n- La qualit\xE9
       de vie diminue. "
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   normalEvents:
   - name: "Vague de d\xE9chets"
     eventID: 0
@@ -77,6 +80,7 @@ MonoBehaviour:
       augmente. \n- Durant l'\xE9v\xE9nement, les esp\xE8ces apparaissent moins fr\xE9quemment
       lors de l\u2019exploration. \n- Durant l'\xE9v\xE9nement, les d\xE9chets apparaissent
       plus fr\xE9quemment lors de l\u2019exploration. \n"
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   - name: "Mar\xE9e noir"
     eventID: 1
     eventIcon: {fileID: 21300000, guid: 63bed76fb569fd24abcbf01d1b42912c, type: 3}
@@ -87,6 +91,7 @@ MonoBehaviour:
       : \n- La qualit\xE9 de vie diminue. \n- Durant l'\xE9v\xE9nement, l\u2019exploration
       se d\xE9roule dans le noir. \n- Durant l'\xE9v\xE9nement, les esp\xE8ces apparaissent
       moins fr\xE9quemment lors de l\u2019exploration. \n"
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   - name: "Surconsommation d'\xE9nergie"
     eventID: 7
     eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
@@ -98,6 +103,7 @@ MonoBehaviour:
       agir pour \xE9viter une crise \xE9nerg\xE9tique ! \nDUR\xC9E : entre 2 \xE0
       4 mois \nEFFETS : \n- Durant l'\xE9v\xE9nement, les b\xE2timents consomment
       beaucoup plus d\u2019\xE9nergie.\n"
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   - name: "Gr\xE8ve"
     eventID: 8
     eventIcon: {fileID: 21300000, guid: 89e5677bcca744a4588e06d49fecbbff, type: 3}
@@ -109,6 +115,7 @@ MonoBehaviour:
       2 \xE0 4 mois \nEFFETS : \n- La qualit\xE9 de vie diminue. \n- Les b\xE2timents
       de production d\u2019\xE9nergie et les b\xE2timents Tourisme & Loisirs sont
       plus lents \n"
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   - name: "P\xEAche ill\xE9gale"
     eventID: 9
     eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
@@ -118,6 +125,7 @@ MonoBehaviour:
       marins et \xE9puisent les ressources marines. \nEFFET : \n- La qualit\xE9 de
       vie diminue. \n- Durant l'\xE9v\xE9nement, les esp\xE8ces apparaissent moins
       fr\xE9quemment lors de l\u2019exploration."
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   - name: "\xC9pisode de canicule marine"
     eventID: 10
     eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
@@ -127,6 +135,7 @@ MonoBehaviour:
       perturbe les organismes marins et fragilise leur survie. \nDUR\xC9E : entre
       2 \xE0 4 mois \nEFFETS : \n- Durant l'\xE9v\xE9nement, les esp\xE8ces apparaissent
       moins fr\xE9quemment lors de l\u2019exploration. \n"
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   - name: "Journ\xE9e de ramassage"
     eventID: 14
     eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
@@ -135,6 +144,7 @@ MonoBehaviour:
     description: "Les habitants se mobilisent pour nettoyer plages et fonds marins,
       sensibilisant \xE0 la protection de la biodiversit\xE9. \nEFFETS : \n- La qualit\xE9
       de vie augmente faiblement. \n- La pollution diminue. \n- L\u2019argent diminue. "
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   - name: Collecte de fonds
     eventID: 16
     eventIcon: {fileID: 21300000, guid: 713763d14fdb3a549a4f8b60878489bb, type: 3}
@@ -142,6 +152,7 @@ MonoBehaviour:
     dialogue: {fileID: 11400000, guid: df4e4d7b043debd408d944f068e66ef7, type: 2}
     description: "Une initiative locale l\xE8ve des fonds pour financer des projets
       de protection de la biodiversit\xE9 marine. \nEFFETS : \n- L\u2019argent augmente. "
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   - name: Remerciement des habitants
     eventID: 17
     eventIcon: {fileID: 21300000, guid: fcdcc0eea577abf46a72208ee0173580, type: 3}
@@ -151,6 +162,7 @@ MonoBehaviour:
       actions, leur ville devient plus agr\xE9able, plus propre et mieux prot\xE9g\xE9e.
       Ils vous remercient de prendre soin de leur environnement. Continuez ainsi
       !\nEFFETS : \n- L\u2019argent augmente grandement. \n"
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   - name: "F\xEAte du corail"
     eventID: 3
     eventIcon: {fileID: 21300000, guid: 73c6120ca97f8c1459d3d665bfab7ec3, type: 3}
@@ -164,6 +176,7 @@ MonoBehaviour:
       comment les pr\xE9server.\nDUR\xC9E : 1 mois \nEFFETS : \n- Durant l'\xE9v\xE9nement,
       les esp\xE8ces apparaissent plus fr\xE9quemment lors de l\u2019exploration.
       \n- La qualit\xE9 de vie augmente faiblement. \n- L\u2019argent diminue faiblement.\n"
+    mapAnimation: {fileID: 7400000, guid: f1494d31036d62542b4ca82100868678, type: 2}
   invasionCooldownYears: 1
   normalEventCooldownYears: 3
   festivalSpawnMultiplier: 1.5
@@ -174,3 +187,4 @@ MonoBehaviour:
   overlayMaxOpacity: 0.7
   overlayFadeOutDuration: 2
   defaultFishPrefabs: []
+  defaultMapAnimation: {fileID: 0}
