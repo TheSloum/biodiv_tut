@@ -20,7 +20,7 @@ MonoBehaviour:
   ElecEtat: =
   MoneyMake: =
   buildingObject: {fileID: 0}
-  buildClass: 1
+  buildClass: 4
   unlocked: 1
   buildSprite: {fileID: 21300000, guid: 70a8200ccfe6a1d408c50fea261fd150, type: 3}
   price: -50
