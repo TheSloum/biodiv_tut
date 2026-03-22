@@ -398,20 +398,15 @@ public class Builder : MonoBehaviour
 
       public void OnDestroyClicked2()
     {
+        Debug.Log("1ddzd" + editing);
         if (editing)
         {
+            Debug.Log("2ddzd" + editing);
             Building buildingToDestroy = GetBuildingByID(buildState);
+            Debug.Log("2ddzd" + buildingToDestroy);
             if (buildingToDestroy != null)
             {
-
-                float destroyCost = buildingToDestroy.price * -10f;
-
-                if (buildState == 50)
-                {
-                    Materials.instance.researchCentr = true;
-                    Materials.instance.ReseachButton(false);
-                }
-
+                Debug.Log("ddzd" + buildingToDestroy);
                 cycleBar.transform.localPosition = Vector3.zero;
                 barFs.sortingOrder = -10;
                 barBs.sortingOrder = -11;
@@ -631,6 +626,8 @@ public class Builder : MonoBehaviour
             if (buildState == 12)
             {
                 menuRecycle.SetActive(true);
+                destroyB2.onClick.RemoveAllListeners();
+                destroyB2.onClick.AddListener(() => OnDestroyClicked2());
                 return;
             }
 
@@ -642,7 +639,7 @@ public class Builder : MonoBehaviour
                 if (building.unlocked && building.buildID == buildState)
                 {
                     destroyB.onClick.RemoveAllListeners();
-                    destroyB2.onClick.RemoveAllListeners();
+                    
                     MoreInfo.onClick.RemoveAllListeners();
                     upgrade1.onClick.RemoveAllListeners();
                     upgrade2.onClick.RemoveAllListeners();
@@ -650,7 +647,7 @@ public class Builder : MonoBehaviour
                     pause.onClick.RemoveAllListeners();
 
                     destroyB.onClick.AddListener(() => OnDestroyClicked());
-                    destroyB2.onClick.AddListener(() => OnDestroyClicked2());
+                    
                     MoreInfo.onClick.AddListener(() => OnMoreInfoClicked());
 
                     upgrade1.onClick.AddListener(() => LevelUp1(building));

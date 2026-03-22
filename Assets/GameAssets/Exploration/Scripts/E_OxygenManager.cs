@@ -157,7 +157,7 @@ public class E_OxygenManager : MonoBehaviour
         if (trashText != null)
         {
             trashText.text = "0";
-            StartCoroutine(AnimateNumberText(trashText, "", Materials.instance != null ? Materials.instance.sessionIron : 0, 2f)); // 2s
+            StartCoroutine(AnimateNumberText(trashText, "", Materials.instance != null ? Materials.instance.sessionTrash : 0, 2f)); // 2s
         }
 
         yield return new WaitForSecondsRealtime(2f);
