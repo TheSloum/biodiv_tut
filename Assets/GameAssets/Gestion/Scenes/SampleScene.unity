@@ -22605,7 +22605,7 @@ Animator:
   m_GameObject: {fileID: 1041563229}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d84bc468afc5d49468c8eba735aa235a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9ab8380b18b32174c9370683f3bdce81, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -22678,7 +22678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventSettings: {fileID: 11400000, guid: 65ac918ee0245574c84a84c0da019715, type: 2}
-  defaultAnimation: {fileID: 7400000, guid: d17cac36a492fd1468b87b468b604b9b, type: 2}
+  defaultAnimation: {fileID: 7400000, guid: ff5b83cfa16a4144eb3fad9bc6292352, type: 2}
 --- !u!111 &1041563238
 Animation:
   m_ObjectHideFlags: 0

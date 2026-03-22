@@ -5,72 +5,103 @@ public class MapAnimationManager : MonoBehaviour
 {
     public static MapAnimationManager Instance { get; private set; }
 
-    [Tooltip("Le ScriptableObject EventSettings")]
+    [Header("Settings")]
     public E_EventSettings eventSettings;
-
-    [Tooltip("Glisse ici l'animation par défaut (quand aucun événement)")]
     public AnimationClip defaultAnimation;
 
     private Animator _animator;
     private AnimatorOverrideController _overrideController;
     private int _lastEventID = -999;
 
+    // On stocke le nom du clip d'origine pour l'override
+    private string _baseClipName;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+        
         _animator = GetComponent<Animator>();
 
-        // Crée un Override Controller basé sur le Controller existant
+        // Initialisation de l'Override Controller
         _overrideController = new AnimatorOverrideController(_animator.runtimeAnimatorController);
         _animator.runtimeAnimatorController = _overrideController;
+
+        // On récupère le nom du premier clip utilisé dans l'Animator Controller original
+        if (_overrideController.animationClips.Length > 0)
+        {
+            _baseClipName = _overrideController.animationClips[0].name;
+        }
     }
 
     private void Update()
     {
         int currentID = E_Event.activeEventID;
 
+        // On ne fait rien si l'ID n'a pas changé
         if (currentID == _lastEventID) return;
+        
+        UpdateMapAnimation(currentID);
         _lastEventID = currentID;
+    }
 
-        if (currentID == -1)
+    private void UpdateMapAnimation(int eventID)
+    {
+        // 1. Si aucun événement (-1), on remet l'animation par défaut
+        if (eventID == -1)
         {
-            Play(defaultAnimation);
+            ApplyAnimation(defaultAnimation);
             return;
         }
 
+        // 2. Recherche dans les invasions
         foreach (var invasion in eventSettings.invasionTypes)
         {
-            if (invasion.eventID == currentID)
+            if (invasion.eventID == eventID)
             {
-                Play(invasion.mapAnimation);
+                ApplyAnimation(invasion.mapAnimation);
                 return;
             }
         }
 
+        // 3. Recherche dans les événements normaux
         foreach (var normal in eventSettings.normalEvents)
         {
-            if (normal.eventID == currentID)
+            if (normal.eventID == eventID)
             {
-                Play(normal.mapAnimation);
+                ApplyAnimation(normal.mapAnimation);
                 return;
             }
         }
 
-        Play(defaultAnimation);
+        // 4. Si ID inconnu, retour au défaut
+        ApplyAnimation(defaultAnimation);
     }
 
-    private void Play(AnimationClip clip)
+    private void ApplyAnimation(AnimationClip clip)
     {
-        if (clip == null) { Debug.LogWarning("[MapAnimationManager] Clip null !"); return; }
+        if (clip == null) clip = defaultAnimation;
+        if (clip == null || string.IsNullOrEmpty(_baseClipName)) return;
 
-        // Récupère le clip actuellement dans le controller et le remplace
-        var clips = _overrideController.animationClips;
-        if (clips.Length == 0) { Debug.LogWarning("[MapAnimationManager] Aucun clip dans le Controller !"); return; }
+        // Mise à jour de l'override
+        _overrideController[_baseClipName] = clip;
 
-        // Remplace le premier clip (le seul état de ta map) par le nouveau
-        _overrideController[clips[0].name] = clip;
+        // Forcer le redémarrage de l'animation pour qu'elle s'actualise immédiatement
+        _animator.Play(_baseClipName, 0, 0f);
+        
+        Debug.Log($"[MapAnimationManager] Animation mise à jour : {clip.name}");
+    }
 
-        Debug.Log($"[MapAnimationManager] Clip remplacé : '{clips[0].name}' → '{clip.name}'");
+    /// <summary>
+    /// Optionnel : Permet de stopper l'animation manuellement
+    /// </summary>
+    public void StopAnimation()
+    {
+        _animator.speed = 0;
+    }
+
+    public void ResumeAnimation()
+    {
+        _animator.speed = 1;
     }
 }

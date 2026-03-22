@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CamMov : MonoBehaviour
 {
+    public static CamMov Instance { get; private set; }
+
     private bool drag = false;
     private Vector3 mousPosDif;
     private Vector3 origin;
@@ -31,14 +33,12 @@ public class CamMov : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    // Clés pour contrôle de vitesse
     private KeyCode pauseKey = KeyCode.Space;
     private KeyCode speedUpKey = KeyCode.P;
     private KeyCode resetSpeedKey = KeyCode.M;
 
     private float currentMultiplier = 1f;
 
-    // UI et Sprites
     [Header("UI Buttons")]
     public Button pauseButton;
     public AudioClip sfxClip;
@@ -60,6 +60,9 @@ public class CamMov : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        Instance = this;
+
         minBoundsStart = minBounds;
         maxBoundsStart = maxBounds;
         rb = GetComponent<Rigidbody2D>();
@@ -142,26 +145,16 @@ public class CamMov : MonoBehaviour
         Camera.main.transform.position = new Vector3(clampedX, clampedY, cameraPos.z);
     }
 
-
-
-
-
     private void HandleKeyboardInput()
     {
         if (Input.GetKeyDown(pauseKey))
-        {
             TogglePause();
-        }
 
         if (Input.GetKeyDown(speedUpKey))
-        {
             FastForward();
-        }
 
         if (Input.GetKeyDown(resetSpeedKey))
-        {
             ResetSpeed();
-        }
     }
 
     public void Pause()
@@ -174,14 +167,7 @@ public class CamMov : MonoBehaviour
     public void TogglePause()
     {
         SoundManager.instance.PlaySFX(sfxClip);
-        if (Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-        }
-        else
-        {
-            Time.timeScale = 0;
-        }
+        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
         UpdateButtonSprites();
     }
 
@@ -201,60 +187,23 @@ public class CamMov : MonoBehaviour
 
     private void UpdateButtonSprites()
     {
+        pauseButton.image.sprite = Time.timeScale == 0 ? pauseSpriteActive : pauseSpriteInactive;
+        pauseUI.SetActive(Time.timeScale == 0);
 
-        if (Time.timeScale == 0)
-        {
-            pauseButton.image.sprite = pauseSpriteActive;
-            pauseUI.SetActive(true);
-        }
-        else
-        {
-            pauseButton.image.sprite = pauseSpriteInactive;
-            pauseUI.SetActive(false);
-        }
+        playButton.image.sprite = Time.timeScale == 1 ? playSpriteActive : playSpriteInactive;
 
-        if (Time.timeScale == 1)
-        {
-            playButton.image.sprite = playSpriteActive;
-
-        }
-        else
-        {
-            playButton.image.sprite = playSpriteInactive;
-        }
-
-        if (Time.timeScale == 5)
-        {
-            speedUpButton.image.sprite = speedUpSpriteActive;
-        }
-        else
-        {
-            speedUpButton.image.sprite = speedUpSpriteInactive;
-        }
+        speedUpButton.image.sprite = Time.timeScale == 5 ? speedUpSpriteActive : speedUpSpriteInactive;
     }
 
     void Update()
     {
-
-        if (IsAnyGameObjectActive(menus))
-        {
-            gui.SetActive(false);
-        }
-        else
-        {
-            gui.SetActive(true);
-        }
+        gui.SetActive(!IsAnyGameObjectActive(menus));
     }
 
     private bool IsAnyGameObjectActive(GameObject[] gameObjects)
     {
         foreach (var obj in gameObjects)
-        {
-            if (obj != null && obj.activeInHierarchy)
-            {
-                return true;
-            }
-        }
+            if (obj != null && obj.activeInHierarchy) return true;
         return false;
     }
 }
