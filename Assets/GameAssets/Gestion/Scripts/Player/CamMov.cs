@@ -177,7 +177,19 @@ public class CamMov : MonoBehaviour
         Time.timeScale = 5;
         UpdateButtonSprites();
     }
+    public void ResetZoom()
+    {
+        if (cam != null)
+        {
+            // On remet la taille de la caméra sur la valeur maximale (ou une valeur par défaut)
+            cam.orthographicSize = maxZoom;
 
+            // Optionnel : On peut aussi recentrer la caméra sur (0,0) si tu veux
+            // cam.transform.position = new Vector3(0, 0, cam.transform.position.z);
+
+            Debug.Log("Caméra : Zoom réinitialisé pour l'événement.");
+        }
+    }
     public void ResetSpeed()
     {
         SoundManager.instance.PlaySFX(sfxClip);

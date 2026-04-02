@@ -11,7 +11,7 @@ public class E_Event : MonoBehaviour
     public GameObject eventButton;
 
     public int coralFestivalMonth = 5;
-    public int coralFestivalCycle = 4;
+    public int coralFestivalCycle = 2;
 
     public void TriggerEvent(int eventID, int durationInMonths)
     {
@@ -31,7 +31,7 @@ public class E_Event : MonoBehaviour
 
         bool isRightYear = (currentYear > 0 && currentYear % coralFestivalCycle == 0);
 
-        Debug.Log($"Test Festival -> Année: {currentYear} (Condition OK: {isRightYear})");
+        Debug.Log($"Check Festival -> Année: {currentYear} | Cycle: {coralFestivalCycle} | Autorisé: {isRightYear}");
 
         return isRightYear;
     }
@@ -41,6 +41,39 @@ public class E_Event : MonoBehaviour
         isEventActive = true;
         activeEventID = eventID;
 
+        // --- NOUVEAU : Reset du Scroll/Zoom ---
+        if (CamMov.Instance != null)
+        {
+            CamMov.Instance.ResetZoom();
+        }
+
+        // --- DÉTERMINATION DE LA DURÉE RÉELLE ---
+        int actualDuration = durationInMonths;
+
+        // On cherche dans les invasions
+        var invSetting = eventSettings.invasionTypes.Find(e => e.eventID == eventID);
+        if (invSetting != null)
+        {
+            actualDuration = invSetting.durationInMonths;
+        }
+        else
+        {
+            // On cherche dans les événements normaux
+            var normSetting = eventSettings.normalEvents.Find(e => e.eventID == eventID);
+            if (normSetting != null)
+            {
+                actualDuration = normSetting.durationInMonths;
+            }
+        }
+
+        // Cas spécial pour la Fête du Corail (ID 3)
+        if (eventID == 3)
+        {
+            actualDuration = eventSettings.coralFestivalDuration;
+        }
+        // ----------------------------------------
+
+        // Gestion du bouton d'événement
         if (eventButton == null)
         {
             GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
@@ -56,14 +89,14 @@ public class E_Event : MonoBehaviour
 
         if (eventButton != null) eventButton.SetActive(true);
 
+        // Paramètres visuels et dialogues
         AnimationClip currentAnim = eventSettings.defaultMapAnimation;
         Speech dialogueToUse = null;
 
-        var inv = eventSettings.invasionTypes.Find(e => e.eventID == eventID);
-        if (inv != null)
+        if (invSetting != null)
         {
-            dialogueToUse = inv.dialogue;
-            currentAnim = inv.mapAnimation;
+            dialogueToUse = invSetting.dialogue;
+            currentAnim = invSetting.mapAnimation;
         }
         else
         {
@@ -75,16 +108,19 @@ public class E_Event : MonoBehaviour
             }
         }
 
+        // Affichage du dialogue
         if (SceneManager.GetActiveScene().name == "SampleScene" && dialogueToUse != null && ShowDialogue.Instance != null)
         {
             ShowDialogue.Instance.DialogueBox(dialogueToUse, true);
         }
 
+        // Vérification des instances nécessaires
         if (eventSettings == null || Materials.instance == null || J_TimeManager.Instance == null)
         {
             isEventActive = false; activeEventID = -1; yield break;
         }
 
+        // --- EFFETS DE DÉBUT D'ÉVÉNEMENT ---
         switch (eventID)
         {
             case 0:
@@ -116,9 +152,9 @@ public class E_Event : MonoBehaviour
                     E_FishSpawner.Instance.EnableInvasionMode(invData.prefabs[0]);
                 break;
 
-            case 3:
+            case 3: // Fête du Corail
                 if (E_FishSpawner.Instance != null) E_FishSpawner.Instance.IncreaseFishSpawnRate();
-                Materials.instance.bar_0 = Mathf.Min(Materials.instance.bar_0 + 0.1f, 0.99f);
+                Materials.instance.bar_0 = Mathf.Min(Materials.instance.bar_0 + 0.1f, 1f);
                 Materials.instance.price = Mathf.Max(Materials.instance.price - 50, 0);
                 break;
 
@@ -191,15 +227,18 @@ public class E_Event : MonoBehaviour
                 break;
         }
 
+        // --- ATTENTE DE LA DURÉE DE L'ÉVÉNEMENT ---
         int startYear = J_TimeManager.Instance.currentYear;
         int startMonth = J_TimeManager.Instance.currentMonth;
         int monthsPassed = 0;
-        while (monthsPassed < durationInMonths)
+
+        while (monthsPassed < actualDuration)
         {
             yield return null;
             monthsPassed = (J_TimeManager.Instance.currentYear - startYear) * 12 + (J_TimeManager.Instance.currentMonth - startMonth);
         }
 
+        // --- EFFETS DE FIN D'ÉVÉNEMENT ---
         switch (eventID)
         {
             case 0:
@@ -223,7 +262,7 @@ public class E_Event : MonoBehaviour
                 break;
             case 2:
             case 4:
-            case 5: 
+            case 5:
             case 12:
                 if (E_FishSpawner.Instance != null) E_FishSpawner.Instance.DisableInvasionMode();
                 break;
