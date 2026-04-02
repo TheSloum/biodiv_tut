@@ -88,8 +88,6 @@ public class MapAnimationManager : MonoBehaviour
 
         // Forcer le redémarrage de l'animation pour qu'elle s'actualise immédiatement
         _animator.Play(_baseClipName, 0, 0f);
-        
-        Debug.Log($"[MapAnimationManager] Animation mise à jour : {clip.name}");
     }
 
     /// <summary>

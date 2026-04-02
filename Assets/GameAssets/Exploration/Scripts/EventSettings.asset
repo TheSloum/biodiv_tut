@@ -22,6 +22,7 @@ MonoBehaviour:
   normalEventsPerYear: 2
   coralFestivalMonth: 6
   coralFestivalDuration: 1
+  coralFestivalCycle: 4
   waitForExplorationIfCoralFestival: 1
   invasionTypes:
   - name: "Invasion de m\xE9duses"
@@ -72,7 +73,7 @@ MonoBehaviour:
   - name: "Vague de d\xE9chets"
     eventID: 0
     eventIcon: {fileID: 21300000, guid: 6c17f2a33238d40a3b3bcabf1a53ce6f, type: 3}
-    durationInMonths: 2
+    durationInMonths: 3
     dialogue: {fileID: 11400000, guid: feaf7f2ae41394345bfaa79774b97df4, type: 2}
     description: "Les d\xE9chets plastiques envahissent les plages et les fonds marins,
       mettant en danger la faune marine qui les ing\xE8re. \nDUR\xC9E : entre 2 \xE0
@@ -84,7 +85,7 @@ MonoBehaviour:
   - name: "Mar\xE9e noir"
     eventID: 1
     eventIcon: {fileID: 21300000, guid: 63bed76fb569fd24abcbf01d1b42912c, type: 3}
-    durationInMonths: 2
+    durationInMonths: 3
     dialogue: {fileID: 11400000, guid: 896b7cf1781465149bb628eaca7d46ff, type: 2}
     description: "Une fuite de p\xE9trole pollue l\u2019eau, d\xE9truit les habitats
       marins et menace la biodiversit\xE9. \nDUR\xC9E : entre 2 \xE0 4 mois \nEFFETS
@@ -95,7 +96,7 @@ MonoBehaviour:
   - name: "Surconsommation d'\xE9nergie"
     eventID: 7
     eventIcon: {fileID: 21300000, guid: 3b5fb2c13851cfc4d975914c58d6b946, type: 3}
-    durationInMonths: 2
+    durationInMonths: 3
     dialogue: {fileID: 11400000, guid: 791e538844f616d488cb4e1859a2f55f, type: 2}
     description: "La ville consomme trop d\u2019\xE9lectricit\xE9 ! Les lumi\xE8res,
       les machines et les appareils fonctionnent en permanence, ce qui met les infrastructures
@@ -119,7 +120,7 @@ MonoBehaviour:
   - name: "P\xEAche ill\xE9gale"
     eventID: 9
     eventIcon: {fileID: 21300000, guid: 11f5b90141ec7b34687e4bab2538a29e, type: 3}
-    durationInMonths: 1
+    durationInMonths: 2
     dialogue: {fileID: 11400000, guid: bcd8483f7b7992e4ba1efb49ca7462f4, type: 2}
     description: "Des pratiques de p\xEAche non r\xE9glement\xE9es menacent les \xE9cosyst\xE8mes
       marins et \xE9puisent les ressources marines. \nEFFET : \n- La qualit\xE9 de
@@ -167,7 +168,7 @@ MonoBehaviour:
     eventID: 3
     eventIcon: {fileID: 21300000, guid: 73c6120ca97f8c1459d3d665bfab7ec3, type: 3}
     durationInMonths: 1
-    dialogue: {fileID: 11400000, guid: ebc75c932f642324e802620d74882d38, type: 2}
+    dialogue: {fileID: 11400000, guid: 48add3e8e7cca7d489443e9b11e63e2a, type: 2}
     description: "Pendant un mois, les oc\xE9ans sont en f\xEAte ! Les r\xE9cifs
       coralliens, v\xE9ritables refuges pour de nombreux animaux marins, sont mis
       \xE0 l'honneur. Ils abritent une incroyable diversit\xE9 d'esp\xE8ces et prot\xE8gent

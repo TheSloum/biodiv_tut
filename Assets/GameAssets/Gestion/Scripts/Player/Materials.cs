@@ -174,7 +174,6 @@ public bool loadingDuffer = false;
 
         if (menuFirst && LoadManager.instance == null && SceneManager.GetActiveScene().name != "Exploration_main" && isLoad == false)
         {
-            Debug.Log(E_GameManager.instance != null);
             StartCoroutine(LoadSceneAsync("Menue"));
             menuFirst = false;
         }
