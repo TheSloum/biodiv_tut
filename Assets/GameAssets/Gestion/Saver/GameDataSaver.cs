@@ -330,6 +330,7 @@ public class GameDataSaver : MonoBehaviour
 
                         spriterenderer.sprite = researchSprite;
                     }
+
                     else if (buildState >= 0 && buildState < buildUnlockData.Count)
                     {
                         builderComponent.editing = true;
@@ -360,9 +361,12 @@ public class GameDataSaver : MonoBehaviour
                         }
                         else
                         {
-                            builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
-                            builderComponent.barFs.sortingOrder = -2;
-                            builderComponent.barBs.sortingOrder = -3;
+                            if (buildState != 12)
+                            {
+                                builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
+                                builderComponent.barFs.sortingOrder = -2;
+                                builderComponent.barBs.sortingOrder = -3;
+                            }
                             spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
                         }
 
@@ -467,7 +471,6 @@ private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
 
                         Materials.instance.researchCentr = false;
                         Materials.instance.ReseachButton(true);
-                        Debug.Log("RESERCH");
                     }
                     else if (buildState >= 0 && buildState < buildUnlockData.Count)
                     {
@@ -501,10 +504,13 @@ private IEnumerator DeactivateCoroutine(GameObject obj, float delay)
                         }
                         else
                         {
-                            builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
+                            if (buildState != 12)
+                            {
+                                builderComponent.cycleBar.transform.localPosition = new Vector3(0, 83, 0);
                             builderComponent.barFs.sortingOrder = -2;
-                            builderComponent.barBs.sortingOrder = -3;
+                            builderComponent.barBs.sortingOrder = -3;}
                             spriterenderer.sprite = buildUnlockData[gameData.builderDataList[i].buildState].buildSprite;
+                            
                         }
 
                         builderComponent.cycleDuration = buildUnlockData[gameData.builderDataList[i].buildState].time;

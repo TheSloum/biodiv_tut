@@ -94,15 +94,13 @@ folderPath = Path.Combine(Application.dataPath, "Sauvegardes");
         if (!Directory.Exists(path))
         {
             Debug.LogWarning("The folder does not exist.");
-            return true; // Consider nonexistent folders as empty
+            return true;
         }
 
         return Directory.GetFiles(path).Length == 0 && Directory.GetDirectories(path).Length == 0;
     }
     public void Resume()
     {
-
-        Debug.Log("AEGPKJZORJGTPOJ");
         resumeLoad = true;
         saveDate = null;
         Materials.instance.isLoad = true;

@@ -398,12 +398,9 @@ public class Builder : MonoBehaviour
 
       public void OnDestroyClicked2()
     {
-        Debug.Log("1ddzd" + editing);
         if (editing)
         {
-            Debug.Log("2ddzd" + editing);
             Building buildingToDestroy = GetBuildingByID(buildState);
-            Debug.Log("2ddzd" + buildingToDestroy);
             if (buildingToDestroy != null)
             {
                 Debug.Log("ddzd" + buildingToDestroy);
