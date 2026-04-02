@@ -22,6 +22,7 @@ TagManager:
   - loadingScreen
   - eventbutton
   - eventdesc
+  - BlackOverlay
   layers:
   - Default
   - TransparentFX

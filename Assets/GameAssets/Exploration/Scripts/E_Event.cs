@@ -35,7 +35,53 @@ public class E_Event : MonoBehaviour
 
         return isRightYear;
     }
+    private void OnEnable()
+    {
+        // On s'abonne à l'événement de chargement de scène
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
+    private void OnDisable()
+    {
+        // On se désabonne pour éviter les fuites de mémoire
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // Cette fonction est appelée automatiquement à chaque changement de scène
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Si l'événement 1 est en cours et qu'on arrive sur la scène d'exploration
+        if (scene.name == "Exploration_main")
+        {
+            ApplyBlackOverlayOpacity();
+        }
+    }
+
+    // On centralise la logique pour ne pas répéter le code
+    private void ApplyBlackOverlayOpacity()
+    {
+        // 1. Cherche l'objet par son tag
+        GameObject blackOverlay = GameObject.FindWithTag("BlackOverlay");
+
+        if (blackOverlay != null)
+        {
+            // 2. Récupère le SpriteRenderer (le composant qui gère le visuel)
+            SpriteRenderer sr = blackOverlay.GetComponent<SpriteRenderer>();
+
+            if (sr != null)
+            {
+                Color col = sr.color;
+
+                // 3. Modifie seulement l'alpha (transparence)
+                // Si isEventActive est vrai -> opacité définie dans les réglages
+                // Sinon -> 0 (invisible)
+                col.a = isEventActive ? eventSettings.overlayMaxOpacity : 0f;
+
+                // 4. Applique la nouvelle couleur au composant
+                sr.color = col;
+            }
+        }
+    }
     IEnumerator RunEvent(int eventID, int durationInMonths)
     {
         isEventActive = true;
@@ -129,17 +175,7 @@ public class E_Event : MonoBehaviour
                 break;
 
             case 1:
-                GameObject blackOverlay = GameObject.FindWithTag("BlackOverlay");
-                if (blackOverlay != null)
-                {
-                    SpriteRenderer sr = blackOverlay.GetComponent<SpriteRenderer>();
-                    if (sr != null)
-                    {
-                        Color col = sr.color;
-                        col.a = eventSettings.overlayMaxOpacity;
-                        sr.color = col;
-                    }
-                }
+                ApplyBlackOverlayOpacity(); // Appelle la nouvelle fonction
                 if (E_FishSpawner.Instance != null) E_FishSpawner.Instance.IncreaseFishSpawnRate();
                 break;
 
@@ -241,8 +277,14 @@ public class E_Event : MonoBehaviour
         // --- EFFETS DE FIN D'ÉVÉNEMENT ---
         switch (eventID)
         {
-            case 0:
+
+
             case 1:
+                isEventActive = false; // Important de le mettre avant pour la fonction
+                ApplyBlackOverlayOpacity(); // Remettra l'alpha à 0
+                if (E_FishSpawner.Instance != null) E_FishSpawner.Instance.RestoreDefaultSpawnRate();
+                break;
+            case 0:
             case 3:
             case 9:
             case 10:
