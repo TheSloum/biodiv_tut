@@ -2106,7 +2106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &847702975
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2944,9 +2944,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 847702975}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 697.2, y: -1601.5568}
   m_SizeDelta: {x: 1125.7703, y: 2703.1135}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1184496321
@@ -4174,11 +4174,12 @@ MonoBehaviour:
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   canvas: {fileID: 1633965649}
   canvasCredit: {fileID: 1177727880}
+  creditTextObject: {fileID: 847702974}
+  parametreMenu: {fileID: 6514012397529381610}
+  loadingObject: {fileID: 0}
   mainCamera: {fileID: 1754454493}
   targetPoint: {fileID: 1286545544}
-  parametreMenu: {fileID: 6514012397529381610}
   scrollDuration: 16
-  loadingObject: {fileID: 0}
 --- !u!114 &1754454496
 MonoBehaviour:
   m_ObjectHideFlags: 0

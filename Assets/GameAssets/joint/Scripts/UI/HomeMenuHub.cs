@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -7,7 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class HomeMenuHub : MonoBehaviour
 {
+    [Header("Audio")]
     public AudioClip sfxClip;
+
+    [Header("Buttons")]
     public Button button1;
     public Button button2;
     public Button button3;
@@ -16,53 +20,42 @@ public class HomeMenuHub : MonoBehaviour
     public Button button6;
     public Button returnToMenuButton;
 
+    [Header("Visual Settings")]
     public Color normalTextColor = Color.black;
     public Color hoverTextColor = Color.blue;
     public Color specialHoverTextColor = Color.red;
     public Color outlineColor = Color.white;
 
+    [Header("Menu & Navigation")]
     public GameObject canvas;
     public GameObject canvasCredit;
+    public GameObject creditTextObject; // 📌 À assigner dans l'inspecteur (ton texte de crédits)
+    public GameObject parametreMenu;
+    public GameObject loadingObject;
+
+    [Header("Camera Animation")]
     public Camera mainCamera;
     public Transform targetPoint;
-
-    public GameObject parametreMenu; // 📌 GameObject du menu des paramètres
-
     public float scrollDuration = 2f;
 
     private Vector3 initialCameraPosition;
     private Coroutine scrollCoroutine;
     private bool isScrolling = false;
 
-
-    public GameObject loadingObject;
-    private IEnumerator LoadSceneAsync(string sceneName)
-    {
-        loadingObject.SetActive(true);
-
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
-
-        while (!asyncOperation.isDone)
-        {
-            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
-
-            yield return null;
-        }
-
-    }
-
-
     private void Awake()
     {
-        loadingObject = GameObject.Find("loadingScreen");
+        // On cherche le loadingScreen s'il n'est pas assigné
+        if (loadingObject == null)
+            loadingObject = GameObject.Find("loadingScreen");
     }
 
     void Start()
     {
-        mainCamera.transform.position = Vector3.zero;
+        // Position initiale de la caméra
+        initialCameraPosition = new Vector3(0, 0, mainCamera.transform.position.z);
+        mainCamera.transform.position = initialCameraPosition;
 
-        initialCameraPosition = mainCamera.transform.position;
-
+        // Listeners des boutons
         button1.onClick.AddListener(Button1Clicked);
         button2.onClick.AddListener(Button2Clicked);
         button3.onClick.AddListener(Button3Clicked);
@@ -71,14 +64,9 @@ public class HomeMenuHub : MonoBehaviour
         button6.onClick.AddListener(Button6Clicked);
 
         if (returnToMenuButton != null)
-        {
             returnToMenuButton.onClick.AddListener(ReturnToMenuClicked);
-        }
-        else
-        {
-            Debug.LogWarning("[HomeMenuHub] ⚠ Bouton ReturnToMenu non assigné !");
-        }
 
+        // Ajout des effets de survol
         AddHoverEffects(button1, hoverTextColor);
         AddHoverEffects(button2, hoverTextColor);
         AddHoverEffects(button3, hoverTextColor);
@@ -86,37 +74,26 @@ public class HomeMenuHub : MonoBehaviour
         AddHoverEffects(button5, hoverTextColor);
         AddHoverEffects(button6, specialHoverTextColor);
 
-        if (parametreMenu != null)
-        {
-            parametreMenu.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("[HomeMenuHub] ⚠ ERREUR: ParametreMenu n'est pas assigné dans l'Inspector !");
-        }
+        // Initialisation des états
+        if (parametreMenu != null) parametreMenu.SetActive(false);
+        if (canvasCredit != null) canvasCredit.SetActive(false);
+        if (creditTextObject != null) creditTextObject.SetActive(false);
     }
-
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && canvasCredit.activeSelf)
-        {
-            if (isScrolling && scrollCoroutine != null)
-            {
-                StopCoroutine(scrollCoroutine);
-                isScrolling = false;
-            }
+        // Détection de l'annulation (Echap ou P pour le Web)
+        bool cancelPressed = Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P);
 
-            mainCamera.transform.position = initialCameraPosition;
-            canvasCredit.SetActive(false);
-            canvas.SetActive(true);
+        if (cancelPressed && canvasCredit.activeSelf)
+        {
+            StopCreditSequence();
         }
     }
 
-    void Button1Clicked()
-    {
-        SoundManager.instance.PlaySFX(sfxClip);
-    }
+    // --- LOGIQUE DES BOUTONS ---
+
+    void Button1Clicked() => SoundManager.instance.PlaySFX(sfxClip);
 
     void Button2Clicked()
     {
@@ -124,38 +101,21 @@ public class HomeMenuHub : MonoBehaviour
         StartCoroutine(LoadSceneAsync("SampleScene"));
     }
 
-    void Button3Clicked()
-    {
-        SoundManager.instance.PlaySFX(sfxClip);
-    }
+    void Button3Clicked() => SoundManager.instance.PlaySFX(sfxClip);
 
     void Button4Clicked()
     {
         SoundManager.instance.PlaySFX(sfxClip);
-        if (parametreMenu != null)
-        {
-            parametreMenu.SetActive(true);
-        }
-        else
-        {
-            Debug.LogError("[HomeMenuHub] ⚠ ERREUR: ParametreMenu n'est pas assigné !");
-        }
+        if (parametreMenu != null) parametreMenu.SetActive(true);
     }
 
     void ReturnToMenuClicked()
     {
         SoundManager.instance.PlaySFX(sfxClip);
-        if (parametreMenu != null)
-        {
-            parametreMenu.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("[HomeMenuHub] ⚠ ERREUR: ParametreMenu n'est pas assigné !");
-        }
+        if (parametreMenu != null) parametreMenu.SetActive(false);
     }
 
-    void Button5Clicked()
+    void Button5Clicked() // BOUTON CRÉDITS
     {
         SoundManager.instance.PlaySFX(sfxClip);
         if (canvas != null && canvasCredit != null)
@@ -172,64 +132,88 @@ public class HomeMenuHub : MonoBehaviour
         Application.Quit();
     }
 
+    // --- CRÉDITS & ANIMATION ---
+
     IEnumerator HandleCreditSequence()
     {
         isScrolling = true;
 
-        yield return new WaitForSeconds(2f);
+        // On affiche le texte des crédits
+        if (creditTextObject != null) creditTextObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
 
         Vector3 targetPosition = new Vector3(targetPoint.position.x, targetPoint.position.y, mainCamera.transform.position.z);
-
         float elapsedTime = 0f;
 
         while (elapsedTime < scrollDuration)
         {
             mainCamera.transform.position = Vector3.Lerp(initialCameraPosition, targetPosition, elapsedTime / scrollDuration);
             elapsedTime += Time.deltaTime;
-            yield return null;
 
             if (!isScrolling) yield break;
+            yield return null;
         }
 
         mainCamera.transform.position = targetPosition;
 
-        yield return new WaitForSeconds(2f);
+        // Attente à la fin pour laisser lire
+        yield return new WaitForSeconds(3f);
 
-        mainCamera.transform.position = initialCameraPosition;
+        // Fin naturelle
+        StopCreditSequence();
+    }
 
-        canvasCredit.SetActive(false);
-        canvas.SetActive(true);
+    void StopCreditSequence()
+    {
+        if (scrollCoroutine != null) StopCoroutine(scrollCoroutine);
 
         isScrolling = false;
+        mainCamera.transform.position = initialCameraPosition;
+
+        if (creditTextObject != null) creditTextObject.SetActive(false);
+        if (canvasCredit != null) canvasCredit.SetActive(false);
+        if (canvas != null) canvas.SetActive(true);
     }
+
+    // --- CHARGEMENT ASYNC ---
+
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        if (loadingObject != null) loadingObject.SetActive(true);
+
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+        }
+    }
+
+    // --- EFFETS UI ---
 
     void AddHoverEffects(Button button, Color hoverColor)
     {
         TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+        if (buttonText == null) return;
 
-        EventTrigger trigger = button.gameObject.AddComponent<EventTrigger>();
+        EventTrigger trigger = button.gameObject.GetComponent<EventTrigger>() ?? button.gameObject.AddComponent<EventTrigger>();
 
-        EventTrigger.Entry pointerEnter = new EventTrigger.Entry
-        {
-            eventID = EventTriggerType.PointerEnter
-        };
-        pointerEnter.callback.AddListener((eventData) =>
+        // Hover Enter
+        EventTrigger.Entry pointerEnter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+        pointerEnter.callback.AddListener((data) =>
         {
             buttonText.color = hoverColor;
-
             buttonText.fontMaterial.SetFloat("_OutlineWidth", 0.2f);
             buttonText.fontMaterial.SetColor("_OutlineColor", outlineColor);
         });
         trigger.triggers.Add(pointerEnter);
 
-        EventTrigger.Entry pointerExit = new EventTrigger.Entry
-        {
-            eventID = EventTriggerType.PointerExit
-        };
-        pointerExit.callback.AddListener((eventData) =>
+        // Hover Exit
+        EventTrigger.Entry pointerExit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+        pointerExit.callback.AddListener((data) =>
         {
             buttonText.color = normalTextColor;
-
             buttonText.fontMaterial.SetFloat("_OutlineWidth", 0f);
         });
         trigger.triggers.Add(pointerExit);
