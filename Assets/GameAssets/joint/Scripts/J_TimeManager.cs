@@ -59,18 +59,20 @@ public class J_TimeManager : MonoBehaviour
         currentMonth = 1;
         currentYear = 1;
         dayTimer = 0f;
-        initialized = false;
+
+        // ON RESTE INITIALISÉ pour que l'Update continue de tourner
+        initialized = true;
 
         // Réinitialiser les paramètres de débogage
         debugTimeMultiplier = 1f;
         Time.timeScale = 1f;
 
-        // Déclencher les événements pour mettre à jour l'UI si nécessaire
+        // Déclencher les événements pour mettre à jour l'UI
         OnDayChanged?.Invoke(currentDay, currentMonth);
         OnMonthChanged?.Invoke(currentMonth);
         OnYearChanged?.Invoke(currentYear);
 
-        Debug.Log("✅ J_TimeManager a été réinitialisé !");
+        Debug.Log("✅ J_TimeManager a été réinitialisé et relancé !");
     }
 
     void Start()
