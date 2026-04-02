@@ -2625,6 +2625,17 @@ RectTransform:
   m_AnchoredPosition: {x: -208.9, y: -208.3}
   m_SizeDelta: {x: 55.6566, y: 55.6566}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &119118358 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4126504663377380784, guid: 88c58f02400091845b20c4c506b54dc4, type: 3}
+  m_PrefabInstance: {fileID: 3847138307335951504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &121538077
 GameObject:
   m_ObjectHideFlags: 0
@@ -6738,6 +6749,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &308848763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7606970296877888366, guid: 88c58f02400091845b20c4c506b54dc4, type: 3}
+  m_PrefabInstance: {fileID: 3847138307335951504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &323741922
 GameObject:
   m_ObjectHideFlags: 0
@@ -10032,6 +10054,17 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
+--- !u!114 &451039913 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2000619598311607309, guid: 88c58f02400091845b20c4c506b54dc4, type: 3}
+  m_PrefabInstance: {fileID: 3847138307335951504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &461171603
 GameObject:
   m_ObjectHideFlags: 0
@@ -63928,6 +63961,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5569081641760144372, guid: 88c58f02400091845b20c4c506b54dc4, type: 3}
+      propertyPath: recycleButtons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569081641760144372, guid: 88c58f02400091845b20c4c506b54dc4, type: 3}
+      propertyPath: recycleButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 119118358}
+    - target: {fileID: 5569081641760144372, guid: 88c58f02400091845b20c4c506b54dc4, type: 3}
+      propertyPath: recycleButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 308848763}
+    - target: {fileID: 5569081641760144372, guid: 88c58f02400091845b20c4c506b54dc4, type: 3}
+      propertyPath: recycleButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 451039913}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
