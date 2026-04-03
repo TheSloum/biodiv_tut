@@ -15,7 +15,7 @@ MonoBehaviour:
   textList:
   - "Bonjour, une collecte de fonds a \xE9t\xE9 organis\xE9e pour financer les recherches
     et la protection de la faune marine. "
-  - "Ils ont offert \xE0 la ville une cagnotte de 700\r"
+  - "Ils ont offert \xE0 la ville une cagnotte de 700.\r"
   position: {x: -256, y: 20, z: 0}
   size: {x: 316, y: 0, z: 0}
   spriteList:

@@ -47,39 +47,76 @@ public class E_Event : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // Cette fonction est appelée automatiquement à chaque changement de scène
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Si l'événement 1 est en cours et qu'on arrive sur la scène d'exploration
-        if (scene.name == "Exploration_main")
+        if (scene.name == "Exploration_main" || scene.name == "SampleScene")
         {
+            // Reset la référence car l'objet a été détruit au changement de scène
+            eventButton = null;
+
+            // Toujours reset l'overlay, event actif ou non
             ApplyBlackOverlayOpacity();
+            Debug.Log($"[OnSceneLoaded] Scène '{scene.name}' chargée | isEventActive={isEventActive} | activeEventID={activeEventID}");
+
+            if (isEventActive)
+            {
+                // Retrouve le bouton dans la nouvelle scène
+                GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+                foreach (GameObject obj in allObjects)
+                {
+                    if (obj.CompareTag("eventbutton"))
+                    {
+                        eventButton = obj;
+                        break;
+                    }
+                }
+
+                if (eventButton != null)
+                {
+                    eventButton.SetActive(true);
+                    Debug.Log("[OnSceneLoaded] Event bouton réactivé.");
+                }
+                else
+                {
+                    Debug.LogWarning("[OnSceneLoaded] Event bouton introuvable !");
+                }
+            }
         }
     }
 
-    // On centralise la logique pour ne pas répéter le code
     private void ApplyBlackOverlayOpacity()
     {
-        // 1. Cherche l'objet par son tag
         GameObject blackOverlay = GameObject.FindWithTag("BlackOverlay");
 
         if (blackOverlay != null)
         {
-            // 2. Récupère le SpriteRenderer (le composant qui gère le visuel)
             SpriteRenderer sr = blackOverlay.GetComponent<SpriteRenderer>();
 
             if (sr != null)
             {
                 Color col = sr.color;
 
-                // 3. Modifie seulement l'alpha (transparence)
-                // Si isEventActive est vrai -> opacité définie dans les réglages
-                // Sinon -> 0 (invisible)
-                col.a = isEventActive ? eventSettings.overlayMaxOpacity : 0f;
+                if (isEventActive && activeEventID == 1)
+                {
+                    col.a = eventSettings.overlayMaxOpacity;
+                    Debug.Log($"[BlackOverlay] Event 1 actif -> opacité appliquée : {eventSettings.overlayMaxOpacity}");
+                }
+                else
+                {
+                    col.a = 0f;
+                    Debug.Log($"[BlackOverlay] Reset à 0 | isEventActive={isEventActive} | activeEventID={activeEventID}");
+                }
 
-                // 4. Applique la nouvelle couleur au composant
                 sr.color = col;
             }
+            else
+            {
+                Debug.LogWarning("[BlackOverlay] SpriteRenderer introuvable sur l'objet BlackOverlay !");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[BlackOverlay] Aucun objet avec le tag 'BlackOverlay' trouvé dans la scène !");
         }
     }
     IEnumerator RunEvent(int eventID, int durationInMonths)
