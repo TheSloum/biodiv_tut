@@ -28,7 +28,7 @@ public class E_CycleEventManager : MonoBehaviour
     }
 
     void Update()
-    {
+    {        
         if (timeManager == null) return;
 
         int currentDay = timeManager.currentDay;

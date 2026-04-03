@@ -24,7 +24,6 @@ public class E_Event : MonoBehaviour
         if (isEventActive) return;
         StartCoroutine(RunEvent(eventID, durationInMonths));
     }
-
     private bool CanTriggerCoralFestival()
     {
         int currentYear = J_TimeManager.Instance.currentYear;

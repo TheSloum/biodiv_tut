@@ -23120,7 +23120,7 @@ MonoBehaviour:
   eventSettings: {fileID: 11400000, guid: 65ac918ee0245574c84a84c0da019715, type: 2}
   eventButton: {fileID: 1119502180}
   coralFestivalMonth: 5
-  coralFestivalCycle: 4
+  coralFestivalCycle: 2
 --- !u!1 &1054705958
 GameObject:
   m_ObjectHideFlags: 0
