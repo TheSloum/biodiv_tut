@@ -23025,8 +23025,7 @@ MonoBehaviour:
   jardinAnim: {fileID: 7400000, guid: 8ca66a5c9228cfe42be15d89d7f0c8d0, type: 2}
   build1Anim: {fileID: 7400000, guid: 9796f13db8da64849bb4f5dad1a3f6e9, type: 2}
   build2Anim: {fileID: 7400000, guid: 17e516a52f161a445946538470136a80, type: 2}
-  baseAnimatorController: {fileID: 0}
-  anim: 1
+  baseAnimatorController: {fileID: 9100000, guid: e560f2ec421fef74a8018f2c382cb906, type: 2}
 --- !u!114 &1041563236
 MonoBehaviour:
   m_ObjectHideFlags: 0
