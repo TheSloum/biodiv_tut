@@ -20,12 +20,12 @@ MonoBehaviour:
     de l\u2019eau r\xE9utilisable. Ces infrastructures sont essentielles pour \xE9viter
     que des substances toxiques n\u2019atteignent la faune marine."
   PolutionEtat: ---
-  PopulationEtat: +
+  PopulationEtat: =
   ElecEtat: ---
   MoneyMake: --
   buildingObject: {fileID: 0}
   buildClass: 4
-  unlocked: 0
+  unlocked: 1
   buildSprite: {fileID: 21300000, guid: 1cc4599c2cbc8424e8472f9fec533ac7, type: 3}
   price: -100
   mat_0: -5
@@ -38,7 +38,7 @@ MonoBehaviour:
   cons_mat_0: 0
   cons_mat_1: 0
   cons_mat_2: 0
-  bar_0_cycle: 0.001
+  bar_0_cycle: 0
   bar_1_cycle: -0.02
   bar_2_cycle: -0.02
   price_cycle: -150
