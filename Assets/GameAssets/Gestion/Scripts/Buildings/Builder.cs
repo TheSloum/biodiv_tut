@@ -152,7 +152,7 @@ public class Builder : MonoBehaviour
 
     private void Awake()
     {
-
+        Materials.instance.researchCentr = true;
         barFs = cycleBar.transform.Find("CycleBarP").GetComponent<SpriteRenderer>();
         barBs = cycleBar.transform.Find("CycleBarP (1)").GetComponent<SpriteRenderer>();
         Barfond = cycleBar.transform.Find("Static Sprite").GetComponent<SpriteRenderer>();

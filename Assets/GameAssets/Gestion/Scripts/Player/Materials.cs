@@ -16,7 +16,7 @@ public class Materials : MonoBehaviour
 
     public bool tutorial = true;
     public bool tutorialStep = false;
-    public bool researchCentr = false;
+    public bool researchCentr = true;
     public bool explored = false;
     public bool event3Active = false;
 
@@ -107,11 +107,7 @@ public bool loadingDuffer = false;
     }
     public void ResetState()
     {
-        tutorial = true;
-        tutorialStep = false;
-        researchCentr = false;
-        explored = false;
-        event3Active = false;
+
 
         townName = "";
         mat_0 = 0;
@@ -150,7 +146,11 @@ public bool loadingDuffer = false;
         }
 
         menuFirst = true;
-
+        tutorial = true;
+        tutorialStep = false;
+        researchCentr = true;
+        explored = false;
+        event3Active = false;
         Debug.Log("✅ Game Reset Done !");
     }
 

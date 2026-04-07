@@ -34,7 +34,15 @@ public class SceneMainMenu1 : MonoBehaviour
     }
     public void ResetGame()
     {
-        if (Materials.instance != null)
+
+
+        Time.timeScale = 1f;
+
+        PlayerPrefs.DeleteAll();
+
+        StartCoroutine(LoadSceneAsync("Menue"));
+
+                if (Materials.instance != null)
         {
             Materials.instance.ResetState();
         }
@@ -48,12 +56,6 @@ public class SceneMainMenu1 : MonoBehaviour
         {
             E_GameManager.instance.ResetState();
         }
-
-        Time.timeScale = 1f;
-
-        PlayerPrefs.DeleteAll();
-
-        StartCoroutine(LoadSceneAsync("Menue"));
     }
 
 
